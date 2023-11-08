@@ -1,20 +1,20 @@
 /* Copyright 2022 by Brigham Young University - Idaho. All rights eeserved. */
 'use strict';
 
-if (! window.hasOwnProperty('cse111')) {
-	window.cse111 = {};
+if (! window.hasOwnProperty('itm101')) {
+	window.itm101 = {};
 }
 
 
 /** Contains all user visible strings so that translating them to
  * another language will be easier. */
-cse111.strings = {
+itm101.strings = {
 	byuiURL     : 'https://www.byui.edu',
 	byuiHint    : 'BYU-Idaho Website',
 	byuiLogoAlt : 'BYU-Idaho Logo',
-	courseCode  : 'CSE 111',
-	courseTitle : 'Programming with Functions',
-	courseHint  : 'CSE 111 Content',
+	courseCode  : 'ITM 101',
+	courseTitle : 'Introduction to Cloud Computing',
+	courseHint  : 'ITM 101 Content',
 
 	lightText   : 'Light Mode',
 	darkText    : 'Dark Mode',
@@ -30,13 +30,13 @@ cse111.strings = {
 	closeHint   : 'Click to close the navigation menu',
 	lightHint   : 'Change to light mode',
 	darkHint    : 'Change to dark mode',
-	contentsHint: 'View list of contents for CSE 111',
+	contentsHint: 'View list of contents for ITM 101',
 	prevHint    : 'View previous document',
 	nextHint    : 'View next document',
-	searchHint  : 'Search the CSE 111 content',
-	helpHint    : 'Get help for CSE 111',
+	searchHint  : 'Search the ITM 101 content',
+	helpHint    : 'Get help for ITM 101',
 	pdfHint     : 'Download a PDF that contains all\nCSE 111 HTML preparation content',
-	zipHint     : 'Download a zip file that\ncontains all CSE 111 content',
+	zipHint     : 'Download a zip file that\ncontains all ITM 101 content',
 	upHint      : 'Scroll to the top of this document',
 
 	section : '§',
@@ -60,7 +60,7 @@ cse111.strings = {
 
 /** Contains the filenames of user visible icons and other files so
  * that changing them, if necessary, will be easier. */
-cse111.filenames = {
+itm101.filenames = {
 	logoIcon : 'site/icons/logo.png',
 
 	contents : 'index.html',
@@ -68,13 +68,13 @@ cse111.filenames = {
 	help     : 'overview/help.html',
 	solution : 'overview/solution.html',
 
-	htmlFile : 'combined/cse111_prepare_content.html',
-	pdfFile  : 'combined/cse111_prepare_content.pdf',
-	zipFile  : 'combined/cse111_content.zip'
+	htmlFile : 'combined/itm101_prepare_content.html',
+	pdfFile  : 'combined/itm101_prepare_content.pdf',
+	zipFile  : 'combined/itm101_content.zip'
 };
 
 
-cse111.svgCache =
+itm101.svgCache =
 '<svg xmlns="http://www.w3.org/2000/svg"><style>\
 .stroke{stroke-width:8;stroke-linecap:round;stroke-linejoin:round;fill:none}\
 .fill{stroke:none;fill:white}\
@@ -109,7 +109,7 @@ cse111.svgCache =
 
 
 /** Creates an HTML element. */
-cse111.createElement = function(tag, classes, attrs) {
+itm101.createElement = function(tag, classes, attrs) {
 	let elem = document.createElement(tag);
 	if (classes) {
 		for (let clss of classes) {
@@ -125,7 +125,7 @@ cse111.createElement = function(tag, classes, attrs) {
 };
 
 
-cse111.createSVG = function(id, classes, title) {
+itm101.createSVG = function(id, classes, title) {
 	const xmlns = 'http://www.w3.org/2000/svg';
 	const symbol = document.getElementById(id);
 	const viewBox = symbol.getAttributeNS(null, 'viewBox');
@@ -151,7 +151,7 @@ cse111.createSVG = function(id, classes, title) {
 };
 
 
-cse111.common = {
+itm101.common = {
 	/** Contains the relative path to get up from the current
 	 * webpage to the root directory of this website. */
 	upsToRoot : '',
@@ -160,14 +160,14 @@ cse111.common = {
 		let siteIcon = document.head.querySelector('link[rel="icon"]');
 		if (siteIcon) {
 			let href = siteIcon.getAttribute('href');
-			let pathname = cse111.filenames.logoIcon;
+			let pathname = itm101.filenames.logoIcon;
 			if (href.endsWith(pathname)) {
 				let end = href.length - pathname.length;
 				let upsToRoot = href.substring(0, end);
 
 				// Change all filenames to be relative to the sub
 				// directory of the current HTML document.
-				let filenames = cse111.filenames;
+				let filenames = itm101.filenames;
 				for (let key in filenames) {
 					let subname = filenames[key]
 					filenames[key] = upsToRoot + subname;
@@ -188,16 +188,16 @@ cse111.common = {
 	addHeader : function() {
 		let header = document.body.querySelector('header');
 		if (! header) {
-			const strings = cse111.strings;
-			const filenames = cse111.filenames;
-			const createElem = cse111.createElement;
-			const createSVG = cse111.createSVG;
+			const strings = itm101.strings;
+			const filenames = itm101.filenames;
+			const createElem = itm101.createElement;
+			const createSVG = itm101.createSVG;
 
 			// Add the SVG image cache to the document.
 			const xmlns = 'http://www.w3.org/2000/svg';
 			let cache = document.createElementNS(xmlns, 'svg');
 				cache.classList.add('cache');
-				cache.innerHTML = cse111.svgCache;
+				cache.innerHTML = itm101.svgCache;
 			document.body.appendChild(cache);
 
 			// Create the children of the header.
@@ -240,15 +240,15 @@ cse111.common = {
 	/** Creates and adds the navigation menu. */
 	addNavMenu : function(body, article) {
 		const self = this;
-		const strings = cse111.strings;
-		const filenames = cse111.filenames;
-		const createElem = cse111.createElement;
-		const createSVG = cse111.createSVG;
+		const strings = itm101.strings;
+		const filenames = itm101.filenames;
+		const createElem = itm101.createElement;
+		const createSVG = itm101.createSVG;
 		const ul = createElem('ul');
 
 		/** Creates one menu item. */
 		function addMenuItem(id, text, hint, action, classes, download) {
-			let svg = cse111.createSVG(id, null, hint);
+			let svg = itm101.createSVG(id, null, hint);
 			let node = document.createTextNode(' ' + text);
 			let item = createElem('li', classes, {title : hint});
 			if (typeof(action) == 'function') {
@@ -366,8 +366,8 @@ cse111.common = {
 
 	/** Adds a copy character to each h2, h3, or h4 that has an id. */
 	addURLCopyChars : function() {
-		const strings = cse111.strings;
-		const createElem = cse111.createElement;
+		const strings = itm101.strings;
+		const createElem = itm101.createElement;
 
 		/** Copies a URL to the clipboard so that it can be quickly
 		 * pasted into another document that references this document. */
@@ -408,9 +408,9 @@ cse111.common = {
 		const body = document.body;
 		let footer = body.querySelector('footer');
 		if (! footer) {
-			const strings = cse111.strings;
-			const filenames = cse111.filenames;
-			const createElem = cse111.createElement;
+			const strings = itm101.strings;
+			const filenames = itm101.filenames;
+			const createElem = itm101.createElement;
 
 			let div = createElem('div');
 			const copyData = this.getCopyrightData();
@@ -425,7 +425,7 @@ cse111.common = {
 				div.appendChild(copy);
 			}
 
-			let svg = cse111.createSVG('svgUp', null, strings.upHint);
+			let svg = itm101.createSVG('svgUp', null, strings.upHint);
 			let button = createElem('button', ['up'],
 					{type : 'button', title : strings.upHint});
 			button.appendChild(svg);
@@ -444,7 +444,7 @@ cse111.common = {
 	 * search engine structured data in this document's head. Returns
 	 * the two values in an object. */
 	getCopyrightData : function() {
-		const strings = cse111.strings;
+		const strings = itm101.strings;
 		let notice = strings.copyrightNotice;
 		let modified;
 		const query = 'script[type="application/ld+json"]';
@@ -463,7 +463,7 @@ cse111.common = {
 };
 
 
-cse111.linenums = {
+itm101.linenums = {
 	/* The line number functions in this object expect a source code
 	 * example and its corresponding console div to be organized like
 	 * this in their containing HTML document:
@@ -586,7 +586,7 @@ cse111.linenums = {
 			}
 		}
 
-		const strings = cse111.strings;
+		const strings = itm101.strings;
 		const offHint = strings.offHint;
 		const onHint = strings.onHint;
 
@@ -674,9 +674,9 @@ cse111.linenums = {
 			select.addRange(range);
 		}
 
-		const copyHint = cse111.strings.copyHint;
-		const createSVG = cse111.createSVG;
-		const createElem = cse111.createElement;
+		const copyHint = itm101.strings.copyHint;
+		const createSVG = itm101.createSVG;
+		const createElem = itm101.createElement;
 
 		// Add a copy button with a click listener to each
 		// <div class="example"> element.
@@ -709,13 +709,13 @@ cse111.linenums = {
 };
 
 
-cse111.consoles = {
+itm101.consoles = {
 	/** Adds title attributes to consoles and user inputs. Most browsers
 	 * will use the titles as small tool tips that display when the user
 	 * holds the mouse pointer over an HTML element. */
 	addHints : function() {
-		const termHint = cse111.strings.termHint;
-		const inputHint = cse111.strings.inputHint;
+		const termHint = itm101.strings.termHint;
+		const inputHint = itm101.strings.inputHint;
 		let elements = document.body.querySelectorAll('pre.console');
 		for (let pre of elements) {
 			pre.setAttribute('title', termHint);
@@ -729,17 +729,17 @@ cse111.consoles = {
 };
 
 
-cse111.solution = {
+itm101.solution = {
 	/** Modifies all <a class="solution"> elements. */
 	modifyLinks : function() {
 		// Get all <a class="solution"> elements.
 		let links = document.body.querySelectorAll('a.solution');
 
-		// Is the user viewing the CSE 111 files
+		// Is the user viewing the ITM 101 files
 		// from the local hard drive?
 		if (window.location.protocol == 'file:') {
 			for (let link of links) {
-				// Because the user is viewing the CSE 111 files from
+				// Because the user is viewing the ITM 101 files from
 				// the local hard drive, there is no reason to have both
 				// a view and download link. A standard download link
 				// will simply open the file for viewing, so a download
@@ -749,10 +749,10 @@ cse111.solution = {
 		}
 		else {
 			const splitURL = /^.+\/([^\/]+\/[^\/]+)$/;
-			const strings = cse111.strings;
-			const viewText = cse111.strings.viewText + ' ';
-			const downText = cse111.strings.downloadText + ' ';
-			const createElem = cse111.createElement;
+			const strings = itm101.strings;
+			const viewText = itm101.strings.viewText + ' ';
+			const downText = itm101.strings.downloadText + ' ';
+			const createElem = itm101.createElement;
 
 			for (let link of links) {
 				// Get the absolute href.
@@ -760,7 +760,7 @@ cse111.solution = {
 
 				// Get the relative href.
 				let relpath = absURL.replace(splitURL, '$1');
-				let newHref = cse111.filenames.solution + '?file=' + relpath;
+				let newHref = itm101.filenames.solution + '?file=' + relpath;
 
 				let hrefAttr = link.getAttribute('href');
 				link.setAttribute('title', viewText + hrefAttr);
@@ -785,7 +785,7 @@ cse111.solution = {
 };
 
 
-cse111.print = {
+itm101.print = {
 	open : 'open',
 	dataWas : 'data-was-open',
 
@@ -821,34 +821,34 @@ cse111.print = {
 };
 
 
-cse111.onDOMLoaded = function() {
-	const common = cse111.common;
-	const linenums = cse111.linenums;
+itm101.onDOMLoaded = function() {
+	const common = itm101.common;
+	const linenums = itm101.linenums;
 
 	common.countLevels();
 	common.addHeader();
 	common.initBrightness();
 	linenums.addLineNumbers();
-	cse111.solution.modifyLinks();
+	itm101.solution.modifyLinks();
 	common.addFooter();
 
 	common.addURLCopyChars();
 	linenums.addCodeCopyButtons();
 	linenums.addCrossRefs();
-	cse111.consoles.addHints();
+	itm101.consoles.addHints();
 };
 
 
-cse111.beforePrint = function() {
-	cse111.common.closeNavMenu();
-	cse111.print.expandDetails();
+itm101.beforePrint = function() {
+	itm101.common.closeNavMenu();
+	itm101.print.expandDetails();
 };
 
-cse111.afterPrint = function() {
-	cse111.print.collapseDetails();
+itm101.afterPrint = function() {
+	itm101.print.collapseDetails();
 };
 
 
-window.addEventListener('DOMContentLoaded', cse111.onDOMLoaded);
-window.addEventListener('beforeprint', cse111.beforePrint);
-window.addEventListener('afterprint', cse111.afterPrint);
+window.addEventListener('DOMContentLoaded', itm101.onDOMLoaded);
+window.addEventListener('beforeprint', itm101.beforePrint);
+window.addEventListener('afterprint', itm101.afterPrint);
