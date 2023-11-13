@@ -610,6 +610,10 @@ article figure > figcaption {
 
 
 /* Code containers */
+article p.chatgpt {
+	font-family: "Source Code Pro", "Lucida Console", Consolas, monospace;
+}
+
 article code {
 	font-family: "Source Code Pro", "Lucida Console", Consolas, monospace;
 	white-space: nowrap;
