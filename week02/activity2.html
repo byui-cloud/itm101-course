@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2: Activity 2</title>
+    <script defer src="../site/main.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Code+Pro&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="../site/reset.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <link rel="icon" type="image/png" href="../site/icons/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week02/activity2.html">
+    <meta name="description" content="An activity for students that shows how to use Generative AI to generate a JavaScript program">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Article",
+        "headline": "Week 2 Activity 2: Generative AI",
+        "description": "An activity for students that shows how to use Generative AI to generate a JavaScript program",
+        "educationalUse": "assignment",
+        "copyrightNotice": "Copyright © 2024, Brigham Young University–Idaho. All rights reserved.",
+        "datePublished": "2024-04-02",
+        "dateModified": "2023-11-14"
+    }
+    </script>
+</head>
+
+<body>
+<article>
+<h1>Week 2: Activity 2</h1>
+<h2>Programming with Generative AI</h2>
+
+<h4>Summary</h4>
+<p>Not only is Generative AI good at producing answers to questions, it
+can also write code in most programming languages. This activity will
+show you several different prompts that you can use to generate code for
+specific tasks. At the end of the activity, you will be required to
+solve a problem by generating your own prompt. Use Node to complete the
+task.</p>
+
+<h4>Approximate Time to Complete</h4>
+<p>90 minutes</p>
+
+<h4>Hello, World! in JavaScript</h4>
+<p>Open ChatGPT in your browser and enter the following prompt:</p>
+
+<p class="chatgpt">Write a hello world program in JavaScript that runs
+in Node.js. Also, show me how I can run this program with Node.js</p>
+
+<h4>Adding Context</h4>
+<p>ChatGPT remembers the information that you give it. For example, we
+can make sure that it will <strong>always</strong> write JavaScript
+programs to be run with Node.js instead of in a web browser. The
+following prompt will make ChatGPT remember that you would like to have
+all of your JavaScript code examples displayed in a form runnable by
+Node.js.</p>
+
+<p class="chatgpt">From now on, write all JavaScript so that it can be
+run from a terminal with Node.js</p>
+
+<h4>Add Two Numbers</h4>
+<p>Try this prompt:</p>
+
+<p class="chatgpt">Write a JavaScript program that will add two numbers
+together and display the output.</p>
+
+<p>and then try this prompt:</p>
+
+<p class="chatgpt">Make sure that I can pass those parameters as
+arguments, instead of local variables</p>
+
+<p>Using the examples provided by ChatGPT, you should do the
+following:</p>
+<ol>
+    <li>In VSCode, create a file called <code>numbers.js</code> and
+    copy/paste the code into the file</li>
+    <li>You will then run the code with a command that looks like this:
+    <code>node numbers.js 2 2</code>. The resulting output should be
+    <code>4</code>.</li>
+</ol>
+
+<h4>Use ChatGPT to Explain Concepts</h4>
+<p>Please enter each of the following prompts:</p>
+<p class="chatgpt">From now on, answer all questions with example code
+in JavaScript</p>
+<p class="chatgpt">What is a variable?</p>
+<p class="chatgpt">What is a function?</p>
+<p class="chatgpt">What are parameters?</p>
+<p class="chatgpt">What is an if statement?</p>
+
+<h4>Troubleshooting Code with ChatGPT</h4>
+<p>Debugging is the process of finding and fixing problems (bugs) in
+your code. ChatGPT can also assist with this process.</p>
+
+<p>Copy and paste this prompt and code into ChatGPT:</p>
+<p class="chatgpt">Is there something wrong with this function?<br>
+<br>
+function multiplyNumbers(a, b) {<br>
+  return a / b;<br>
+}</p>
+
+<p>Try this prompt too:</p>
+<p class="chatgpt">Are there any edge cases that could cause this code
+to crash?<br>
+<br>
+function divideNumbers(a, b) {<br>
+  return a / b;<br>
+}</p>
+
+<h3>Deliverable</h3>
+<p>Using ChatGPT, write a simple program that will do different math
+operations on two values. It should support the following:</p>
+
+<ul>
+    <li>addition</li>
+    <li>subtraction</li>
+    <li>multiplication</li>
+    <li>division</li>
+    <li>exponent</li>
+</ul>
+
+<p>Create a file called <code>math.js</code> to put your code into. Test
+your code by running node in the terminal or command prompt like this
+<code>node math.js add 2 2</code> and that should add 2 + 2.</p>
+
+<p>Ask ChatGPT: "Can you give me some simple instructions to run and
+test this file?"</p>
+
+<p>Once you have completed the assignment, upload a copy of your
+<code>math.js</code> file and a screenshot of your math.js program code
+working to Canvas.</p>
+</article>
+</body>
+</html>
