@@ -1,4 +1,4 @@
-/* Copyright 2022 by Brigham Young University - Idaho. All rights eeserved. */
+/* Copyright 2022 by Brigham Young University - Idaho. All rights reserved. */
 'use strict';
 
 if (! window.hasOwnProperty('itm101')) {
