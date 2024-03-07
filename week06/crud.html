@@ -13,6 +13,9 @@
         // Talk about the json.stringify and console logs below for SECURITY - remove them
         // CRUD = Create, Read, Update, Delete
         // This page allows CRUD = Create, Read, Update, and Delete
+        // Add a rick roll: https://blog.packetninjas.com/xss-and-rickrolling OR https://www.mach37.com/blog/hacking-tutorial
+        // Paste this in the add project field and see an security XSS vulnerability:
+        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         //import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
         import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
