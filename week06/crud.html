@@ -47,8 +47,12 @@
                 // Fetch projects after the user logs in
                 fetchProjects();
                 signOutMessage.innerText = '';
+                document.getElementById('google-logout-btn').style.display = 'block';
+                document.getElementById('google-login-btn').style.display = 'none';
             } else {
                 // No user is signed in, clear the projects list
+                document.getElementById('google-logout-btn').style.display = 'none';
+                document.getElementById('google-login-btn').style.display = 'block';
                 projectsList.innerHTML = '';
                 clearUserInfo();
                 displayLoginMessage();
@@ -287,18 +291,29 @@
 </head>
 
 <body>
-    <div id="projects-container"></div>
-    <div class="input">
-        <button id="google-login-btn" class="google-button">
-            <i class="fab fa-google"></i> Login with Google
-        </button>
-    </div>
+    <header>
+        <nav>
+          <img id="logoimg" src="logo.png" alt="firebase logo">
+          <a href="projects.html">Projects - No login</a>
+          <a href="cr.html">Create and Read</a>
+          <a href="crd.html">Create, Read, and Delete </a>
+          <a href="crud.html">Create, Read, Update, and Delete </a>
+        </nav>
+        <div id="login-logout">
+            <div class="input">
+                <button id="google-login-btn" class="google-button">
+                    <i class="fab fa-google"></i> Google Login
+                </button>
+            </div>
+            <div class="input">
+                <button id="google-logout-btn" class="google-button" style="display: none;">
+                    <i class="fab fa-google"></i> Google Logout
+                </button>
+            </div>
+          </div>
+      </header>  
     <p id="sign-out-message"></p>
-    <div class="input">
-        <button id="google-logout-btn" class="google-button">
-            <i class="fab fa-google"></i> Logout with Google
-        </button>
-    </div>
+
     <h1>Logged in</h1>
     <h2 id="userName"></h2>
     <h2 id="userEmail"></h2>
@@ -306,6 +321,8 @@
     <div id="firebaseui-auth-container"></div>
     Your project page
     <!-- Add Project Edit Form -->
+    <div id="projects-container">
+
     <div id="editProjectFormContainer" style="display: none;">
         <h1>Edit Project</h1>
         <form id="editProjectForm">
@@ -328,7 +345,11 @@
     </form>
     <h2>Projects</h2>
     <ul id="projectsList"></ul>
-
+</div>
 </body>
+
+</html>
+
+</html>
 
 </html>
