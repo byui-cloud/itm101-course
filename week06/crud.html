@@ -293,11 +293,11 @@
 <body>
     <header>
         <nav>
-          <img id="logoimg" src="logo.png" alt="firebase logo">
-          <a href="projects.html">Projects - No login</a>
-          <a href="cr.html">Create and Read</a>
-          <a href="crd.html">Create, Read, and Delete </a>
-          <a href="crud.html">Create, Read, Update, and Delete </a>
+            <img id="logoimg" src="logo.png" alt="firebase logo">
+            <a href="projects.html">Projects - No login</a>
+            <a href="cr.html">Create and Read</a>
+            <a href="crd.html">Create, Read, and Delete </a>
+            <a href="crud.html">Create, Read, Update, and Delete </a>
         </nav>
         <div id="login-logout">
             <div class="input">
@@ -310,8 +310,8 @@
                     <i class="fab fa-google"></i> Google Logout
                 </button>
             </div>
-          </div>
-      </header>  
+        </div>
+    </header>
     <p id="sign-out-message"></p>
 
     <h1>Logged in</h1>
@@ -323,33 +323,38 @@
     <!-- Add Project Edit Form -->
     <div id="projects-container">
 
-    <div id="editProjectFormContainer" style="display: none;">
-        <h1>Edit Project</h1>
-        <form id="editProjectForm">
-            <input type="hidden" id="editProjectId" name="editProjectId">
-            <label for="editName">Project Name:</label>
-            <input type="text" id="editName" name="editName" required><br>
-            <label for="editDescription">Project Description:</label>
-            <textarea id="editDescription" name="editDescription" required></textarea><br>
-            <button type="submit" onclick="updateProject()">Update Project</button>
-            <button type="button" onclick="cancelEdit()">Cancel</button>
+        <div id="editProjectFormContainer" style="display: none;">
+            <h1>Edit Project</h1>
+            <form id="editProjectForm">
+                <input type="hidden" id="editProjectId" name="editProjectId">
+                <label for="editName">Project Name:</label>
+                <input type="text" id="editName" name="editName" required><br>
+                <label for="editDescription">Project Description:</label>
+                <textarea id="editDescription" name="editDescription" required></textarea><br>
+                <button type="submit" onclick="updateProject()">Update Project</button>
+                <button type="button" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+        <h1>Add Project</h1>
+        <form id="addProjectForm">
+            <label for="name">Project Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="description">Project Description:</label>
+            <textarea id="description" name="description" required></textarea><br>
+            <button type="submit">Add Project</button>
         </form>
+        <h2>Projects</h2>
+        <ul id="projectsList"></ul>
     </div>
-    <h1>Add Project</h1>
-    <form id="addProjectForm">
-        <label for="name">Project Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="description">Project Description:</label>
-        <textarea id="description" name="description" required></textarea><br>
-        <button type="submit">Add Project</button>
-    </form>
-    <h2>Projects</h2>
-    <ul id="projectsList"></ul>
-</div>
+    <!-- Footer with dynamically calculated copyright year using JavaScript -->
+    <footer>
+        &copy; Your Name | <span id="currentYear"></span>
+    </footer>
+
+    <script>
+        // JavaScript code to dynamically update the copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
-
-</html>
-
-</html>
 
 </html>
