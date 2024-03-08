@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Your Portfolio</title>
-    <script src="https://www.gstatic.com/firebasejs/ui/6.1.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.1/firebase-ui-auth.css">
     <script src="config.js" defer></script>
     <script type="module" defer>
         // Talk about the json.stringify and console logs below for SECURITY - remove them
@@ -15,7 +13,7 @@
         // This page allows CRUD = Create, Read, Update, and Delete
         // Add a rick roll: https://blog.packetninjas.com/xss-and-rickrolling OR https://www.mach37.com/blog/hacking-tutorial
         // Paste this in the add project field and see an security XSS vulnerability:
-        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>      
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         //import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
         import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
@@ -31,11 +29,6 @@
         const googleLogout = document.getElementById("google-logout-btn");
         const signOutMessage = document.getElementById("sign-out-message");
 
-        //   Add Google Analytics
-        //   gtag('config', 'GA_MEASUREMENT_ID', {
-        //   cookie_domain: 'yourappname.web.app',
-        //   cookie_flags: 'SameSite=None;Secure',
-        // });
         googleLogout.addEventListener("click", handleSignOut);
         const googleLogin = document.getElementById("google-login-btn");
         googleLogin.addEventListener("click", handleSignIn);
@@ -49,10 +42,12 @@
                 signOutMessage.innerText = '';
                 document.getElementById('google-logout-btn').style.display = 'block';
                 document.getElementById('google-login-btn').style.display = 'none';
+                document.getElementById('userProfilePicture').style.display = 'block';
             } else {
                 // No user is signed in, clear the projects list
                 document.getElementById('google-logout-btn').style.display = 'none';
                 document.getElementById('google-login-btn').style.display = 'block';
+                document.getElementById('userProfilePicture').style.display = 'none';
                 projectsList.innerHTML = '';
                 clearUserInfo();
                 displayLoginMessage();
@@ -104,7 +99,11 @@
             document.getElementById("userEmail").textContent = userEmail;
             document.getElementById("userProfilePicture").src = userProfilePicture;
         }
-
+        //   Add Google Analytics
+        //   gtag('config', 'GA_MEASUREMENT_ID', {
+        //   cookie_domain: 'yourappname.web.app',
+        //   cookie_flags: 'SameSite=None;Secure',
+        // });
         // Declare variables outside the event listener
         const nameInput = document.getElementById('name');
         const descriptionInput = document.getElementById('description');
@@ -253,8 +252,6 @@
         };
         async function updateProjectInFirestore(projectId, updatedData) {
             try {
-                // In production, remove JSON.stringify in most cases:
-                // https://pragmaticwebsecurity.com/articles/spasecurity/json-stringify-xss
                 console.log('Project modifing now!' + projectId + ' updateddata: ' + JSON.stringify(updatedData));
                 const projectRef = doc(db, 'projects', projectId);
                 //console.log('Project modifing db!' + JSON.stringify(db));
@@ -270,14 +267,11 @@
 
         // Function to update a project
         window.updateProject = async function () {
-            //Without the preventDefault line of code, the database may not update
             event.preventDefault();
             const projectId = document.getElementById('editProjectId').value;
             const name = document.getElementById('editName').value;
             const description = document.getElementById('editDescription').value;
             try {
-                // In production, you probably want to comment out or remove console.log 
-                // https://medium.com/@hfally/deactivate-console-log-on-production-why-and-how-d0345abbe71
                 console.log('Project update with name:' + name + ' pid; ' + projectId + ' descrip: ' + description);
                 await updateProjectInFirestore(projectId, { name, description });
                 fetchProjects(); // Fetch projects again after updating
@@ -292,7 +286,8 @@
 
 <body>
     <header>
-        <nav>
+        <span class="menu-icon">&#9776; Menu</span>
+        <nav class="show">
             <img id="logoimg" src="logo.png" alt="firebase logo">
             <a href="projects.html">Projects - No login</a>
             <a href="cr.html">Create and Read</a>
@@ -310,51 +305,56 @@
                     <i class="fab fa-google"></i> Google Logout
                 </button>
             </div>
+            <div>
+                <img id="userProfilePicture" alt="profile pic from Google" style="display: none;">
+            </div>
         </div>
+
     </header>
     <p id="sign-out-message"></p>
 
-    <h1>Logged in</h1>
-    <h2 id="userName"></h2>
-    <h2 id="userEmail"></h2>
-    <img id="userProfilePicture" alt="profile pic from Google">
-    <div id="firebaseui-auth-container"></div>
-    Your project page
-    <!-- Add Project Edit Form -->
-    <div id="projects-container">
+    <h1>Your project page</h1>
+    <span>Authenticated as:<span>
+            <span id="userName"></span>
+            <span id="userEmail"></span>
 
-        <div id="editProjectFormContainer" style="display: none;">
-            <h1>Edit Project</h1>
-            <form id="editProjectForm">
-                <input type="hidden" id="editProjectId" name="editProjectId">
-                <label for="editName">Project Name:</label>
-                <input type="text" id="editName" name="editName" required><br>
-                <label for="editDescription">Project Description:</label>
-                <textarea id="editDescription" name="editDescription" required></textarea><br>
-                <button type="submit" onclick="updateProject()">Update Project</button>
-                <button type="button" onclick="cancelEdit()">Cancel</button>
-            </form>
-        </div>
-        <h1>Add Project</h1>
-        <form id="addProjectForm">
-            <label for="name">Project Name:</label>
-            <input type="text" id="name" name="name" required><br>
-            <label for="description">Project Description:</label>
-            <textarea id="description" name="description" required></textarea><br>
-            <button type="submit">Add Project</button>
-        </form>
-        <h2>Projects</h2>
-        <ul id="projectsList"></ul>
-    </div>
-    <!-- Footer with dynamically calculated copyright year using JavaScript -->
-    <footer>
-        &copy; Your Name | <span id="currentYear"></span>
-    </footer>
+            <!-- Add Project Edit Form -->
+            <div id="projects-container">
 
-    <script>
-        // JavaScript code to dynamically update the copyright year
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
+                <div id="editProjectFormContainer" style="display: none;">
+                    <h1>Edit Project</h1>
+                    <form id="editProjectForm">
+                        <input type="hidden" id="editProjectId" name="editProjectId">
+                        <label for="editName">Project Name:</label>
+                        <input type="text" id="editName" name="editName" required><br>
+                        <label for="editDescription">Project Description:</label>
+                        <textarea id="editDescription" name="editDescription" required></textarea><br>
+                        <button type="submit" onclick="updateProject()">Update Project</button>
+                        <button type="button" onclick="cancelEdit()">Cancel</button>
+                    </form>
+                </div>
+                <h1>Add Project</h1>
+                <form id="addProjectForm">
+                    <label for="name">Project Name:</label>
+                    <input type="text" id="name" name="name" required><br>
+                    <label for="description">Project Description:</label>
+                    <textarea id="description" name="description" required></textarea><br>
+                    <button type="submit">Add Project</button>
+                </form>
+                <h2>Projects</h2>
+                <ul id="projectsList"></ul>
+            </div>
+            <!-- Footer with dynamically calculated copyright year using JavaScript -->
+            <footer>
+                &copy; Your Name | <span id="currentYear"></span>
+            </footer>
+
+            <script>
+                // JavaScript code to dynamically update the copyright year
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+                // JavaScript code to toggle the mobile menu
+            </script>
+
 </body>
 
 </html>

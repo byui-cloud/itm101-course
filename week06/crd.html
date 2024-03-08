@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Your Portfolio</title>
-    <script src="https://www.gstatic.com/firebasejs/ui/6.1.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.1/firebase-ui-auth.css">
     <script src="config.js" defer></script>
     <script type="module" defer>
         // CRUD = Create, Read, Update, Delete
-        // This page allows ONLY CRD = Create, Read, and Delete
+        // This page allows ONLY CRD = Create, Read, and Delete        
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         //import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
@@ -46,10 +43,12 @@
                 signOutMessage.innerText = '';
                 document.getElementById('google-logout-btn').style.display = 'block';
                 document.getElementById('google-login-btn').style.display = 'none';
+                document.getElementById('userProfilePicture').style.display = 'block';
             } else {
                 // No user is signed in, clear the projects list
                 document.getElementById('google-logout-btn').style.display = 'none';
                 document.getElementById('google-login-btn').style.display = 'block';
+                document.getElementById('userProfilePicture').style.display = 'none';
                 projectsList.innerHTML = '';
                 clearUserInfo();
                 displayLoginMessage();
@@ -218,10 +217,11 @@
         });
     </script>
 </head>
-
 <body>
+
     <header>
-        <nav>
+        <span class="menu-icon">&#9776; Menu</span>
+        <nav class="show">
             <img id="logoimg" src="logo.png" alt="firebase logo">
             <a href="projects.html">Projects - No login</a>
             <a href="cr.html">Create and Read</a>
@@ -239,17 +239,18 @@
                     <i class="fab fa-google"></i> Google Logout
                 </button>
             </div>
+            <div>
+                <img id="userProfilePicture" alt="profile pic from Google" style="display: none;">
+            </div>
         </div>
-    </header>
-    <div id="projects-container"></div>
 
+    </header>
     <p id="sign-out-message"></p>
-    <h1>Logged in</h1>
-    <h2 id="userName"></h2>
-    <h2 id="userEmail"></h2>
-    <img id="userProfilePicture" alt="profile pic from Google">
-    <div id="firebaseui-auth-container"></div>
-    Your project page
+
+    <h1>Your project page</h1>
+    <span>Authenticated as:<span>
+            <span id="userName"></span>
+            <span id="userEmail"></span>
     <h1>Add Project</h1>
     <form id="addProjectForm">
         <label for="name">Project Name:</label>
@@ -260,15 +261,14 @@
     </form>
     <h2>Projects</h2>
     <ul id="projectsList"></ul>
-    <!-- Footer with dynamically calculated copyright year using JavaScript -->
-    <footer>
-        &copy; Your Name | <span id="currentYear"></span>
-    </footer>
+      <!-- Footer with dynamically calculated copyright year using JavaScript -->
+  <footer>
+    &copy; Your Name | <span id="currentYear"></span>
+  </footer>
 
-    <script>
-        // JavaScript code to dynamically update the copyright year
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
+  <script>
+    // JavaScript code to dynamically update the copyright year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
