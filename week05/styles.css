@@ -66,76 +66,87 @@ nav a:hover {
   background-color: #45a049;
 }
 
-  #projects-container {
-    background-color: #fff;
-    padding: 1% 5%;
-    margin: 0 5%;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-    h1, h2 {
-    color: #333;
-    margin: 10px;
-  }
-    #userProfilePicture{
-    width: 40px;
-    margin: 0 auto;
-    padding: 0 15px;
-    color: #fff;
-  }
-  form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    margin-top: auto;
+#authspan{
+  padding-bottom: 2%;
+  color: #006EB6;
+  font-weight: 700;
   }
 
+#projects-container {
+  background-color: #fff;
+  padding: 1% 5%;
+  margin: 0 5%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  h1, h2 {
+  color: #333;
+  margin: 10px;
+}
+  #userProfilePicture{
+  width: 40px;
+  margin: 0 auto;
+  padding: 0 15px;
+  color: #fff;
+}
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.delete-project-btn, .edit-project-btn{
+  padding: 5px 5px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
   /* It would be better to do a min-width and redo the css for mobile friendly loading first */
+  /* This CSS is applied when the screen size/browser is less than 600px wide */
   @media (max-width: 600px) {
     .menu-icon {
       display: block;
