@@ -9,6 +9,7 @@
     <script src="config.js" defer></script>
     <script type="module" defer>
         // Talk about the json.stringify and console logs below for SECURITY - remove them
+        // https://pragmaticwebsecurity.com/articles/spasecurity/json-stringify-xss
         // CRUD = Create, Read, Update, Delete
         // This page allows CRUD = Create, Read, Update, and Delete
         // Add a rick roll: https://blog.packetninjas.com/xss-and-rickrolling OR https://www.mach37.com/blog/hacking-tutorial
@@ -286,7 +287,7 @@
 
 <body>
     <header>
-        <span class="menu-icon">&#9776; Menu</span>
+        <span id="menu-icon" class="menu-icon">&#9776; Menu</span>
         <nav class="show">
             <img id="logoimg" src="logo.png" alt="firebase logo">
             <a href="projects.html">Projects - No login</a>
@@ -352,7 +353,14 @@
             <script>
                 // JavaScript code to dynamically update the copyright year
                 document.getElementById('currentYear').textContent = new Date().getFullYear();
-                // JavaScript code to toggle the mobile menu
+                // JavaScript to toggle the mobile navigation menu
+                document.addEventListener('DOMContentLoaded', function () {
+                    var menuIcon = document.getElementById('menu-icon');
+                    var navMenu = document.querySelector('nav');
+                    menuIcon.addEventListener('click', function () {
+                        navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
+                    });
+                });
             </script>
 
 </body>

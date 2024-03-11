@@ -187,7 +187,7 @@
 </head>
 <body>
     <header>
-        <span class="menu-icon">&#9776; Menu</span>
+        <span id="menu-icon" class="menu-icon">&#9776; Menu</span>
         <nav class="show">
             <img id="logoimg" src="logo.png" alt="firebase logo">
             <a href="projects.html">Projects - No login</a>
@@ -236,6 +236,14 @@
   <script>
     // JavaScript code to dynamically update the copyright year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
+    // JavaScript to toggle the mobile navigation menu
+    document.addEventListener('DOMContentLoaded', function () {
+        var menuIcon = document.getElementById('menu-icon');
+        var navMenu = document.querySelector('nav');
+        menuIcon.addEventListener('click', function () {
+            navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
+        });
+    });
+</script>
 </body>
 </html>

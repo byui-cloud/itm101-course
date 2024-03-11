@@ -6,7 +6,6 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Set the minimum height of the body to 100% of the viewport height */
 }
 .menu-icon {
   display: none;
@@ -146,20 +145,17 @@ nav a:hover {
       flex-direction: column;
       align-items: center;
       position: absolute;
-      top: 60px; /* Adjust this based on your header height */
+      top: 6.9vh;
       left: 0;
-      width: 100%;
       background-color: #333;
       display: none;
-    }
-
-    nav.show {
-      display: none;
+      padding: 1%;
     }
 
     nav a {
       width: 100%;
       text-align: center;
       box-sizing: border-box;
+      padding: 2% 1%;
     }
   }

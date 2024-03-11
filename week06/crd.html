@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,10 +218,11 @@
         });
     </script>
 </head>
+
 <body>
 
     <header>
-        <span class="menu-icon">&#9776; Menu</span>
+        <span id="menu-icon" class="menu-icon">&#9776; Menu</span>
         <nav class="show">
             <img id="logoimg" src="logo.png" alt="firebase logo">
             <a href="projects.html">Projects - No login</a>
@@ -251,24 +253,33 @@
     <span>Authenticated as:<span>
             <span id="userName"></span>
             <span id="userEmail"></span>
-    <h1>Add Project</h1>
-    <form id="addProjectForm">
-        <label for="name">Project Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="description">Project Description:</label>
-        <textarea id="description" name="description" required></textarea><br>
-        <button type="submit">Add Project</button>
-    </form>
-    <h2>Projects</h2>
-    <ul id="projectsList"></ul>
-      <!-- Footer with dynamically calculated copyright year using JavaScript -->
-  <footer>
-    &copy; Your Name | <span id="currentYear"></span>
-  </footer>
+            <h1>Add Project</h1>
+            <form id="addProjectForm">
+                <label for="name">Project Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="description">Project Description:</label>
+                <textarea id="description" name="description" required></textarea><br>
+                <button type="submit">Add Project</button>
+            </form>
+            <h2>Projects</h2>
+            <ul id="projectsList"></ul>
+            <!-- Footer with dynamically calculated copyright year using JavaScript -->
+            <footer>
+                &copy; Your Name | <span id="currentYear"></span>
+            </footer>
 
-  <script>
-    // JavaScript code to dynamically update the copyright year
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
+            <script>
+                // JavaScript code to dynamically update the copyright year
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+                // JavaScript to toggle the mobile navigation menu
+                document.addEventListener('DOMContentLoaded', function () {
+                    var menuIcon = document.getElementById('menu-icon');
+                    var navMenu = document.querySelector('nav');
+                    menuIcon.addEventListener('click', function () {
+                        navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
+                    });
+                });
+            </script>
 </body>
+
 </html>
