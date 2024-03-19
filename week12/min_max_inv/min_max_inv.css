@@ -1,0 +1,91 @@
+:root {
+	--byui-blue: rgb(0, 118, 182);
+
+	--warning-bkgrnd: rgb(255, 255, 143);
+	--warning-foregrnd: black;
+
+	--error-bkgrnd: rgb(255, 172, 28);
+	--error-foregrnd: black;
+}
+
+body {
+	font-family: "Open Sans", Arial, Helvetica, Verdana, sans-serif;
+}
+
+header {
+}
+header > img.logo {
+	vertical-align: bottom;
+	margin: 1em 2em 0 1em;
+	width: 3em;
+}
+
+header > ul.tabs {
+	display: inline;
+	list-style-type: none;
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+header > ul.tabs > li {
+	display: inline-block;
+	margin: 0;
+	border-top: none;
+	border-right: none;
+	border-bottom: 2px solid var(--byui-blue);
+	border-left: none;
+	padding: 0.25em 0.5em;
+	cursor: pointer;
+}
+header > ul.tabs > li.selected {
+	border-top: 2px solid var(--byui-blue);
+	border-right: 2px solid var(--byui-blue);
+	border-bottom: none;
+	border-left: 2px solid var(--byui-blue);
+}
+
+div.frag {
+	display: none;
+}
+div.frag.selected {
+	display: block;
+}
+
+div.frag > form {
+	display: grid;
+	grid-gap: 1em 1em;
+	grid-template-columns: max-content 20em;
+}
+div.frag > form label {
+	text-align: right;
+}
+
+table > thead > tr > th {
+	vertical-align: bottom;
+	text-align: center;
+}
+table > tbody > tr > td {
+	vertical-align: top;
+}
+
+input[type="number"] {
+	width: 5em;
+	text-align: right;
+}
+input:valid:not([value]) {
+	background-color: white;
+}
+input:valid {
+	background-color: palegreen;
+}
+input:invalid {
+	background-color: lightpink;
+}
+
+div.controls {
+	margin: 1em 0 0 2em;
+}
+div.controls > button {
+	border-radius: 20%;
+	background-color: seagreen;
+	color: white;
+}

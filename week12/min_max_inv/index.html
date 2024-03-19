@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Max Inventory System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="min_max_inv.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="firebase_config.js"></script>
+    <script src="min_max_inv.js"></script>
+    <script src="suppliers.js"></script>
+    <script src="products.js"></script>
+    <script src="receiving.js"></script>
+    <script src="outgoing.js"></script>
+</head>
+
+<!--
+A single page web app is contained in one HTML file, one or more CSS
+files, and one or more JavaScript files that are downloaded from a web
+server. In this single page app, we use fragment to mean one part of the
+user interface of the single page app. This app contains five fragments,
+one each for suppliers, products, receiving, outgoing, and help.
+-->
+
+<body onload="window.mminv.showFirstFrag()">
+<header>
+<img class="logo" src="minmax.png" alt="Logo for Max"
+title="Logo for the Min-Max Inventory System">
+<ul class="tabs">
+    <li onclick="mminv.showFrag(event, 'suppliers')">Suppliers</li>
+    <li onclick="mminv.showFrag(event, 'products')">Products</li>
+    <li onclick="mminv.showFrag(event, 'receiving')">Receiving</li>
+    <li onclick="mminv.showFrag(event, 'outgoing')" class="selected">Outgoing</li>
+    <li onclick="mminv.showFrag(event, 'help')">Help</li>
+</ul>
+</header>
+
+<div id="main">
+
+<div class="frag" id="suppliers">
+<h2>Suppliers</h2>
+<form name="suppliers">
+    <label for="suplr_id">Supplier ID:</label>
+    <input id="suplr_id" type="text" readonly>
+    <label for="suplr_name">Supplier Name:</label>
+    <input id="suplr_name" name="supplier_name" type="text">
+    <label for="suplr_email">Email:</label>
+    <input id="suplr_email" name="email_address" type="email">
+    <label for="suplr_phone">Phone:</label>
+    <input id="suplr_phone" name="phone_number" type="tel">
+</form>
+<div class="controls">
+    <button type="button" name="prev" title="Previous Supplier">Prev</button>
+    <button type="button" name="new" title="New">New</button>
+    <button type="button" name="update" title="Update">Update</button>
+    <button type="button" name="delete" title="Delete">Delete</button>
+    <button type="button" name="next" title="Next Supplier">Next</button>
+</div>
+</div>
+
+<div class="frag" id="products">
+<h2>Products</h2>
+<form name="products">
+    <label for="prod_id">Product ID:</label>
+    <input id="prod_id" type="text" readonly>
+    <label for="prod_name">Product Name:</label>
+    <input id="prod_name" name="product_name" type="text">
+    <label for="min_quant">minimum quantity:</label>
+    <input id="min_quant" name="min_quantity" type="number" min="0" step="1">
+    <label for="quant">current quantity:</label>
+    <input id="quant" name="quantity" type="number" min="0" step="1">
+    <label for="max_quant">maximum quantity:</label>
+    <input id="max_quant" name="max_quantity" type="number" min="0" step="1">
+    <label for="prod_suplr_id">Supplier ID:</label>
+    <input id="prod_suplr_id" name="supplier_id" type="text" readonly>
+</form>
+<div class="controls">
+    <button type="button" name="prev" title="Previous Supplier">Prev</button>
+    <button type="button" name="new" title="New">New</button>
+    <button type="button" name="update" title="Update">Update</button>
+    <button type="button" name="delete" title="Delete">Delete</button>
+    <button type="button" name="next" title="Next Supplier">Next</button>
+</div>
+</div>
+
+<div class="frag" id="receiving">
+<h2>Receiving</h2>
+<form><table class="products"><thead>
+    <tr><th>Product ID</th> <th>Product Name</th> <th>Received</th></tr>
+</thead><tbody>
+</tbody></table></form>
+<div class="controls">
+    <button type="button" name="submit" title="Submit the numbers in this form">Submit</button>
+    <button type="button" name="clear" title="Clear this form">Clear</button>
+</div>
+</div>
+
+<div class="frag" id="outgoing">
+<h2>Outgoing</h2>
+<form><table class="products"><thead>
+    <tr><th>Product ID</th> <th>Product Name</th>
+        <th>Current<br>Quantity</th> <th>Outgoing</th></tr>
+</thead><tbody>
+</tbody></table></form>
+<div class="controls">
+    <button type="button" name="submit" title="Submit the numbers in this form">Submit</button>
+    <button type="button" name="clear" title="Clear this form">Clear</button>
+</div>
+</div>
+
+<div class="frag" id="help">
+<h2>Help</h2>
+<p>The Min-Max Inventory System (affectionately called "Max") enables
+you to track your company’s inventory. Max securely stores information
+about the products in your inventory and the companies that supply those
+products in a Google Firestore Database.</p>
+</div>
+
+</div>
+</body>
+</html>
