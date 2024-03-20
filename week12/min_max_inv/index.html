@@ -43,54 +43,28 @@ title="Logo for the Min-Max Inventory System">
 
 <div class="frag" id="suppliers">
 <h2>Suppliers</h2>
-<form name="suppliers">
-    <label for="suplr_id">Supplier ID:</label>
-    <input id="suplr_id" type="text" readonly>
-    <label for="suplr_name">Supplier Name:</label>
-    <input id="suplr_name" name="supplier_name" type="text">
-    <label for="suplr_email">Email:</label>
-    <input id="suplr_email" name="email_address" type="email">
-    <label for="suplr_phone">Phone:</label>
-    <input id="suplr_phone" name="phone_number" type="tel">
-</form>
-<div class="controls">
-    <button type="button" name="prev" title="Previous Supplier">Prev</button>
-    <button type="button" name="new" title="New">New</button>
-    <button type="button" name="update" title="Update">Update</button>
-    <button type="button" name="delete" title="Delete">Delete</button>
-    <button type="button" name="next" title="Next Supplier">Next</button>
-</div>
+<table><thead>
+    <tr><th>Supplier ID</th> <th>Supplier Name</th>
+        <th>Email</th> <th>Phone</th></tr>
+</thead><tbody>
+</tbody></table>
 </div>
 
 <div class="frag" id="products">
 <h2>Products</h2>
-<form name="products">
-    <label for="prod_id">Product ID:</label>
-    <input id="prod_id" type="text" readonly>
-    <label for="prod_name">Product Name:</label>
-    <input id="prod_name" name="product_name" type="text">
-    <label for="min_quant">minimum quantity:</label>
-    <input id="min_quant" name="min_quantity" type="number" min="0" step="1">
-    <label for="quant">current quantity:</label>
-    <input id="quant" name="quantity" type="number" min="0" step="1">
-    <label for="max_quant">maximum quantity:</label>
-    <input id="max_quant" name="max_quantity" type="number" min="0" step="1">
-    <label for="prod_suplr_id">Supplier ID:</label>
-    <input id="prod_suplr_id" name="supplier_id" type="text" readonly>
-</form>
-<div class="controls">
-    <button type="button" name="prev" title="Previous Supplier">Prev</button>
-    <button type="button" name="new" title="New">New</button>
-    <button type="button" name="update" title="Update">Update</button>
-    <button type="button" name="delete" title="Delete">Delete</button>
-    <button type="button" name="next" title="Next Supplier">Next</button>
-</div>
+<table><thead>
+    <tr><th>Product ID</th> <th>Product Name</th>
+        <th>Minimum<br>Quantity</th> <th>Current<br>Quantity</th>
+        <th>Maximum<br>Quantity</th> <th>Supplier ID</th></tr>
+</thead><tbody>
+</tbody></table>
 </div>
 
 <div class="frag" id="receiving">
 <h2>Receiving</h2>
-<form><table class="products"><thead>
-    <tr><th>Product ID</th> <th>Product Name</th> <th>Received</th></tr>
+<form><table><thead>
+    <tr><th name="product_id">Product ID</th> <th>Product Name</th>
+        <th>Received</th></tr>
 </thead><tbody>
 </tbody></table></form>
 <div class="controls">
@@ -101,8 +75,8 @@ title="Logo for the Min-Max Inventory System">
 
 <div class="frag" id="outgoing">
 <h2>Outgoing</h2>
-<form><table class="products"><thead>
-    <tr><th>Product ID</th> <th>Product Name</th>
+<form><table><thead>
+    <tr><th name="product_id">Product ID</th> <th>Product Name</th>
         <th>Current<br>Quantity</th> <th>Outgoing</th></tr>
 </thead><tbody>
 </tbody></table></form>

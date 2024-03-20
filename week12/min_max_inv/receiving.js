@@ -1,8 +1,13 @@
 'use strict';
 
 window.mminv.receiving = {
+	divId : 'receiving',
+	snapshot : { },
+
+
 	init : function() {
-		const ctrls = document.querySelector('#outgoing > div.controls');
+		const divId = this.divId;
+		const ctrls = document.querySelector(`#${divId} > div.controls`);
 		const pairs = [
 			['submit', this.submit],
 			['clear', this.clear]
@@ -17,8 +22,9 @@ window.mminv.receiving = {
 
 	empty : function() {
 		// Remove all the rows from the receiving table.
+		const divId = this.divId;
 		const tbody = document.querySelector(
-				'#receiving > form > table > tbody');
+				`#${divId} > form > table > tbody`);
 		window.mminv.removeAllChildren(tbody);
 	},
 
@@ -30,13 +36,17 @@ window.mminv.receiving = {
 
 	process : function(products) {
 		const self = window.mminv.receiving;
+		const divId = self.divId;
 		const create = window.mminv.createElem;
 		const tbody = document.querySelector(
-				'#receiving > form > table > tbody');
+				`#${divId} > form > table > tbody`);
+		self.snapshot = { };
 		products.forEach((doc) => {
 			let prodId = doc.id;
 			let prodData = doc.data();
-			let cellId = create('td', null, null, prodId);
+			self.snapshot[prodId] = prodData;
+
+			let cellId = create('td', null, {name:'product_id'}, prodId);
 
 			let prodName = prodData['product_name'];
 			let cellName = create('td', null, null, prodName);
@@ -55,6 +65,7 @@ window.mminv.receiving = {
 	},
 
 
+	/*
 	reNonNegInt : /^(0|[1-9][0-9]*)$/,
 	reNonDigits : /[^0-9]/g,
 	allowInteger : function(event) {
@@ -67,22 +78,38 @@ window.mminv.receiving = {
 			input.value = approved;
 		}
 	},
+	*/
 
 
-	submit : function() {
-		if (this.validate()) {
+	submit : function(event) {
+		const self = window.mminv.receiving;
+		if (self.validate()) {
+			// TODO
 		}
 	},
 
 
 	validate : function() {
-		return true;
+		const divId = this.divId;
+		const inputs = document.querySelectorAll(
+			`#${divId} > form > table input[name="received"]`);
+		return Array.from(inputs).every((input) => {
+			let valid = true;
+			const value = input.value;
+			if (value != "") {
+				const received = parseInt(value);
+				valid = (!isNaN(received) && received >= 0 &&
+						Math.abs(received - parseFloat(value)) == 0);
+			}
+			return valid;
+		});
 	},
 
 
 	clear : function(event) {
+		const divId = window.mminv.receiving.divId;
 		const inputs = document.querySelectorAll(
-			'#receiving > form > table.products input[name="received"]');
-		Array.from(inputs).forEach(input => input.value = '');
+			`#${divId} > form > table input[name="received"]`);
+		Array.from(inputs).forEach((input) => input.value = '');
 	}
 };

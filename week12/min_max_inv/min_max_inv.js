@@ -21,8 +21,8 @@ window.mminv = {
 	showFrag : function(event, id) {
 		// Clear all the fragments.
 		const self = window.mminv;
-		self.suppliers.clear();
-		self.products.clear();
+		self.suppliers.empty();
+		self.products.empty();
 		self.receiving.empty();
 		self.outgoing.empty();
 

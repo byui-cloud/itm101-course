@@ -1,11 +1,5 @@
 :root {
 	--byui-blue: rgb(0, 118, 182);
-
-	--warning-bkgrnd: rgb(255, 255, 143);
-	--warning-foregrnd: black;
-
-	--error-bkgrnd: rgb(255, 172, 28);
-	--error-foregrnd: black;
 }
 
 body {
@@ -66,16 +60,21 @@ table > thead > tr > th {
 table > tbody > tr > td {
 	vertical-align: top;
 }
+table > tbody > tr > td.number {
+	padding-right: 1em;
+	text-align: right;
+}
+
+#receiving table > thead > tr > th[name="product_id"],
+#receiving table > tbody > tr > td[name="product_id"],
+#outgoing table > thead > tr > th[name="product_id"],
+#outgoing table > tbody > tr > td[name="product_id"] {
+	display: none;
+}
 
 input[type="number"] {
 	width: 5em;
 	text-align: right;
-}
-input:valid:not([value]) {
-	background-color: white;
-}
-input:valid {
-	background-color: palegreen;
 }
 input:invalid {
 	background-color: lightpink;
@@ -86,6 +85,11 @@ div.controls {
 }
 div.controls > button {
 	border-radius: 20%;
-	background-color: seagreen;
 	color: white;
+}
+div.controls > button[name="submit"] {
+	background-color: seagreen;
+}
+div.controls > button[name="clear"] {
+	background-color: crimson;
 }
