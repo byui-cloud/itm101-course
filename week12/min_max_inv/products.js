@@ -1,44 +1,41 @@
 'use strict';
 
 window.mminv.products = {
+	divId : 'products',
+
+
 	init : function() {
 	},
 
 
-	empty : function() {
-		// Remove all the rows from the products table.
-		const tbody = document.querySelector('#products > table > tbody');
-		window.mminv.removeAllChildren(tbody);
-	},
-
-
 	prepare : function() {
-		window.mminv.getCollection('products', this.process);
+		const self = this;
+		const names = window.mminv.dbNames;
+		window.mminv.getCollection(names.products,
+				(snapshot) => self.process(snapshot));
 	},
 
 
 	process : function(products) {
-		const self = window.mminv.receiving;
+		const names = window.mminv.dbNames;
 		const create = window.mminv.createElem;
-		const tbody = document.querySelector('#products > table > tbody');
-		products.forEach((doc) => {
-			let prodId = doc.id;
-			let prodData = doc.data();
+		const tbody = this.getTableBody();
+		for (let [prodId, prodData] of Object.entries(products)) {
 			let cellId = create('td', null, null, prodId);
 
-			let prodName = prodData['product_name'];
+			let prodName = prodData[names.prodName];
 			let cellName = create('td', null, null, prodName);
 
-			let minQuant = prodData['min_quantity']
+			let minQuant = prodData[names.minQuant]
 			let cellMinQuant = create('td', 'number', null, minQuant);
 
-			let quant = prodData['quantity']
+			let quant = prodData[names.quant]
 			let cellQuant = create('td', 'number', null, quant);
 
-			let maxQuant = prodData['max_quantity']
+			let maxQuant = prodData[names.maxQuant]
 			let cellMaxQuant = create('td', 'number', null, maxQuant);
 
-			let suplrId = prodData['supplier_id']
+			let suplrId = prodData[names.suplrId]
 			let cellSuplrId = create('td', null, null, suplrId);
 
 			let row = create('tr');
@@ -49,6 +46,17 @@ window.mminv.products = {
 			row.appendChild(cellMaxQuant);
 			row.appendChild(cellSuplrId);
 			tbody.appendChild(row);
-		});
+		}
+	},
+
+
+	empty : function() {
+		// Remove all the rows from the products table.
+		window.mminv.removeAllChildren(this.getTableBody());
+	},
+
+
+	getTableBody : function() {
+		return document.querySelector(`#${this.divId} > table > tbody`);
 	}
 };

@@ -55,15 +55,15 @@ window.mminv = {
 	/** Creates an HTML element. */
 	createElem : function(tag, classes, attrs, text) {
 		const elem = document.createElement(tag);
-		if (classes) {
+		if (classes != null) {
 			classes.split().forEach((clas) => elem.classList.add(clas));
 		}
-		if (attrs) {
+		if (attrs != null) {
 			for (let [name, value] of Object.entries(attrs)) {
 				elem.setAttribute(name, value);
 			}
 		}
-		if (text) {
+		if (text != null) {
 			elem.innerText = text;
 		}
 		return elem;
@@ -78,7 +78,7 @@ window.mminv = {
 	},
 
 
-	/** Gets one HTML element by its ID. */
+	/** Gets and returns one HTML element by its ID. */
 	getById : function(id) {
 		return document.getElementById(id);
 	},
@@ -93,6 +93,24 @@ window.mminv = {
 			this.firestore = db;
 		}
 		return db;
+			let cellId = create('td', null, {name:'product_id'}, prodId);
+
+	},
+
+
+	dbNames : {
+		suppliers: "suppliers",
+		suplrId:   "supplier_id",
+		suplrName: "supplier_name",
+		email:     "email_address",
+		phone:     "phone_number",
+
+		products: "products",
+		prodId:   "product_id",
+		prodName: "product_name",
+		minQuant: "min_quantity",
+		quant:    "quantity",
+		maxQuant: "max_quantity"
 	},
 
 
@@ -100,7 +118,17 @@ window.mminv = {
 		const db = this.getDatabase();
 		db.collection(path)
 			.get()
-			.then(successFunc)
+			.then((snapshot) => {
+				// Convert the Firestore snapshot to a standard
+				// JavaScript object. I have unsuccessfully tried to
+				// find a simpler or more efficient way to do this.
+				let object = { };
+				snapshot.forEach((doc) => object[doc.id] = doc.data());
+
+				// Call the success callback function so that the
+				// calling object gets access to the Firestore data.
+				successFunc(object);
+			})
 			.catch((error) => {
 				console.log(`Error getting collection ${path}: `,
 						JSON.stringify(error));
@@ -108,6 +136,7 @@ window.mminv = {
 	},
 
 
+	/*
 	queryDatabase : function(path, field, comparison, value, successFunc) {
 		const db = this.getDatabase();
 		db.collection(path).where(field, comparison, value)
@@ -118,6 +147,7 @@ window.mminv = {
 						JSON.stringify(error));
 			});
 	},
+	*/
 
 
 	updateDocument : function(path, docId, object) {
@@ -125,7 +155,7 @@ window.mminv = {
 		db.collection(path).doc(docId)
 			.update(object)
 			.catch((error) => {
-				console.log(`Error ${path}/${docId} not update: `,
+				console.log(`Error ${path}/${docId} not updated: `,
 						JSON.stringify(error));
 			});
 	},
