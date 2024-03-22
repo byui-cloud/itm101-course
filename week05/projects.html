@@ -66,19 +66,6 @@
     // Call fetchProjects after initialization
     fetchProjects();
 
-    document.addEventListener('DOMContentLoaded', () => {
-      fetch('/projects')
-        .then(response => response.json())
-        .then(projects => {
-          const projectsContainer = document.getElementById('projects-container');
-          projects.forEach(project => {
-            const projectElement = document.createElement('div');
-            projectElement.textContent = project.name; // Adjust this based on your Firestore schema
-            projectsContainer.appendChild(projectElement);
-          });
-        });
-    });
-
   </script>
 </head>
 
