@@ -4,19 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Min Max Inventory System</title>
+    <script type="module" src="min_max_inv.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
     <link rel="stylesheet" href="min_max_inv.css">
     <link rel="icon" type="image/png" href="favicon.png">
-
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-    <script src="firebase_config.js"></script>
-    <script src="min_max_inv.js"></script>
-    <script src="suppliers.js"></script>
-    <script src="products.js"></script>
-    <script src="receiving.js"></script>
-    <script src="outgoing.js"></script>
-    <script src="orders.js"></script>
 </head>
 
 <!--
@@ -27,16 +18,16 @@ user interface of the single page app. This app contains five fragments,
 one each for suppliers, products, receiving, outgoing, and help.
 -->
 
-<body onload="window.mminv.showFirstFrag()">
+<body>
 <header>
 <img class="logo" src="minmax.png" alt="Logo for Max"
 title="Logo for the Min-Max Inventory System">
 <ul class="tabs">
-    <li onclick="mminv.showFrag(event, 'suppliers')">Suppliers</li>
-    <li onclick="mminv.showFrag(event, 'products')">Products</li>
-    <li onclick="mminv.showFrag(event, 'receiving')">Receiving</li>
-    <li onclick="mminv.showFrag(event, 'outgoing')" class="selected">Outgoing</li>
-    <li onclick="mminv.showFrag(event, 'help')">Help</li>
+    <li name="suppliers">Suppliers</li>
+    <li name="products">Products</li>
+    <li name="receiving">Receiving</li>
+    <li name="outgoing" class="selected">Outgoing</li>
+    <li name="help">Help</li>
 </ul>
 </header>
 
@@ -65,7 +56,7 @@ title="Logo for the Min-Max Inventory System">
 <h2>Receiving</h2>
 <form><table><thead>
     <tr><th name="product_id">Product ID</th> <th>Product Name</th>
-        <th>Received</th></tr>
+        <th>Current<br>Quantity</th> <th>Received</th></tr>
 </thead><tbody>
 </tbody></table></form>
 <div class="controls">
