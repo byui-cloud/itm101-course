@@ -57,6 +57,9 @@ table > thead > tr > th {
 	vertical-align: bottom;
 	text-align: center;
 }
+table > thead > tr > th[name] {
+	cursor: pointer;
+}
 table > tbody > tr > td {
 	vertical-align: top;
 }

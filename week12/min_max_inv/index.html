@@ -23,11 +23,7 @@ one each for suppliers, products, receiving, outgoing, and help.
 <img class="logo" src="minmax.png" alt="Logo for Max"
 title="Logo for the Min-Max Inventory System">
 <ul class="tabs">
-    <li name="suppliers">Suppliers</li>
-    <li name="products">Products</li>
-    <li name="receiving">Receiving</li>
-    <li name="outgoing" class="selected">Outgoing</li>
-    <li name="help">Help</li>
+    <li name="suppliers">Suppliers</li><li name="products">Products</li><li name="receiving">Receiving</li><li name="outgoing" class="selected">Outgoing</li><li name="help">Help</li>
 </ul>
 </header>
 
@@ -36,8 +32,10 @@ title="Logo for the Min-Max Inventory System">
 <div class="frag" id="suppliers">
 <h2>Suppliers</h2>
 <table><thead>
-    <tr><th>Supplier ID</th> <th>Supplier Name</th>
-        <th>Email</th> <th>Phone</th></tr>
+    <tr><th name="supplier_id">Supplier ID</th>
+        <th name="supplier_name">Supplier Name</th>
+        <th name="email_address">Email</th>
+        <th name="phone_number">Phone</th></tr>
 </thead><tbody>
 </tbody></table>
 </div>
@@ -45,9 +43,12 @@ title="Logo for the Min-Max Inventory System">
 <div class="frag" id="products">
 <h2>Products</h2>
 <table><thead>
-    <tr><th>Product ID</th> <th>Product Name</th>
-        <th>Minimum<br>Quantity</th> <th>Current<br>Quantity</th>
-        <th>Maximum<br>Quantity</th> <th>Supplier ID</th></tr>
+    <tr><th name="product_id">Product ID</th>
+        <th name="product_name">Product Name</th>
+        <th name="min_quantity">Minimum<br>Quantity</th>
+        <th name="quantity">Current<br>Quantity</th>
+        <th name="max_quantity">Maximum<br>Quantity</th>
+        <th name="supplier_id">Supplier ID</th></tr>
 </thead><tbody>
 </tbody></table>
 </div>
@@ -55,8 +56,10 @@ title="Logo for the Min-Max Inventory System">
 <div class="frag" id="receiving">
 <h2>Receiving</h2>
 <form><table><thead>
-    <tr><th name="product_id">Product ID</th> <th>Product Name</th>
-        <th>Current<br>Quantity</th> <th>Received</th></tr>
+    <tr><th name="product_id">Product ID</th>
+        <th name="product_name">Product Name</th>
+        <th name="quantity">Current<br>Quantity</th>
+        <th name="received">Received</th></tr>
 </thead><tbody>
 </tbody></table></form>
 <div class="controls">
@@ -68,8 +71,10 @@ title="Logo for the Min-Max Inventory System">
 <div class="frag" id="outgoing">
 <h2>Outgoing</h2>
 <form><table><thead>
-    <tr><th name="product_id">Product ID</th> <th>Product Name</th>
-        <th>Current<br>Quantity</th> <th>Outgoing</th></tr>
+    <tr><th name="product_id">Product ID</th>
+        <th name="product_name">Product Name</th>
+        <th name="quantity">Current<br>Quantity</th>
+        <th name="outgoing">Outgoing</th></tr>
 </thead><tbody>
 </tbody></table></form>
 <div class="controls">

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert Products into Firestore</title>
+</head>
+<body>
+
+<div id="output"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+<script src="firebase_config.js"></script>
+
+<script>
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Function to get all supplier IDs
+  function getAllSupplierIds() {
+    return db.collection("suppliers").get().then(snapshot => {
+      const supplierIds = [];
+      snapshot.forEach(doc => {
+        supplierIds.push(doc.id);
+      });
+      return supplierIds;
+    });
+  }
+
+  // Function to insert products into Firestore
+  async function insertProducts() {
+    const supplierIds = await getAllSupplierIds();
+
+    const products = [
+  {
+    "product_name": "Engine Assembly",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 15,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Transmission System",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 12,
+    "max_quantity": 25
+  },
+  {
+    "product_name": "Chassis Frame",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 15,
+    "quantity": 20,
+    "max_quantity": 35
+  },
+  {
+    "product_name": "Suspension Kit",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 12,
+    "quantity": 18,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Brake System",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 15,
+    "max_quantity": 25
+  },
+  {
+    "product_name": "Wheel Rim Set",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 15,
+    "quantity": 22,
+    "max_quantity": 40
+  },
+  {
+    "product_name": "Fuel Pump",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 14,
+    "max_quantity": 28
+  },
+  {
+    "product_name": "Electrical Wiring Harness",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 16,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Exhaust System",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 12,
+    "max_quantity": 25
+  },
+  {
+    "product_name": "Steering Wheel Assembly",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 12,
+    "quantity": 18,
+    "max_quantity": 35
+  },
+  {
+    "product_name": "Seat Set",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 16,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Dashboard Panel",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 14,
+    "max_quantity": 28
+  },
+  {
+    "product_name": "Windshield Glass",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 12,
+    "quantity": 18,
+    "max_quantity": 35
+  },
+  {
+    "product_name": "Door Panel Set",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 15,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Paint Finish",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 12,
+    "max_quantity": 25
+  },
+  {
+    "product_name": "Interior Trim Kit",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 12,
+    "quantity": 18,
+    "max_quantity": 35
+  },
+  {
+    "product_name": "Tire Set",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 16,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Air Conditioning System",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 14,
+    "max_quantity": 28
+  },
+  {
+    "product_name": "Sound System",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 10,
+    "quantity": 15,
+    "max_quantity": 30
+  },
+  {
+    "product_name": "Navigation System",
+    "supplier_id": getRandomItem(supplierIds),
+    "min_quantity": 8,
+    "quantity": 12,
+    "max_quantity": 25
+  }
+    ];
+
+    products.forEach(product => {
+      db.collection("products").add(product)
+        .then(docRef => {
+          document.getElementById("output").innerHTML += `<p>Product added with ID: ${docRef.id}</p>`;
+        })
+        .catch(error => {
+          console.error("Error adding product: ", error);
+        });
+    });
+  }
+
+  // Function to get a random item from an array
+  function getRandomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  // Call the function after the HTML document is loaded
+  window.onload = insertProducts;
+</script>
+
+</body>
+</html>

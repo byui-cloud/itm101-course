@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firestore Supplier Data</title>
+    <!-- Import Firebase libraries with compatibility layer -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="firebase_config.js"></script>
+</head>
+<body>
+    <!-- Display area for supplier document IDs -->
+    <div id="supplierIds"></div>
+
+    <script>
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Function to insert supplier data into Firestore
+        function insertSuppliers() {
+            const suppliers = [
+                {
+                    supplier_name: "Acme Corporation",
+                    email_address: "info@acmecorp.com",
+                    phone_number: "+1-555-1234"
+                },
+                {
+                    supplier_name: "ToonTech Gadgets",
+                    email_address: "sales@toontechgadgets.com",
+                    phone_number: "+1-555-5678"
+                },
+                {
+                    supplier_name: "Cosmic Cartoons Emporium",
+                    email_address: "orders@cosmiccartoons.com",
+                    phone_number: "+1-555-9012"
+                },
+                {
+                    supplier_name: "Fantasy Fusion Creations",
+                    email_address: "support@fantasyfusion.com",
+                    phone_number: "+1-555-3456"
+                },
+                {
+                    supplier_name: "Whimsical Wonders Depot",
+                    email_address: "enquiries@whimsicalwonders.com",
+                    phone_number: "+1-555-7890"
+                }
+            ];
+
+            const db = firebase.firestore();
+
+            // Loop through each supplier and add to Firestore
+            suppliers.forEach(supplier => {
+                db.collection("suppliers").add(supplier)
+                    .then((docRef) => {
+                        // Display the document ID in the HTML document
+                        document.getElementById("supplierIds").innerHTML += `Supplier: ${supplier.supplier_name}, Document ID: ${docRef.id} <br>`;
+                    })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                    });
+            });
+        }
+
+        // Execute the insertSuppliers function after the HTML document is loaded
+        window.onload = insertSuppliers;
+    </script>
+</body>
+</html>
