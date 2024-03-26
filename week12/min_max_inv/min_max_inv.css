@@ -1,12 +1,17 @@
 :root {
+	--bkgrnd-color: white;
 	--byui-blue: rgb(0, 118, 182);
 }
 
 body {
+	background-color: var(--bkgrnd-color);
 	font-family: "Open Sans", Arial, Helvetica, Verdana, sans-serif;
 }
 
 header {
+	position: sticky;
+	top: 0;
+	background-color: var(--bkgrnd-color);
 }
 header > img.logo {
 	vertical-align: bottom;
@@ -37,41 +42,37 @@ header > ul.tabs > li.selected {
 	border-left: 2px solid var(--byui-blue);
 }
 
-div.frag {
+article > section {
 	display: none;
 }
-div.frag.selected {
+article > section.selected {
 	display: block;
 }
 
-div.frag > form {
-	display: grid;
-	grid-gap: 1em 1em;
-	grid-template-columns: max-content 20em;
+section table > thead {
+	position: sticky;
+	top: 4em;
+	background-color: var(--bkgrnd-color);
 }
-div.frag > form label {
-	text-align: right;
-}
-
-table > thead > tr > th {
+section table > thead > tr > th {
 	vertical-align: bottom;
 	text-align: center;
 }
-table > thead > tr > th[name] {
+section table > thead > tr > th[name] {
 	cursor: pointer;
 }
-table > tbody > tr > td {
+section table > tbody > tr > td {
 	vertical-align: top;
 }
-table > tbody > tr > td.number {
+section table > tbody > tr > td.number {
 	padding-right: 1em;
 	text-align: right;
 }
 
-#receiving table > thead > tr > th[name="product_id"],
-#receiving table > tbody > tr > td[name="product_id"],
-#outgoing table > thead > tr > th[name="product_id"],
-#outgoing table > tbody > tr > td[name="product_id"] {
+#receiving table > thead > tr > th[data-name="product_id"],
+#receiving table > tbody > tr > td[data-name="product_id"],
+#outgoing table > thead > tr > th[data-name="product_id"],
+#outgoing table > tbody > tr > td[data-name="product_id"] {
 	display: none;
 }
 
@@ -83,16 +84,16 @@ input:invalid {
 	background-color: lightpink;
 }
 
-div.controls {
+section div.controls {
 	margin: 1em 0 0 2em;
 }
-div.controls > button {
+section div.controls > button {
 	border-radius: 20%;
 	color: white;
 }
-div.controls > button[name="submit"] {
+section div.controls > button[name="submit"] {
 	background-color: seagreen;
 }
-div.controls > button[name="clear"] {
+section div.controls > button[name="clear"] {
 	background-color: crimson;
 }

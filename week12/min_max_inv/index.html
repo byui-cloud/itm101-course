@@ -13,9 +13,10 @@
 <!--
 A single page web app is contained in one HTML file, one or more CSS
 files, and one or more JavaScript files that are downloaded from a web
-server. In this single page app, we use fragment to mean one part of the
-user interface of the single page app. This app contains five fragments,
-one each for suppliers, products, receiving, outgoing, and help.
+server. This single page app has five different views implemented as
+HTML sections, one each for suppliers, products, receiving, outgoing,
+and help. A user changes from one section to another by clicking a tab
+at the top of the page.
 -->
 
 <body>
@@ -23,74 +24,81 @@ one each for suppliers, products, receiving, outgoing, and help.
 <img class="logo" src="minmax.png" alt="Logo for Max"
 title="Logo for the Min-Max Inventory System">
 <ul class="tabs">
-    <li name="suppliers">Suppliers</li><li name="products">Products</li><li name="receiving">Receiving</li><li name="outgoing" class="selected">Outgoing</li><li name="help">Help</li>
+    <li data-name="suppliers">Suppliers</li>
+    <li data-name="products">Products</li>
+    <li data-name="receiving">Receiving</li>
+    <li data-name="outgoing" class="selected">Outgoing</li>
+    <li data-name="help">Help</li>
 </ul>
 </header>
 
-<div id="main">
-
-<div class="frag" id="suppliers">
+<article>
+<section id="suppliers">
 <h2>Suppliers</h2>
 <table><thead>
-    <tr><th name="supplier_id">Supplier ID</th>
-        <th name="supplier_name">Supplier Name</th>
-        <th name="email_address">Email</th>
-        <th name="phone_number">Phone</th></tr>
+    <tr><th data-name="supplier_id">Supplier ID</th>
+        <th data-name="supplier_name">Supplier Name</th>
+        <th data-name="email_address">Email</th>
+        <th data-name="phone_number">Phone</th></tr>
 </thead><tbody>
 </tbody></table>
-</div>
+</section>
 
-<div class="frag" id="products">
+<section id="products">
 <h2>Products</h2>
 <table><thead>
-    <tr><th name="product_id">Product ID</th>
-        <th name="product_name">Product Name</th>
-        <th name="min_quantity">Minimum<br>Quantity</th>
-        <th name="quantity">Current<br>Quantity</th>
-        <th name="max_quantity">Maximum<br>Quantity</th>
-        <th name="supplier_id">Supplier ID</th></tr>
+    <tr><th data-name="product_id">Product ID</th>
+        <th data-name="product_name">Product Name</th>
+        <th data-name="min_quantity">Minimum<br>Quantity</th>
+        <th data-name="quantity">Current<br>Quantity</th>
+        <th data-name="max_quantity">Maximum<br>Quantity</th>
+        <th data-name="supplier_id">Supplier ID</th></tr>
 </thead><tbody>
 </tbody></table>
-</div>
+</section>
 
-<div class="frag" id="receiving">
+<section id="receiving">
 <h2>Receiving</h2>
-<form><table><thead>
-    <tr><th name="product_id">Product ID</th>
-        <th name="product_name">Product Name</th>
-        <th name="quantity">Current<br>Quantity</th>
-        <th name="received">Received</th></tr>
+<form>
+<table><thead>
+    <tr><th data-name="product_id">Product ID</th>
+        <th data-name="product_name">Product Name</th>
+        <th data-name="quantity">Current<br>Quantity</th>
+        <th data-name="received">Received</th></tr>
 </thead><tbody>
-</tbody></table></form>
+</tbody></table>
 <div class="controls">
     <button type="button" name="submit" title="Submit the numbers in this form">Submit</button>
     <button type="button" name="clear" title="Clear this form">Clear</button>
 </div>
-</div>
+</form>
+</section>
 
-<div class="frag" id="outgoing">
+<section id="outgoing">
 <h2>Outgoing</h2>
-<form><table><thead>
-    <tr><th name="product_id">Product ID</th>
-        <th name="product_name">Product Name</th>
-        <th name="quantity">Current<br>Quantity</th>
-        <th name="outgoing">Outgoing</th></tr>
+<form>
+<table><thead>
+    <tr><th data-name="product_id">Product ID</th>
+        <th data-name="product_name">Product Name</th>
+        <th data-name="quantity">Current<br>Quantity</th>
+        <th data-name="outgoing">Outgoing</th></tr>
 </thead><tbody>
-</tbody></table></form>
+</tbody></table>
 <div class="controls">
     <button type="button" name="submit" title="Submit the numbers in this form">Submit</button>
     <button type="button" name="clear" title="Clear this form">Clear</button>
 </div>
-</div>
+</form>
+</section>
 
-<div class="frag" id="help">
+<section id="help">
 <h2>Help</h2>
 <p>The Min-Max Inventory System (affectionately called "Max") enables
 you to track your company’s inventory. Max securely stores information
 about the products in your inventory and the companies that supply those
 products in a Google Firestore Database.</p>
-</div>
+</section>
+</article>
 
-</div>
 </body>
 </html>

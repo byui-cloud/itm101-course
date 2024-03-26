@@ -64,7 +64,7 @@ const check = {
 
 
 const mminv = {
-	/** Shows the first tab and corresponding fragment
+	/** Shows the first tab and corresponding section
 	 * by programmatically clicking a tab. */
 	init : function(event) {
 		suppliers.init();
@@ -74,7 +74,7 @@ const mminv = {
 
 		// Add a click listener to all tabs.
 		const self = this;
-		const listener = (event) => self.showFrag(event);
+		const listener = (event) => self.showSection(event);
 		const tabs = document.querySelectorAll('header > ul.tabs > li');
 		Array.from(tabs).forEach(
 				(tab) => tab.addEventListener('click', listener));
@@ -85,30 +85,11 @@ const mminv = {
 	},
 
 
-	/** Selects one tab and shows the corresponding fragment. Also,
-	 * unselects all other tabs and hides the other fragments. */
-	showFrag : function(event) {
-		const tab = event.currentTarget;
-		const name = tab.getAttribute('name');
-
-		/*
-		// Clear all the fragments.
-		suppliers.empty();
-		products.empty();
-		receiving.empty();
-		outgoing.empty();
-
-		// Prepare the user selected fragment
-		// before showing it to the user.
-		switch (name) {
-			case 'products':  products.prepare();  break;
-			case 'suppliers': suppliers.prepare(); break;
-			case 'receiving': receiving.prepare(); break;
-			case 'outgoing':  outgoing.prepare();  break;
-			default:
-				break;
-		}
-		*/
+	/** Selects one tab and shows the corresponding section. Also,
+	 * unselects all other tabs and hides the other sections. */
+	showSection : function(event) {
+		const tab = event.target;
+		const name = tab.getAttribute('data-name');
 
 		// Remove the highlight from all tabs except
 		// for the tab selected by the user.
@@ -117,10 +98,10 @@ const mminv = {
 		Array.from(tabs).forEach((tab) => tab.classList.remove(selected));
 		tab.classList.add(selected);
 
-		// Hide all of the fragments except
+		// Hide all of the sections except
 		// for the one selected by the user.
-		const frags = document.querySelectorAll('#main > div.frag');
-		Array.from(frags).forEach((frag) => frag.classList.remove(selected));
+		const sections = document.querySelectorAll('article > section');
+		Array.from(sections).forEach((sect) => sect.classList.remove(selected));
 		document.querySelector(`#${name}`).classList.add(selected);
 	},
 
@@ -249,15 +230,6 @@ const mminv = {
 /** The functions in this object are "inherited" in the objects
  * below. This is a somewhat unusual way to acheive code reuse. */
 const prototype = {
-	prepare : function() {
-		this.listen(this);
-	},
-
-	prepareSubordinate : function() {
-		products.listen(this);
-	},
-
-
 	listen : function(listener) {
 		console.assert(check.object(listener));
 		for (const [docId, docData] of Object.entries(this.cache)) {
@@ -300,7 +272,7 @@ const prototype = {
 		return function(docId) {
 			const names = mminv.dbNames;
 			const tbody = this.getTableBody();
-			const column = tbody.querySelectorAll(`td[name="${colName}"]`);
+			const column = tbody.querySelectorAll(`td[data-name="${colName}"]`);
 			const cellId = Array.from(column)
 					.find((elem) => elem.innerText == docId);
 			const row = cellId.closest('tr');
@@ -314,7 +286,7 @@ const prototype = {
 		console.assert(check.string(name));
 		return function(row) {
 			console.assert(check.HTMLElement(row));
-			const cell = row.querySelector(`td[name="${name}"]`);
+			const cell = row.querySelector(`td[data-name="${name}"]`);
 			return cell.innerText;
 		};
 	},
@@ -323,7 +295,7 @@ const prototype = {
 		console.assert(check.string(name));
 		return function(row) {
 			console.assert(check.HTMLElement(row));
-			const cell = row.querySelector(`td[name="${name}"]`);
+			const cell = row.querySelector(`td[data-name="${name}"]`);
 			return parseInt(cell.innerText);
 		};
 	},
@@ -332,7 +304,7 @@ const prototype = {
 		console.assert(check.string(name));
 		return function(row) {
 			console.assert(check.HTMLElement(row));
-			const input = row.querySelector(`td > input[name="${name}"]`);
+			const input = row.querySelector(`input[name="${name}"]`);
 			const value = input.value;
 			return value === '' ? 0 : parseInt(value);
 		};
@@ -340,7 +312,8 @@ const prototype = {
 
 
 	sortRows : function(event) {
-		const name = event.target.getAttribute('name');
+		const columnHeading = event.target;
+		const name = columnHeading.getAttribute('data-name');
 		const keyFunc = this.keyFuncs[name];
 		this.keyFunc = keyFunc;
 
@@ -361,27 +334,12 @@ const prototype = {
 		Array.from(tbody.children)
 			.sort(compareRows)
 			.forEach((row) => tbody.appendChild(row));
-	},
-
-
-	empty : function() {
-		this.disregard(this);
-
-		// Remove all the rows from the table.
-		mminv.removeAllChildren(this.getTableBody());
-	},
-
-	emptySubordinate : function() {
-		products.disregard(this);
-
-		// Remove all the rows from the table.
-		mminv.removeAllChildren(this.getTableBody());
 	}
 };
 
 
 const suppliers = {
-	divId : 'suppliers',
+	sectionId : 'suppliers',
 	cache : { },
 	listeners : [ ],
 	keyFuncs : { },
@@ -401,7 +359,7 @@ const suppliers = {
 			.forEach((name) => {
 				console.assert(check.string(name));
 				const cell = document.querySelector(
-					`#${this.divId} thead > tr > th[name="${name}"]`);
+					`#${this.sectionId} thead > tr > th[data-name="${name}"]`);
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
@@ -409,8 +367,6 @@ const suppliers = {
 		mminv.getCollection(names.suppliers, this.cache, this.listeners);
 	},
 
-
-	prepare : prototype.prepare,
 
 	listen    : prototype.listen,
 	disregard : prototype.disregard,
@@ -422,16 +378,17 @@ const suppliers = {
 
 		const names = mminv.dbNames;
 		const create = mminv.createElem;
-		const cellId = create('td', null, {name:names.suplrId}, suplrId);
+		const cellId = create('td', null, {'data-name':names.suplrId}, suplrId);
 
 		const suplrName = suplrData[names.suplrName];
-		const cellName = create('td', null, {name:names.suplrName}, suplrName);
+		const cellName = create('td', null,
+				{'data-name':names.suplrName}, suplrName);
 
 		const email = suplrData[names.email]
-		const cellEmail = create('td', null, {name:names.email}, email);
+		const cellEmail = create('td', null, {'data-name':names.email}, email);
 
 		const phone = suplrData[names.phone]
-		const cellPhone = create('td', null, {name:names.phone}, phone);
+		const cellPhone = create('td', null, {'data-name':names.phone}, phone);
 
 		const row = create('tr');
 		row.appendChild(cellId);
@@ -453,7 +410,7 @@ const suppliers = {
 			[names.suplrName, names.email, names.phone]
 				.forEach((name) => {
 					console.assert(check.string(name));
-					const cell = row.querySelector(`td[name="${name}"]`);
+					const cell = row.querySelector(`td[data-name="${name}"]`);
 					cell.innerText = suplrData[name];
 				});
 		}
@@ -464,10 +421,9 @@ const suppliers = {
 	sortRows : prototype.sortRows,
 	getRow : prototype.makeGetRow(mminv.dbNames.suplrId),
 
-	empty : prototype.empty,
 
 	getTableBody : function() {
-		return document.querySelector(`#${this.divId} > table > tbody`);
+		return document.querySelector(`#${this.sectionId} > table > tbody`);
 	},
 
 
@@ -499,7 +455,7 @@ const suppliers = {
 
 
 const products = {
-	divId : 'products',
+	sectionId : 'products',
 	cache : { },
 	listeners : [ ],
 	keyFuncs : { },
@@ -522,7 +478,7 @@ const products = {
 			.forEach((name) => {
 				console.assert(check.string(name));
 				const cell = document.querySelector(
-					`#${this.divId} thead > tr > th[name="${name}"]`);
+					`#${this.sectionId} thead > tr > th[data-name="${name}"]`);
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
@@ -530,8 +486,6 @@ const products = {
 		mminv.getCollection(names.products, this.cache, this.listeners);
 	},
 
-
-	prepare : prototype.prepare,
 
 	listen    : prototype.listen,
 	disregard : prototype.disregard,
@@ -545,22 +499,27 @@ const products = {
 
 		const names = mminv.dbNames;
 		const create = mminv.createElem;
-		const cellId = create('td', null, {name:names.prodId}, prodId);
+		const cellId = create('td', null, {'data-name':names.prodId}, prodId);
 
 		const prodName = prodData[names.prodName];
-		const cellName = create('td', null, {name:names.prodName}, prodName);
+		const cellName = create('td', null,
+				{'data-name':names.prodName}, prodName);
 
 		const minQuant = prodData[names.minQuant]
-		const cellMinQuant = create('td', 'number', {name:names.minQuant}, minQuant);
+		const cellMinQuant = create('td', 'number',
+				{'data-name':names.minQuant}, minQuant);
 
 		const quant = prodData[names.quant]
-		const cellQuant = create('td', 'number', {name:names.quant}, quant);
+		const cellQuant = create('td', 'number',
+				{'data-name':names.quant}, quant);
 
 		const maxQuant = prodData[names.maxQuant]
-		const cellMaxQuant = create('td', 'number', {name:names.maxQuant}, maxQuant);
+		const cellMaxQuant = create('td', 'number',
+				{'data-name':names.maxQuant}, maxQuant);
 
 		const suplrId = prodData[names.suplrId]
-		const cellSuplrId = create('td', null, {name:names.suplrId}, suplrId);
+		const cellSuplrId = create('td', null,
+				{'data-name':names.suplrId}, suplrId);
 
 		const row = create('tr');
 		row.appendChild(cellId);
@@ -585,7 +544,7 @@ const products = {
 			 names.maxQuant, names.suplrId]
 				.forEach((name) => {
 					console.assert(check.string(name));
-					const cell = row.querySelector(`td[name="${name}"]`);
+					const cell = row.querySelector(`td[data-name="${name}"]`);
 					cell.innerText = prodData[name];
 				});
 		}
@@ -596,16 +555,15 @@ const products = {
 	sortRows : prototype.sortRows,
 	getRow : prototype.makeGetRow(mminv.dbNames.prodId),
 
-	empty : prototype.empty,
 
 	getTableBody : function() {
-		return document.querySelector(`#${this.divId} > table > tbody`);
+		return document.querySelector(`#${this.sectionId} > table > tbody`);
 	}
 };
 
 
 const receiving = {
-	divId : 'receiving',
+	sectionId : 'receiving',
 	keyFuncs : { },
 	keyFunc : null,
 
@@ -623,12 +581,12 @@ const receiving = {
 			.forEach((name) => {
 				console.assert(check.string(name));
 				const cell = document.querySelector(
-					`#${this.divId} thead > tr > th[name="${name}"]`);
+					`#${this.sectionId} thead > tr > th[data-name="${name}"]`);
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
 		const self = this;
-		const ctrls = document.querySelector(`#${this.divId} > div.controls`);
+		const ctrls = document.querySelector(`#${this.sectionId} div.controls`);
 		const pairs = [
 			['submit', (event) => self.submit(event)],
 			['clear', (event) => self.clear(event)]
@@ -645,24 +603,23 @@ const receiving = {
 	},
 
 
-	prepare : prototype.prepareSubordinate,
-
-
 	addOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
 
 		const names = mminv.dbNames;
 		const create = mminv.createElem;
-		const cellId = create('td', null, {name:names.prodId}, prodId);
+		const cellId = create('td', null, {'data-name':names.prodId}, prodId);
 
 		const prodName = prodData[names.prodName];
-		const cellName = create('td', null, {name:names.prodName}, prodName);
+		const cellName = create('td', null,
+				{'data-name':names.prodName}, prodName);
 
 		const quant = prodData[names.quant];
-		const cellQuant = create('td', 'number', {name:names.quant}, quant);
+		const cellQuant = create('td', 'number',
+				{'data-name':names.quant}, quant);
 
-		const input = create('input', null, {type:'number', name:'received',
+		const input = create('input', null, {type:'number', 'name':'received',
 				min:0, step:1, pattern:'^(0|[1-9][0-9]*)$'});
 		const cellReceived = create('td');
 		cellReceived.appendChild(input);
@@ -687,7 +644,7 @@ const receiving = {
 			[names.prodName, names.quant]
 				.forEach((name) => {
 					console.assert(check.string(name));
-					const cell = row.querySelector(`td[name="${name}"]`);
+					const cell = row.querySelector(`td[data-name="${name}"]`);
 					cell.innerText = prodData[name];
 				});
 		}
@@ -719,7 +676,7 @@ const receiving = {
 				mminv.updateDocument(names.products, prodId, object);
 			}
 
-			// Clear the inputs in this fragment.
+			// Clear the inputs in this section.
 			this.clear();
 		}
 	},
@@ -741,7 +698,7 @@ const receiving = {
 				if (valid) {
 					// Get the product_id from the current table row.
 					const row = input.closest('tr');
-					const cell= row.querySelector(`td[name="${names.prodId}"]`);
+					const cell = row.querySelector(`td[data-name="${names.prodId}"]`);
 					const prodId = cell.innerText;
 					updates[prodId] = received;
 				}
@@ -758,17 +715,15 @@ const receiving = {
 		Array.from(inputs).forEach((input) => input.value = '');
 	},
 
-	empty : prototype.emptySubordinate,
-
 
 	getTableBody : function() {
-		return document.querySelector(`#${this.divId} > form > table > tbody`);
+		return document.querySelector(`#${this.sectionId} > form > table > tbody`);
 	}
 };
 
 
 const outgoing = {
-	divId : 'outgoing',
+	sectionId : 'outgoing',
 	keyFuncs : { },
 	keyFunc : null,
 
@@ -786,13 +741,13 @@ const outgoing = {
 			.forEach((name) => {
 				console.assert(check.string(name));
 				const cell = document.querySelector(
-					`#${this.divId} thead > tr > th[name="${name}"]`);
+					`#${this.sectionId} thead > tr > th[data-name="${name}"]`);
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
 
 		const self = this;
-		const ctrls = document.querySelector(`#${this.divId} > div.controls`);
+		const ctrls = document.querySelector(`#${this.sectionId} div.controls`);
 		const pairs = [
 			['submit', (event) => self.submit(event)],
 			['clear',  (event) => self.clear(event)]
@@ -809,24 +764,23 @@ const outgoing = {
 	},
 
 
-	prepare : prototype.prepareSubordinate,
-
-
 	addOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
 
 		const names = mminv.dbNames;
 		const create = mminv.createElem;
-		const cellId = create('td', null, {name:names.prodId}, prodId);
+		const cellId = create('td', null, {'data-name':names.prodId}, prodId);
 
 		const prodName = prodData[names.prodName];
-		const cellName = create('td', null, {name:names.prodName}, prodName);
+		const cellName = create('td', null,
+				{'data-name':names.prodName}, prodName);
 
 		const quant = prodData[names.quant];
-		const cellQuant = create('td', 'number', {name:names.quant}, quant);
+		const cellQuant = create('td', 'number',
+				{'data-name':names.quant}, quant);
 
-		const input = create('input', null, {type:'number', name:'outgoing',
+		const input = create('input', null, {type:'number', 'name':'outgoing',
 				min:0, max:quant, step:1, pattern:'^(0|[1-9][0-9]*)$'});
 		const cellIssued = create('td');
 		cellIssued.appendChild(input);
@@ -851,11 +805,11 @@ const outgoing = {
 			[names.prodName, names.quant]
 				.forEach((name) => {
 					console.assert(check.string(name));
-					const cell = row.querySelector(`td[name="${name}"]`);
+					const cell = row.querySelector(`td[data-name="${name}"]`);
 					cell.innerText = prodData[name];
 				});
 
-			const input = row.querySelector('td > input[name="outgoing"]');
+			const input = row.querySelector('input[name="outgoing"]');
 			input.setAttribute('max', prodData[names.quant]);
 		}
 	},
@@ -906,7 +860,7 @@ const outgoing = {
 				suppliers.order(orders);
 			}
 
-			// Clear the inputs in this fragment.
+			// Clear the inputs in this section.
 			this.clear();
 		}
 	},
@@ -928,7 +882,7 @@ const outgoing = {
 				if (valid) {
 					// Get the product_id from the current row.
 					const row = input.closest('tr');
-					const cell= row.querySelector(`td[name="${names.prodId}"]`);
+					const cell = row.querySelector(`td[data-name="${names.prodId}"]`);
 					const prodId = cell.innerText;
 
 					// Verify that the outgoing amount is less
@@ -952,11 +906,9 @@ const outgoing = {
 		Array.from(inputs).forEach((input) => input.value = '');
 	},
 
-	empty : prototype.emptySubordinate,
-
 
 	getTableBody : function() {
-		return document.querySelector(`#${this.divId} > form > table > tbody`);
+		return document.querySelector(`#${this.sectionId} > form > table > tbody`);
 	}
 };
 
