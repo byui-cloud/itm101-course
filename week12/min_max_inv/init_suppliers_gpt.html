@@ -1,69 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firestore Supplier Data</title>
-    <!-- Import Firebase libraries with compatibility layer -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-    <script src="firebase_config.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Suppliers to Firestore</title>
+<!-- Importing Firebase and Firestore Web modular API -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+  import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+
+  // Firebase configuration
+    const firebaseConfig = {
+        apiKey: 'AIzaSyCfNIMZrAEwzQh0hlw_LS9Kfp2c9-tmlI4',
+        authDomain: 'min-max-inventory-fe941.firebaseapp.com',
+        projectId: 'min-max-inventory-fe941',
+        storageBucket: 'min-max-inventory-fe941.appspot.com',
+        messagingSenderId: '273249135506',
+        appId: '1:273249135506:web:e61b4af78ee1dae30e6f4b'
+    };
+
+  // Initialize Firebase app
+  const app = initializeApp(firebaseConfig);
+
+  // Function to add suppliers to Firestore
+  async function addSuppliersToFirestore() {
+    const suppliers = [
+      {
+        supplier_name: "Acme Corporation",
+        email_address: "sales@acme.com",
+        phone_number: "+1 (555) 123-4567"
+      },
+      {
+        supplier_name: "ToonTech Enterprises",
+        email_address: "info@toontech.com",
+        phone_number: "+1 (555) 987-6543"
+      },
+      {
+        supplier_name: "Galactic Gags & Gadgets",
+        email_address: "contact@galacticgags.com",
+        phone_number: "+1 (555) 555-1212"
+      },
+      {
+        supplier_name: "Whizbang Widgets",
+        email_address: "info@whizbangwidgets.net",
+        phone_number: "+1 (555) 678-9012"
+      },
+      {
+        supplier_name: "Looney Labs Ltd.",
+        email_address: "sales@looneylabs.com",
+        phone_number: "+1 (555) 234-5678"
+      }
+    ];
+
+    const db = getFirestore();
+
+    for (const supplier of suppliers) {
+      try {
+        const docRef = await addDoc(collection(db, 'suppliers'), supplier);
+        const supplierInfoDiv = document.getElementById('supplier-info');
+        supplierInfoDiv.innerHTML += `<div>Supplier ID: ${docRef.id}, Name: ${supplier.supplier_name}</div>`;
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
+    }
+  }
+
+  // Execute the function after the HTML document is loaded
+  document.addEventListener('DOMContentLoaded', addSuppliersToFirestore);
+
+</script>
 </head>
 <body>
-    <!-- Display area for supplier document IDs -->
-    <div id="supplierIds"></div>
-
-    <script>
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // Function to insert supplier data into Firestore
-        function insertSuppliers() {
-            const suppliers = [
-                {
-                    supplier_name: "Acme Corporation",
-                    email_address: "info@acmecorp.com",
-                    phone_number: "+1-555-1234"
-                },
-                {
-                    supplier_name: "ToonTech Gadgets",
-                    email_address: "sales@toontechgadgets.com",
-                    phone_number: "+1-555-5678"
-                },
-                {
-                    supplier_name: "Cosmic Cartoons Emporium",
-                    email_address: "orders@cosmiccartoons.com",
-                    phone_number: "+1-555-9012"
-                },
-                {
-                    supplier_name: "Fantasy Fusion Creations",
-                    email_address: "support@fantasyfusion.com",
-                    phone_number: "+1-555-3456"
-                },
-                {
-                    supplier_name: "Whimsical Wonders Depot",
-                    email_address: "enquiries@whimsicalwonders.com",
-                    phone_number: "+1-555-7890"
-                }
-            ];
-
-            const db = firebase.firestore();
-
-            // Loop through each supplier and add to Firestore
-            suppliers.forEach(supplier => {
-                db.collection("suppliers").add(supplier)
-                    .then((docRef) => {
-                        // Display the document ID in the HTML document
-                        document.getElementById("supplierIds").innerHTML += `Supplier: ${supplier.supplier_name}, Document ID: ${docRef.id} <br>`;
-                    })
-                    .catch((error) => {
-                        console.error("Error adding document: ", error);
-                    });
-            });
-        }
-
-        // Execute the insertSuppliers function after the HTML document is loaded
-        window.onload = insertSuppliers;
-    </script>
+  <!-- Display supplier info -->
+  <div id="supplier-info"></div>
 </body>
 </html>
+

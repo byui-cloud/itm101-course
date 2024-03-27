@@ -3,198 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert Products into Firestore</title>
-</head>
-<body>
+<title>Add Products to Firestore</title>
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js';
+  import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js';
 
-<div id="output"></div>
+    const firebaseConfig = {
+        apiKey: 'AIzaSyCfNIMZrAEwzQh0hlw_LS9Kfp2c9-tmlI4',
+        authDomain: 'min-max-inventory-fe941.firebaseapp.com',
+        projectId: 'min-max-inventory-fe941',
+        storageBucket: 'min-max-inventory-fe941.appspot.com',
+        messagingSenderId: '273249135506',
+        appId: '1:273249135506:web:e61b4af78ee1dae30e6f4b'
+    };
 
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
-<script src="firebase_config.js"></script>
+  const products = [
+    {
+      "product_name": "Foundation",
+      "minimum_quantity": 20,
+      "quantity": 50,
+      "maximum_quantity": 100,
+      "supplier_id": "nge2R1hZ0ksJKpdPtP5W"
+    },
+    {
+      "product_name": "Lipstick",
+      "minimum_quantity": 30,
+      "quantity": 70,
+      "maximum_quantity": 120,
+      "supplier_id": "m6RwERpZhlEK6mF3tC7F"
+    },
+    {
+      "product_name": "Mascara",
+      "minimum_quantity": 25,
+      "quantity": 60,
+      "maximum_quantity": 110,
+      "supplier_id": "G0iUaxAiMztDOvplmxmN"
+    },
+    {
+      "product_name": "Eyeliner",
+      "minimum_quantity": 20,
+      "quantity": 45,
+      "maximum_quantity": 100,
+      "supplier_id": "xK2B1E3yTNs7t0zz5TTY"
+    },
+    {
+      "product_name": "Blush",
+      "minimum_quantity": 15,
+      "quantity": 35,
+      "maximum_quantity": 80,
+      "supplier_id": "Uvas5qoIbF2QQEzbz1Ie"
+    },
+    // Add the remaining products here...
+    {
+      "product_name": "Concealer",
+      "minimum_quantity": 20,
+      "quantity": 55,
+      "maximum_quantity": 100,
+      "supplier_id": "nge2R1hZ0ksJKpdPtP5W"
+    },
+    {
+      "product_name": "Eyeshadow Palette",
+      "minimum_quantity": 10,
+      "quantity": 25,
+      "maximum_quantity": 60,
+      "supplier_id": "m6RwERpZhlEK6mF3tC7F"
+    },
+    {
+      "product_name": "Bronzer",
+      "minimum_quantity": 15,
+      "quantity": 40,
+      "maximum_quantity": 75,
+      "supplier_id": "G0iUaxAiMztDOvplmxmN"
+    },
+    {
+      "product_name": "Setting Powder",
+      "minimum_quantity": 25,
+      "quantity": 60,
+      "maximum_quantity": 110,
+      "supplier_id": "xK2B1E3yTNs7t0zz5TTY"
+    },
+    {
+      "product_name": "Makeup Brushes Set",
+      "minimum_quantity": 10,
+      "quantity": 30,
+      "maximum_quantity": 65,
+      "supplier_id": "Uvas5qoIbF2QQEzbz1Ie"
+    },
+    {
+      "product_name": "Highlighter",
+      "minimum_quantity": 20,
+      "quantity": 50,
+      "maximum_quantity": 95,
+      "supplier_id": "nge2R1hZ0ksJKpdPtP5W"
+    },
+    {
+      "product_name": "Eyebrow Pencil",
+      "minimum_quantity": 15,
+      "quantity": 40,
+      "maximum_quantity": 85,
+      "supplier_id": "m6RwERpZhlEK6mF3tC7F"
+    },
+    {
+      "product_name": "Makeup Remover",
+      "minimum_quantity": 20,
+      "quantity": 55,
+      "maximum_quantity": 100,
+      "supplier_id": "G0iUaxAiMztDOvplmxmN"
+    },
+    {
+      "product_name": "Lip Gloss",
+      "minimum_quantity": 25,
+      "quantity": 60,
+      "maximum_quantity": 110,
+      "supplier_id": "xK2B1E3yTNs7t0zz5TTY"
+    },
+    {
+      "product_name": "Face Primer",
+      "minimum_quantity": 15,
+      "quantity": 40,
+      "maximum_quantity": 85,
+      "supplier_id": "Uvas5qoIbF2QQEzbz1Ie"
+    },
+    {
+      "product_name": "Makeup Sponge Set",
+      "minimum_quantity": 10,
+      "quantity": 30,
+      "maximum_quantity": 70,
+      "supplier_id": "nge2R1hZ0ksJKpdPtP5W"
+    },
+    {
+      "product_name": "Liquid Eyeliner",
+      "minimum_quantity": 20,
+      "quantity": 55,
+      "maximum_quantity": 100,
+      "supplier_id": "m6RwERpZhlEK6mF3tC7F"
+    },
+    {
+      "product_name": "Tinted Moisturizer",
+      "minimum_quantity": 15,
+      "quantity": 40,
+      "maximum_quantity": 85,
+      "supplier_id": "G0iUaxAiMztDOvplmxmN"
+    },
+    {
+      "product_name": "Nail Polish Set",
+      "minimum_quantity": 25,
+      "quantity": 60,
+      "maximum_quantity": 110,
+      "supplier_id": "xK2B1E3yTNs7t0zz5TTY"
+    },
+    {
+      "product_name": "Matte Lipstick",
+      "minimum_quantity": 20,
+      "quantity": 50,
+      "maximum_quantity": 95,
+      "supplier_id": "Uvas5qoIbF2QQEzbz1Ie"
+    }
+  ];
 
-<script>
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  // Function to get all supplier IDs
-  function getAllSupplierIds() {
-    return db.collection("suppliers").get().then(snapshot => {
-      const supplierIds = [];
-      snapshot.forEach(doc => {
-        supplierIds.push(doc.id);
-      });
-      return supplierIds;
-    });
-  }
-
-  // Function to insert products into Firestore
-  async function insertProducts() {
-    const supplierIds = await getAllSupplierIds();
-
-    const products = [
-  {
-    "product_name": "Engine Assembly",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 15,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Transmission System",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 12,
-    "max_quantity": 25
-  },
-  {
-    "product_name": "Chassis Frame",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 15,
-    "quantity": 20,
-    "max_quantity": 35
-  },
-  {
-    "product_name": "Suspension Kit",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 12,
-    "quantity": 18,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Brake System",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 15,
-    "max_quantity": 25
-  },
-  {
-    "product_name": "Wheel Rim Set",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 15,
-    "quantity": 22,
-    "max_quantity": 40
-  },
-  {
-    "product_name": "Fuel Pump",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 14,
-    "max_quantity": 28
-  },
-  {
-    "product_name": "Electrical Wiring Harness",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 16,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Exhaust System",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 12,
-    "max_quantity": 25
-  },
-  {
-    "product_name": "Steering Wheel Assembly",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 12,
-    "quantity": 18,
-    "max_quantity": 35
-  },
-  {
-    "product_name": "Seat Set",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 16,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Dashboard Panel",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 14,
-    "max_quantity": 28
-  },
-  {
-    "product_name": "Windshield Glass",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 12,
-    "quantity": 18,
-    "max_quantity": 35
-  },
-  {
-    "product_name": "Door Panel Set",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 15,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Paint Finish",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 12,
-    "max_quantity": 25
-  },
-  {
-    "product_name": "Interior Trim Kit",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 12,
-    "quantity": 18,
-    "max_quantity": 35
-  },
-  {
-    "product_name": "Tire Set",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 16,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Air Conditioning System",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 14,
-    "max_quantity": 28
-  },
-  {
-    "product_name": "Sound System",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 10,
-    "quantity": 15,
-    "max_quantity": 30
-  },
-  {
-    "product_name": "Navigation System",
-    "supplier_id": getRandomItem(supplierIds),
-    "min_quantity": 8,
-    "quantity": 12,
-    "max_quantity": 25
-  }
+    const supplierIDs = [
+    "wCZO77pIdfoxu8t6yWfw",
+    "o9ZmqgKBoD01LbJgr7iZ",
+    "IZiaMUXSTSsGNjnUbeZB",
+    "ycc4ys8ufMPbmvbYNre3",
+    "6ShrHFBaHyCXTxxrtLUM",
     ];
 
-    products.forEach(product => {
-      db.collection("products").add(product)
-        .then(docRef => {
-          document.getElementById("output").innerHTML += `<p>Product added with ID: ${docRef.id}</p>`;
-        })
-        .catch(error => {
-          console.error("Error adding product: ", error);
-        });
-    });
+  async function addProductsToFirestore() {
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const productsContainer = document.getElementById('products-container');
+
+    for (const product of products) {
+      try {
+        const index = Math.floor(Math.random() * supplierIDs.length)
+        product.supplier_id = supplierIDs[index];
+        const docRef = await addDoc(collection(db, "products"), product);
+        productsContainer.innerHTML += `<div>Document ID: ${docRef.id}, Product Name: ${product.product_name}</div>`;
+      } catch (e) {
+        console.error("Error adding product: ", e);
+      }
+    }
   }
 
-  // Function to get a random item from an array
-  function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-  }
-
-  // Call the function after the HTML document is loaded
-  window.onload = insertProducts;
+  window.onload = addProductsToFirestore;
 </script>
-
+</head>
+<body>
+<div id="products-container"></div>
 </body>
 </html>
+
