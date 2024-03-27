@@ -85,8 +85,8 @@ const mminv = {
 	},
 
 
-	/** Selects one tab and shows the corresponding section. Also,
-	 * unselects all other tabs and hides the other sections. */
+	/** Selects one tab and shows the corresponding HTML document section.
+	 * Also, unselects all other tabs and hides all other sections. */
 	showSection : function(event) {
 		const tab = event.target;
 		const name = tab.getAttribute('data-name');
@@ -138,6 +138,8 @@ const mminv = {
 	},
 
 
+	/** Names of collections and document properties
+	 * within the Firestore database. */
 	dbNames : {
 		suppliers: 'suppliers',
 		suplrId:   'supplier_id',
@@ -148,9 +150,9 @@ const mminv = {
 		products: 'products',
 		prodId:   'product_id',
 		prodName: 'product_name',
-		minQuant: 'min_quantity',
+		minQuant: 'minimum_quantity',
 		quant:    'quantity',
-		maxQuant: 'max_quantity',
+		maxQuant: 'maximum_quantity',
 
 		orders:    'orders',
 		orderDate: 'order_date'
@@ -158,6 +160,8 @@ const mminv = {
 
 
 	firestore : null,
+
+	/** Returns a connection to the Firestore database. */
 	getDatabase : function() {
 		if (! this.firestore) {
 			const firebaseConfig = {
@@ -175,6 +179,8 @@ const mminv = {
 	},
 
 
+	/** Begins listening to a Firestore collection for
+	 * changes to the documents within that collection. */
 	getCollection : function(path, cache, listeners) {
 		console.assert(check.string(path));
 		console.assert(check.object(cache));
@@ -209,6 +215,7 @@ const mminv = {
 	},
 
 
+	/** Adds a document to a Firestore collection. */
 	addDocument : function(path, object) {
 		console.assert(check.string(path));
 		console.assert(check.object(object));
@@ -217,6 +224,7 @@ const mminv = {
 	},
 
 
+	/** Updates a document in a Firestore collection. */
 	updateDocument : function(path, docId, object) {
 		console.assert(check.string(path));
 		console.assert(check.string(docId));
@@ -230,16 +238,30 @@ const mminv = {
 /** The functions in this object are "inherited" in the objects
  * below. This is a somewhat unusual way to acheive code reuse. */
 const prototype = {
+	/** Adds listener to the list of objects that are listening for
+	 * changes in the Firestore collection that corresponds to the
+	 * owning HTML document section. */
 	listen : function(listener) {
 		console.assert(check.object(listener));
+		console.assert(this.listeners.includes(listener) == false);
+
+		// Call listener.addOne once for each document that has been
+		// sent from the Firestore collection and is already in the
+		// cache object.
 		for (const [docId, docData] of Object.entries(this.cache)) {
 			listener.addOne(docId, docData);
 		}
+
+		// Add listener to the list of objects that are listening
+		// for changes in the Firestore collection.
 		this.listeners.push(listener);
 	},
 
+	/** Removes listener from the list of objects listening
+	 * for changes in a Firestore collection. */
 	disregard : function(listener) {
 		console.assert(check.object(listener));
+		console.assert(this.listeners.includes(listener));
 		const index = this.listeners.indexOf(listener);
 		if (index != -1) {
 			this.listeners.splice(index, 1);
@@ -247,6 +269,7 @@ const prototype = {
 	},
 
 
+	/** Inserts a row in sorted order into tbody. */
 	insertRow : function(tbody, toInsert, sortKeyFunc) {
 		console.assert(check.HTMLElement(tbody));
 		console.assert(check.HTMLElement(toInsert));
@@ -258,6 +281,7 @@ const prototype = {
 	},
 
 
+	/** Called when a document was removed from a Firestore collection. */
 	removeOne : function(docId) {
 		console.assert(check.string(docId));
 		const row = this.getRow(docId);
@@ -267,6 +291,9 @@ const prototype = {
 	},
 
 
+	/** Creates and returns a function that finds a row within an HTML
+	 * table body. The returned function searches for the row by
+	 * Firestore document ID. */
 	makeGetRow : function(colName) {
 		console.assert(check.string(colName));
 		return function(docId) {
@@ -282,6 +309,8 @@ const prototype = {
 	},
 
 
+	/** Creates and returns a function that extracts a search and sort
+	 * key from the cells in an HTML table row. */
 	makeStrKeyFunc : function(name) {
 		console.assert(check.string(name));
 		return function(row) {
@@ -311,12 +340,19 @@ const prototype = {
 	},
 
 
+	/** Sorts the rows in an HTML table when the
+	 * user clicks on one of the column headers. */
 	sortRows : function(event) {
 		const columnHeading = event.target;
 		const name = columnHeading.getAttribute('data-name');
 		const keyFunc = this.keyFuncs[name];
+
+		// Set the keyFunc attribute so that rows added with addOne()
+		// will be inserted into the HTML table in its correct location.
 		this.keyFunc = keyFunc;
 
+		// Compares two rows and returns -1 if row1 should come before
+		// row2, 1 if row1 should come after row2, and 0 otherwise.
 		function compareRows(row1, row2) {
 			const text1 = keyFunc(row1);
 			const text2 = keyFunc(row2);
@@ -330,6 +366,7 @@ const prototype = {
 			return result;
 		}
 
+		// Sort the rows in the HTML table body.
 		const tbody = this.getTableBody();
 		Array.from(tbody.children)
 			.sort(compareRows)
@@ -346,6 +383,8 @@ const suppliers = {
 	keyFunc : null,
 
 
+	/** Initializes this object which is responsible for the
+	 * contents of the suppliers section in the HTML document. */
 	init : function() {
 		const names = mminv.dbNames;
 		const keyFuncs = this.keyFuncs;
@@ -360,9 +399,13 @@ const suppliers = {
 				console.assert(check.string(name));
 				const cell = document.querySelector(
 					`#${this.sectionId} thead > tr > th[data-name="${name}"]`);
+
+				// Add an event listener to a column header that
+				// will sort the rows in the HTML table body.
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
+		// Begin listening to Firestore suppliers collection.
 		this.listen(this);
 		mminv.getCollection(names.suppliers, this.cache, this.listeners);
 	},
@@ -372,6 +415,9 @@ const suppliers = {
 	disregard : prototype.disregard,
 
 
+	/** Adds one row to the suppliers table body. This function is
+	 * called once for each existing document in the Firestore suppliers
+	 * collection and when a document is added to that collection. */
 	addOne : function(suplrId, suplrData) {
 		console.assert(check.string(suplrId));
 		console.assert(check.object(suplrData));
@@ -401,6 +447,9 @@ const suppliers = {
 	},
 
 
+	/** Modifies one row in the suppliers HTML table body.
+	 * This function is called when a document in the
+	 * Firestore suppliers collection is updated. */
 	modifyOne : function(suplrId, suplrData) {
 		console.assert(check.string(suplrId));
 		console.assert(check.object(suplrData));
@@ -427,6 +476,21 @@ const suppliers = {
 	},
 
 
+	/** Adds orders to the Firestore orders collection. The orders
+	 * parameter must follow this format:
+	 * orders = {
+	 *      <supplier_id_1> : {
+	 *          <product_id_1> : <quantity_1>,
+	 *          <product_id_2> : <quantity_2>,
+	 *          ...
+	 *      },
+	 *      <supplier_id_2> : {
+	 *          <product_id_1> : <quantity_1>,
+	 *          <product_id_2> : <quantity_2>,
+	 *          ...
+	 *      }
+	 * }
+	 */
 	order : function(orders) {
 		console.assert(check.object(orders));
 		const names = mminv.dbNames;
@@ -462,6 +526,8 @@ const products = {
 	keyFunc : null,
 
 
+	/** Initializes this object which is responsible for the
+	 * contents of the products section in the HTML document. */
 	init : function() {
 		const names = mminv.dbNames;
 		const keyFuncs = this.keyFuncs;
@@ -482,6 +548,7 @@ const products = {
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
+		// Begin listening to Firestore products collection.
 		this.listen(this);
 		mminv.getCollection(names.products, this.cache, this.listeners);
 	},
@@ -493,6 +560,9 @@ const products = {
 	getProduct : function(prodId) { return this.cache[prodId]; },
 
 
+	/** Adds one row to the products table body. This function is
+	 * called once for each existing document in the Firestore products
+	 * collection and when a document is added to that collection. */
 	addOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
@@ -534,6 +604,9 @@ const products = {
 	},
 
 
+	/** Modifies one row in the products HTML table body.
+	 * This function is called when a document in the
+	 * Firestore products collection is updated. */
 	modifyOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
@@ -568,6 +641,8 @@ const receiving = {
 	keyFunc : null,
 
 
+	/** Initializes this object which is responsible for the
+	 * contents of the receiving section in the HTML document. */
 	init : function() {
 		const names = mminv.dbNames;
 		const keyFuncs = this.keyFuncs;
@@ -585,6 +660,8 @@ const receiving = {
 				cell.addEventListener('click', (event) => this.sortRows(event));
 			});
 
+		// Add event listeners to the buttons in the
+		// receiving section of the HTML document.
 		const self = this;
 		const ctrls = document.querySelector(`#${this.sectionId} div.controls`);
 		const pairs = [
@@ -599,10 +676,14 @@ const receiving = {
 			button.addEventListener('click', func);
 		});
 
+		// Begin listening to Firestore products collection.
 		products.listen(this);
 	},
 
 
+	/** Adds one row to the receiving table body. This function is
+	 * called once for each existing document in the Firestore products
+	 * collection and when a document is added to that collection. */
 	addOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
@@ -635,6 +716,9 @@ const receiving = {
 	},
 
 
+	/** Modifies one row in the receiving HTML table body.
+	 * This function is called when a document in the
+	 * Firestore products collection is updated. */
 	modifyOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
@@ -656,6 +740,9 @@ const receiving = {
 	getRow : prototype.makeGetRow(mminv.dbNames.prodId),
 
 
+	/** If the user entered valid numbers in the received column, this
+	 * function updates the corresponding documents in the Firestore
+	 * database. */
 	submit : function(event) {
 		const updates = this.validate();
 		if (updates) {
@@ -669,7 +756,7 @@ const receiving = {
 				quant += received;
 
 				// Update the Firestore document. This update should
-				// cause Firestore to send an update back to this
+				// cause Firestore to send an update event back to this
 				// program which will be received and processed in the
 				// onSnapshot closure in mminv.getCollection.
 				object[names.quant] = quant;
@@ -682,6 +769,11 @@ const receiving = {
 	},
 
 
+	/** Verifies that the numbers the user typed in the received column
+	 * are positive integers. If all the numbers entered by the user are
+	 * valid, this function returns an object (used like a Python
+	 * dictionary) that contains product IDs and quantities. Otherwise
+	 * this function returns null. */
 	validate : function() {
 		const names = mminv.dbNames;
 		const updates = { };
@@ -728,6 +820,8 @@ const outgoing = {
 	keyFunc : null,
 
 
+	/** Initializes this object which is responsible for the
+	 * contents of the outgoing section in the HTML document. */
 	init : function() {
 		const names = mminv.dbNames;
 		const keyFuncs = this.keyFuncs;
@@ -746,6 +840,8 @@ const outgoing = {
 			});
 
 
+		// Add event listeners to the buttons in the
+		// outgoing section of the HTML document.
 		const self = this;
 		const ctrls = document.querySelector(`#${this.sectionId} div.controls`);
 		const pairs = [
@@ -760,10 +856,14 @@ const outgoing = {
 			button.addEventListener('click', func);
 		});
 
+		// Begin listening to Firestore products collection.
 		products.listen(this);
 	},
 
 
+	/** Adds one row to the outgoing table body. This function is
+	 * called once for each existing document in the Firestore products
+	 * collection and when a document is added to that collection. */
 	addOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
@@ -796,6 +896,9 @@ const outgoing = {
 	},
 
 
+	/** Modifies one row in the outgoing HTML table body.
+	 * This function is called when a document in the
+	 * Firestore products collection is updated. */
 	modifyOne : function(prodId, prodData) {
 		console.assert(check.string(prodId));
 		console.assert(check.object(prodData));
@@ -820,6 +923,9 @@ const outgoing = {
 	getRow : prototype.makeGetRow(mminv.dbNames.prodId),
 
 
+	/** If the user entered valid numbers in the outgoing column, this
+	 * function updates the corresponding documents in the Firestore
+	 * database and creates orders for products as needed. */
 	submit : function(event) {
 		const updates = this.validate();
 		if (updates) {
@@ -835,7 +941,7 @@ const outgoing = {
 				quant -= outgoing;
 
 				// Update the Firestore document. This update should
-				// cause Firestore to send an update back to this
+				// cause Firestore to send an update event back to this
 				// program which will be received and processed in the
 				// onSnapshot closure in mminv.getCollection().
 				object[names.quant] = quant;
@@ -857,6 +963,8 @@ const outgoing = {
 			}
 
 			if (Object.keys(orders).length > 0) {
+				// Call the order function to send the
+				// orders to the Firestore database.
 				suppliers.order(orders);
 			}
 
@@ -866,6 +974,12 @@ const outgoing = {
 	},
 
 
+	/** Verifies that the numbers the user typed in the outgoing column
+	 * are positive integers that are not larger than the number of
+	 * things in stock. If all the numbers entered by the user are
+	 * valid, this function returns an object (used like a Python
+	 * dictionary) that contains product IDs and quantities. Otherwise
+	 * this function returns null. */
 	validate : function() {
 		const names = mminv.dbNames;
 		const updates = { };
@@ -913,4 +1027,6 @@ const outgoing = {
 };
 
 
+// Add an event listener to the HTML document that will
+// call mminv.init() when the HTML document is loaded.
 document.addEventListener('DOMContentLoaded', (event) => mminv.init(event));

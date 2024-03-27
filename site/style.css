@@ -275,6 +275,11 @@ article h1 {
 	font-size: 175%;
 	margin: 0 0 1em 0;
 }
+article p.subtitle {
+	text-align: center;
+	font-size: 130%;
+	margin: -1em 0 1em 0;
+}
 
 article h2 {
 	clear: both;
@@ -610,8 +615,8 @@ article figure > figcaption {
 
 
 /* Code containers */
-article p.chatgpt {
-	font-family: "Source Code Pro", "Lucida Console", Consolas, monospace;
+article p.gpt {
+	font-family: "Roboto Slab", Georgia, "Times New Roman", serif;
 }
 
 article code {
