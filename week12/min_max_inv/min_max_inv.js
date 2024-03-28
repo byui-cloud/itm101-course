@@ -1,3 +1,5 @@
+// Import the Google Firebase and Firestore functions
+// needed by this Min-Max Inventory System.
 import {initializeApp} from
 	'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js';
 import {getFirestore, collection as fireCollect, onSnapshot,
@@ -159,6 +161,7 @@ const mminv = {
 	},
 
 
+	/** A reference to this app's connection to the Firestore database. */
 	firestore : null,
 
 	/** Returns a connection to the Firestore database. */
@@ -245,9 +248,9 @@ const prototype = {
 		console.assert(check.object(listener));
 		console.assert(this.listeners.includes(listener) == false);
 
-		// Call listener.addOne once for each document that has been
-		// sent from the Firestore collection and is already in the
-		// cache object.
+		// Call listener.addOne once for each document that was
+		// previously sent from the Firestore collection and is
+		// already in the cache object.
 		for (const [docId, docData] of Object.entries(this.cache)) {
 			listener.addOne(docId, docData);
 		}

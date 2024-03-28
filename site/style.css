@@ -615,7 +615,7 @@ article figure > figcaption {
 
 
 /* Code containers */
-article p.gpt {
+article .gpt {
 	font-family: "Poor Story", Georgia, "Times New Roman", serif;
 	font-size: 130%;
 }

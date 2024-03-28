@@ -21,7 +21,7 @@
         "educationalUse": "assignment",
         "copyrightNotice": "Copyright © 2024, Brigham Young University–Idaho. All rights reserved.",
         "datePublished": "2024-03-27",
-        "dateModified": "2024-03-27"
+        "dateModified": "2024-03-28"
     }
     </script>
 </head>
@@ -32,7 +32,7 @@
 <p class="subtitle">(Min-Max Inventory System)</p>
 
 <h2 id="scenario">Scenario</h2>
-<p>Many companies have a storeroom or warehouse where they temporarilly
+<p>Many companies have a storeroom or warehouse where they temporarily
 store items that they will sell or use to manufacture products. The
 items in a storeroom or warehouse are called <dfn>inventory</dfn>.</p>
 
@@ -59,19 +59,46 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 <h2 id="steps">Steps</h2>
 <p>Do the following:</p>
 <ol class="long">
+    <li><div>Use ChatGPT to learn about Google Firestore, what it is,
+    and the steps a program must follow to use a Firestore database.
+    Start a new chat with ChatGPT, and give the following prompts to
+    ChatGPT. Use ChatGPT as a learning assistant. Read it’s answers, and
+    ask it other questions that will help you understand Google
+    Firestore and how to use it.
+    <ol>
+        <li><div class="gpt">What is a Google Firestore
+        database?</div></li>
+
+        <li><div class="gpt">How many companies use Firestore
+        databases?</div></li>
+
+        <li><div class="gpt">How does a Firestore database organize
+        data?</div></li>
+
+        <li><div class="gpt">I’m going to ask you more questions about
+        the Google Firestore database service. If you write any code as
+        part of your answers, always write JavaScript code that uses
+        Google’s Web modular API.</div></li>
+
+        <li><div class="gpt">What do I need to do to write a web app
+        that uses a Firestore database?</div></li>
+
+        <li><div class="gpt">What steps are needed in a JavaScript web
+        app to add a document to a Firestore database?</div></li>
+    </ol>
+    </div></li>
+
     <li><div>Use the
     <a href="https://console.firebase.google.com/">Firebase Console</a>
     to create a new Firebase project named “min-max-inventory”.</div></li>
 
     <li><div>Within your Firebase min-max-inventory project, add a
-    Firestore database.</div></li>
+    Firestore database that has open or development rules.</div></li>
 
     <li><div>Initialize a collection named “suppliers” in your Firestore
     database by doing the following:
-
     <ol class="long">
-        <li><div>Start a new chat with ChatGPT, and give this prompt to
-        ChatGTP:
+        <li><div>Give this prompt to ChatGPT:
 
         <p class="gpt">Please generate a list of 5 fictitious product
         suppliers in JSON format. Each item in the list must include
