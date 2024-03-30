@@ -9,24 +9,24 @@ body {
 }
 
 header {
-	position: sticky;
-	top: 0;
 	background-color: var(--bkgrnd-color);
 }
 header > img.logo {
 	vertical-align: bottom;
-	margin: 1em 2em 0 1em;
-	width: 3em;
+	margin-right: 1.2em;
+	max-width: 3em;
 }
 
-header > ul.tabs {
+header > nav {
+	display: inline;
+}
+nav > ul.tabs {
 	display: inline;
 	list-style-type: none;
-	margin: 0 0 1em 0;
 	padding: 0;
 }
-header > ul.tabs > li {
-	display: inline-block;
+nav > ul.tabs > li {
+	display: inline;
 	margin: 0;
 	border-top: none;
 	border-right: none;
@@ -35,23 +35,23 @@ header > ul.tabs > li {
 	padding: 0.25em 0.5em;
 	cursor: pointer;
 }
-header > ul.tabs > li.selected {
+nav > ul.tabs > li.selected {
 	border-top: 2px solid var(--byui-blue);
 	border-right: 2px solid var(--byui-blue);
 	border-bottom: none;
 	border-left: 2px solid var(--byui-blue);
 }
 
-article > section {
+main > section {
 	display: none;
 }
-article > section.selected {
+main > section.selected {
 	display: block;
 }
 
 section table > thead {
 	position: sticky;
-	top: 4em;
+	top: 0em;
 	background-color: var(--bkgrnd-color);
 }
 section table > thead > tr > th {

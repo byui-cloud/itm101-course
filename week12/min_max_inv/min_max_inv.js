@@ -77,12 +77,12 @@ const mminv = {
 		// Add a click listener to all tabs.
 		const self = this;
 		const listener = (event) => self.showSection(event);
-		const tabs = document.querySelectorAll('header > ul.tabs > li');
+		const tabs = document.querySelectorAll('nav > ul.tabs > li');
 		Array.from(tabs).forEach(
 				(tab) => tab.addEventListener('click', listener));
 
 		// Programmatically click the selected tab.
-		const tab = document.querySelector('header > ul.tabs > li.selected');
+		const tab = document.querySelector('nav > ul.tabs > li.selected');
 		tab.click();
 	},
 
@@ -102,7 +102,7 @@ const mminv = {
 
 		// Hide all of the sections except
 		// for the one selected by the user.
-		const sections = document.querySelectorAll('article > section');
+		const sections = document.querySelectorAll('main > section');
 		Array.from(sections).forEach((sect) => sect.classList.remove(selected));
 		document.querySelector(`#${name}`).classList.add(selected);
 	},
