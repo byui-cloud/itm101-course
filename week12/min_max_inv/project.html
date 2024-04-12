@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Code+Pro&family=Poor+Story&display=swap">
     <link rel="stylesheet" href="../../site/reset.css">
     <link rel="stylesheet" href="../../site/style.css">
-    <link rel="icon" type="image/png" href="../../site/icons/logo.png">
+    <link rel="icon" type="image/png" href="../../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week12/min_max_inv/project.html">
     <meta name="description" content="An assignment that requires students to create a Firebase project with a Firestore database and deploy HTML, CSS, and JavaScript code to Google Hosting">
     <script type="application/ld+json">
@@ -77,8 +77,12 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 
         <li><div class="gpt">I’m going to ask you more questions about
         the Google Firestore database service. If you write any code as
-        part of your answers, always write JavaScript code that uses
-        Google’s Web modular API.</div></li>
+        part of your answers, always write HTML and JavaScript code that
+        uses Google’s Web modular API.</div></li>
+
+        <li><div class="gpt">What steps do I need to complete to create
+        a Google Firebase project with a Firestore database that can be
+        read and written by a JavaScript web application?</div></li>
 
         <li><div class="gpt">What do I need to do to write a web app
         that uses a Firestore database?</div></li>
@@ -92,14 +96,20 @@ system that uses a NoSQL database in the Internet Cloud.</p>
     <a href="https://console.firebase.google.com/">Firebase Console</a>
     to create a new Firebase project named “min-max-inventory”.</div></li>
 
-    <li><div>Within your Firebase min-max-inventory project, add a
-    Firestore database that has open or development rules.</div></li>
+    <li><div>Still using the Firebase Console, add a web app to your
+    Firebase min-max-inventory project.</div></li>
 
-    <li><div>Initialize a collection named “suppliers” in your Firestore
-    database by doing the following:
+    <li><div>Still using the Firebase Console, enable
+    Hosting.</div></li>
+
+    <li><div>Still using the Firebase Console, add a Firestore database
+    to your Firebase project. Your new Firestore database should use
+    open or development rules.</div></li>
+
+    <li><div>In your Firestore database, initialize a collection named
+    “suppliers” by doing the following:
     <ol class="long">
         <li><div>Give this prompt to ChatGPT:
-
         <p class="gpt">Please generate a list of 5 fictitious product
         suppliers in JSON format. Each item in the list must include
         three attributes:  a supplier name, email address, and phone
@@ -110,7 +120,6 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 
         <li><div>Wait for ChatGPT to respond and then give it this
         prompt:
-
         <p class="gpt">Please write HTML and JavaScript code in a single
         HTML file that will add the supplier data that you generated for
         the 5 suppliers into a Google Firestore database. The HTML must
@@ -132,14 +141,14 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 
         <li><div>Open the init_suppliers_gpt.html file in a browser, and
         your browser should add five suppliers to a collection named
-        “suppliers” in your Firestore database. The browser window
+        "suppliers" in your Firestore database. The browser window
         should now have a list of five supplier IDs and names.</div></li>
 
         <li><div>Copy the five supplier IDs into a new file in VS
         Code.</div></li>
 
         <li><div>Using the Firebase console, verify that your Firestore
-        database has a collection named “suppliers” that contains five
+        database has a collection named "suppliers" that contains five
         documents.</div></li>
     </ol></div></li>
 
@@ -160,7 +169,6 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         give the prompt to ChatGPT.</div></li>
 
         <li><div>After ChatGPT responds, give it this prompt:
-
         <p class="gpt">Please write HTML and JavaScript code in a single
         HTML file that will add the product data that you generated into
         a Google Firestore database. The HTML must import the Firebase
@@ -177,23 +185,76 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div>Wait for ChatGPT to respond. Then copy the code that
         ChatGPT wrote and paste it into a new file.</div></li>
 
-        <li><div>Save the file as init_products_gpt.html</div></li>
+        <li><div>Save the file as <code>init_products_gpt.html</code></div></li>
 
-        <li><div>Open the init_products_gpt.html file in a browser, and
-        your browser should add 20 products to a collection named
-        “products” in your Firestore database. The browser window should
-        now have a list of 20 product IDs and names.</div></li>
+        <li><div>Open the <code>init_products_gpt.html</code> file in a
+        browser, and your browser should add 20 products to a collection
+        named "products" in your Firestore database. The browser window
+        should now have a list of 20 product IDs and names.</div></li>
 
         <li><div>Using the Firebase console, verify that your Firestore
-        database has a collection named “products” that contains 20
+        database has a collection named "products" that contains 20
         documents.</div></li>
+    </ol></div></li>
+
+    <li><div>Using a browser on your computer, download and install
+    NodeJS from
+    <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></div></li>
+
+    <li><div>On your computer create a new folder named
+    <code>min_max_inv</code> where you will download files for this
+    final project.</div></li>
+
+    <li><div>Open VS Code and in the "File" menu, click "Open Folder..."
+    and open the <code>min_max_inv</code> folder that you created.</div></li>
+
+    <li><div>Using VS Code on your computer, open a new terminal and
+    execute the following commands.
+    <ol>
+        <li><div><code>npm install -g firebase-tools</code></div></li>
+        <li><div><code>firebase login</code></div></li>
+        <li><div><code>firebase projects:list</code></div></li>
+        <li><div><code>firebase init</code></div></li>
+        <li><div><code>firebase init hosting</code></div></li>
+    </ol></div></li>
+
+    <li><div>Download the following five files and save them into the
+    <code>public</code> folder that the firebase init hosting command
+    created:
+    <ol>
+        <li><div><a download href="index.html">index.html</a></div></li>
+        <li><div><a download href="min_max_inv.css">min_max_inv.css</a></div></li>
+        <li><div><a download href="min_max_inv.js">min_max_inv.js</a></div></li>
+        <li><div><a download href="favicon.png">favicon.png</a></div></li>
+        <li><div><a download href="minmax.png">minmax.png</a></div></li>
+    </ol></div></li>
+
+    <li><div>Execute the following command in the VS Code terminal:<br>
+    <code>firebase deploy --only hosting</code>
+    <p>If everything worked correctly, this command deployed the files
+    for the Min-Max Inventory System into your Google Cloud
+    project.</p></div></li>
+
+    <li><div>Look in the terminal for the URL where the firebase deploy
+    command sent your files. Copy that URL and open it in your
+    browser.</div></li>
+
+    <li><div>Using your browser, test your Min-Max Inventory system
+    thoroughly by doing the following:
+    <ol>
+        <li><div>Look at each of the five tabs and verify that the each
+        show the correct data from your Firestore database.</div></li>
+        <li><div>In the Receiving tab, enter numbers in the text boxes,
+        press the Submit button, and verify that the corresponding
+        Current Quantities change as they should.</div></li>
+        <li><div>In the Outgoing tab, enter numbers in the text boxes,
+        press the Submit button, and verify that the corresponding
+        Current Quantities change as they should.</div></li>
     </ol></div></li>
 
     <li><div></div></li>
     <li><div></div></li>
     <li><div></div></li>
-    <li><div></div></li>
-
     <li><div>If you’re curious, you could ask your teacher or ChatGPT
     what is the purpose of each of the files in a web app.</div></li>
 </ol>

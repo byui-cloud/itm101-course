@@ -2,6 +2,8 @@
 // needed by this Min-Max Inventory System.
 import {initializeApp} from
 	'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js';
+import {getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithRedirect}
+	from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import {getFirestore, collection as fireCollect, onSnapshot,
 		doc as fireDoc, addDoc, updateDoc, serverTimestamp}
 	from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
@@ -90,16 +92,38 @@ const mminv = {
 	/** A reference to this app's connection to the Firestore database. */
 	firestore : null,
 
-	/** Returns a connection to the Firestore database. */
-	getDatabase : function() {
-		if (! this.firestore) {
+	authenticate : function(event) {
+		const self = this;
+		if (! self.firestore) {
 			/* Copy and paste your project's firebaseConfig here. */
 			const firebaseConfig = {
 			};
 			const app = initializeApp(firebaseConfig);
-			this.firestore = getFirestore(app);
+
+			const auth = getAuth(app);
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					// The user is already signed in
+					// so connect to the database.
+					self.firestore = getFirestore(app);
+
+					// Initizlize the HTML user interface.
+					self.initialize();
+				}
+				else {
+					// Use the Google authentication
+					// service to sign in a user.
+					const provider = new GoogleAuthProvider();
+					signInWithRedirect(auth, provider)
+					.then((result) => {
+						console.log(JSON.stringify(result));
+					})
+					.catch((error) => {
+						console.error(error.code);
+					});
+				}
+			});
 		}
-		return this.firestore;
 	},
 
 
@@ -109,7 +133,7 @@ const mminv = {
 		console.assert(check.string(path));
 		console.assert(check.object(cache));
 		console.assert(check.array(listeners));
-		const db = this.getDatabase();
+		const db = this.firestore;
 		const unsubscribe = onSnapshot(fireCollect(db, path),
 			(snapshot) => {
 				snapshot.docChanges().forEach((change) => {
@@ -143,7 +167,7 @@ const mminv = {
 	addDocument : function(path, object) {
 		console.assert(check.string(path));
 		console.assert(check.object(object));
-		const db = this.getDatabase();
+		const db = this.firestore;
 		addDoc(fireCollect(db, path), object);
 	},
 
@@ -153,7 +177,7 @@ const mminv = {
 		console.assert(check.string(path));
 		console.assert(check.string(docId));
 		console.assert(check.object(object));
-		const db = this.getDatabase();
+		const db = this.firestore;
 		updateDoc(fireDoc(db, path, docId), object);
 	},
 
@@ -1026,5 +1050,5 @@ const outgoing = {
 
 
 // Add an event listener to the HTML document that will
-// call mminv.initialize() when the HTML document is loaded.
-document.addEventListener('DOMContentLoaded', (event) => mminv.initialize(event));
+// call mminv.authenticate() when the HTML document is loaded.
+document.addEventListener('DOMContentLoaded', (event) => mminv.authenticate(event));
