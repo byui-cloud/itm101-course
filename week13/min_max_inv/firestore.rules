@@ -3,7 +3,8 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function userHasPermission() {
-      return request.time < timestamp.date(2024, 12, 31);
+      return request.auth != null &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.enabled;
     }
 
     function between(value, min, max) {
