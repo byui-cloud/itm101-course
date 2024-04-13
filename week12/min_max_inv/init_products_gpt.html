@@ -160,14 +160,6 @@
     }
   ];
 
-    const supplierIDs = [
-    "wCZO77pIdfoxu8t6yWfw",
-    "o9ZmqgKBoD01LbJgr7iZ",
-    "IZiaMUXSTSsGNjnUbeZB",
-    "ycc4ys8ufMPbmvbYNre3",
-    "6ShrHFBaHyCXTxxrtLUM",
-    ];
-
   async function addProductsToFirestore() {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -176,8 +168,6 @@
 
     for (const product of products) {
       try {
-        const index = Math.floor(Math.random() * supplierIDs.length)
-        product.supplier_id = supplierIDs[index];
         const docRef = await addDoc(collection(db, "products"), product);
         productsContainer.innerHTML += `<div>Document ID: ${docRef.id}, Product Name: ${product.product_name}</div>`;
       } catch (e) {
