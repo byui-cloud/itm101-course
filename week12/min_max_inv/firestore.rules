@@ -6,61 +6,93 @@ service cloud.firestore {
       return request.time < timestamp.date(2024, 5, 6);
     }
 
+    function between(value, min, max) {
+      return min <= value && value <= max;
+    }
+
+    function supplierIsValid(data) {
+      let keys = data.keys();
+      let name = data.supplier_name;
+      let email = data.email_address;
+      let phone = data.phone_number;
+      return keys.size() == 3 &&
+        keys.hasAll(['supplier_name', 'email_address', 'phone_number']) &&
+        name is string && between(name.size(), 3, 80) &&
+        email is string && between(email.size(), 8, 80) &&
+        phone is string && between(phone.size(), 10, 20);
+    }
+
+    function productIsValid(data) {
+      let keys = data.keys();
+      let name = data.product_name;
+      let min = data.minimum_quantity;
+      let quant = data.quantity;
+      let max = data.maximum_quantity;
+      let sid = data.supplier_id;
+      return keys.size() == 5 &&
+        keys.hasAll(['product_name', 'minimum_quantity',
+            'quantity', 'maximum_quantity', 'supplier_id']) &&
+        name is string && between(name.size(), 3, 100) &&
+        min   is int && 0 <= min   &&
+        quant is int && 0 <= quant &&
+        max   is int && 0 <= max   && min < max &&
+        sid is string &&
+        // Ensure that the supplier_id exists in the suppliers collection.
+        exists(/databases/$(database)/documents/suppliers/$(sid));
+    }
+
+    function orderIsValid(request, data) {
+      let keys = data.keys();
+      let sid = data.supplier_id;
+      return keys.size() == 3 &&
+        keys.hasAll(['order_date', 'supplier_id', 'products']) &&
+        // Ensure that the value for order_date
+        // came from a server-side timestamp.
+        request.time == data.order_date &&
+        // Ensure that the supplier in the request
+        // already exists in this database.
+        exists(/databases/$(database)/documents/suppliers/$(sid));
+        // TODO: Ensure that each of the products in the
+        // request already exists in this database.
+        // TODO: Ensure that the quantity for each
+        // product is greater than zero.
+    }
+
+    function userIsValid(data) {
+      let keys = data.keys();
+      return keys.size() == 2 &&
+        keys.hasAll(['email', 'enabled']) &&
+        data.email is string && between(data.email.size(), 8, 80) &&
+        data.enabled is bool;
+    }
+
+
     match /suppliers/{supplier} {
       allow read: if userHasPermission();
-
       allow create: if userHasPermission() &&
-        request.resource.data.size() == 3 &&
-        request.resource.data.hasAll(['supplier_name', 'email_address', 'phone_number']) &&
-        request.resource.data.supplier_name is string &&
-        request.resource.data.email_address is string &&
-        request.resource.data.phone_number is string;
+        supplierIsValid(request.resource.data);
     }
 
     match /products/{product} {
       allow read: if userHasPermission();
-
       allow create: if userHasPermission() &&
-        request.resource.data.size() == 5 &&
-        request.resource.data.hasAll(['product_name', 'minimum_quantity', 'quantity', 'maximum_quantity', 'supplier_id']) &&
-        request.resource.data.product_name is string &&
-        request.resource.data.minimum_quantity is int &&
-        request.resource.data.quantity is int &&
-        request.resource.data.maximum_quantity is int &&
-        request.resource.data.supplier_id is string &&
-        // Ensure that the supplier_id exists in the suppliers collection.
-        exists(/databases/$(database)/documents/suppliers/$(request.resource.data.supplier_id)) &&
-        request.resource.data.minimum_quantity >= 0 &&
-        request.resource.data.quantity >= 0 &&
-        request.resource.data.maximum_quantity >= 0 &&
-        request.resource.data.minimum_quantity < request.resource.data.maximum_quantity;
-
+        productIsValid(request.resource.data);
       allow update: if userHasPermission() &&
         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantity']) &&
         request.resource.data.quantity is int &&
-        request.resource.data.quantity >= 0;
+        0 <= request.resource.data.quantity;
     }
 
     match /orders/{order} {
       allow read: if userHasPermission();
-
       allow create: if userHasPermission() &&
-        // Ensure that the value for order_date came from a server-side timestamp.
-        request.time == request.resource.data.order_date &&
-        // Ensure that the supplier in the request already exists in this database.
-        exists(/databases/$(database)/documents/suppliers/$(request.resource.data.supplier_id));
-        // TODO: Ensure that each of the products in the request already exists in this database.
-        // TODO: Ensure that the quantity for each product is greater than zero.
+        orderIsValid(request, request.resource.data);
     }
 
     match /users/{users} {
       allow read: if userHasPermission();
-
       allow write: if userHasPermission() &&
-        request.resource.data.size() == 2 &&
-        request.resource.data.hasAll(['email', 'enabled']) &&
-        request.resource.data.email is string &&
-        request.resource.data.enabled is bool;
+        userIsValid(request.resource.data);
     }
   }
 }
