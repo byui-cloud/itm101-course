@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITM 101 Final Project</title>
+    <script defer src="../../site/main.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Source+Code+Pro&family=Poor+Story&display=swap">
+    <link rel="stylesheet" href="../../site/reset.css">
+    <link rel="stylesheet" href="../../site/style.css">
+    <link rel="icon" type="image/png" href="../../site/icons/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week12/min_max_inv/project.html">
+    <meta name="description" content="An assignment that requires students to create a Firebase project with a Firestore database and deploy HTML, CSS, and JavaScript code to Google Hosting">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Article",
+        "headline": "",
+        "description": "An assignment that requires students to create a Firebase project with a Firestore database and deploy HTML, CSS, and JavaScript code to Google Hosting",
+        "educationalUse": "assignment",
+        "copyrightNotice": "Copyright © 2024, Brigham Young University–Idaho. All rights reserved.",
+        "datePublished": "2024-03-27",
+        "dateModified": "2024-03-28"
+    }
+    </script>
+</head>
+
+<body>
+<article>
+<h1>ITM 101 Final Project</h1>
+<p class="subtitle">(Min-Max Inventory System)</p>
+<p class="subtitle">Part 2</p>
+
+<h2 id="scenario">Scenario</h2>
+<p>The Min-Max Inventory System that you created last week is using
+development security rules. This means that anyone can view, edit, and
+delete the data in your Firestore database.</p>
+
+<p>Your boss has asked you to change the Min-Max Inventory System so
+that it authenticates users and only allows authenticated users with the
+correct permissions to view, edit, and delete the data.</p>
+
+<h2 id="steps">Steps</h2>
+<p>Do the following:</p>
+<ol class="long">
+    <li><div>Using your browser in the Firebase console, enable
+    authentication.</div></li>
+
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+
+    <li><div>Use ChatGPT to learn about Google Firestore, what it is,
+    and the steps a program must follow to use a Firestore database.
+    Start a new chat with ChatGPT, and give the following prompts to
+    ChatGPT. Use ChatGPT as a learning assistant. Read it’s answers, and
+    ask it other questions that will help you understand Google
+    Firestore and how to use it.
+    <ol>
+        <li><div class="gpt">What is a Google Firestore
+        database?</div></li>
+
+        <li><div class="gpt">How many companies use Firestore
+        databases?</div></li>
+
+        <li><div class="gpt">How does a Firestore database organize
+        data?</div></li>
+
+        <li><div class="gpt">I’m going to ask you more questions about
+        the Google Firestore database service. If you write any code as
+        part of your answers, always write JavaScript code that uses
+        Google’s Web modular API.</div></li>
+
+        <li><div class="gpt">What do I need to do to write a web app
+        that uses a Firestore database?</div></li>
+
+        <li><div class="gpt">What steps are needed in a JavaScript web
+        app to add a document to a Firestore database?</div></li>
+    </ol>
+    </div></li>
+
+    <li><div>Use the
+    <a href="https://console.firebase.google.com/">Firebase Console</a>
+    to create a new Firebase project named “min-max-inventory”.</div></li>
+
+    <li><div>Within your Firebase min-max-inventory project, add a
+    Firestore database that has open or development rules.</div></li>
+
+    <li><div>Initialize a collection named “suppliers” in your Firestore
+    database by doing the following:
+    <ol class="long">
+        <li><div>Give this prompt to ChatGPT:
+
+        <p class="gpt">Please generate a list of 5 fictitious product
+        suppliers in JSON format. Each item in the list must include
+        three attributes:  a supplier name, email address, and phone
+        number. Choose names that would fit into an animated cartoon
+        like Wile E Coyote and the Roadrunner, Space Jam, and Roger
+        Rabbit.</p>
+        </div></li>
+
+        <li><div>Wait for ChatGPT to respond and then give it this
+        prompt:
+
+        <p class="gpt">Please write HTML and JavaScript code in a single
+        HTML file that will add the supplier data that you generated for
+        the 5 suppliers into a Google Firestore database. The HTML must
+        import the Firebase and Firestore Web modular API as scripts of
+        type="module". The JavaScript code must be contained in a
+        function that a browser will execute after the HTML document is
+        loaded. The JavaScript code must use the Firebase and Firestore
+        Web modular API functions to add the supplier data into a
+        collection named "suppliers". After adding each supplier, the
+        JavaScript code must retrieve the document ID for the supplier
+        and display the document ID and supplier name in a div in the
+        HTML document.</p>
+        </div></li>
+
+        <li><div>Wait for ChatGPT to respond. Then copy the code that
+        ChatGPT wrote and paste it into a new file.</div></li>
+
+        <li><div>Save the file as init_suppliers_gpt.html</div></li>
+
+        <li><div>Open the init_suppliers_gpt.html file in a browser, and
+        your browser should add five suppliers to a collection named
+        “suppliers” in your Firestore database. The browser window
+        should now have a list of five supplier IDs and names.</div></li>
+
+        <li><div>Copy the five supplier IDs into a new file in VS
+        Code.</div></li>
+
+        <li><div>Using the Firebase console, verify that your Firestore
+        database has a collection named “suppliers” that contains five
+        documents.</div></li>
+    </ol></div></li>
+
+    <li><div>Initialize a collection named “products” in your Firestore
+    database by doing the following:
+    <ol class="long">
+        <li><div>Copy the following prompt and paste it at the top of
+        the file in VS Code that contains the five supplier IDs from the
+        previous step.
+        <p class="gpt">Please generate a list of 20 products for a
+        min-max inventory system for the cosmetics industry. Generate
+        the list in JSON format. Each item in the list must include five
+        attributes: a product name, minimum quantity, quantity, maximum
+        quantity, and supplier ID. Use these supplier IDs: </p>
+        </div></li>
+
+        <li><div>Review the prompt and ensure that it makes sense. Then
+        give the prompt to ChatGPT.</div></li>
+
+        <li><div>After ChatGPT responds, give it this prompt:
+
+        <p class="gpt">Please write HTML and JavaScript code in a single
+        HTML file that will add the product data that you generated into
+        a Google Firestore database. The HTML must import the Firebase
+        and Firestore Web modular API as scripts of type="module". The
+        JavaScript code must be contained in a function that a browser
+        will execute after the HTML document is loaded. The JavaScript
+        code must use the Firebase and Firestore Web modular API
+        functions to add the product data into a collection named
+        "products". After adding each product, the JavaScript code must
+        display the document ID and product name for the product in a
+        div in the HTML document.</p>
+        </div></li>
+
+        <li><div>Wait for ChatGPT to respond. Then copy the code that
+        ChatGPT wrote and paste it into a new file.</div></li>
+
+        <li><div>Save the file as init_products_gpt.html</div></li>
+
+        <li><div>Open the init_products_gpt.html file in a browser, and
+        your browser should add 20 products to a collection named
+        “products” in your Firestore database. The browser window should
+        now have a list of 20 product IDs and names.</div></li>
+
+        <li><div>Using the Firebase console, verify that your Firestore
+        database has a collection named “products” that contains 20
+        documents.</div></li>
+    </ol></div></li>
+
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+    <li><div></div></li>
+
+    <li><div>If you’re curious, you could ask your teacher or ChatGPT
+    what is the purpose of each of the files in a web app.</div></li>
+</ol>
+</article>
+</body>
+</html>

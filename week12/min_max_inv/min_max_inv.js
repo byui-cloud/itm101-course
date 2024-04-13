@@ -91,15 +91,17 @@ const mminv = {
 	firestore : null,
 
 	/** Returns a connection to the Firestore database. */
-	getDatabase : function() {
+	connect : function() {
 		if (! this.firestore) {
 			/* Copy and paste your project's firebaseConfig here. */
 			const firebaseConfig = {
 			};
 			const app = initializeApp(firebaseConfig);
 			this.firestore = getFirestore(app);
+
+			// Initizlize the HTML user interface.
+			this.initialize();
 		}
-		return this.firestore;
 	},
 
 
@@ -109,7 +111,7 @@ const mminv = {
 		console.assert(check.string(path));
 		console.assert(check.object(cache));
 		console.assert(check.array(listeners));
-		const db = this.getDatabase();
+		const db = this.firestore;
 		const unsubscribe = onSnapshot(fireCollect(db, path),
 			(snapshot) => {
 				snapshot.docChanges().forEach((change) => {
@@ -143,7 +145,7 @@ const mminv = {
 	addDocument : function(path, object) {
 		console.assert(check.string(path));
 		console.assert(check.object(object));
-		const db = this.getDatabase();
+		const db = this.firestore;
 		addDoc(fireCollect(db, path), object);
 	},
 
@@ -153,7 +155,7 @@ const mminv = {
 		console.assert(check.string(path));
 		console.assert(check.string(docId));
 		console.assert(check.object(object));
-		const db = this.getDatabase();
+		const db = this.firestore;
 		updateDoc(fireDoc(db, path, docId), object);
 	},
 
@@ -1026,5 +1028,5 @@ const outgoing = {
 
 
 // Add an event listener to the HTML document that will
-// call mminv.initialize() when the HTML document is loaded.
-document.addEventListener('DOMContentLoaded', (event) => mminv.initialize(event));
+// call mminv.connect() when the HTML document is loaded.
+document.addEventListener('DOMContentLoaded', (event) => mminv.connect(event));

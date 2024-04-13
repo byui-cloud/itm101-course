@@ -103,6 +103,9 @@ const mminv = {
 			const auth = getAuth(app);
 			onAuthStateChanged(auth, (user) => {
 				if (user) {
+					document.getElementById('user').innerText =
+						`${user.displayName} (${user.email} ${user.uid})`;
+
 					// The user is already signed in
 					// so connect to the database.
 					self.firestore = getFirestore(app);

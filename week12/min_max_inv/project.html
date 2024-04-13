@@ -30,6 +30,7 @@
 <article>
 <h1>ITM 101 Final Project</h1>
 <p class="subtitle">(Min-Max Inventory System)</p>
+<p class="subtitle">Part 1</p>
 
 <h2 id="scenario">Scenario</h2>
 <p>Many companies have a storeroom or warehouse where they temporarily
@@ -94,20 +95,103 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 
     <li><div>Use the
     <a href="https://console.firebase.google.com/">Firebase Console</a>
-    to create a new Firebase project named “min-max-inventory”.</div></li>
+    in your browser to create a new Firebase project named
+    "min-max-inventory".</div></li>
 
     <li><div>Still using the Firebase Console, add a web app to your
     Firebase min-max-inventory project.</div></li>
 
     <li><div>Still using the Firebase Console, enable
-    Hosting.</div></li>
+    Hosting in your min-max-inventory project.</div></li>
 
     <li><div>Still using the Firebase Console, add a Firestore database
     to your Firebase project. Your new Firestore database should use
-    open or development rules.</div></li>
+    development rules.</div></li>
+
+    <li><div>Using a browser on your computer, download and install
+    NodeJS from
+    <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></div></li>
+
+    <li><div>On your computer create a new folder named
+    <code>min_max_inv</code> where you will save files for this final
+    project.</div></li>
+
+    <li><div>Open VS Code and in the "File" menu, click "Open Folder..."
+    and open the <code>min_max_inv</code> folder that you created.</div></li>
+
+    <li><div>Using your browser, download the following two files and
+    save them into the<code>min_max_inv</code> folder that you created.
+    <ol>
+        <li><div><a download href="firebase.config">firebase.config</a></div></li>
+        <li><div><a download href="firestore.rules">firestore.rules</a></div></li>
+    </ol></div></li>
+
+    <li><div>Using VS Code on your computer, open a new terminal and
+    execute the following commands.
+    <ol>
+        <li><div><code>npm install -g firebase-tools</code></div></li>
+        <li><div><code>firebase login</code></div></li>
+        <li><div><code>firebase projects:list</code></div></li>
+        <li><div><code>firebase init</code></div></li>
+        <li><div><code>firebase init hosting</code></div></li>
+    </ol></div></li>
+
+    <li><div>Download the following five files and save them into the
+    <code>public</code> folder that the firebase init hosting command
+    created:
+    <ol>
+        <li><div><a download href="index.html">index.html</a></div></li>
+        <li><div><a download href="min_max_inv.css">min_max_inv.css</a></div></li>
+        <li><div><a download href="min_max_inv.js">min_max_inv.js</a></div></li>
+        <li><div><a download href="favicon.png">favicon.png</a></div></li>
+        <li><div><a download href="minmax.png">minmax.png</a></div></li>
+    </ol></div></li>
+
+    <li><div>Using the Firebase Console in your browser, look in the
+    "Project settings" for your min-max-inventory project and copy
+    <code>firebaseConfig</code> dictionary. The dictionary will look
+    similar to this:
+<pre class="js">
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "a_bunch_of_characters_here",
+  authDomain: "min-max-inventory-hex.firebaseapp.com",
+  projectId: "min-max-inventory-hex",
+  storageBucket: "min-max-inventory-hex.appspot.com",
+  messagingSenderId: "lots_of_digits",
+  appId: "more_characters_here"
+};
+</pre>
+    <p>You should <strong>not</strong> copy the sample
+    <code>firebaseConfig</code> shown above. Instead, you must copy the
+    <code>firebaseConfig</code> from your min-max-inventory project in
+    the Firebase Console.</p></div></li>
+
+    <li><div>In VS Code, open the <code>min_max_inv.js</code> file that
+    you downloaded two steps ago. At about line 96, you will find these
+    three lines of code:
+<pre class="js">
+  /* Copy and paste your project's firebaseConfig here. */
+  const firebaseConfig = {
+  };
+</pre>
+    <p>Replace those three lines of code with the
+    <code>firebaseConfig</code> code that you copied from the Firebase
+    Console in the previous step.</p></div></li>
+
+    <li><div>In the VS Code terminal, execute the following command:
+    <pre>firebase deploy --only firestore,hosting</pre>
+    <p>If your laptop’s operating system is Microsoft Windows, the
+    previous command may fail. If it failed, put double quotes around
+    <code>firestore,hosting</code> and run the command again, like
+    this:</p>
+    <pre>firebase deploy --only "firestore,hosting"</pre>
+    <p>If everything worked correctly, the command deployed the files
+    for the Min-Max Inventory System into your Google Cloud
+    project.</p></div></li>
 
     <li><div>In your Firestore database, initialize a collection named
-    “suppliers” by doing the following:
+    "suppliers" by doing the following:
     <ol class="long">
         <li><div>Give this prompt to ChatGPT:
         <p class="gpt">Please generate a list of 5 fictitious product
@@ -152,7 +236,7 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         documents.</div></li>
     </ol></div></li>
 
-    <li><div>Initialize a collection named “products” in your Firestore
+    <li><div>Initialize a collection named "products" in your Firestore
     database by doing the following:
     <ol class="long">
         <li><div>Copy the following prompt and paste it at the top of
@@ -197,47 +281,12 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         documents.</div></li>
     </ol></div></li>
 
-    <li><div>Using a browser on your computer, download and install
-    NodeJS from
-    <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></div></li>
-
-    <li><div>On your computer create a new folder named
-    <code>min_max_inv</code> where you will download files for this
-    final project.</div></li>
-
-    <li><div>Open VS Code and in the "File" menu, click "Open Folder..."
-    and open the <code>min_max_inv</code> folder that you created.</div></li>
-
-    <li><div>Using VS Code on your computer, open a new terminal and
-    execute the following commands.
-    <ol>
-        <li><div><code>npm install -g firebase-tools</code></div></li>
-        <li><div><code>firebase login</code></div></li>
-        <li><div><code>firebase projects:list</code></div></li>
-        <li><div><code>firebase init</code></div></li>
-        <li><div><code>firebase init hosting</code></div></li>
-    </ol></div></li>
-
-    <li><div>Download the following five files and save them into the
-    <code>public</code> folder that the firebase init hosting command
-    created:
-    <ol>
-        <li><div><a download href="index.html">index.html</a></div></li>
-        <li><div><a download href="min_max_inv.css">min_max_inv.css</a></div></li>
-        <li><div><a download href="min_max_inv.js">min_max_inv.js</a></div></li>
-        <li><div><a download href="favicon.png">favicon.png</a></div></li>
-        <li><div><a download href="minmax.png">minmax.png</a></div></li>
-    </ol></div></li>
-
-    <li><div>Execute the following command in the VS Code terminal:<br>
-    <code>firebase deploy --only hosting</code>
-    <p>If everything worked correctly, this command deployed the files
-    for the Min-Max Inventory System into your Google Cloud
-    project.</p></div></li>
-
-    <li><div>Look in the terminal for the URL where the firebase deploy
-    command sent your files. Copy that URL and open it in your
-    browser.</div></li>
+    <li><div>Look in the VS Code terminal below the
+    <code>fireabase deploy</code> command for the URL where the command
+    sent your files. The URL will be similar to this:
+    <pre>https://min-max-inventory-digits.web.app</pre>
+    <p>Copy the URL from the VS Code terminal and open it in a new tab
+    in your browser.</p></div></li>
 
     <li><div>Using your browser, test your Min-Max Inventory system
     thoroughly by doing the following:
@@ -252,9 +301,6 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         Current Quantities change as they should.</div></li>
     </ol></div></li>
 
-    <li><div></div></li>
-    <li><div></div></li>
-    <li><div></div></li>
     <li><div>If you’re curious, you could ask your teacher or ChatGPT
     what is the purpose of each of the files in a web app.</div></li>
 </ol>
