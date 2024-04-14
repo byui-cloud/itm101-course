@@ -395,6 +395,15 @@ article div.search {
 	white-space: pre-line;
 }
 
+article div.newtab {
+	float: right;
+	width: 12em;
+}
+
+article .gpt {
+	font-family: "Poor Story", Georgia, "Times New Roman", serif;
+	font-size: 130%;
+}
 
 article a:link { color: var(--link-before-fg-color); }
 article a:hover { color: var(--link-hover-fg-color); }
@@ -615,11 +624,6 @@ article figure > figcaption {
 
 
 /* Code containers */
-article .gpt {
-	font-family: "Poor Story", Georgia, "Times New Roman", serif;
-	font-size: 130%;
-}
-
 article code {
 	font-family: "Source Code Pro", "Lucida Console", Consolas, monospace;
 	white-space: nowrap;
@@ -687,9 +691,6 @@ article div.example > div:first-child.code {
 	border: 1px solid var(--border-color);
 	background-color: var(--python-bk-color);
 }
-/*
-article div.example > pre:nth-child(2).python {
-*/
 article div.example > div:nth-child(2).code {
 	grid-column: 2;
 	border-color: var(--border-color);

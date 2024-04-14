@@ -32,6 +32,9 @@
 <p class="subtitle">(Min-Max Inventory System)</p>
 <p class="subtitle">Part 2</p>
 
+<div class="newtab"><a target="_blank" href="#">Open these
+instructions in a new tab</a></div>
+
 <h2 id="scenario">Scenario</h2>
 <p>The Min-Max Inventory System that you created and deployed last week
 is using development security rules. This means that anyone can view,
@@ -50,6 +53,10 @@ permissions to view, edit, and delete the data.</p>
     help you understand Firebase authentication and Firestore security
     rules.
     <ol>
+        <li><div class="gpt">What is the purpose of Firestore security
+        rules?</div></li>
+
+        <li><div class="gpt"></div></li>
         <li><div class="gpt"></div></li>
     </ol></div></li>
 
@@ -60,7 +67,7 @@ permissions to view, edit, and delete the data.</p>
 
     <li><div>Using your browser, download the following two files and
     save them into the <code>min_max_inv/public</code> folder that the
-    firebase init hosting command created last week:
+    <code>firebase init hosting</code> command created last week:
     <ol>
         <li><div><a download href="index.html">index.html</a></div></li>
         <li><div><a download href="min_max_inv.js">min_max_inv.js</a></div></li>
@@ -111,14 +118,43 @@ const firebaseConfig = {
     <li><div>Look in the VS Code terminal below the
     <code>fireabase deploy</code> command for the URL where the command
     sent your files. The URL will be similar to this:
-    <pre>https://min-max-inventory-digits.web.app</pre>
-    <p>Copy the URL from the VS Code terminal and open it in a new tab
-    in your browser.</p></div></li>
+    <pre>https://min-max-inventory-digits.web.app</pre></div></li>
+
+    <li><div>Copy the URL from the VS Code terminal and open it in a new
+    tab in your browser.
+    Opening the URL in your browser should cause your browser to request
+    sign in credentials from Google.</div></li>
+
+    <li><div>If you’re not already signed into your Google account, you
+    must sign into one. After you sign in, the Min-Max Inventory app
+    will display your name, email address, and application user ID at
+    the top of the application window.</div></li>
+
+    <li><div>Using the Firebase Console in your browser, add a new
+    collection named "users" to your Firestore database.</div></li>
+
+    <li><div>Still using the Firebase Console, add a document to the
+    "users" collection. For the "Document ID" copy and paste your
+    application user ID which will be at the top of the Min-Max
+    Inventory app window. Add two fields named "email" and "enabled" to
+    the document. The "enabled" field must by of type boolean as shown
+    in the following screenshot:
+    <img src="addDoc.png" style="width:100%"
+    alt="Screenshot of a popup window to add a document to the users
+    collection"
+    title="Screenshot of a popup window to add a document to the users
+    collection"></div></li>
+
+    <li><div>Refresh (reload) your Min-Max Inventory system in your
+    browser. All of the tabs (Suppliers, Products, Receiving, and
+    Outgoing) should display data from your Firestore database. If any
+    of the tabs don’t contain data, you may have created the user
+    document incorrectly in the previous step.</div></li>
 
     <li><div>Using your browser, test your Min-Max Inventory system
     thoroughly by doing the following:
     <ol>
-        <li><div>Look at each of the five tabs and verify that the each
+        <li><div>Look at each of the five tabs and verify that they all
         show the correct data from your Firestore database.</div></li>
         <li><div>In the Receiving tab, enter numbers in the text boxes,
         press the Submit button, and verify that the corresponding
@@ -128,8 +164,7 @@ const firebaseConfig = {
         Current Quantities change as they should.</div></li>
     </ol></div></li>
 
-
-
+    <!--
     <li><div></div></li>
     <li><div></div></li>
     <li><div></div></li>
@@ -139,6 +174,89 @@ const firebaseConfig = {
 
     <li><div>If you’re curious, you could ask your teacher or ChatGPT
     what is the purpose of each of the files in a web app.</div></li>
+    -->
+</ol>
+
+<h2 id="stretch">Stretch Challenges</h2>
+<p>You can learn about creating, writing, securing, testing, and
+depolying applictions in the Internet Cloud by doing any of the
+following.</p>
+<ol class="long">
+    <li><div>Make it possible for some users to only read data in the
+    Firestore database and for other users to read and write. You could
+    do this by
+    <ol>
+        <li><div>Changing the structure of user documents in the
+        Firestore database from
+        <pre>{email: "pedro@example.com", enabled: true}</pre>
+        to
+        <pre>{email: "pedro@example.com", canRead: true, canWrite: false}</pre>
+        </div></li>
+
+        <li><div>Adding more users to your Firestore database, some with
+        <code>canRead:true</code> and <code>canWrite:false</code> and
+        others with both <code>canRead</code> and <code>canWrite</code>
+        set to <code>true</code></div></li>
+
+        <li><div>In the <code>firestore.rules</code> file, replacing the
+        <code>userHasPermission</code> function with a function named
+        <code>userCanRead</code> that checks the <code>canRead</code>
+        document field and using the <code>userCanRead</code> function
+        in <code>allow read</code> parts of the <code>match</code>
+        rules.</div></li>
+
+        <li><div>In the <code>firestore.rules</code> file, adding a
+        <code>userCanWrite</code> function that checks the
+        <code>canWrite</code> document field and using the
+        <code>userCanWrite</code> function in the <code>allow
+        write</code> parts of the <code>match</code> rules.</div></li>
+
+        <li><div>Deploying your modified <code>firestore.rules</code> by
+        executing this command in a VS Code terminal:
+        <pre>firebase deploy --only "firestore,hosting"</pre></div></li>
+    </ol></div></li>
+
+    <li><div>Change your application’s favicon
+    (<img src="../../week12/min_max_inv/favicon.png" style="width:1.5em">)
+    or the Min Max icon
+    (<img src="../../week12/min_max_inv/minmax.png" style="width:3em">).
+    Ask ChatGPT the following:
+    <ol>
+        <li><div class="gpt">What is a png file?</div></li>
+        <li><div class="gpt">What are some free popular computer
+        programs for creating png files?</div></li>
+        <li><div class="gpt">What size should a web application’s
+        favicon be?</div></li>
+    </ol>
+    Then create some new icons and deploy them to your by executing this
+    command in a VS Code terminal:
+    <pre>firebase deploy --only "firestore,hosting"</pre></div></li>
+
+    <li><div>Change the background color, font color, font family, or
+    font size in your Min-Max Inventory app. This will require you to
+    change and deploy your <code>min_max_inv.css</code> file. Ask
+    ChatGPT the following:
+    <ol>
+        <li><div class="gpt">What is the purpose of a css file in a web
+        application?</div></li>
+        <li><div class="gpt">What is a selector in a css
+        file?</div></li>
+        <li><div class="gpt">Please teach me about simple css
+        selectors.</div></li>
+        <li><div class="gpt">What is a css variable and how do I create
+        and use one in a css file?</div></li>
+        <li><div class="gpt">Please write a css rule to change to
+        backround color of the body of an HTML document.</div></li>
+    </ol></div></li>
+
+    <li><div>Add a tab to your application that lets a user view orders
+    or users like the "Suppliers" tab. This will require you to add code
+    to both the <code>index.html</code> and <code>min_max_inv.js</code>
+    files. Examine your existing <code>index.html</code> file and find
+    the what HTML tags that create each tab and corresponding
+    section. Add a new tab and section and test your changed
+    <code>index.html</code> file before you change your existing
+    <code>min_max_inv.js</code> file.</div></li>
 </ol>
 </article>
 </body>

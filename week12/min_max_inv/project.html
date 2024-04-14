@@ -32,6 +32,9 @@
 <p class="subtitle">(Min-Max Inventory System)</p>
 <p class="subtitle">Part 1</p>
 
+<div class="newtab"><a target="_blank" href="#">Open these
+instructions in a new tab</a></div>
+
 <h2 id="scenario">Scenario</h2>
 <p>Many companies have a storeroom or warehouse where they temporarily
 store items that they will sell or use to manufacture products. The
@@ -115,15 +118,15 @@ system that uses a NoSQL database in the Internet Cloud.</p>
     <code>min_max_inv</code> where you will save files for this final
     project.</div></li>
 
-    <li><div>Open VS Code and in the "File" menu, click "Open Folder..."
-    and open the <code>min_max_inv</code> folder that you created.</div></li>
-
     <li><div>Using your browser, download the following two files and
     save them into the <code>min_max_inv</code> folder that you created.
     <ol>
         <li><div><a download href="firebase.config">firebase.config</a></div></li>
         <li><div><a download href="firestore.rules">firestore.rules</a></div></li>
     </ol></div></li>
+
+    <li><div>Open VS Code and in the "File" menu, click "Open Folder..."
+    and open the <code>min_max_inv</code> folder that you created.</div></li>
 
     <li><div>Using VS Code on your computer, open a new terminal and
     execute the following commands.
@@ -135,9 +138,10 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div><code>firebase init hosting</code></div></li>
     </ol></div></li>
 
-    <li><div>Download the following five files and save them into the
-    <code>public</code> folder that the firebase init hosting command
-    created:
+    <li><div>Using your browser, download the following five files and
+    save them into the <code>public</code> folder that the
+    <code>firebase init hosting</code> command created in the previous
+    step:
     <ol>
         <li><div><a download href="index.html">index.html</a></div></li>
         <li><div><a download href="min_max_inv.css">min_max_inv.css</a></div></li>
@@ -166,9 +170,9 @@ const firebaseConfig = {
     <code>firebaseConfig</code> from your min-max-inventory project in
     the Firebase Console.</p></div></li>
 
-    <li><div>In VS Code, open the <code>min_max_inv.js</code> file that
-    you downloaded two steps ago. At about line 96, you will find these
-    three lines of code:
+    <li><div>Using VS Code, open the <code>min_max_inv.js</code> file
+    that you downloaded two steps ago. At about line 96, you will find
+    these three lines of code:
 <pre class="js">
   /* Copy and paste your project's firebaseConfig here. */
   const firebaseConfig = {
@@ -280,15 +284,15 @@ const firebaseConfig = {
         documents.</div></li>
     </ol></div></li>
 
-    <li><div>Look in the VS Code terminal below the
-    <code>fireabase deploy</code> command for the URL where the command
-    sent your files. The URL will be similar to this:
+    <li><div>Look in the VS Code terminal below the <code>fireabase
+    deploy</code> command for the URL where the command sent your files.
+    The URL will be similar to this:
     <pre>https://min-max-inventory-digits.web.app</pre>
     <p>Copy the URL from the VS Code terminal and open it in a new tab
     in your browser.</p></div></li>
 
-    <li><div>Using your browser, test your Min-Max Inventory system
-    thoroughly by doing the following:
+    <li><div>Using your browser, test your Min-Max Inventory system by
+    doing the following:
     <ol>
         <li><div>Look at each of the five tabs and verify that the each
         show the correct data from your Firestore database.</div></li>
@@ -301,7 +305,8 @@ const firebaseConfig = {
     </ol></div></li>
 
     <li><div>If you’re curious, you could ask your teacher or ChatGPT
-    what is the purpose of each of the files in a web app.</div></li>
+    what is the purpose of each of the files (html, css, js) in a web
+    app.</div></li>
 </ol>
 </article>
 </body>
