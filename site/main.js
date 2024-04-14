@@ -249,6 +249,10 @@ itm101.common = {
 		const createSVG = itm101.createSVG;
 		const ul = createElem('ul');
 
+		function pageInIFrame() {
+			return window.location !== window.parent.location;
+		}
+
 		/** Creates one menu item. */
 		function addMenuItem(id, text, hint, action, classes, anchorOption) {
 			let svg = itm101.createSVG(id, null, hint);
@@ -274,8 +278,10 @@ itm101.common = {
 		}
 
 		// Create the menu items.
-		addMenuItem('svgBrackRight', strings.newTabText,
-				strings.newTabHint, '', null, 'newtab');
+		if (pageInIFrame()) {
+			addMenuItem('svgBrackRight', strings.newTabText,
+					strings.newTabHint, '', null, 'newtab');
+		}
 		addMenuItem('svgList', strings.contentsText,
 				strings.contentsHint, filenames.contents);
 
