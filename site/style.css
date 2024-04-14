@@ -395,11 +395,6 @@ article div.search {
 	white-space: pre-line;
 }
 
-article div.newtab {
-	float: right;
-	width: 12em;
-}
-
 article .gpt {
 	font-family: "Poor Story", Georgia, "Times New Roman", serif;
 	font-size: 130%;

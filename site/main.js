@@ -16,8 +16,7 @@ itm101.strings = {
 	courseTitle : 'Introduction to Cloud Computing',
 	courseHint  : 'ITM 101 Content',
 
-	lightText   : 'Light Mode',
-	darkText    : 'Dark Mode',
+	newTabText  : 'New Tab',
 	contentsText: 'Contents',
 	prevText    : 'Previous Document',
 	nextText    : 'Next Document',
@@ -25,11 +24,12 @@ itm101.strings = {
 	helpText    : 'Help',
 	pdfText     : '.pdf File',
 	zipText     : '.zip File',
+	lightText   : 'Light Mode',
+	darkText    : 'Dark Mode',
 
 	menuHint    : 'Click to open the navigation menu',
 	closeHint   : 'Click to close the navigation menu',
-	lightHint   : 'Change to light mode',
-	darkHint    : 'Change to dark mode',
+	newTabHint  : 'Open this document in a new tab',
 	contentsHint: 'View list of contents for ITM 101',
 	prevHint    : 'View previous document',
 	nextHint    : 'View next document',
@@ -37,6 +37,8 @@ itm101.strings = {
 	helpHint    : 'Get help for ITM 101',
 	pdfHint     : 'Download a PDF that contains all\nCSE 111 HTML preparation content',
 	zipHint     : 'Download a zip file that\ncontains all ITM 101 content',
+	lightHint   : 'Change to light mode',
+	darkHint    : 'Change to dark mode',
 	upHint      : 'Scroll to the top of this document',
 
 	section : '§',
@@ -102,6 +104,7 @@ itm101.svgCache =
 <symbol id="svgUp" viewBox="0 0 48 64"><path class="stroke" d="M24,60V4M8,20L24,4L40,20"/></symbol>\
 \
 <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->\
+<symbol id="svgBrackRight" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l73.4 73.4h-210.7c-17.7 0-32 14.3-32 32s14.3 32 32 32h210.7l-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32h-64c-53 0-96 43-96 96v256c0 53 43 96 96 96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32h-64c-17.7 0-32-14.3-32-32v-256c0-17.7 14.3-32 32-32z"/></symbol>\
 <symbol id="svgCopy" viewBox="0 0 512 512"><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></symbol>\
 <symbol id="svgFilePDF" viewBox="0 0 384 512"><path d="M320 464C328.8 464 336 456.8 336 448V416H384V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V416H48V448C48 456.8 55.16 464 64 464H320zM256 160C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V192H0V64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V192H336V160H256zM88 224C118.9 224 144 249.1 144 280C144 310.9 118.9 336 88 336H80V368C80 376.8 72.84 384 64 384C55.16 384 48 376.8 48 368V240C48 231.2 55.16 224 64 224H88zM112 280C112 266.7 101.3 256 88 256H80V304H88C101.3 304 112 293.3 112 280zM160 240C160 231.2 167.2 224 176 224H200C226.5 224 248 245.5 248 272V336C248 362.5 226.5 384 200 384H176C167.2 384 160 376.8 160 368V240zM192 352H200C208.8 352 216 344.8 216 336V272C216 263.2 208.8 256 200 256H192V352zM336 224C344.8 224 352 231.2 352 240C352 248.8 344.8 256 336 256H304V288H336C344.8 288 352 295.2 352 304C352 312.8 344.8 320 336 320H304V368C304 376.8 296.8 384 288 384C279.2 384 272 376.8 272 368V240C272 231.2 279.2 224 288 224H336z"/></symbol>\
 <symbol id="svgFileZip" viewBox="0 0 384 512"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></symbol>\
@@ -247,7 +250,7 @@ itm101.common = {
 		const ul = createElem('ul');
 
 		/** Creates one menu item. */
-		function addMenuItem(id, text, hint, action, classes, download) {
+		function addMenuItem(id, text, hint, action, classes, anchorOption) {
 			let svg = itm101.createSVG(id, null, hint);
 			let node = document.createTextNode(' ' + text);
 			let item = createElem('li', classes, {title : hint});
@@ -258,8 +261,11 @@ itm101.common = {
 			}
 			else if (typeof(action) == 'string') {
 				let anchor = createElem('a', null,
-						download ?
-						{download : '', href : action} : {href : action});
+						(anchorOption == 'download' ?
+							{download : '', href : action} :
+						(anchorOption == 'newtab' ?
+							{target : '_blank', href : action} :
+							{href : action})));
 				anchor.appendChild(svg);
 				anchor.appendChild(node);
 				item.appendChild(anchor);
@@ -268,6 +274,8 @@ itm101.common = {
 		}
 
 		// Create the menu items.
+		addMenuItem('svgBrackRight', strings.newTabText,
+				strings.newTabHint, '', null, 'newtab');
 		addMenuItem('svgList', strings.contentsText,
 				strings.contentsHint, filenames.contents);
 
@@ -290,9 +298,9 @@ itm101.common = {
 
 		if (document.location.protocol != 'file:') {
 			addMenuItem('svgFilePDF', strings.pdfText,
-					strings.pdfHint, filenames.pdfFile, ['first'], true);
+					strings.pdfHint, filenames.pdfFile, ['first'], 'download');
 			addMenuItem('svgFileZip', strings.zipText,
-					strings.zipHint, filenames.zipFile, null, true);
+					strings.zipHint, filenames.zipFile, null, 'download');
 		}
 
 		addMenuItem('svgSun', strings.lightText,
