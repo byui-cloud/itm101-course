@@ -56,7 +56,7 @@ itm101.strings = {
 	downloadText : 'Download',
 
 	modified : 'Last modified',
-	copyrightNotice : 'Copyright © 2019 Brigham Young University–Idaho. All rights reserved.'
+	copyrightNotice : 'Copyright © 2024 Brigham Young University–Idaho. All rights reserved.'
 };
 
 
@@ -249,6 +249,7 @@ itm101.common = {
 		const createSVG = itm101.createSVG;
 		const ul = createElem('ul');
 
+		/** Returns true if the current page is in an iframe. */
 		function pageInIFrame() {
 			return window.location !== window.parent.location;
 		}
@@ -281,40 +282,48 @@ itm101.common = {
 		if (pageInIFrame()) {
 			addMenuItem('svgBrackRight', strings.newTabText,
 					strings.newTabHint, '', null, 'newtab');
+			addMenuItem('svgSun', strings.lightText, strings.lightHint,
+					function() { self.setBrightness('light'); },
+					['light', 'first']);
+			addMenuItem('svgMoon', strings.darkText, strings.darkHint,
+					function() { self.setBrightness('dark'); },
+					['dark', 'first']);
 		}
-		addMenuItem('svgList', strings.contentsText,
-				strings.contentsHint, filenames.contents);
+		else {
+			addMenuItem('svgList', strings.contentsText,
+					strings.contentsHint, filenames.contents);
 
-		const head = document.head;
-		const prev = head.querySelector('link[rel="prev"]');
-		const next = head.querySelector('link[rel="next"]');
-		if (prev) {
-			addMenuItem('svgLeft', strings.prevText,
-					strings.prevHint, prev.href);
+			const head = document.head;
+			const prev = head.querySelector('link[rel="prev"]');
+			const next = head.querySelector('link[rel="next"]');
+			if (prev) {
+				addMenuItem('svgLeft', strings.prevText,
+						strings.prevHint, prev.href);
+			}
+			if (next) {
+				addMenuItem('svgRight', strings.nextText,
+						strings.nextHint, next.href);
+			}
+
+			addMenuItem('svgMagnify', strings.searchText,
+					strings.searchHint, filenames.search, ['first']);
+			addMenuItem('svgQuestion', strings.helpText,
+					strings.helpHint, filenames.help);
+
+			if (document.location.protocol != 'file:') {
+				addMenuItem('svgFilePDF', strings.pdfText, strings.pdfHint,
+						filenames.pdfFile, ['first'], 'download');
+				addMenuItem('svgFileZip', strings.zipText, strings.zipHint,
+						filenames.zipFile, null, 'download');
+			}
+
+			addMenuItem('svgSun', strings.lightText, strings.lightHint,
+					function() { self.setBrightness('light'); },
+					['light', 'first']);
+			addMenuItem('svgMoon', strings.darkText, strings.darkHint,
+					function() { self.setBrightness('dark'); },
+					['dark', 'first']);
 		}
-		if (next) {
-			addMenuItem('svgRight', strings.nextText,
-					strings.nextHint, next.href);
-		}
-
-		addMenuItem('svgMagnify', strings.searchText,
-				strings.searchHint, filenames.search, ['first']);
-		addMenuItem('svgQuestion', strings.helpText,
-				strings.helpHint, filenames.help);
-
-		if (document.location.protocol != 'file:') {
-			addMenuItem('svgFilePDF', strings.pdfText,
-					strings.pdfHint, filenames.pdfFile, ['first'], 'download');
-			addMenuItem('svgFileZip', strings.zipText,
-					strings.zipHint, filenames.zipFile, null, 'download');
-		}
-
-		addMenuItem('svgSun', strings.lightText,
-				strings.lightHint,
-				function() { self.setBrightness('light'); }, ['light', 'first']);
-		addMenuItem('svgMoon', strings.darkText,
-				strings.darkHint,
-				function() { self.setBrightness('dark'); }, ['dark', 'first']);
 
 		// Add the navigation menu to the document body.
 		let nav = createElem('nav', ['menu', 'closed']);
