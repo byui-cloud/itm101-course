@@ -8,10 +8,23 @@
     <link rel="stylesheet" href="../site/reset.css">
     <link rel="stylesheet" href="../site/style.css">
     <script defer src="../site/main.js"></script>
-    <title>ITM 101 Syllabus</title>
+    <title>Programming with Generative AI</title>
     <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week02/day2.html">
-    <meta name="description" content="">
+    <meta name="description" content="An activity for students that shows how to use Generative AI to generate a JavaScript program">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Article",
+        "headline": "Week 2 Activity 2: Generative AI",
+        "description": "An activity for students that shows how to use Generative AI to generate a JavaScript program",
+        "educationalUse": "assignment",
+        "copyrightNotice": "Copyright © 2024, Brigham Young University–Idaho. All rights reserved.",
+        "datePublished": "2024-04-02",
+        "dateModified": "2024-05-01"
+    }
+    </script>
+</head>
 </head>
 
 <body>
@@ -20,39 +33,40 @@
 
     <h2>Programming with Generative AI</h2>
     <h3>Summary</h3>
-    <p>Go through this with a buddy or your team. Not only is Generative
-    AI good at producing answers to questions, it can also write code in
-    most programming languages. This activity will show you several
-    different prompts that you can use to generate code for specific
-    tasks. At the end of the activity, you will be required to solve a
-    problem by generating your own prompt. Use Node to complete the
-    task.</p>
+    <p>Complete this assignment with a buddy or your team. Not only is
+    Generative AI good at producing answers to questions, it can also
+    write code in most programming languages. This activity will show
+    you several different prompts that you can use to generate code for
+    specific tasks. At the end of the activity, you will be required to
+    solve a problem by generating your own prompt.</p>
 
     <h3>Approximate Time to Complete</h3>
     <p>60 minutes</p>
 
     <h3>Hello, World! in JavaScript</h3>
-    <p>Open ChatGPT and enter the following prompt:</p>
+    <p>Open ChatGPT in your browsers and enter the following prompt:</p>
+
     <p class="gpt">Write a hello world program in JavaScript that runs
     in Node.js. Also, show me how I can run this program with
     Node.js</p>
 
     <h3>Adding context</h3>
     <p>ChatGPT remembers the information that you give it. For example,
-    we can make sure that it will <em>always</em> write JavaScript
-    programs to be run with Node.js instead of in a web browser.</p>
+    we can make sure that in the current conversation, it will
+    <em>always</em> write JavaScript programs to be run with Node.js
+    instead of in a web browser. The next prompt will make ChatGPT
+    remember that it should write JavaScript code that will run in
+    Node.js.</p>
+
     <p class="gpt">From now on, write all JavaScript so that it can be
     run from a terminal with Node.js</p>
-    <p>This prompt will make ChatGPT remember that you would like to
-    have all of your JavaScript code examples displayed in a form
-    runnable by Node.js.</p>
 
     <h3>Add two numbers</h3>
     <p>Try this prompt</p>
-    <p class="gpt">Write me a JavaScript program that will add two
-    numbers together and display the output.</p>
+    <p class="gpt">Please a JavaScript program that will add two numbers
+    together and display the result.</p>
     <p>Then this one</p>
-    <p class="gpt">Make sure that I can pass those parameters as
+    <p class="gpt">Make sure that I can pass the two numbers as
     arguments, instead of local variables.</p>
 
     <p>Using the examples provided by ChatGPT, you should do the following:</p>
@@ -68,7 +82,7 @@
     <p>Please run through each of the following prompts:</p>
     <ul>
         <li><div class="gpt">From now on, answer all questions with
-        example code in JavaScript</div></li>
+        example code in JavaScript.</div></li>
         <li><div class="gpt">What is a variable?</div></li>
         <li><div class="gpt">What is a function?</div></li>
         <li><div class="gpt">What are parameters?</div></li>
@@ -76,8 +90,9 @@
     </ul>
 
     <h3>Troubleshooting Code with ChatGPT</h3>
-    <p>Debugging is the process of finding and fixing problems (bugs) in
-    your code. ChatGPT can also assist with this process.</p>
+    <p>Debugging is the process of finding and fixing mistakes (often
+    called bugs) in your code. ChatGPT can also assist with this
+    process.</p>
     <p>Copy and paste this prompt and code into ChatGPT:</p>
 <pre class="gpt">Is there something wrong with this function?
 function multiplyNumbers(a, b) {
