@@ -1,10 +1,10 @@
 // Import the Google Firebase and Firestore functions
 // needed by this Min-Max Inventory System.
 import {initializeApp} from
-	'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js';
+	'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
 import {getFirestore, collection as fireCollect, onSnapshot,
 		doc as fireDoc, addDoc, updateDoc, serverTimestamp}
-	from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
+	from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js';
 
 
 /** The check object contains functions to check parameter types. */
@@ -91,7 +91,7 @@ const mminv = {
 	firestore : null,
 
 	/** Returns a connection to the Firestore database. */
-	connect : function() {
+	connect : function(event) {
 		if (! this.firestore) {
 			/* Copy and paste your project's firebaseConfig here. */
 			const firebaseConfig = {
@@ -102,6 +102,27 @@ const mminv = {
 			// Initizlize the HTML user interface.
 			this.initialize();
 		}
+	},
+
+
+	/** Shows the first tab and corresponding section
+	 * by programmatically clicking a tab. */
+	initialize : function() {
+		suppliers.initialize();
+		products.initialize();
+		receiving.initialize();
+		outgoing.initialize();
+
+		// Add a click listener to all tabs.
+		const self = this;
+		const listener = (event) => self.showSection(event);
+		const tabs = document.querySelectorAll('nav > ul.tabs > li');
+		Array.from(tabs).forEach(
+				(tab) => tab.addEventListener('click', listener));
+
+		// Programmatically click the selected tab.
+		const tab = document.querySelector('nav > ul.tabs > li.selected');
+		tab.click();
 	},
 
 
@@ -137,6 +158,10 @@ const mminv = {
 							break;
 					}
 				});
+			},
+			(error) => {
+				console.error(error.code);
+				console.error(error.message);
 			});
 	},
 
@@ -157,27 +182,6 @@ const mminv = {
 		console.assert(check.object(object));
 		const db = this.firestore;
 		updateDoc(fireDoc(db, path, docId), object);
-	},
-
-
-	/** Shows the first tab and corresponding section
-	 * by programmatically clicking a tab. */
-	initialize : function(event) {
-		suppliers.initialize();
-		products.initialize();
-		receiving.initialize();
-		outgoing.initialize();
-
-		// Add a click listener to all tabs.
-		const self = this;
-		const listener = (event) => self.showSection(event);
-		const tabs = document.querySelectorAll('nav > ul.tabs > li');
-		Array.from(tabs).forEach(
-				(tab) => tab.addEventListener('click', listener));
-
-		// Programmatically click the selected tab.
-		const tab = document.querySelector('nav > ul.tabs > li.selected');
-		tab.click();
 	},
 
 
@@ -245,16 +249,20 @@ const prototype = {
 		console.assert(check.object(listener));
 		console.assert(this.listeners.includes(listener) == false);
 
-		// Call listener.addOne once for each document that was
-		// previously sent from the Firestore collection and is
-		// already in the cache object.
-		for (const [docId, docData] of Object.entries(this.cache)) {
-			listener.addOne(docId, docData);
-		}
+		if (typeof listener === 'object' &&
+				this.listeners.includes(listener) == false) {
 
-		// Add listener to the list of objects that are listening
-		// for changes in the Firestore collection.
-		this.listeners.push(listener);
+			// Call listener.addOne once for each document that was
+			// previously sent from the Firestore collection and is
+			// already in the cache object.
+			for (const [docId, docData] of Object.entries(this.cache)) {
+				listener.addOne(docId, docData);
+			}
+
+			// Add listener to the list of objects that are listening
+			// for changes in the Firestore collection.
+			this.listeners.push(listener);
+		}
 	},
 
 	/** Removes listener from the list of objects listening
