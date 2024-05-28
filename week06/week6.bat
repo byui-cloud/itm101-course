@@ -7,5 +7,5 @@ curl -O https://byui-cloud.github.io/itm101-course/week06/favicon.ico
 curl -O https://byui-cloud.github.io/itm101-course/week06/logo.png
 cd ..
 dir
-@REM End of file
 del week6.bat
+
