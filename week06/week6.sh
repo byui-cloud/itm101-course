@@ -7,3 +7,5 @@ curl -O https://byui-cloud.github.io/itm101-course/week06/favicon.ico
 curl -O https://byui-cloud.github.io/itm101-course/week06/logo.png
 cd ..
 ls
+# Remove the week6.sh file
+rm week6.sh

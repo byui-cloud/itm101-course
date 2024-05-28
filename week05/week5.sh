@@ -8,3 +8,4 @@ curl -O https://byui-cloud.github.io/itm101-course/week05/styles.css
 cd ..
 cd ..
 ls
+rm week5.sh
