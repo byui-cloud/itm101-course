@@ -33,7 +33,7 @@
             <li>Use Google services if possible</li>
         </ul>
 
-        <h2>Project Overview</h2>
+        <h2>Project Overview & Table of Contents</h2>
         <ul>
             <li>Login to <a href="https://console.firebase.google.com">Firebase</a> using your BYU-Idaho username (usually the email with numbers ex: lastname038@byui.edu).</li>
             <ul>
@@ -43,11 +43,22 @@
             <li>Hopefully, you already have a working website to connect this database with. If not, follow this tutorial Firebase Website Using AI.</li>
             <li>Deploy a Firebase Database </li>
         </ul>
+        <h3>Table of Contents</h3>
+        <ul>
+            <li><a href="#step1">Step 1 - Open Your Existing Project in Firebase</a></li>
+            <li><a href="#step2">Step 2 - Create a Collection of Projects</a></li>
+            <li><a href="#step3">Step 3 - Add an app or website connection to the database</a></li>
+            <li><a href="#step4">Step 4 - Link the database to the hosting</a></li>
+            <li><a href="#step5">Step 5 - Put the database code in your website file (projects.html)</a></li>
+            <li><a href="#step6">Step 6 - Check your firebase database security rules</a></li>
+            <li><a href="#step7">Step 7 - Run `firebase deploy` to save changes</a></li>
+            <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
+        </ul>
 
         <h2>Instructions</h2>
         <h4>Watch the video instead <a href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_ea4748q6/embed/dynamic">Firebase Database Setup Video</a></h4>
 
-        <h3>Step 1 - Open Your Existing Project in Firebase</h3>
+        <h3 id="step1">Step 1 - Open Your Existing Project in Firebase</h3>
         <ol>
             <li>Login to <a href="https://console.firebase.google.com">Firebase</a> using your BYU-Idaho username (usually the email with numbers ex: lastname038@byui.edu).</li>
             <ul>
@@ -82,7 +93,7 @@
                 <img src="../site/images/week05/create_firestore_db_4.webp" alt="firebase.google.com Start in Production Mode">
             </li>
         </ol>
-        <h3>Step 2 - Create a Collection of Projects</h3>
+        <h3 id="step2">Step 2 - Create a Collection of Projects</h3>
         <p>To create your database for your website, you would design your database based on collections of what you will store. Some examples of collections might be <strong>users</strong>, <strong>projects</strong>, <strong>movies</strong>, etc. This was the video about it from the preparation material: <a href="https://www.youtube.com/embed/jm66TSlVtcc?start=1&rel=0">https://www.youtube.com/embed/jm66TSlVtcc?start=1&rel=0</a> </p>
         <ol>
             <li>
@@ -125,7 +136,7 @@
             <img src="../site/images/week05/firestore_collection_example.webp" alt="firebase.google.com Collection Example">
         </ol>
 
-        <h3>Step 3 - Add an app or website connection to the database</h3>
+        <h3 id="step3">Step 3 - Add an app or website connection to the database</h3>
         <ol>
             <li>
                 <p>Go to the <strong>Project Overview</strong> settings by clicking on the gear in the top left corner:</p>
@@ -161,7 +172,7 @@
             </li>
         </ol>
 
-        <h3>Step 4 - Link the database to the hosting</h3>
+        <h3 id="step4">Step 4 - Link the database to the hosting</h3>
         <ol>
             <li>
                 <p>Go to the <strong>Project Overview</strong> settings by clicking on the gear in the top left corner</p>
@@ -188,7 +199,7 @@
             </li>
         </ol>
 
-        <h3>Step 5 - Put the database code in your website file (projects.html)</h3>
+        <h3 id="step5">Step 5 - Put the database code in your website file (projects.html)</h3>
         <ol>
             <li>
                 <p>In Visual Studio Code, open the project we have been working on - it might show up under <strong>Recent</strong> and find the public folder from last week.</p>
@@ -208,15 +219,16 @@
                     <li><p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p></li>
                     <li><p>(Windows) Run it with: ./week5.bat</p></li>
                     <li><p>(Mac/Apple) Run it with: ./week5.sh</p></li>
-                    <li><p>Those files download these files that we need for this week (don’t run these if the week6.bat/week6.sh file worked):</p></li>
+                    <li><p>Those files download these files that we need for this week (don’t run these if the week5.bat/week5.sh file worked):</p></li>
                     <p>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/firestore.rules</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules</code>
                         <code>cd public  </code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/cr.html</code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/crd.html</code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/crud.html</code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/favicon.ico</code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/logo.webp</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/config.js</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/projects.html</code>
+                        <code>mkdir styles</code>
+                        <code>cd styles</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/styles.css</code>
+                        <code>cd ..</code>
                         <code>cd ..</code>
                     </p>
                 </ul>
@@ -233,7 +245,7 @@
             </li>
         </ol>
 
-        <h3>Step 6 - Check your firebase database security rules </h3>
+        <h3 id="step6">Step 6 - Check your firebase database security rules </h3>
         <ol>
             <li>
                 <p>To add new projects/data to your database, the rules need to allow <strong>write</strong> or <strong>save</strong> for non-authenticated users (next week we will need authenticated). To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong></p>
@@ -263,7 +275,7 @@
             </li>
         </ol>
 
-        <h3>Step 7 - Run `firebase deploy` to save changes</h3>
+        <h3 id="step7">Step 7 - Run `firebase deploy` to save changes</h3>
         <ol>
             <li>
                 <p>In your Visual Studio Code terminal, type <strong>firebase deploy</strong> (#1 in the image below) and hit <strong>enter</strong> each time as needed to save your changes in your code and push it up to Google Firebase Hosting.</p>

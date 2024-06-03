@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="../site/reset.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <link rel="stylesheet" href="test.css">
+    <script defer src="../site/main.js"></script>
+    <title>Create and Deploy a Website from your IDE to a URL</title>
+    <link rel="icon" type="image.webp" href="../site/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week06/assignment-instructions.html">
+    <meta name="description" content="Week 7 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
+</head>
+<body>
+    <article>
+        <h1>Google Firebase Database Website with Authentication</h1>
+        <h2>Overview</h2>
+
+        <p>In this scenario, you are hired as a cloud consultant to add authentication to improve security to the website created by previous developers. The developers have implemented the code, but you just need to configure the production environment to require authentication on Google Firebase. Limit specific users to be able to edit and view the projects.</p>
+
+        <h3>Business Requirements</h3>
+        <ul>
+            <li>
+                <p>Improve security to protect assets</p>
+            </li>
+        </ul>
+
+        <h3>Project Requirements</h3>
+        <ul>
+            <li>
+                <p>Use the provided code</p>
+            </li>
+            <li>
+                <p>Improve security of the system by adding authentication to Google Firebase (for logging)</p>
+            </li>
+            <li>
+                <p>Restrict edit access to specific users using the firebase database rules (UID)</p>
+            </li>
+        </ul>
+
+        <h2>Project Overview & Table of Contents</h2>
+        <ul>
+            <li>
+                <p>Hopefully, you already have a working website connected to the firebase database. If not, follow this tutorial <a href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">Firebase Website with Database</a>.</p>
+            </li>
+            <li>
+                <p>Add Authentication to the Firebase Website and Database.</p>
+            </li>
+        </ul>
+        <h3>Table of Contents</h3>
+        <ul>
+            <li>
+                <a href="#step1">Step 1 - Open your existing project in Firebase</a>
+            </li>
+            <li>
+                <a href="#step2">Step 2 - Add Authentication</a>
+            </li>
+            <li>
+                <a href="#step3">Step 3 - Update firebase database rules</a>
+            </li>
+            <li>
+                <a href="#step4">Step 4 - Download the new code and webpages for authentication</a>
+            </li>
+            <li>
+                <a href="#step5">Step 5 - Run `firebase deploy` to Firebase Hosting again to save changes</a>
+            </li>
+            <li>
+                <a href="#step6">Step 6 - Secure your website to only allow you to edit and view the projects - by UID</a>
+            </li>
+            <li>
+                <a href="#step7">Step 7 - Test your database and site with authentication</a>
+            </li>
+            <li>
+                <a href="#troubleshooting">Troubleshooting & Common Problems</a>
+            </li>
+
+        <h2>Adding Authentication</h2>
+        <h4>Watch the video instead <a href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_rx9209v3/embed/dynamic">Firebase Authentication Setup Video</a></h4>
+
+        <h3 id="step1">Step 1 - Open your existing project in Firebase</h3>
+        <ol>
+            <li>Login to <a href="https://console.firebase.google.com">Firebase</a> using your BYU-Idaho username (usually the email with numbers ex: lastname038@byui.edu).</li>
+            <ul>
+                <li>
+                    <p>Troubles with login - go to <a href="my.byui.edu">my.byui.edu</a> , click on your profile image, click <strong>View Profile</strong>, scroll down to <strong>Email</strong> and use that email for the Google Firebase login instead</p>
+                    <img src="../site/images/week05/view_profile.webp" alt="my.byui.edu View Profile option">
+                    <img src="../site/images/week05/profile_email.webp" alt="my.byui.edu Profile Email">
+                </li>
+            </ul>
+            <li>
+                <p>Click on <strong>YourName Portfolio/Project</strong></p>
+                <img src="../site/images/week05/choose_firebase_project.webp" alt="Choose Firebase Project Image">
+            </li>
+        </ol>
+
+        <h3 id="step2">Step 2 - Add Authentication</h3>
+        <ol>
+            <li>
+                <p>Click <strong>Firestore Authentication</strong> under <strong>Build</strong> (you may need to expand the <strong>Build</strong> section by clicking on it)</p>
+                <img src="../site/images/week06/firestore_authentication.webp" alt="Firestore Authentication Image">
+            </li>
+            <li>
+                <p>Click <strong>Getr Started</strong></p>
+                <img src="../site/images/week06/get_started_auth.webp" alt="Get Started Image">
+            </li>
+            <li>
+                <p>Select <strong>Google</strong> under authentication providers</p>
+                <img src="../site/images/week06/google_auth.webp" alt="Google Auth Image">
+            </li>
+            <li>
+                <p>Click <strong>Enable</strong> on the toggle so that the box is checked</p>
+                <img src="../site/images/week06/enable_auth.webp" alt="Enable Auth Image">
+            </li>
+            <li>
+                <p>Leave the default for the project name and select your email in the <strong>Support email for project</strong></p>
+                <img src="../site/images/week06/support_email.webp" alt="Support Email Image">
+            </li>
+            <li>
+                <p>Click <strong>Save</strong></p>
+                <img src="../site/images/week06/save_auth.webp" alt="Save Auth Image">
+            </li>
+        </ol>
+
+        <h3 id="step3">Step 3 - Update firebase database rules</h3>
+        <ol>
+            <li>
+                <p>To add new projects/data to your database, the rules need to allow <strong>write</strong> or <strong>save</strong> for authenticated users (before we were not authenticated). To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong></p>
+                <img src="../site/images/week06/firestore_database.webp" alt="Firestore Database Image">
+            </li>
+            <li>
+                <p>Click in the box to edit it. Change ONLY this one line of code that is there from this (or change the <strong>=</strong> to <strong>!</strong>)</p>
+                <ul>
+                    <li>
+                        <p>CHANGE THIS (allow write access if they are not authenticated): <br>
+                            allow read, write: if request.auth == null;</p>
+                    </li>
+                    <li>
+                        <p>TO THIS (allow write access if they are authenticated):<br>
+                            allow read, write: if request.auth != null;</p>
+                    </li>
+                </ul>
+                <img src="../site/images/week06/firestore_rules.webp" alt="Firestore Rules Image">
+            </li>
+            <li>
+                <p>By changing that one line from <strong>==</strong> to <strong>!=</strong>, a <strong>Publish</strong> button should appear. Click <strong>Publish.</strong> It should look like this below</p>
+                <img src="../site/images/week06/firestore_publish_rules.webp" alt="Firestore Publish Rules Image">
+            </li>
+            <li>
+                <p>Wait a minute for the changes to take effect. </p>
+            </li>
+        </ol>
+
+        <h3 id="step4">Step 4 - Download the new code and webpages for authentication</h3>
+        <ol>
+            <li>
+                <p>In Visual Studio Code, open the project we have been working on - it might show up under <strong>Recent.</strong></p>
+                <img src="../site/images/week05/vscode_project_selection.webp" alt="VS Code Project Selection">
+            </li>
+            <li>
+                <p>ChatGPT generated some code, but we also had to add some code and fix some bugs. We are going to just download them and put them in your project to save time and possible variations from ChatGPT and to avoid bugs. If you would like to figure it out on your own, that would be great. </p>
+            </li>
+            <li>
+                <p>Open Visual Studio Code and download this file for your operating system:</p>
+                <ul>
+                    <li><p>(Windows) <a href="https://byui-cloud.github.io/itm101-course/week06/week6.bat">https://byui-cloud.github.io/itm101-course/week05/week5.bat</a></p> </li>
+                    <li><p>(Mac/Apple) <a href="https://byui-cloud.github.io/itm101-course/week06/week6.sh">https://byui-cloud.github.io/itm101-course/week05/week5.sh</a> </p></li>
+                    <li><p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p></li>
+                    <li><p>(Windows) Run it with: ./week6.bat</p></li>
+                    <li><p>(Mac/Apple) Run it with: ./week6.sh</p></li>
+                    <li><p>Those files download these files that we need for this week (don</strong>t run these if the week6.bat/week6.sh file worked):</p></li>
+                    <p>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/firestore.rules</code>
+                        <code>cd public  </code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/cr.html</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/crd.html</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/crud.html</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/favicon.ico</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week06/logo.webp</code>
+                        <code>cd ..</code>
+                    </p>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 id="step5">Step 5 - Run `firebase deploy` to Firebase Hosting again to save changes</h3>
+        <ol>
+            <li>
+                <p>In your Visual Studio Code terminal, type <strong>firebase deploy</strong> (#1 in the image below) and hit <strong>enter</strong> each time as needed to save your changes in your code and push it up to Google Firebase Hosting.</p>
+                <img src="../site/images/week05/firebase_deploy.webp" alt="VS Code Firebase Deploy">
+            </li>
+            <p>It should provide you with the URL for your site in the terminal after you run <strong>firebase deploy</strong> - see the Hosting URL in the red circle above and copy that URL and put it in your browser tab and go to it</p>
+            <li>
+                <p>Make sure to add the name of your file (ex: cr.html) to the end of the URL like this BUT REPLACE YOUR URL WITH YOURS:
+                    https://yourportfolioname.web.app/cr.html</p>
+                    <p>// All software and systems should make it so that any content has the ability to Create, Read, Update, Delete = CRUD
+                        https://yourportfolioname.web.app/crd.html
+                        https://yourportfolioname.web.app/crud.html</p>
+            </li>
+            <li>
+                <p>Try logging in and playing with the various webpages above. Have your buddy or someone at your table login with their google account and see how they can edit and delete projects. We need to limit that to specific users in the next step. It should look like this</p>
+                <img src="../site/images/week06/crud.webp" alt="CRUD Image">
+            </li>
+        </ol>
+
+        <h3 id="step6">Step 6 - Secure your website to only allow you to edit and view the projects - by UID</h3>
+        <ol>
+            <li>
+                <p>In Firebase - Firestore Database settings, change your firebase rules to only allow you to edit (write) and view (read) the database. To accomplish this, you need to login to the website of YOUR URL, then get the UID from your Firebase authentication, and then put that UID into your Firestore Database rules.</p>
+                <ul>
+                    <li>
+                        <p>First, you need to obtain the UID (unique identifier) of your Google user. Login to your webpage above first so it shows you authenticated as a user</p>
+                    </li>
+                    <li>
+                        <p>https://yourportfolioname.web.app/crud.html (USE YOUR URL instead)</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Obtain the UID</p>
+                <ul>
+                    <li>
+                        <p>Click <strong>Firestore Authentication</strong> under <strong>Build</strong> (you may need to expand the <strong>Build</strong> section by clicking on it)</p>
+                        <img src="../site/images/week06/firestore_authentication.webp" alt="Firestore Authentication">
+                    </li>
+                    <li>
+                        <p>On the <strong>Authentication</strong> page, click on <strong>Users</strong></p>
+                        <img src="../site/images/week06/firestore_users.webp" alt="Firestore Users">
+                    </li>
+                    <li>
+                        <p>Find your username@byui.edu in the list. It will be the only one and click on the <strong>Copy UID</strong> icon</p>
+                        <img src="../site/images/week06/firestore_uid.webp" alt="Firestore UID">
+                    </li>
+                    <li>
+                        <p>That is the unique ID (similar to your social security number or student I-number, but for this Google project). You will put this in your firestore database rules</p>
+                    </li>
+                    <li>
+                        <p>This is what that would look like (BUT REPLACE THE ORANGE TEXT IN THE LIST WITH YOUR UID - notice we added auth.uid in orange):</p>
+                        <p>rules_version = '2'; <br>
+                            service cloud.firestore { <br>
+                              match /databases/{database}/documents { <br>
+                                match /projects/{document=**} { <br>
+                                  allow read, write: if request.auth.<strong>uid</strong> in ['<strong>Wssjkl9897d789df98d7djnnvB2</strong>'];<br>
+                                }<br>
+                              }<br>
+                            }
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 id="step7">Step 7 - Test your database and site with authentication</h3>
+        <ol>
+            <li>
+                <p>Test it and see if your user can edit and view projects. Have your buddy or someone at your table see if they can go to your URL and edit the projects</p>
+                <ul>
+                    <li>
+                        <p>https://yourportfolioname.web.app/crud.html (USE YOUR URL instead)</p>
+                    </li>
+                    <li>
+                        <p>You could use another personal gmail account for testing too.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>It should look something like this below. You should be able to add projects to the list and they should pop up at the bottom of the webpage</p>
+                <img src="../site/images/week06/crud.webp" alt="CRUD Image">
+            </li>
+            <li>
+                <p>Add a project Name and a Project Description to test the functionality and click <strong>Add Project</strong></p>
+            </li>
+            <li>
+                <p>If the project is added and appears below the Projects title, you did it!</p>
+                <p>Congratulations! You added authentication to Firebase Hosting and a Database and you secured it to your user instead of all Google users!</p>
+            </li>
+        </ol>
+
+        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+        <h3>If the database was not working</h3>
+        <ul>
+            <li>
+                <p>Follow the <a href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">instructions</a> from last week.</p>
+            </li>
+        </ul>
+        <h4>You can</strong>t edit projects on the page from last week. That is because we changed the firebase rules on this project to allow only authenticated users to read and write to the database</h4>
+        
+        <h3>If you cannot edit projects</h3>
+        <ul>
+            <li>
+                <p>Make sure you are on the crud.html pages and not the page from last week.</p>
+            </li>
+            <li>
+                <p> You may need to wait for the firebase rules to finish being applied or clear your cache. If it still doesn</strong>t work, wait a few minutes and do a SHIFT + refresh by pressing SHIFT on your keyboard and click the refresh button in your browser while holding it (that will clear your browser cache)</p>
+                <img src="../site/images/week05/firebase_refresh_cache.webp" alt="Firebase Refresh Cache">
+            </li>
+        </ul>
+
+        <h3>If New Projects Don't Show Up</h3>
+        <ul>
+            <li>
+                <p>It could be that your database permissions are not working. To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong>. You may need the other rules that have the UID - See <a href="#step6">Step 6</a> for that</p>
+            </li>
+        </ul>
+
+        <h3>Permission Errors or firebase installation not working</h3>
+        <ul>
+            <li>
+                <p>(Mac/Apple) You may need to run the <strong>sudo</strong> command in front of the firebase installation commands and/or other commands in the terminal</p>
+                <p>(Windows) You may need to run the terminal commands in a <strong>command prompt</strong> window instead or in powershell.</p>
+                <p>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</p>
+            </li>
+        </ul>
+
+        <h3>Authentication never works</h3>
+        <ul>
+            <li>
+                <p>You might open the inspector in your browser by right-clicking on the web page, but not on an image and select <strong>Inspect</strong></p>
+                <p>Click on the Console log. If you get this error - do <a href="#step2">Step 2</a> <strong>Add authentication</strong></p>
+                <img src="../site/images/week06/auth_error.webp" alt="Auth Error Image">
+            </li>
+        </ul>
+
+        <h3>The website doesn</strong>t load the styles and looks basic, but only the words appear</h3>
+        <ul>
+            <li>
+                <p>If you didn</strong>t do the code from the previous weeks, you may need to download the styles.css files.</p>
+                <ul>
+                    <li>
+                        <p>Open the terminal in your Visual Studio Code and paste these commands</p>
+                        <code>mkdir styles</code>
+                        <code>cd styles</code>
+                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/styles.css</code>
+                        <code>cd ..</code>
+                        <code>cd ..</code>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Can</strong>t get the files to download</h3>
+        <ul>
+            <li>
+                <p>Open Visual Studio Code and download this file for your operating system</p>
+                <ul>
+                    <li>
+                        <p>(Windows) <a href="https://byui-cloud.github.io/itm101-course/week06/week6.bat">https://byui-cloud.github.io/itm101-course/week06/week6.bat</a></p>
+                    </li>
+                    <li>
+                        <p>(Mac/Apple) <a href="https://byui-cloud.github.io/itm101-course/week06/week6.bat">https://byui-cloud.github.io/itm101-course/week06/week6.sh</a></p>
+                    </li>
+                    <li>
+                        <p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p>
+                    </li>
+                    <li>
+                        <p>(Windows) Run it with: ./week6.bat</p>
+                    </li>
+                    <li>
+                        <p>(Mac/Apple) Run it with: ./week6.sh</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h3>Styles still aren't working</h3>
+        <ul>
+            <li>Make sure the html files have a link to the styles.css in the <head> code: <br>
+                <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>
+            </li>
+            <li>Check to see if the styles.css file is in the same folder as the index.html folder or make sure the link to it has the folder listed if needed: <br>
+                <code>&lt;link rel="stylesheet" href="css/styles.css"&gt;</code>
+            </li>
+        </ul>
+
+        <h2>Learning more - Adding more users to your firebase rules</h2>
+        <p>Want to learn more about user and identity management? Take CYBER450 Identity and Access Management.</p>
+        <p>Want to learn more about Cybersecurity? Take CYBER201</p>
+        <p>Build your resume: Limited user access to firestore database with UIDs</p>
+        <p>Build your resume (FUTURE project): Implemented AWS Cognito for authentication on website deployed in an S3 bucket</p>
+        <p>Try a Rick Roll (see the comments in the crud.html file)</p>
+        <p>Update the version of Firebase in the crud.html file</p>
+        <p>Want to add more users to your list that can edit/read, edit your authentication rule and replace the orange with the two or more UIDs separated by a comma</p>
+        <p>allow read, write: if request.auth.uid in ['<strong>Wssjkl9897d789df98d7djnnvB2</strong>', '<strong>Wssjkl9897d789df98d7djnnvB3</strong>'];</p>
+        <p>More details on various rules you could do can be found here: <a href="https://stackoverflow.com/questions/56510745/firebaseerror-code-permission-denied-missing-or-insufficient-permissions">https://stackoverflow.com/questions/56510745/firebaseerror-code-permission-denied-missing-or-insufficient-permissions</a></p>
+        <p>This one is really bad on production but can be used for testing - read and write for anyone</p>
+        <code>service cloud.firestore { <br>
+            match /databases/{database}/documents { <br>
+              match /{document=**} { <br>
+                allow read, write; <br>
+              } <br>
+            } <br>
+          }
+          </code>
+          <p>This one allows anyone to read and write to products but only write to projects:</p>
+          <code>
+            rules_version = '2'; <br>
+            service cloud.firestore { <br>
+              match /databases/{database}/documents { <br>
+                match /products/{document=**} { <br>
+                  allow read, write; <br>
+                } <br>
+                  match /projects/{document=**} { <br>
+                  allow read; <br>
+                allow write: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2']; <br>
+                } <br>
+              } <br>
+            }
+            </code>
+            <p>Here is another example:</p>
+            <code>
+                rules_version = '2'; <br>
+                service cloud.firestore { <br>
+                  match /databases/{database}/documents { <br>
+                    match /{document=**} { <br>
+                      allow read: if true; <br>
+                      allow create, update, delete, write: if request.auth != null; <br>
+                      //allow create, update, delete, write: if request.auth != null && request.auth.uid == userIdAdmin; <br>
+                    } <br>
+                  } <br>
+                }
+            </code>
+            <p>Watch a <a href="https://fireship.io/courses/angular/kanban-firestore-data/">video</a> on more rules</p>
+    </article>
+</body>
+</html>

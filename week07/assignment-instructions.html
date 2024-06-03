@@ -34,11 +34,25 @@
             <li>Use Node.js for deploying the site using a server.js file</li>
             <li>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</li>
         </ul>
+        <h3>Table of Contents</h3>
+        <ul>
+            <li><a href="#step1">Setting up and logging in to your AWS Academy account</a></li>
+            <li><a href="#step2">Connecting to AWS Learner Lab</a></li>
+            <li><a href="#step3">AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment)</a></li>
+            <li><a href="#step4">Create the website files</a></li>
+            <li><a href="#step5">View/Preview the Site locally in your IDE</a></li>
+            <li><a href="#step6">Deploy the Site to the Internet</a></li>
+            <li><a href="#step7">Find the private IP address for the server.js file</a></li>
+            <li><a href="#step8">Open the firewalls to allow the website to work on the server</a></li>
+            <li><a href="#step9">Open port 8080 in the ACL firewall for the website</a></li>
+            <li><a href="#step10">Start the website on the internet using node and your server.js file</a></li>
+            <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
+        </ul>
 
         <h2>Project Instructions</h2>
         <h4>Watch the video instead: <a href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_8q4rw0s4/embed/dynamic">AWS Cloud9 IDE and Dev URL</a></h4>
 
-        <h3>Setting up and logging in to your AWS Academy account</h3>
+        <h3 id="step1">Setting up and logging in to your AWS Academy account</h3>
         <p>Your instructor will create an AWS Academy course that will be used to create sandbox accounts for you as a student. This sandbox account will be an AWS account with a $100 credit assigned to you. There are no requirements for you to purchase or provision any account from AWS. <strong>You will not be required to spend any money or provide credit card information. </strong></p>
         <p>Your instructor has created a user account in the AWS Academy course for you.  As part of the course creation, you will receive an email invitation to join the course.  Please note AWS Academy uses Canvas like I-Learn; however, this is not the same Canvas account as BYUI.  You will be creating new credentials in AWS Academy with your byui.edu email address. If you have previously created an AWS Academy account, you will use those AWS Academy credentials and can skip to step 3 of this section.</p>
         <ol>
@@ -56,7 +70,7 @@
                 <img src="../site/images/week07/aws_student_login.webp" alt="AWS Login">
             </li>
         </ol>
-        <h3>Connecting to AWS Learner Lab</h3>
+        <h3 id="step2">Connecting to AWS Learner Lab</h3>
         <ol>
            <li>
             <p>From the LMS dashboard, choose the BYUI AWS Academy Learning Lab for the class you are accessing.  Your instructor will provide a 5 digits identifier for your course to access the learner lab sandbox for your given class. <strong>Note</strong>: If you have been invited to more than one course or Lab, you will see multiple tiles on the dashboard.</p>
@@ -79,7 +93,7 @@
            </li>
         </ol>
 
-        <h3>AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment)</h3>
+        <h3 id="step3">AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment)</h3>
         <ol>
             <li>
                 <p>AWS (Amazon Web Service) has Cloud 9, a coding platform that gives you an IDE (Integrated Development Environment). To use Cloud 9, login in to AWS as described previously and search for and click on <strong>Cloud 9</strong>.</p>
@@ -115,7 +129,7 @@
             </li>
         </ol>
 
-        <h3>Create the website files</h3>
+        <h3 id="step4">Create the website files</h3>
         <ol>
             <li>
                 <p>Click <strong>File</strong> in the menu and click <strong>Save</strong>. Name it <em>index.html</em> and make sure it is in a folder called <strong>public</strong></p>
@@ -142,7 +156,7 @@
             </li>
         </ol>
 
-        <h3>View/Preview the Site locally in your IDE</h3>
+        <h3 id="step5">View/Preview the Site locally in your IDE</h3>
         <ol>
             <li>
                 <p>Make sure to be in the index.html or file you want to preview. <br>Then, click on <strong>Tools</strong> > <strong>Preview</strong> > <strong> Preview File index.html</strong></p>
@@ -152,7 +166,7 @@
             </li>
         </ol>
 
-        <h3>Deploy the Site to the Internet</h3>
+        <h3 id="step6">Deploy the Site to the Internet</h3>
         <p>
             To make the website work on the internet, you need some type of service to run the webpage. Some systems servers use node, apache, tomcat, etc. to deploy a webpage/website. We will use Node to accomplish that. Normally, you would set up another EC2 instance, use an S3 bucket, etc. or another server. You would not usually have your source code on the same server as your web application. For simplicity, we will deploy it to the same server as your Cloud9 IDE server/computer.
         </p>
@@ -190,7 +204,7 @@
             </li>
         </ol>
 
-        <h3>Find the private IP address for the server.js file</h3>
+        <h3 id="step7">Find the private IP address for the server.js file</h3>
         <ol>
             <li>
                 <p>To find the IP address of the server, you need the internal IP address THAT YOU WILL PUT ON THE LAST LINE OF THE SERVER.js file. To find that, go back to the AWS webpage you were on when you opened Cloud9. Search for <strong>EC2</strong> (EC2 is where AWS puts the servers/computers that you run, like the one you are running to use Cloud9).  Click on <strong>EC2</strong>.</p>
@@ -219,7 +233,7 @@
             </li>
         </ol>
 
-        <h3>Open the firewalls to allow the website to work on the server</h3>
+        <h3 id="step8">Open the firewalls to allow the website to work on the server</h3>
 
         <h4>Open port 8080 in the EC2 server firewall for the website </h4>
         <p>We need to open some firewall and security settings to allow the webpage to be deployed on a real website. </p>
@@ -254,7 +268,7 @@
             </li>
         </ol>
 
-        <h4>Open port 8080 in the ACL firewall for the website</h4>
+        <h4 id="step9">Open port 8080 in the ACL firewall for the website</h4>
         <ol>
             <li>
                 <p>Go back to the security groups for your aws-cloud9 instance and open the <strong>VPC</strong> by clicking on the VPC ID (ex: vpc-00061e29aa7e50c605)</p>
@@ -282,7 +296,7 @@
             </li>
         </ol>
 
-        <h4>Start the website on the internet using node and your server.js file </h4>
+        <h4 id="step10">Start the website on the internet using node and your server.js file </h4>
         <ol>
             <li>
                 <p>Go back to your IDE and click <strong>Run</strong> and make sure it is running. Make sure to put the private IPv4 from your instance. <strong>MAKE SURE you are in the server.js file when you click the RUN button</strong>.</p>
