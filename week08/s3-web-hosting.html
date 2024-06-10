@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="../site/reset.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <script defer src="../site/main.js"></script>
+    <title>Hosting a Static Website in AWS S3</title>
+    <link rel="icon" type="image/png" href="../site/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week08/s3-web-hosting.html">
+    <meta name="description" content="Steps to host a static website in an AWS S3 bucket">
+</head>
+
+<body>
+<article>
+    <h1>Hosting a Static Website in AWS S3</h1>
+
+    <ol class="long">
+        <li><div>Open the AWS Management Console
+        <ol>
+            <li><div>Sign into the
+            <a href="https://awsacademy.instructure.com/login/canvas">AWS
+            Academy Canvas instance</a></div></li>
+            <li><div>Open your
+            <a href="https://awsacademy.instructure.com/courses/72738">AWS
+            Acadmey Canvas course</a></div></li>
+            <li><div>Within the Modules section, click “Launce AWS
+            Academy Learner Lab”</div></li>
+            <li><div>Click “&#x25b6; Start Lab”</div></li>
+            <li><div>When the red circle
+            (AWS&nbsp;<span style="color:red">&#x25cf;</span>) turns green
+            (AWS&nbsp;<span style="color:green">&#x25cf;</span>),
+            click the green circle
+            (AWS&nbsp;<span style="color:green">&#x25cf;</span>) which
+            will open the AWS management console in a new tab</div></li>
+        </ol></div></li>
+
+        <li><div>Create and Configure an S3 Bucket
+        <ol>
+            <li><div>From the AWS management console find and open the
+            S3 service</div></li>
+            <li><div>Select the nearest region (Oregon)</div></li>
+            <li><div>Create an S3 bucket<br>
+            Use your last name in the bucket name.</div></li>
+
+            <li><div>Enable static web site hosting
+            <ol>
+                <li><div>From the list of your buckets, click your new
+                bucket’s name to open that bucket</div></li>
+                <li><div>Click the “Properties” tab</div></li>
+                <li><div>Scroll to the bottom of the list of properties
+                and edit and enable “Static website hosting”</div></li>
+            </ol></div></li>
+
+            <li><div>Allow all public access to the S3 bucket
+            <ol>
+                <li><div>Click the “Permissions” tab</div></li>
+                <li><div>Edit “Block public access (bucket settings)”
+                and disable (uncheck) the option “Block all public
+                access”</div></li>
+            </ol></div></li>
+
+            <li><div>Edit the bucket policy and add the following
+            policy. Before saving the new policy, change
+            <span style="color:red">Bucket-Name</span> to your bucket’s
+            name.
+<pre>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<span style="color:red">Bucket-Name</span>/*"
+            ]
+        }
+    ]
+}</pre></div></li>
+        </ol></div></li>
+
+        <li><div>Create and Edit an HTML File Using Cloud9<br>
+        (You may also need a CSS file and a JavaScript file.)
+        <ol>
+            <li><div>From the AWS management console open your Cloud9
+            IDE</div></li>
+            <li><div>Create and save an HTML file and any needed CSS and
+            JavaScript files</div></li>
+        </ol></div></li>
+
+        <li><div>Upload the HTML File to Your S3 Bucket.<br>
+        (Also upload CSS and JavaScript files if you created them.)
+        <ol>
+            <li><div>In your Cloud9 IDE, in the left frame, open the AWS
+            explorer</div></li>
+            <li><div>Connect the AWS explorer</div></li>
+            <li><div>Select the region where you created your S3 bucket
+            (Oregon)</div></li>
+            <li><div>Expand the region</div></li>
+            <li><div>Scroll down and expand the S3 service</div></li>
+            <li><div>Right click on your S3 bucket name and upload the
+            HTML, CSS, and JavaScript files to your bucket</div></li>
+        </ol></div></li>
+
+        <li><div>Open the Hosted HTML File in Your Browser.
+        <ol>
+            <li><div>Return to the S3 console</div></li>
+            <li><div>Open your bucket and click the “Properties” tab</div></li>
+            <li><div>Scroll down to the “Static website hosting”
+            property and click URL for your bucket’s web site</div></li>
+            <li><div>Your web page should open in a new tab</div></li>
+        </ol></div></li>
+
+        <li><div>Verify that Your Web Site Is Available When the
+        Learner Lab Is Stoped
+        Stop the AWS Learner Lab Open the Hosted HTML File in Your Browser.
+        <ol>
+            <li><div>Close the Cloud9 tab</div></li>
+            <li><div>Close the AWS management console tab</div></li>
+            <li><div>Click “&#x25a0; End Lab” in the AWS Canvas
+            course</div></li>
+            <li><div>Refresh the tab that contains your open web page
+            and verify that it loads correctly</div></li>
+        </ol></div></li>
+    </ol>
+</article>
+</body>
+</html>
