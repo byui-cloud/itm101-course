@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="../site/reset.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <link rel="stylesheet" href="test.css">
+    <script defer src="../site/main.js"></script>
+    <title>Create and Deploy a Website from your IDE to a URL</title>
+    <link rel="icon" type="image/png" href="../site/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week07/assignment-instructions.html">
+    <meta name="description" content="Week 7 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
+</head>
+<body>
+    <article>
+        <h1>Create and Deploy a Website from your IDE to a URL</h1>
+        <h2>Overview</h2>
+
+        <p>In this scenario, you were recently hired by a small startup company that for cybersecurity reasons, they want you to use an IDE in the Cloud. They want to also create a publicly available URL to share the dev website with the client.</p>
+
+        <h3>Business Requirements</h3>
+        <ul>
+            <li>Coding in the Cloud for security and Client URL</li>
+        </ul>
+        <h3>Project Requirements</h3>
+        <ul>
+            <li>Create and use a Cloud coding editor - IDE (integrated development environment)</li>
+            <li>Use the same computing resources as the IDE for the development URL web hosting solution - it doesn’t need to scale automatically</li>
+            <li>It does need to be able to manually be scaled up</li>
+            <li>Use AWS (Amazon Web Services) if possible</li>
+            <li>Use Node.js for deploying the site using a server.js file</li>
+            <li>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</li>
+        </ul>
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#step1">Setting up and logging in to your AWS Academy account</a></li>
+            <li><a href="#step2">Connecting to AWS Learner Lab</a></li>
+            <li><a href="#step3">AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment)</a></li>
+            <li><a href="#step4">Create the website files</a></li>
+            <li><a href="#step5">View/Preview the Site locally in your IDE</a></li>
+            <li><a href="#step6">Deploy the Site to the Internet</a></li>
+            <li><a href="#step7">Find the private IP address for the server.js file</a></li>
+            <li><a href="#step8">Open the firewalls to allow the website to work on the server</a></li>
+            <li><a href="#step9">Open port 8080 in the ACL firewall for the website</a></li>
+            <li><a href="#step10">Start the website on the internet using node and your server.js file</a></li>
+            <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
+            <li><a href="#learning-more">Learning More</a></li>
+        </ul>
+
+        <h2>Project Instructions</h2>
+        <h4>Watch the video instead: <a target="_blank" rel="noopener" href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_8q4rw0s4/embed/dynamic">AWS Cloud9 IDE and Dev URL</a></h4>
+
+        <h3 id="step1">Setting up and logging in to your AWS Academy account</h3>
+        <p>Your instructor will create an AWS Academy course that will be used to create sandbox accounts for you as a student. This sandbox account will be an AWS account with a $100 credit assigned to you. There are no requirements for you to purchase or provision any account from AWS. <strong>You will not be required to spend any money or provide credit card information. </strong></p>
+        <p>Your instructor has created a user account in the AWS Academy course for you.  As part of the course creation, you will receive an email invitation to join the course.  Please note AWS Academy uses Canvas like I-Learn; however, this is not the same Canvas account as BYUI.  You will be creating new credentials in AWS Academy with your byui.edu email address. If you have previously created an AWS Academy account, you will use those AWS Academy credentials and can skip to step 3 of this section.</p>
+        <ol>
+            <li>
+                <p>To set up your AWS Academy account, open your email invitation from AWS Academy  (notifications@instructure.com) and click <strong>Get Started.</strong></p>
+                <p><strong>Note</strong>: If you don’t see the email, check your junk, spam, or promotional mail folder. </p>
+                <img src="../site/images/week07/aws_course_invitation.webp" alt="AWS Course Invitation">
+            </li>
+            <li>
+                <p>After clicking the <strong>Get Started</strong> button, you will be redirected to a web page for creating an account or login using existing AWS Academy credentials.  Please note that while the email being used is your byui.edu email, this is <strong>not</strong> your byui.edu password.  You should not use the same password for AWS Academy as your byui.edu I-Learn account.  AWS Academy does not utilize single sign-on services and is an entirely separate service and account from byui.edu.  Unless you already have an AWS Academy account, select <strong>Create My Account</strong>.  If you already have an AWS Academy account, select the <strong>I Have a Canvas Account</strong> option and use your AWS Academy credentials to login and accept the invitation to this course. Also, note the AWS Academy Learner Lab number will be different for your course than the [36035] shown below. <strong>This is NOT your I-Learn credentials</strong>.  They are separate accounts.</p>
+                <img src="../site/images/week07/aws_welcome_message.webp" alt="AWS Welcome Message">
+            </li>
+            <li>
+                <p>After creating credentials, choose <strong>Student Login</strong> in the future and log in with your email address and password at <a target="_blank" rel="noopener" href="https://awsacademy.instructure.com">https://awsacademy.instructure.com</a> </p>
+                <img src="../site/images/week07/aws_student_login.webp" alt="AWS Login">
+            </li>
+        </ol>
+        <h3 id="step2">Connecting to AWS Learner Lab</h3>
+        <ol>
+           <li>
+            <p>From the <a target="_blank" rel="noopener" href="https://awsacademy.instructure.com/login/canvas">LMS dashboard</a>, choose the BYUI AWS Academy Learning Lab for the class you are accessing.  Your instructor will provide a 5 digits identifier for your course to access the learner lab sandbox for your given class. <strong>Note</strong>: If you have been invited to more than one course or Lab, you will see multiple tiles on the dashboard.</p>
+            <img src="../site/images/week07/aws_dashboard.webp" alt="AWS Dashboard">
+           </li>
+           <li>
+            <p>In the navigation menu, choose <strong>Modules</strong>.</p>
+            <img src="../site/images/week07/aws_modules.webp" alt="AWS Modules">
+           </li>
+           <li>
+            <p>Choose the Learner Lab link.</p>
+            <img src="../site/images/week07/aws_learner_lab.webp" alt="AWS Learner Lab">
+           </li>
+           <li>
+            <p>Click <strong>Start Lab</strong> (arrow #1) and wait for the circle (arrow #2) to turn from yellow to green.</p>
+            <img src="../site/images/week07/aws_start_lab.webp" alt="AWS Start Lab">
+           </li>
+           <li>
+            <p>Once the circle is green, click <strong>AWS</strong> (arrow #2 above) and it will open a new window</p>
+           </li>
+        </ol>
+
+        <h3 id="step3">AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment)</h3>
+        <ol>
+            <li>
+                <p>AWS (Amazon Web Service) has Cloud 9, a coding platform that gives you an IDE (Integrated Development Environment). To use Cloud 9, login in to AWS as described previously and search for and click on <strong>Cloud 9</strong>.</p>
+                <img src="../site/images/week07/aws_cloud9.webp" alt="AWS Cloud9">
+            </li>
+            <li>
+                <p>Click <strong>Create environment</strong> to create a Cloud 9 IDE.</p>
+                <img src="../site/images/week07/aws_create_environment.webp" alt="AWS Create Environment">
+            </li>
+            <li>
+                <p>Change your region to <strong>US West</strong> by clicking on the <strong>N. Virginia</strong> near the top right corner of your browser. This will make the computer/server we will use for the IDE to be deployed in Oregon, which is physically closer to Idaho. </p>
+                <img src="../site/images/week07/aws_change_region.webp" alt="AWS Change Region">
+            </li>
+            <li>
+                <p>Once, Oregon is selected, choose a name for your IDE server/computer/environment:</p>
+                <img src="../site/images/week07/aws_name_environment.webp" alt="AWS Name Environment">
+            </li>
+            <li>
+                <p>Leave the default settings for t2.micro and Amazon Linux 2023.</p>
+                <img src="../site/images/week07/aws_default_settings.webp" alt="AWS Default Settings">
+            </li>
+            <li>
+                <p>Select <strong>Secure Shell (SSH)</strong> (Arrow #1) for the network settings, then click <strong>Create</strong> (Arrow #2).</p>
+                <img src="../site/images/week07/aws_network_settings.webp" alt="AWS Network Settings">
+            </li>
+            <li>
+                <p>Click on your “Open” next to your IDE environment to open it:</p>
+                <img src="../site/images/week07/aws_open_ide.webp" alt="AWS Open IDE">
+            </li>
+            <li>
+                <p>Create a new file by clicking <strong>Create File</strong>.</p>
+                <img src="../site/images/week07/aws_create_file.webp" alt="AWS Create File">
+            </li>
+        </ol>
+
+        <h3 id="step4">Create the website files</h3>
+        <ol>
+            <li>
+                <p>Click <strong>File</strong> in the menu and click <strong>Save</strong>. Name it <em>index.html</em> and make sure it is in a folder called <strong>public</strong></p>
+                <img src="../site/images/week07/aws_save_file.webp" alt="AWS Save File">
+            </li>
+            <li>
+                <p>Edit your index.html file. 
+                If you type <strong>!</strong> and then hit <strong>tab</strong> on your keyboard it will generate some basic html.</p>
+                <img src="../site/images/week07/aws_edit_html.webp" alt="AWS Edit HTML">
+            </li>
+            <li>
+                <p>Add the word <strong>test</strong>, copy some code from your previous websites, or generate some new code from ChatGPT</p>
+                <img src="../site/images/week07/aws_add_code.webp" alt="AWS Add Code">
+                <p>It might look something like this in your index.html file</p>
+                <img src="../site/images/week07/aws_index_html.webp" alt="AWS Index HTML">
+            </li>
+            <li>
+                <p>Click on the <strong>File</strong> menu at the top of the screen and then select <strong>Save As</strong> to save your changes. Name the file and save it.</p>
+                <img src="../site/images/week07/aws_save_as.webp" alt="AWS Save As">
+            </li>
+            <li>
+                <p>If you need to create a new file, click on <strong>File</strong> in the menu and select <strong>New File</strong></p>
+                <img src="../site/images/week07/aws_new_file.webp" alt="AWS New File">
+            </li>
+        </ol>
+
+        <h3 id="step5">View/Preview the Site locally in your IDE</h3>
+        <ol>
+            <li>
+                <p>Make sure to be in the index.html or file you want to preview. <br>Then, click on <strong>Tools</strong> > <strong>Preview</strong> > <strong> Preview File index.html</strong></p>
+                <img src="../site/images/week07/aws_preview_file.webp" alt="AWS Preview File">
+                <p>You should see the file on the right side as the preview</p>
+                <img src="../site/images/week07/aws_preview_index.webp" alt="AWS Preview Index">
+            </li>
+        </ol>
+
+        <h3 id="step6">Deploy the Site to the Internet</h3>
+        <p>
+            To make the website work on the internet, you need some type of service to run the webpage. Some systems servers use node, apache, tomcat, etc. to deploy a webpage/website. We will use Node to accomplish that. Normally, you would set up another EC2 instance, use an S3 bucket, etc. or another server. You would not usually have your source code on the same server as your web application. For simplicity, we will deploy it to the same server as your Cloud9 IDE server/computer.
+        </p>
+        <ol>
+            <li>
+                <p>Create one new file called <strong>server.js</strong> that will run the node server. Make sure it is in a folder called <strong>public</strong>.</p>
+                <img src="../site/images/week07/aws_create_server_js.webp" alt="AWS Create Server JS">
+            </li>
+            <li>
+                <p>Use this code to deploy a Node server.js website (make sure to change the IP address of the listening port on the last line to the IP of your internal IP address of the Ec2 instance)</p>
+                <pre>
+                    <code><br>
+                    var http = require('http');<br>
+                    var fs = require('fs');<br>
+                    var url = require('url');<br>
+                    http.createServer( function (request, response) {<br>
+                      var pathname = url.parse(request.url).pathname;<br>
+                      console.log("Trying to find '" + pathname.substr(1) + "'...");<br>
+                      fs.readFile(pathname.substr(1), function (err, data) {<br>
+                        if (err) {<br>
+                          response.writeHead(404, {'Content-Type': 'text/html'});<br>
+                          response.write("ERROR: Cannot find '" + pathname.substr(1) + "'.");<br>
+                          console.log("ERROR: Cannot find '" + pathname.substr(1) + "'.");<br>
+                        } else {<br>
+                          console.log("Found '" + pathname.substr(1) + "'.");<br>
+                          response.writeHead(200, {'Content-Type': 'text/html'});<br>
+                          response.write(data.toString());<br>
+                        }<br>
+                        response.end();<br>
+                      });<br>
+                    }).listen(8080, '172.31.18.4'); // Or 8081 or 8082 instead of 8080. Or '127.0.0.1' instead of 'localhost'.<br>
+                    </code>
+                </pre>                    
+                <p>REFERENCE: <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/app-preview.html?icmpid=docs_ac9_ide#app-preview-share">Preview Running Applications</a></p>
+            </li>
+        </ol>
+
+        <h3 id="step7">Find the private IP address for the server.js file</h3>
+        <ol>
+            <li>
+                <p>To find the IP address of the server, you need the internal IP address THAT YOU WILL PUT ON THE LAST LINE OF THE SERVER.js file. To find that, go back to the AWS webpage you were on when you opened Cloud9. Search for <strong>EC2</strong> (EC2 is where AWS puts the servers/computers that you run, like the one you are running to use Cloud9).  Click on <strong>EC2</strong>.</p>
+                <img src="../site/images/week07/aws_ec2.webp" alt="AWS EC2">
+            </li>
+            <li>
+                <p>Click on <strong>Instances (running)</strong>. If you don’t see any instances, make sure you are in the correct region (ex: Oregon). It should be listed at the top right of your screen in your AWS account.</p>
+                <img src="../site/images/week07/aws_instances.webp" alt="AWS Instances">
+            </li>
+            <li>
+                <p>Click on the Instance ID</p>
+                <img src="../site/images/week07/aws_instance_id.webp" alt="AWS Instance ID">
+            </li>
+            <li>
+                <p>Find the Private IPv4. That is the IP address that the internal server uses (not the internet). The internet uses the Public IP. In this example, the IP is 172.31.18.4. Your IP will be different and you need yours.</p>
+                <img src="../site/images/week07/aws_private_ipv4.webp" alt="AWS IPv4">
+            </li>
+            <li>
+                <p>Click the copy icon to copy the Private IP address to put in the server.js file. You will also later need the Public IPv4 ip address to open the website - take note of it if you want to now.</p>
+                <img src="../site/images/week07/aws_copy_ip.webp" alt="AWS Copy IP">
+            </li>
+            <li>
+                <p>Go back to your Cloud9 IDE, and in the last line of your server.js file, replace the IP address 172.31.18.4  with that IP address you just copied (but yours will be a different set of numbers).</p>
+                <img src="../site/images/week07/aws_replace_ip_and_run.webp" alt="AWS Replace IP">
+                <p>On some websites, you can load them by using the public IPv4 address. You would put that IP address as the URL in your browser.</p>
+            </li>
+        </ol>
+
+        <h3 id="step8">Open the firewalls to allow the website to work on the server</h3>
+
+        <h4>Open port 8080 in the EC2 server firewall for the website </h4>
+        <p>We need to open some firewall and security settings to allow the webpage to be deployed on a real website. </p>
+        <ol>
+            <li>
+                <p>Open your EC2 instance and click on the <strong>Security</strong> tab</p>
+                <img src="../site/images/week07/aws_security.webp" alt="AWS Security">
+            </li>
+            <li>
+                <p>Click on the group listed under <strong>Security Groups</strong>, it might be something like <strong>sg-.......</strong></p>
+                <img src="../site/images/week07/aws_security_group.webp" alt="AWS Security Group">
+            </li>
+            <li>
+                <p>Click on <strong>Edit Inbound Rules</strong></p>
+                <img src="../site/images/week07/aws_edit_inbound_rules.webp" alt="AWS Edit Inbound Rules">
+            </li>
+            <li>
+                <p>Click <strong>Add Rule</strong></p>
+                <img src="../site/images/week07/aws_add_rule.webp" alt="AWS Add Rule">
+            </li>
+            <li>
+                <p>Add port <strong>8080</strong></p>
+                <img src="../site/images/week07/aws_add_port_8080.webp" alt="AWS Add Port">
+            </li>
+            <li>
+                <p>Add the allowed IP addresses by selecting <strong>0.0.0.0</strong> (that means allow from anywhere)</p>
+                <img src="../site/images/week07/aws_add_anywhere_ip.webp" alt="AWS Add IP">
+            </li>
+            <li>
+                <p>Make sure to click <strong>Save Rules</strong></p>
+                <img src="../site/images/week07/aws_save_inbound_rules.webp" alt="AWS Save Rules">
+            </li>
+        </ol>
+
+        <h4 id="step9">Open port 8080 in the ACL firewall for the website</h4>
+        <ol>
+            <li>
+                <p>Go back to the security groups for your aws-cloud9 instance and open the <strong>VPC</strong> by clicking on the VPC ID (ex: vpc-00061e29aa7e50c605)</p>
+                <img src="../site/images/week07/aws_vpc.webp" alt="AWS VPC">
+            </li>
+            <li>
+                <p>Click on <strong>Network ACLs</strong></p>
+                <img src="../site/images/week07/aws_network_acls.webp" alt="AWS Network ACLs">
+            </li>
+            <li>
+                <p>Click on your network ACL (ex: acl-06c76d10a62371464)</p>
+                <img src="../site/images/week07/aws_network_acl.webp" alt="AWS Network ACL">
+            </li>
+            <li>
+                <p>Click <strong>Edit inbound rules</strong></p>
+                <img src="../site/images/week07/aws_edit_inbound_rules_acl.webp" alt="AWS Edit Inbound Rules ACL">
+            </li>
+            <li>
+                <p>Click <strong>Add new rule</strong></p>
+                <img src="../site/images/week07/aws_add_new_rule_acl.webp" alt="AWS Add New Rule ACL">
+            </li>
+            <li>
+                <p>Add port 8080 to the ACL too (pick a rule number for it like 200, select Custom TCP, add port 8080, put source 0.0.0.0/0, and Allow)</p>
+                <img src="../site/images/week07/aws_add_port_8080_acl.webp" alt="AWS Add Port ACL">
+            </li>
+        </ol>
+
+        <h4 id="step10">Start the website on the internet using node and your server.js file </h4>
+        <ol>
+            <li>
+                <p>Go back to your IDE and click <strong>Run</strong> and make sure it is running. Make sure to put the private IPv4 from your instance. <strong>MAKE SURE you are in the server.js file when you click the RUN button</strong>.</p>
+                <img src="../site/images/week07/aws_replace_ip_and_run.webp" alt="AWS Run Server JS">
+            </li>
+            <li>
+                <p>Now find your public IPv4 - go back to “Ec2” instances if necessary.</p>
+                <img src="../site/images/week07/aws_public_ipv4.webp" alt="AWS IPv4">
+                <p>Take note of the Public IP from your instance and put that in your browser</p>
+                <ul>
+                    <li>
+                        <p>
+                            <strong>
+                                MAKE SURE TO PUT http (NOT https) and MAKE SURE to add index.html (even though most sites don’t require the filename for an index.html)
+                            </strong>
+                        </p>
+                        <p>(ex: http://35.94.121.233:8080/index.html) but yours will be a different set of numbers</p>
+                    </li>
+                    <li>
+                        <p>Yours might be 54.203…. Or something different. Make sure to put the port 8080 with a colon before it. Also, make sure the filename of the .html file matches yours.</p>
+                    </li>
+                </ul>
+                <img src="../site/images/week07/aws_site_link.webp" alt="AWS Site Link">
+            </li>
+        </ol>
+
+        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+        <h3>If the webpage doesn’t load</h3>
+        <ul>
+            <li>
+                <p>You may need to put the correct PRIVATE IP address in the server.js file on the last line of code. You also may need to open the security group port 8080 and add the port 8080 to the ACL in the VPC. Then, use the PUBLIC IP address to load the website with port 8080 at the end</p>
+            </li>
+        </ul>
+
+        <h3>If you get a (ERROR: Cannot find “.”) Error</h3>
+        <ul>
+            <li>
+                <p>You may need to put the file name at the end of your IP address and port</p>
+            </li>
+            <li>
+                <p>You may have put http://35.90.250.71:8080/ but you need to put http://35.90.250.71:8080/index.html</p>
+            </li>
+        </ul>
+        <h3>If you get a 'Secure Connection Failed' Error</h3>
+        <ul>
+            <li>
+                <p>Don’t put the s on the end of http</p>
+            </li>
+        </ul>
+
+        <h2 id="learning-more">Learning More</h2>
+        <p>Want to learn more about AWS and obtain an AWS certification? Take ITM300 Cloud Foundations.</p>
+        <p>Build your resume: Deployed a website from Cloud9 IDE to an AWS EC2 instance.</p>
+        <p>Build your resume (FUTURE project): Deployed a Javascript website to an S3 bucket and connected it to an RDS database with Cognito authentication</p>
+
+        <h2>Learning More - Create a serverless app model (SAM) with Lambda</h2>
+        <p>Create a CD/CI pipeline</p>
+        <p>Implement Git</p>
+
+        <h2>Learning More - Tutorials to follow in Cloud 9</h2>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tutorials.html">Tutorials for AWS Cloud 9</a></p>
+
+        <h2>Learning More - Create a serverless app model (SAM) with Lambda</h2>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html">Working with AWS serverless applications using the AWS Toolkit</a></p>
+
+        <h2>References</h2>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/app-preview.html?icmpid=docs_ac9_ide#app-preview-share">Preview Running Applications</a></p>
+    </article>

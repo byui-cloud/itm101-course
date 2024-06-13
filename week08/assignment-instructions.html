@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="../site/reset.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <link rel="stylesheet" href="test.css">
+    <script defer src="../site/main.js"></script>
+    <title>Create and Deploy a Website from AWS Website Cloud 9 to S3</title>
+    <link rel="icon" type="image.webp" href="../site/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week08/assignment-instructions.html">
+    <meta name="description" content="Week 8 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
+</head>
+<body>
+    <article>
+        <h1>AWS Website Cloud 9 to S3</h1>
+        <h2>Overview</h2>
+        <p>In this scenario, you found a job or internship that you want to apply for. In the job description, they have a MINIMUM requirement of Cloud 9 knowledge. You noticed they PREFER candidates who have experience with Amazon S3. They also want candidates that have experience with hosting websites with S3 buckets and can deploy code to the bucket. To build your resume, you will use Cloud 9 IDE to put code into an S3 bucket and make the website public directly from the S3 bucket.</p>
+
+        <h3>Business Requirements</h3>
+        <ul>
+            <li>
+                <p>Auto scaling web system for many users</p>
+            </li>
+        </ul>
+        
+        <h3>Project Requirements</h3>
+        <ul>
+            <li>
+                <p>Use Cloud 9 IDE (not autoscaling because it is in an EC2 instances you would have to scale or add resources to)</p>
+            </li>
+            <li>
+                <p>Deploy a web application to an AWS S3 (autoscaling) bucket from Cloud 9</p>
+            </li>
+            <li>
+                <p>Use AWS (Amazon Web Services) and AWS Explorer</p>
+            </li>
+            <li>
+                <p>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</p>
+            </li>
+        </ul>
+
+        <h2>Table of Contents</h2>
+        <ol>
+            <li>
+                <a href="#step1">Create an S3 bucket to deploy your website with autoscaling</a>
+            </li>
+            <li>
+                <a href="#step2">Login to your AWS Academy account and open Cloud 9</a>
+            </li>
+            <li>
+                <a href="#step3">Cloud9 IDE deploy code to an S3 bucket with AWS Explorer</a>
+            </li>
+            <li>
+                <a href="#step4">Two options: On Your Own or Need More Guidance</a>
+            </li>
+            <li>
+                <a href="#step5">Still not sure where to find AWS Explorer and how to use it?</a>
+            </li>
+            <li>
+                <a href="#step6">Deploy the S3 bucket webpage files to the internet</a>
+            </li>
+            <li>
+                <a href="#step7">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</a>
+            </li>
+            <li>
+                <a href="#step8">Website URL</a>
+            </li>
+            <li>
+                <a href="#troubleshooting">Troubleshooting & Common Problems</a>
+            </li>
+            <li>
+                <a href="#learning-more">Learning More</a>
+            </li>
+        </ol>
+
+        <h2>Project Instructions</h2>
+        <h3 id="step1">Create an S3 bucket to deploy your website with autoscaling</h3>
+        <h4>WHEN YOU MAKE THE BUCKET IT MUST HAVE YOUR NAME IN IT (at least your first or last name)</h4>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html">Get Started with S3</a></p>
+
+        <h3 id="step2">Login to your AWS Academy account and open Cloud 9</h3>
+        <ol>
+            <li>
+                <p>Open your Learner lab. If you can’t remember how, follow this Cloud 9 document</p>
+                <p><a target="_blank" rel="noopener" href="https://byui-cloud.github.io/itm101-course/week07/assignment-instructions.html#step2">Connecting to AWS Learner Lab</a></p>
+            </li>
+        </ol>
+
+        <h3 id="step3">Cloud9 IDE deploy code to an S3 bucket with AWS Explorer</h3>
+        <p>To access various resources in AWS like an S3 bucket (a network file storage system similar to your hard drive on your computer, but available on the internet), you can do this directly from the Cloud9 Coding Editor (IDE) using AWS Explorer.</p>
+        <p>Change your region to <strong>US West</strong> by clicking on the <strong>N. Virginia</strong> near the top right corner of your browser. This change to the Oregon computer/servers that we deployed in Oregon will be found, which is physically closer to Idaho. </p>
+        <img src="../site/images//week07/aws_change_region.webp" alt="AWS Change Region">
+        <p>Click <strong>Open</strong> next to your Cloud9 IDE</p>
+        <img src="../site/images//week07/aws_open_ide.webp" alt="AWS Open Cloud9">
+        
+        <h4 id="step4">You now have two options:</h4>
+        <ol>
+            <li>
+                <p>Option 1: Do it on your own with AWS Documentation</p>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/work-with-S3-objects.html">Work with S3 Objects</a></p>
+            </li>
+            <li>
+                <p>Option 2: Need more guidance on where to start</p>
+                <p>Look at this section titled, <strong>Upload a file to an S3 bucket using the interface</strong></p>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/work-with-S3-objects.html">Work with S3 Objects</a></p>
+                <p>If needed, google <strong>What is AWS Explorer</strong> or <strong>How do you use AWS Explorer in Cloud9</strong></p>
+            </li>
+        </ol>
+
+        <h4 id="step5">Still not sure where to find AWS Explorer and how to use it?</h4>
+        <ol>
+            <li>
+                <p>Look at the left side of your IDE in Cloud 9</p>
+                <img src="../site/images//week08/aws_explorer.webp" alt="AWS Explorer">
+            </li>
+            <li>
+                <p>Add the Oregon S3</p>
+            </li>
+            <li>
+                <p>Upload your index.html file to the S3 bucket</p>
+            </li>
+            <li>
+                <p>Can't figure it out? Google <strong>How do I deploy an file from Cloud 9 to an S3 bucket with AWS Explorer</strong></p>
+            </li>
+        </ol>
+
+        <h3 id="step6">Deploy the S3 bucket webpage files to the internet</h3>
+        <ol>
+            <li>
+                <p>First, make sure that you did the steps above, you have an S3 bucket with your name in it AND make sure that you uploaded an index.html file to the S3 bucket</p>
+            </li>
+            <li>
+                <p>Overview:</p>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html">Website Hosting</a></p>
+            </li>
+            <li>
+                <p>Find the URL for your webpage:</p>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html">Website Endpoints</a></p>
+            </li>
+            <li>
+                <p>Enable static web hosting:</p>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/EnableWebsiteHosting.html">Enable Website Hosting</a></p>
+            </li>
+            <li>
+                <p>Modify the bucket permissions ON STEP 2 - Add a bucket Policy:</p>
+                <p><strong>MAKE SURE TO replace the code in red with YOUR BUCKET NAME</strong></p>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html">Setting permissions for website access</a></p>
+            </li>
+            <li>
+                <p>Save changes to the bucket policy. It should like something like this (replace the orange with your bucket name)</p>
+                <pre>
+                    <code>
+                        { <br>
+                            "Version": "2012-10-17", <br>
+                            "Statement": [ <br>
+                                { <br>
+                                    "Sid": "PublicReadGetObject", <br>
+                                    "Effect": "Allow", <br>
+                                    "Principal": "*", <br>
+                                    "Action": [ <br>
+                                        "s3:GetObject" <br>
+                                    ], <br>
+                                    "Resource": [ <br>
+                                        "arn:aws:s3:::<strong>Bucket-Name</strong>/*" <br>
+                                    ] <br>
+                                } <br>
+                            ] <br>
+                        }
+                        
+                    </code>
+                </pre>
+            </li>
+        </ol>
+
+        <h3 id="step7">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</h3>
+        <p>For your website to be secure, you need to add an SSL certificate and AWS requires Cloudfront distribution on top of the S3 bucket if you want https. Because we aren’t using Cloudfront, you have to use http (not https).</p>
+        <p>We will load our site with http:// (not https://). Passwords would be visible on the network by using http. This is a big security problem. Don’t add authentication to this scenario.</p>
+
+        <h3 id="step8">Website URL</h3>
+        <p>The URL of your site should be something like this:</p>
+        <p>http://yourbucketname.s3.amazonaws.com</p>
+
+        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+        <h3>If the webpage doesn't load</h3>
+        <ul>
+            <li>
+                <p>You may need to add the bucket policy</p>
+            </li>
+            <li>
+                <p>Make sure to replace the bucket name in the bucket policy</p>
+            </li>
+            <li>
+                <p>Did you use http:// instead of https://</p>
+            </li>
+            <li>
+                <p>Did you make the bucket public</p>
+            </li>
+        </ul>
+
+        <h3>References that might help</h3>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/work-with-S3-objects.html">Working with Amazon S3 Buckets</a></p>
+
+        <h2 id="learning-more">Learning More</h2>
+        <p>Want to learn more about AWS? Take ITM310 Applied Cloud Computing.</p>
+        <p>Build your resume: Deployed a Javascript website to an AWS S3 bucket</p>
+        <p>Build your resume (FUTURE project): Implemented AWS CloudFront distribution for a Javascript website in an S3 bucket</p>
+
+        <h2>Learning More - Add a Version Control Repository</h2>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-codecommit.html#sample-codecommit-clone-repo">AWS CodeCommit Tutorial</a></p>
+        <p>Build your resume (FUTURE project): Built a CD/CI pipeline from an Git repo for a Javascript website to an S3 bucket</p>
+    </article>
+</body>
+</html>
