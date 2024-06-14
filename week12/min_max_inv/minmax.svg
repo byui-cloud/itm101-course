@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<style>
+rect{stroke-width:2;stroke:#ffffff;fill:#006eb6}
+text{font:bold 24px sans-serif;fill:#ffffff;text-anchor:middle;alignment-baseline:central}
+</style>
+<rect width="64" height="64" rx="16"/>
+<text x="32" y="19">MIN</text>
+<text x="32" y="44">MAX</text>
+</svg>

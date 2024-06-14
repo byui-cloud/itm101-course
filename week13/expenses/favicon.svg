@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<style>
+rect{stroke-width:2;stroke:#ffffff;fill:#ffd700}
+text{font:bold 58px sans-serif;fill:green}
+</style>
+<rect width="64" height="64" rx="16"/>
+<text x="32" y="32" text-anchor="middle" alignment-baseline="central">$</text>
+</svg>
