@@ -1,0 +1,75 @@
+body {
+	font-family: "Open Sans", Arial, Helvetica, Verdana, sans-serif;
+}
+
+header > div.user {
+	display: grid;
+	grid-template-columns: repeat(3, fit-content(3em));
+	gap: 0 0.6em;
+}
+header > div.user > .label {
+	grid-column: 1;
+	grid-row: 1 / span 3;
+}
+header > div.user > .name,
+header > div.user > .email,
+header > div.user > .id {
+	grid-column: 2;
+}
+header > div.user > .photo {
+	grid-column: 3;
+	grid-row: 1 / span 3;
+	height: 4em;
+	border-radius: 0.6em;
+}
+
+main > form {
+	display: grid;
+	grid-template-columns: fit-content(5em) fit-content(5em);
+	gap: 0.4em 0.5em;
+}
+main > form > * {
+	width: fit-content;
+}
+main > form > input:invalid {
+	background-color: lightpink;
+}
+main > form > input[type="number"] {
+	text-align: right;
+}
+main > form > button {
+	border-radius: 20%;
+	color: white;
+}
+main > form > button[name="submit"] {
+	background-color: seagreen;
+}
+main > form > button[name="clear"] {
+	background-color: crimson;
+}
+
+main > table {
+	border-collapse: separate;
+	border-spacing: 0.8em 0.4em;
+}
+main > table > thead {
+	position: sticky;
+	top: 0em;
+}
+main > table > thead > tr > th[data-name="expense_id"],
+main > table > tbody > tr > td[data-name="expense_id"] {
+	display: none;
+}
+main > table > thead tr > th {
+	vertical-align: bottom;
+	text-align: center;
+}
+main > table > thead tr > th[data-name] {
+	cursor: pointer;
+}
+main > table > tbody > tr > td {
+	vertical-align: top;
+}
+main > table > tbody > tr > td.number {
+	text-align: right;
+}
