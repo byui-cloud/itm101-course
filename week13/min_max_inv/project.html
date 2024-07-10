@@ -146,12 +146,14 @@ const firebaseConfig = {
     <pre>https://min-max-inventory-DIGITS.web.app</pre></div></li>
 
     <li><div>Copy the URL from the VS Code terminal and open it in a new
-    tab in your browser.
-    Opening the URL in your browser should cause your browser to request
-    sign in credentials from Google.</div></li>
+    tab in your browser. Opening the URL in your browser should cause
+    your browser to open a pop-up window and request sign in credentials
+    from Google. If your browser blocks the pop-up window, click the
+    pop-up blocked icon and enable pop-up windows for your Min-Max
+    Inventory app and then reload your app in your browser.</div></li>
 
     <li><div>If you’re not already signed into your Google account, you
-    must sign into one. After you sign in, the Min-Max Inventory app
+    must sign into one. After you sign in, your Min-Max Inventory app
     will display your name, email address, and application user ID at
     the top of the application window.</div></li>
 
@@ -160,7 +162,7 @@ const firebaseConfig = {
 
     <li><div>Still using the Firebase Console, add a document to the
     “users” collection. For the “Document ID” copy and paste your
-    application user ID which will be at the top of the Min-Max
+    application user ID which will be at the top of your Min-Max
     Inventory app window. Add two fields named “email” and “enabled” to
     the document. The “enabled” field must by of type boolean as shown
     in the following screenshot:

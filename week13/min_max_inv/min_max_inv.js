@@ -2,7 +2,7 @@
 // needed by this Min-Max Inventory System.
 import {initializeApp} from
 	'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
-import {getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithRedirect}
+import {getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup}
 	from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js';
 import {getFirestore, collection as fireCollect, onSnapshot,
 		doc as fireDoc, addDoc, updateDoc, serverTimestamp}
@@ -114,7 +114,7 @@ const mminv = {
 					// The user is not signed in so use the Google
 					// authentication service to sign in the user.
 					const provider = new GoogleAuthProvider();
-					signInWithRedirect(auth, provider)
+					signInWithPopup(auth, provider)
 					.then((result) => {
 						const user = result.user;
 						console.log(`${user.displayName} successfully signed in`);

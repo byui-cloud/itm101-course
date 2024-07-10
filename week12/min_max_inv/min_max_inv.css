@@ -11,7 +11,7 @@ body {
 header {
 	background-color: var(--bkgrnd-color);
 	display: grid;
-	grid-template-columns: fit-content(3em) fit-content(36em);
+	grid-template-columns: 3em fit-content(36em);
 	gap: 0.8em 1.2em;
 }
 header > img.logo {
@@ -67,7 +67,7 @@ section table > thead > tr > th {
 	vertical-align: bottom;
 	text-align: center;
 }
-section table > thead > tr > th[name] {
+section table > thead > tr > th[data-name] {
 	cursor: pointer;
 }
 section table > tbody > tr > td {

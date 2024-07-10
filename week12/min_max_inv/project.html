@@ -117,10 +117,10 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div>Give this prompt to ChatGPT:
         <p class="gpt">Please generate a list of 5 fictitious product
         suppliers in JSON format. Each item in the list must include
-        three attributes:  a supplier name, email address, and phone
-        number. Choose names that would fit into an animated cartoon
-        like Wile E Coyote and the Roadrunner, Space Jam, and Roger
-        Rabbit.</p>
+        three attributes:  supplier_name, email_address, and
+        phone_number. Choose names that would fit into an animated
+        cartoon like Wile E Coyote and the Roadrunner, Space Jam, and
+        Roger Rabbit.</p>
         </div></li>
 
         <li><div>Wait for ChatGPT to respond and then give it this
@@ -145,13 +145,14 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div>Save the file as
         <code>init_suppliers.html</code></div></li>
 
-        <li><div>Open the <code>init_suppliers.html</code> file in
-        your browser, and your browser should add five suppliers to a
-        collection named “suppliers” in your Firestore database. After
-        adding the suppliers, your browser window should have a list of
-        five supplier IDs and names.</div></li>
+        <li><div>Open the <code>init_suppliers.html</code> file in your
+        browser. Your browser will execute the JavaScript code in that
+        file which should add five suppliers to a collection named
+        “suppliers” in your Firestore database. After adding the
+        suppliers, your browser window should have a list of five
+        supplier IDs and names.</div></li>
 
-        <li><div>Copy the five supplier IDs into a new file in VS
+        <li><div>Copy the five supplier IDs into a new text file in VS
         Code.</div></li>
 
         <li><div>Using the Firebase console, verify that your Firestore
@@ -168,8 +169,8 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <p class="gpt">Please generate a list of 20 products for a
         min-max inventory system for the cosmetics industry. Generate
         the list in JSON format. Each item in the list must include five
-        attributes: a product name, minimum quantity, quantity, maximum
-        quantity, and supplier ID. Use these supplier IDs: </p>
+        attributes:  product_name, minimum_quantity, quantity,
+        maximum_quantity, and supplier_id. Use these supplier IDs: </p>
         </div></li>
 
         <li><div>Review the prompt and ensure that it makes sense. Then
@@ -194,10 +195,12 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 
         <li><div>Save the file as <code>init_products.html</code></div></li>
 
-        <li><div>Open the <code>init_products.html</code> file in a
-        browser, and your browser should add 20 products to a collection
-        named “products” in your Firestore database. The browser window
-        should now have a list of 20 product IDs and names.</div></li>
+        <li><div>Open the <code>init_products.html</code> file in your
+        browser. Your browser will execute the JavaScript code in that
+        file which should add 20 products to a collection named
+        “products” in your Firestore database. After adding the
+        products, your browser window should have a list of 20 product
+        IDs and names.</div></li>
 
         <li><div>Using the Firebase console, verify that your Firestore
         database has a collection named “products” that contains 20
@@ -212,12 +215,10 @@ system that uses a NoSQL database in the Internet Cloud.</p>
     <code>min_max_inv</code> where you will save files for this final
     project.</div></li>
 
-    <li><div>Using your browser, download the following two files and
-    save them into the <code>min_max_inv</code> folder that you created.
-    <ol>
-        <li><div><a download href="firebase.config">firebase.config</a></div></li>
-        <li><div><a download href="firestore.rules">firestore.rules</a></div></li>
-    </ol></div></li>
+    <li><div>Using your browser, download this
+    <a download href="firestore.rules">firestore.rules</a>
+    file and save it into the <code>min_max_inv</code> folder that you
+    created.</div></li>
 
     <li><div>Open VS Code and in the “File” menu, click “Open Folder...”
     and open the <code>min_max_inv</code> folder that you created.</div></li>
@@ -231,14 +232,13 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div><code>firebase init</code><br>
         (When you execute this command, your computer will ask you
         several questions about the firebase services that you want to
-        initialize. Be sure to initialize both firestore and hosting.
-        You don’t need to initialize github.)</div></li>
+        initialize. Be sure to initialize both hosting and firestore.
+        Don’t initialize GitHub.)</div></li>
     </ol></div></li>
 
     <li><div>Using your browser, download the following five files and
-    save them into the <code>public</code> folder that the
-    <code>firebase init</code> command created in the previous
-    step:
+    save them into the <code>public</code> folder created by the
+    <code>firebase init</code> command in the previous step:
     <ol>
         <li><div><a download href="index.html">index.html</a></div></li>
         <li><div><a download href="min_max_inv.css">min_max_inv.css</a></div></li>
