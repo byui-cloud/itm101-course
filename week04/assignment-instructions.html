@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<!-- Copyright © 2024, Brigham Young University–Idaho. All rights reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="../site/reset.css">
+    <link rel="stylesheet" href="../site/style.css">
+    <link rel="stylesheet" href="test.css">
+    <script defer src="../site/main.js"></script>
+    <title>Create and Deploy a Website to Firebase</title>
+    <link rel="icon" type="image.webp" href="../site/logo.png">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week04/assignment-instructions.html">
+    <meta name="description" content="Week 4 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
+</head>
+<body>
+    <article>
+        <h1>Create and Deploy a Website to Firebase</h1>
+        <h2>Overview</h2>
+
+        <p>In this scenario, you are preparing for an upcoming interview with a company that uses Firebase hosting. You need to create a personal portfolio webpage on the internet that you can share with the employer. The job description states that a minimum requirement is experience with Google Firebase Hosting. The preferred candidates will have used Node.js. We will use both.</p>
+
+        <h3>Business Requirements</h3>
+        <ul>
+            <li>
+                <p>Marketing portfolio website to obtain jobs</p>
+            </li>
+        </ul>
+
+        <h3>Project Requirements</h3>
+        <ul>
+            <li>
+                <p>Use Visual Studio Code as your text editor</p>
+            </li>
+            <li>
+                <p>Use an automated scalable web hosting solution</p>
+            </li>
+            <li>
+                <p>Use Google services if possible</p>
+            </li>
+            <li>
+                <p>Use Node.js to install firebase and test your code</p>
+            </li>
+            <li>
+                <p>The project name must include part of your first or last name</p>
+            </li>
+        </ul>
+
+        <h2>Project Overview</h2>
+        <ul>
+            <li>
+                <p>Hopefully, you already have node.js and Visual Studio Code installed on your computer. If not, ask Chatgpt how to install it.</p>
+            </li>
+            <li>
+                <p>Deploy a website to Firebase.</p>
+            </li>
+        </ul>
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#step1">Step 1: How Do I Create a New Project in Firebase?</a></li>
+            <li><a href="#step2">Step 2: Create Necessary Files in VS Code</a></li>
+            <li><a href="#step3">Step 3: Install Google Firebase by asking ChatGPT</a></li>
+            <li><a href="#step4">Step 4: Login to Firebase with your account</a></li>
+            <li><a href="#step5">Step 5: Initialize Firebase in your project</a></li>
+            <li><a href="#step6">Step 6: Deploy your project to Firebase</a></li>
+            <li><a href="#step7">Step 7: Create a Profile webpage using AI and deploy to Firebase Hosting</a></li>
+            <li><a href="#step8">Step 8: Ask ChatGPT questions</a></li>
+            <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
+            <li><a href="#learning-more">Learning More</a></li>
+        </ol>
+
+        <h2>Instructions</h2>
+        <h4>Watch the video instead: <a href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_am23qli8/embed/dynamic">Firebase Hosting Setup Video</a></h4>
+
+        <h3 id="step1">Step 1: How Do I Create a New Project in Firebase?</h3>
+        <ol>
+            <li>Login to <a target="_blank" rel="noopener" href="https://console.firebase.google.com">Firebase</a> using your BYU-Idaho username (usually the email with numbers ex: lastname038@byui.edu).</li>
+            <ul>
+                <li>
+                    <p>Troubles with login - go to <a href="my.byui.edu">my.byui.edu</a> , click on your profile image, click <strong>View Profile</strong>, scroll down to <strong>Email</strong> and use that email for the Google Firebase login instead</p>
+                    <img src="../site/images/week05/view_profile.webp" alt="my.byui.edu View Profile option">
+                    <img src="../site/images/week05/profile_email.webp" alt="my.byui.edu Profile Email">
+                </li>
+            </ul>
+            <li>
+                <p>Click on <strong>Add Project</strong>.</p>
+                <img src="../site/images/week04/add_firebase_project.png" alt="Firebase Add Project">
+            </li>
+            <li>
+                <p>Name your Project with your name and accept the terms</p>
+                <img src="../site/images/week04/name_project.png" alt="Firebase Name Project">
+            </li>
+            <li>
+                <p>Enable Google Analytics</p>
+                <img src="../site/images/week04/enable_google_analytics.png" alt="Firebase Enable Google Analytics">
+            </li>
+            <li>
+                <p>Use default settings and accept terms</p>
+                <img src="../site/images/week04/enable_google_analytics2.png" alt="Firebase Enable Google Analytics 2">
+            </li>
+            <li>
+                <p>Wait for creation to complete</p>
+                <img src="../site/images/week04/creation_progress1.png" alt="Firebase Wait for Creation"><br>
+                <img src="../site/images/week04/creation_complete.png" alt="Firebase Creation Complete">
+
+            </li>
+        </ol>
+
+        <h3 id="step2">Step 2: Create Necessary Files in VS Code</h3>
+        <ol>
+            <li>
+                <p>Open Visual Studio Code (VS Code) and click <strong>File > New Window</strong></p>
+                <img src="../site/images/week04/file_new_window.png" alt="VS Code New Window">
+            </li>
+            <li>
+                <p>Click <strong>Open Folder</strong> or on Mac <strong>Open</strong> (not open folder) to open a new folder</p>
+                <img src="../site/images/week04/open_folder.png" alt="VS Code Open Folder">
+                <p>Click <strong>New Folder</strong> (on Mac) or right-click and choose <strong>New > Folder</strong> (on Windows) and make a new project folder called <strong>firebaseproject</strong> or a name of your choice and open it.</p>
+            </li>
+            <li>
+                <p>Click <strong>Yes, I trust the authors</strong></p>
+                <img src="../site/images/week04/trust_authors.png" alt="VS Code Trust Authors">
+            </li>
+            <li>
+                <p>In VS Code, create a new folder called <strong>public</strong> inside the project (it must be called <strong>public</strong>) by clicking on the <strong>+ folder</strong> icon.</p>
+                <img src="../site/images/week04/new_folder.png" alt="VS Code New Folder">
+            </li>
+            <li>
+                <p>Type <strong>public</strong> for the new folder name</p>
+                <img src="../site/images/week04/new_folder_public.png" alt="VS Code Public Folder">
+            </li>
+            <li>
+                <p>Click on the <strong>public</strong> folder to select it</p>
+                <img src="../site/images/week04/select_public_folder.png" alt="VS Code Select Public">
+            </li>
+            <li>
+                <p>Make a new file by clicking on the <strong>+ file</strong> icon (make sure the <strong>public</strong> folder is still selected)</p>
+                <img src="../site/images/week04/public_folder_new_file.png" alt="VS Code New File">
+            </li>
+            <li>
+                <p>Make the <strong>index.html</strong> file inside the <strong>public</strong> folder (notice that it is indented a little). <strong>Make sure it is indented so that it is inside </strong> the <strong>public</strong> folder.</p>
+                <img src="../site/images/week04/public_folder_index.png" alt="VS Code Index.html">
+            </li>
+            <li>
+                <p>Create another new file by clicking on the <strong>+ file</strong> icon.</p>
+                <img src="../site/images/week04/public_folder_new_file.png" alt="VS Code New File">
+            </li>
+            <li>
+                <p>Type the filename <strong>styles.css</strong> to create the styling file for your webpages. (If your CSS file is not indented under the <strong>public</strong> folder, drag it into there).</p>
+                <img src="../site/images/week04/public_folder_styles.png" alt="VS Code Styles.css">
+            </li>
+            <li>
+                <p>Make sure the <strong>styles.css</strong> and the <strong>index.html</strong> files are indented with a line like this image below so that you know it is in the <strong>public</strong> folder</p>
+                <img src="../site/images/week04/public_folder_view.png" alt="VS Code Public Folder Files">
+            </li>
+            <li>
+                <p>Open the terminal in VS Code by clicking on the <strong>Terminal</strong> menu <strong>> New Terminal</strong></p>
+                <img src="../site/images/week04/open_terminal.png" alt="VS Code Terminal New">
+                <p>In that new terminal window, run the commands given below</p>
+            </li>
+        </ol>
+
+        <h3 id="step3">Install Google Firebase by asking ChatGPT</h3>
+        <ol>
+            <li>
+                <p>Sign into <a href="https://chat.openai.com">ChatGPT</a></p>
+                <ul>
+                    <li>
+                        <p>Start a new chat</p>
+                        <img src="../site/images/week04/chatgpt_start.png" alt="ChatGPT Start Chat">
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>In the new chat prompt at the bottom, type <strong>How can I make a simple firebase webpage that uses node.js?</strong></p>
+                <ul>
+                    <li>
+                        <p>NOTE: If ChatGPT asks you to install express or admin tools, you don't need to do that. <strong>Sometimes, Try asking ChatGPT the same thing a few times. YOu will get better resutls as you analyze them.</strong></p>
+                    </li>
+                </ul>
+                <img src="../site/images/week04/chatgpt_prompt1.png" alt="ChatGPT Prompt 1">
+            </li>
+            <li>
+                <p>The prompts/commands ChatGPT provides should be run in the terminal in VS Code.</p>
+                <p>For Windows machines: Change the execution policy</p>
+                <ul>
+                    <li>
+                        <p>Search for Powershell and <strong>run it as administrator</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Run the following command: <strong><pre>Set-ExecutionPolicy RemoteSigned</pre></strong></p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>For example, ChatGPT should prompt you to install Firebase using <strong>npm</strong> (node package manager). (<strong>-g</strong> means to install it globally)</p>
+                <img src="../site/images/week04/chat_install_firebase_tools.png" alt="Firebase Install Tools">
+            </li>
+            <li>
+                <p>Click <strong>Copy Code</strong> from ChatGPT then paste it in the terminal in VS Code. Hit <strong>Return/Enter</strong> to run it</p>
+                <img src="../site/images/week04/terminal_run_install.png" alt="Terminal Run Install">
+                <ul>
+                    <li>
+                        <p>It should install a few things and it might look like this:</p>
+                        <img src="../site/images/week04/terminal_install_progress.png" alt="Terminal Install Progress">
+                    </li>
+                    <li>
+                        <p>When firebase is installed, it should look something like this:</p>
+                        <img src="../site/images/week04/terminal_install_complete.png" alt="Terminal Install Complete">
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 id="step4">Step 4: Login to Firebase with your account</h3>
+        <ol>
+            <li>
+                <p>Login to firebase in your VS Code terminal with the command <strong><pre>firebase login</pre></strong></p>
+                <img src="../site/images/week04/firebase_login.png" alt="Firebase Login">
+            </li>
+            <li>
+                <p>Type <strong>n</strong> and hit Return/Enter to not submit usage and error information</p>
+                <img src="../site/images/week04/firebase_login_no_usage.png" alt="Firebase Login No Usage">
+            </li>
+            <li>
+                <p>Login as needed and you may see this page in your terminal window</p>
+                <img src="../site/images/week04/firebase_login_notice.png" alt="Firebase Login Notice">
+            </li>
+            <li>
+                <p>Login with your <strong>byui.edu</strong> email address, accept the terms and click <strong>continue</strong></p>
+                <img src="../site/images/week04/firebase_login_byui1.png" alt="Firebase Login BYU-I">
+            </li>
+            <li>
+                <p>Allow the firebase CLI (command line interface) to access Google</p>
+                <img src="../site/images/week04/firebase_login_byui2.png" alt="Firebase Login BYU-I 2">
+            </li>
+            <li>
+                <p>You should see a success prompt in the browser and in the terminal</p>
+                <img src="../site/images/week04/firebase_login_success.png" alt="Firebase Login Success">
+                <img src="../site/images/week04/terminal_firebase_login_success.png" alt="Terminal Firebase Login Success">
+            </li>
+        </ol>
+
+        <h3 id="step5">Step 5: Initialize Firebase in your project</h3>
+        <ol>
+            <li>
+                <p>Initialize the firebase project by typing in <strong><pre>firebase init</pre></strong> in the terminal in VS code</p>
+                <img src="../site/images/week04/firebase_init.png" alt="Firebase Init">
+                <p>Take note of the directory it gives. When configuring multiple firebase projects, you need to be in a different directory for each.</p>
+                <p>Type <strong>y</strong> to proceed and type <strong>Return/Enter</strong></p>
+            </li>
+            <li>
+                <p>Use the arrows on your keyboard to select <strong>Hosting: Configure files for Firebase hosting and (optionally) set up GitHub action deploys</strong>. Press the <strong>spacebar</strong> on your keyboard followed by <strong>Return/Enter</strong>.</p>
+                <img src="../site/images/week04/firebase_init_select1.png" alt="Firebase Init Select">
+            </li>
+            <li>
+                <p>Use the arrows on your keyboard to select <strong>Use and existing Project</strong> and press <strong>Return/Enter</strong>. This will allow us to choose a project we previously in Google Firebase</p>
+                <img src="../site/images/week04/firebase_init_select2.png" alt="Firebase Init Select 2">
+            </li>
+            <li>
+                <p>Pick the name of the project you made previously by using the arrow keys on your keyboard and then press <strong>Return/Enter</strong>.</p>
+                <img src="../site/images/week04/firebase_init_select3.png" alt="Firebase Init Select 3">
+            </li>
+            <li>
+                <p>Choose the <strong>public</strong> folder (provided by default) by pressing <strong>Return/Enter</strong> on your keyboard.</p>
+                <img src="../site/images/week04/firebase_init_select4.png" alt="Firebase Init Select 4">
+            </li>
+            <li>
+                <p>Do not configure it as a single-page app by typing <strong>n</strong> and press <strong>Return/Enter</strong></p>
+                <img src="../site/images/week04/firebase_init_select5.png" alt="Firebase Init Select 5">
+            </li>
+            <li>
+                <p>We won't set it up with GitHub for automatic builds and deploys, so type <strong>n</strong> and press <strong>Return/Enter</strong>.</p>
+                <img src="../site/images/week04/firebase_init_select6.png" alt="Firebase Init Select 6">
+            </li>
+            <li>
+                <p>We want to overwrite the index.html file. Type <strong>y</strong> then press <strong>Return/Enter</strong>.</p>
+                <img src="../site/images/week04/firebase_init_select7.png" alt="Firebase Init Select 7">
+            </li>
+        </ol>
+
+        <h3 id="step6">Step 6: Deploy your project to Firebase</h3>
+
+        <ol>
+            <li>
+                <p>Type <strong><pre>firebase deploy</pre></strong> in the terminal. This will deploy your code to a website URL that you can share with others (You must run this each time you modify your code to push the changes to the cloud).</p>
+                <img src="../site/images/week04/firebase_deploy.png" alt="Firebase Deploy">
+            </li>
+            <li>
+                <p>Copy the <strong>Hosting URL</strong> and paste it in a new tab in your browser</p>
+            </li>
+            <li>
+                <p>The URL should be something like https://yourproject.web.app and will look something like this:</p>
+                <img src="../site/images/week04/firebase_deploy_success.png" alt="Firebase Deploy Success">
+            </li>
+        </ol>
+
+        <h3 id="step7">Step 7: Create a Profile webpage using AI and deploy to Firebase Hosting</h3>
+
+        <ol>
+            <li>
+                <p>Ask ChatGPT the following <pre>Please give me code for my index.html file and a styles.css file that would be a nice portfolio page and link them</pre></p>
+            </li>
+            <li>
+                <p>Click <strong>Copy Code</strong> for the index.html file and paste it into that file in VS Code</p>
+            </li>
+            <li>
+                <p>In VS Code, double-click the <strong>index.html</strong> file we created in the public folder and delete all of the contents. You can also press (<strong>CMD/CTRL + A</strong> to select all and then <strong>Delete/Backspace</strong>).</p>
+            </li>
+            <li>
+                <p>Them, paste the HTML code from ChatGPT into the file, or click <strong>Edit > Paste</strong> from the menu, or press <strong>CMD/CTRL + V</strong></p>
+            </li>
+            <li>
+                <p>Save the file with <strong>File > Save</strong> from the menu or press <strong>CMD/CTRL + V</strong>.</p>
+                <ul>
+                    <li>
+                        <p>This HTML code is to provide the text and structure for the webpage.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Now do the same thing with the CSS code provided by ChatGPT. If you don't have CSS code, ask ChatGPT for it.</p>
+            </li>
+            <li>
+                <p>In VS Code, delete all the content from the styles.css file and paste in the provided code.</p>
+            </li>
+            <li>
+                <p>Save the file.</p>
+                <ul>
+                    <li>
+                        <p>The WDD 130 Course teaches more about HTML and CSS</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Run <strong><pre>firebase deploy</pre></strong> again in the terminal to push your changes to Firebase</p>
+            </li>
+            <li>
+                <p>Refresh the URL in your browser by clicking the refresh button while holding <strong>shift</strong> on your keyboard. This will refresh the cache of the page.</p>
+            </li>
+            
+        </ol>
+
+        <h3 id="step8">Step 8: Ask ChatGPT questions</h3>
+        <ol>
+            <li>
+                <p>Ask chatGPT about any concepts that you don't understand or you are unsure of</p>
+                <ul>
+                    <li>
+                        <p>Ex. What is Node.js?</p>
+                    </li>
+                    <li>
+                        <p>Ex. What is the purpose of Node.js within a web application?</p>
+                    </li>
+                    <li>
+                        <p>Ex. What is hosting?</p>
+                    </li>
+                    <li>
+                        <p>Ex. Can you make a website without hosting?</p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+        <h3>Permission Errors or firebase installation not working</h3>
+        <ul>
+            <li>
+                <p>(Mac/Apple) You may need to run the <strong>sudo</strong> command in front of the firebase installation commands and/or other commands in the terminal</p>
+            </li>
+            <li>
+                <p>(Windows) You may need to run the terminal commands in a terminal window or in powershell.</p>
+            </li>
+            <li>
+                <p>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</p>
+            </li>
+        </ul>
+
+        <h3>If firebase doesn't deploy</h3>
+        <ul>
+            <li>
+                <p>Rerun <strong><pre>firebase init</pre></strong> and make sure you choose the correct options from <a href="#step5">Step 5</a></p>
+            </li>
+        </ul>
+
+        <h3>Error: <strong>No firebase projects associated with this account</strong></h3>
+        <ul>
+            <li>
+                <p>Are you logged into firebase with the same credentials and email?</p>
+            </li>
+            <li>
+                <p>Re-run <pre>firebase init</pre></p>
+                <ul>
+                    <li>
+                        <p>Select <strong>Don't set up a default project</strong></p>
+                    </li>
+                    <li>
+                        <p>Pick the same options of <strong>yes</strong></p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Run <pre>firebase use (projectid)</pre> (Replace with your projectid)</p>
+            </li>
+        </ul>
+
+        <h3>The website doesn’t load the styles, but only the words appear</h3>
+        <ul>
+            <li>
+                <p>Make sure the <strong>styles.css</strong> file is in the <strong>public</strong> folder and that it is linked in the <strong>index.html</strong> file</p>
+            </li>
+            <li>
+                <p>Make sure the <strong>styles.css</strong> file is linked in the <strong>index.html</strong> file with the correct path</p>
+            </li>
+            <li>
+                <p>Make sure the <strong>styles.css</strong> file is saved</p>
+            </li>
+        </ul>
+
+        <h3>Node is not able to run</h3>
+        <ul>
+            <li>
+                <p>Create a <strong>package.json</strong> file and paste the following into it:</p>
+                <pre>{
+                    "dependencies": {
+                      "express": "^4.18.2",
+                      "firebase": "^10.7.2",
+                      "firebase-admin": "^12.0.0"
+                    }
+                   }
+                   </pre>
+            </li>
+        </ul>
+
+        <h3>Cannot get Firebase to finish setting up and installing</h3>
+        <ul>
+            <li>
+                <p>You may need to create the <strong>firebase.json</strong> file and paste the following into it.</p>
+                <pre>{
+                    "hosting": {
+                      "public": "public",
+                      "ignore": [
+                        "firebase.json",
+                        "**/.*",
+                        "**/node_modules/**"
+                      ],
+                      "rewrites": [
+                        {
+                          "source": "**",
+                          "destination": "/index.html"
+                        }
+                      ]
+                    },
+                    "firestore": {
+                      "rules": "firestore.rules",
+                      "indexes": "firestore.indexes.json"
+                    }
+                   }
+                   </pre>
+            </li>
+        </ul>
+
+        <h2 id="learning-more">Learning More</h2>
+        <h3>Classes to take</h3>
+        <ul>
+            <li>
+                <p>Want to learn more about websites? Take WDD130 or WDD331R</p>
+            </li>
+            <li>
+                <p>Want to learn more about the Cloud? Take ITM300 or ITM310</p>
+            </li>
+        </ul>
+
+        <h3>Build Your Resume</h3>
+        <ul>
+            <li>
+                <p>Deployed a Javascript website to Firebase Hosting</p>
+            </li>
+            <li>
+                <p>(Future Project): Create a react website implementing tailwind CSS and deploy it to Firebase Hosting</p>
+            </li>
+        </ul>
+
+        <h3>Improve Your Site</h3>
+        <ul>
+            <li>
+                <p>Modify the website to look better with HTML or CSS</p>
+            </li>
+            <li>
+                <p>Deploy React website instead</p>
+            </li>
+            <li>
+                <p>Implement Tailwind or Bootstrap</p>
+            </li>
+        </ul>
+
+        <h3>Adding SCSS (WDD331R teaches SCSS and preprocessors)</h3>
+        <ul>
+            <li>
+                <p>Install node-sass that will convert your .scss file to a .css file. You still need to make sure your index.html file is linked to the .css file that is generated from the .scss file.</p>
+                <ul>
+                    <li>
+                        <p>Run this in the terminal <pre>npm install node-sass</pre></p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Add this to your package.json file (create this file if needed - outside the public folder)</p>
+                <pre>
+    "scripts": {
+        "build": "node-sass public/styles.scss public/styles.css"
+        }
+                 </pre>
+            </li>
+            <li>
+                <p>In the terminal run <pre>npm run build</pre></p>
+            </li>
+            <li>
+                <p>Ideally, you put the styles.css file inside a folder titled <strong>css</strong> and you would put the styles.css file outside of the public folder (modify the script above)</p>
+            </li>
+            <li>
+                <p>Add a server.js file to run with node</p>
+                <pre>
+    const express = require('express');
+    const app = express();
+    // Serve static files from the 'public' directory
+    app.use(express.static('public'));
+    // Define routes or any other server-side logic here if needed
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+                </pre>
+            </li>
+            <li>
+                <p>Require express and node-sass as dependencies and create start, build, and deploy, options for node. This code would be in your package.json file:</p>
+                <pre>
+    {
+    "dependencies": {
+        "express": "^4.18.2",
+        "node-sass": "^9.0.0"
+    },
+    "scripts": {
+        "start": "node public/server.js",
+        "build": "node-sass public/styles.scss public/styles.css",
+        "deploy": "firebase deploy"
+        }
+    }
+                   </pre>
+            </li>
+        </ul>
+</article>
+</body>
+</html>
