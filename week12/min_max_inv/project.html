@@ -322,6 +322,31 @@ const firebaseConfig = {
     what is the purpose of each of the files (html, css, js) in a web
     app.</div></li>
 </ol>
+<h2 id="Help">Help & Troubleshooting</h2>
+<p>If you are stuck, you may want to look at the previous project instructions from prior weeks.</p>
+<a href="https://byui-cloud.github.io/itm101-course/week04/assignment-instructions.html">Setting up Firebase Web Hosting (from Week 4)</a><br>
+<a href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">Setting up the Database (from Week 5)</a><br>
+<a href="https://byui-cloud.github.io/itm101-course/week06/assignment-instructions.html">Setting up Authenticataion (from Week 6)</a><br>
+<h4>No products or no suppliers load</h4>
+<p>Did you run your file to create the suppliers and the other file to create products?</p>
+<p>It should output the list of suppliers and put it in your database too when you load your file like this: https://min-max-inventory-yourURL.web.app/init_suppliers.html</p>
+<p>It should output the list of products and put it in your database too when you load your file like this: https://min-max-inventory-yourURL.web.app/init_products.html</p>
+<p>Did you put both of those two files generated from ChatGPT into your 'public' folder?</p>
+<p>Did you create the two collections in your firestore console on Google's website?</p>
+<p>You should have a collection called 'products' and another collection called 'suppliers'</p>
+<p>You could replace your database rules in the Firebase console with this temporarily to remove other rules:</p>
+<p>
+                    <code>rules_version = '2';</code><br>
+                    <code>service cloud.firestore {</code> <br>
+                    <code>match /databases/{database}/documents {</code><br>
+                    <code>    match /projects/{document=**} {</code> <br>
+                    <code>    allow read, write: if request.auth == null;</code><br>
+                    <code>    }</code><br>
+                    <code>}</code><br>
+                    <code>}</code>
+</p>
+<h4></h4>
+<p>You may need to replace the const firebaseConfig with your config on all of your html files depending on what ChatGPT gave you (in both these files: init_suppliers.html AND init_products.html )</p>
 </article>
 </body>
 </html>
