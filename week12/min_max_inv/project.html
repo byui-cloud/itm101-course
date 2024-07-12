@@ -347,15 +347,17 @@ const firebaseConfig = {
 <p>Did you create the two collections in your firestore console on Google's website?</p>
 <p>You should have a collection called 'products' and another collection called 'suppliers'</p>
 <p>You could replace your database rules in the Firebase console with this temporarily to remove other rules:</p>
-<pre>rules_version = '2';
-
-service cloud.firestore {
-    match /databases/{database}/documents {
-        match /projects/{document=**} {
-            allow read, write: if request.auth == null;
+<pre> rules_version = '2';
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /suppliers/{document=**} {
+        allow read, write: if request.auth == null;
         }
-    }
-}</pre>
+        match /products/{document=**} {
+        allow read, write: if request.auth == null;
+        }
+      }
+    } </pre>
 </article>
 </body>
 </html>
