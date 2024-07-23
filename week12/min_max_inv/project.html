@@ -128,15 +128,15 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <p class="gpt">Please write HTML and JavaScript code in a single
         HTML file that will add the supplier data that you generated for
         the 5 suppliers into a Google Firestore database. The HTML must
-        import the Firebase and Firestore Web modular API as scripts of
-        type="module". The JavaScript code must be contained in a
-        function that a browser will execute after the HTML document is
-        loaded. The JavaScript code must use the Firebase and Firestore
-        Web modular API functions to add the supplier data into a
-        collection named "suppliers". After adding each supplier, the
-        JavaScript code must retrieve the document ID for the supplier
-        and display the document ID and supplier name in a div in the
-        HTML document.</p>
+        import version 10.12.4 of the Firebase and Firestore Web modular
+        API as scripts of type="module". The JavaScript code must be
+        contained in a function that a browser will execute after the
+        HTML document is loaded. The JavaScript code must use the
+        Firebase and Firestore Web modular API functions to add the
+        supplier data into a collection named "suppliers". After adding
+        each supplier, the JavaScript code must retrieve the document ID
+        for the supplier and display the document ID and supplier name
+        in a div in the HTML document.</p>
         </div></li>
 
         <li><div>Wait for ChatGPT to respond. Then copy the code that
@@ -207,15 +207,15 @@ const firebaseConfig = {
         <li><div>After ChatGPT responds, give it this prompt:
         <p class="gpt">Please write HTML and JavaScript code in a single
         HTML file that will add the product data that you generated into
-        a Google Firestore database. The HTML must import the Firebase
-        and Firestore Web modular API as scripts of type="module". The
-        JavaScript code must be contained in a function that a browser
-        will execute after the HTML document is loaded. The JavaScript
-        code must use the Firebase and Firestore Web modular API
-        functions to add the product data into a collection named
-        "products". After adding each product, the JavaScript code must
-        display the document ID and product name for the product in a
-        div in the HTML document.</p>
+        a Google Firestore database. The HTML must import version
+        10.12.4 of the Firebase and Firestore Web modular API as scripts
+        of type="module". The JavaScript code must be contained in a
+        function that a browser will execute after the HTML document is
+        loaded. The JavaScript code must use the Firebase and Firestore
+        Web modular API functions to add the product data into a
+        collection named "products". After adding each product, the
+        JavaScript code must display the document ID and product name
+        for the product in a div in the HTML document.</p>
         </div></li>
 
         <li><div>Wait for ChatGPT to respond. Then copy the code that
@@ -334,31 +334,38 @@ const firebaseConfig = {
     what is the purpose of each of the files (html, css, js) in a web
     app.</div></li>
 </ol>
-<h2 id="Help">Help & Troubleshooting</h2>
+<h2 id="help">Help & Troubleshooting</h2>
 <p>If you are stuck, you may want to look at the previous project instructions from prior weeks.</p>
-<a href="https://byui-cloud.github.io/itm101-course/week04/assignment-instructions.html">Setting up Firebase Web Hosting (from Week 4)</a><br>
-<a href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">Setting up the Database (from Week 5)</a><br>
-<a href="https://byui-cloud.github.io/itm101-course/week06/assignment-instructions.html">Setting up Authenticataion (from Week 6)</a><br>
-<h4>No products or no suppliers load</h4>
-<p>Make sure you update your firestore versions in the import statements to <strong>10.7.2</strong></p>
-<p>Did you run your file to create the suppliers and the other file to create products?</p>
-<p>It should output the list of suppliers and put it in your database too when you load your file like this: https://min-max-inventory-yourURL.web.app/init_suppliers.html</p>
-<p>It should output the list of products and put it in your database too when you load your file like this: https://min-max-inventory-yourURL.web.app/init_products.html</p>
-<p>Did you put both of those two files generated from ChatGPT into your 'public' folder?</p>
-<p>Did you create the two collections in your firestore console on Google's website?</p>
-<p>You should have a collection called 'products' and another collection called 'suppliers'</p>
-<p>You could replace your database rules in the Firebase console with this temporarily to remove other rules:</p>
-<pre> rules_version = '2';
-    service cloud.firestore {
-      match /databases/{database}/documents {
-        match /suppliers/{document=**} {
-        allow read, write: if request.auth == null;
-        }
-        match /products/{document=**} {
-        allow read, write: if request.auth == null;
-        }
-      }
-    } </pre>
+<ul>
+    <li><div><a href="https://byui-cloud.github.io/itm101-course/week04/assignment-instructions.html">Setting up Firebase Web Hosting (from Week 4)</a></div></li>
+    <li><div><a href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">Setting up the Database (from Week 5)</a></div></li>
+    <li><div><a href="https://byui-cloud.github.io/itm101-course/week06/assignment-instructions.html">Setting up Authenticataion (from Week 6)</a></div></li>
+</ul>
+
+<h3>Your browser won’t show your app</h3>
+<p>If your browser does not display your min-max-inventory app but
+instead shows an error message that says your app is not available, you
+may need to submit a request to Palo Alto Networks to
+<a href="https://urlfiltering.paloaltonetworks.com/">reclassify your
+app’s URL</a>. Work with your teacher to do that.</p>
+
+<h3>No suppliers or no products</h3>
+<p>Did you open your init_suppliers.html and init_products.html files in
+your browser so that your browser could run them to create the suppliers
+and the other file to create products?</p>
+<p>You could temporarily replace your Firestore database rules in the
+Firebase console with these rules:</p>
+<pre>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /suppliers/{document=**} {
+      allow read, write: if true;
+    }
+    match /products/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}</pre>
 
 </article>
 </body>
