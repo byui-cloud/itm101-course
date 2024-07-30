@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>AWS Learner Lab - Linux, Docker, and Terraform</title>
+    <title>AWS Learner Lab - Linux and Docker</title>
     <link rel="icon" type="image.webp" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">
     <meta name="description" content="Week 10 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
@@ -46,13 +46,6 @@
             <li><a href="#part2">Part 2 - Docker and Nginx</a></li>
             <li><a href="#step7">Install Docker</a></li>
             <li><a href="#step8">Install NGINX web server on Docker</a></li>
-            <li><a href="#part3">Part 3 - Terraform</a></li>
-            <li><a href="#step9">Setting Up an EC2 Instance - Using Automation</a></li>
-            <li><a href="#step10">AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</a></li>
-            <li><a href="#step11">AWS Terraform</a></li>
-            <li><a href="#step12">Terraform Script File</a></li>
-            <li><a href="#step13">Initiate Terraform Script File</a></li>
-            <li><a href="#step14">Deleting Resources With Terraform Script File</a></li>
             <li><a href="#learning-more">Learning More</a></li>
         </ol>
 
@@ -164,9 +157,8 @@
         <h2 id="learning-more">Learning More</h2>
         <ul>
             <li>
-                <p>Install more things and do more with docker. You can install docker also on AWS Linux that was deployed from your CloudShell terraform script.</p>
-                <pre>sudo yum install -y docker</pre>
-                <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
+                <p>Install more things and do more with docker. You could install docker also on AWS Linux and deploy it from CloudShell with a terraform script (more on that later).</p>
+                <p>Find a docker container to install: https://hub.docker.com/ (ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
                 <pre>sudo docker pull _________</pre>
                 <pre>sudo systemctl enable docker</pre>
                 <pre>sudo service docker start</pre>
