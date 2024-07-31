@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>AWS Learner Lab - Linux, Docker, and Terraform</title>
+    <title>AWS Learner Lab - Terraform</title>
     <link rel="icon" type="image.webp" href="../site/logo.png">
-    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week12/assignment-instructions.html">
     <meta name="description" content="Week 10 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
 <body>
@@ -19,9 +19,9 @@
         <h1>Create and Deploy with Terraform</h1>
         <h2>Overview</h2>
 
-        <p>Using Terraform, you could have deployed Part 1 and Part 2 with Terraform.</p>
-        <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, and a docker all in one file.</p>
-        <p>Check out all the servers and 'apps' you can deploy with Terraform: https://registry.terraform.io/</p>
+        <p>Using Terraform, you could have deployed Part 1 and Part 2 from previous weeks with Terraform.</p>
+        <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, a docker, and more, all in one file.</p>
+        <p>Check out all the servers and 'apps' you can deploy with Terraform: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
         
         <h2>Business Requirements</h2>
         <ul>
@@ -57,8 +57,8 @@
         <h3 id="step9">Setting Up an EC2 Instance - Using Automation</h3>
         <p>Terraform scripts allow you to deploy everything from <a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">Part 1 of EC2 instances and also Part 2 with Docker</a> in one file.</p>
         <h3>AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</h3>
-        <p>Now, let’s deploy the same thing but with automated scripts like Terraform outside of what we just installed</p>
-        <p><strong> DO NOT USE THE UBUNTU terminal.</strong></p>
+        <p>Now, let’s deploy the same thing but with automated scripts like Terraform in another region of what we previously installed in prior weeks.</p>
+        <p><strong> DO NOT USE THE UBUNTU terminal. DO NOT USE THE LEARNED LAB terminal. Use the Cloudshell.</strong></p>
         <p>We are using AWS cloudshell. That is Linux too, but it is to deploy resources in your AWS.</p>
         <ol>
             <li>
@@ -85,11 +85,11 @@
         <h3 id="step11">Terraform Script File</h3>
         <ol>
             <li>
-                <p>In the same AWS Cloudshell terminal, get a terrafrom file we made</p>
+                <p>In the same AWS Cloudshell terminal, get a terraform file we made:</p>
                 <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
-                <pre>curl -O https://byui-cloud.github.io/itm101-course/week10/mainawslinuxeast.tf</pre>
+                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
                 <p>Terraform has <strong>.tf</strong> files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc. We made this file above for you to deploy a basic Linux server.</p>
-                <p>Go look at the file: <a href="https://byui-cloud.github.io/itm101-course/week10/mainawslinuxeast.tf">https://byui-cloud.github.io/itm101-course/week10/mainawslinuxeast.tf</a></p>
+                <p>Go look at the file: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</a></p>
             </li>
         </ol>
         <h3 id="step12">Initiate Terraform Script File</h3>
@@ -125,7 +125,8 @@
         <h2 id="learning-more">Learning More</h2>
         <ul>
             <li>
-                <p>Install more things and do more with docker and terraform. You can install docker also on AWS Linux that was deployed from your CloudShell terraform script.</p>
+                <p>Check out all the servers and 'apps' you can deploy with Terraform on the registry. Find and try one: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
+                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with terraform script. You put it in the </p>
                 <pre>sudo yum install -y docker</pre>
                 <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
                 <pre>sudo docker pull _________</pre>
