@@ -9,17 +9,20 @@
     <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>AWS Learner Lab - Linux, Docker, and Terraform</title>
+    <title>AWS Learner Lab - Linux and Docker</title>
     <link rel="icon" type="image.webp" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">
     <meta name="description" content="Week 10 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
 <body>
     <article>
-        <h1>Create and Deploy a Website to Firebase</h1>
+        <h1>Create and Deploy a Docker Container</h1>
         <h2>Overview</h2>
 
-        <p>AWS EC2 allows you to deploy servers and resources for computers in the cloud, like a Linux server.</p>
+        <p>Using your AWS EC2 from Part 1, install Docker.</p>
+        <p>Docker allows you to quickly deploy an app like system on a Linux Server.</p>
+        <p>Check out all the docker 'apps' you can deploy: https://hub.docker.com/</p>
+        <p>For this tutorial, NGINX is a web server app that we will use in docker. The web server allows you to host a website on the internet.</p>
 
         <h2>Business Requirements</h2>
         <ul>
@@ -30,157 +33,20 @@
         <h2>Project Overview</h2>
         <ul>
             <li>
-                <p>Create an Ubuntu EC2 instance on AWS</p>
+                <p>Install Docker</p>
             </li>
             <li>
-                <p>Add in Docker with the nginx package to host a website</p>
+                <p>Deploy an NGINX docker container</p>
             </li>
         </ul>
 
         <h2>Table of Contents</h2>
         <ol>
-            <li><a href="#part1">Part 1 - Setup an EC2 Instance</a></li>
-            <li><a href="#step1">Log into AWS Console</a></li>
-            <li><a href="#step2">Launching an EC2 Instance - The Manual Way</a></li>
-            <li><a href="#step3">Connecting to the Server</a></li>
-            <li><a href="#step4">Run Security Updates</a></li>
-            <li><a href="#step5">Install Something (nmap port scanning)</a></li>
-            <li><a href="#step6">Basic Linux Commands</a></li>
+            <li><a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">You should have already completed Part 1 - Setup an EC2 Instance</a></li>
             <li><a href="#part2">Part 2 - Docker and Nginx</a></li>
             <li><a href="#step7">Install Docker</a></li>
             <li><a href="#step8">Install NGINX web server on Docker</a></li>
-            <li><a href="#part3">Part 3 - Terraform</a></li>
-            <li><a href="#step9">Setting Up an EC2 Instance - Using Automation</a></li>
-            <li><a href="#step10">AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</a></li>
-            <li><a href="#step11">AWS Terraform</a></li>
-            <li><a href="#step12">Terraform Script File</a></li>
-            <li><a href="#step13">Initiate Terraform Script File</a></li>
-            <li><a href="#step14">Deleting Resources With Terraform Script File</a></li>
             <li><a href="#learning-more">Learning More</a></li>
-        </ol>
-
-
-        <h2 id="part1">Part 1 - Setup an EC2 Instance</h2>
-        <h3 id="step1">Log into AWS Console</h3>
-        <ol>
-            <li>
-                <p>Log into your AWS Console through your learner lab</p>
-            </li>
-        </ol>
-
-        <h3 id="step2">Launching an EC2 Instance - The Manual Way</h3>
-        <ol>
-            <li>
-                <p>When in your AWS console, search <strong>EC2</strong> in the search bar and click <strong>EC2</strong></p>
-                <img src="../site/images/week10/ec2_search.png" alt="EC2 Search">
-            </li>
-            <li>
-                <p>Click <strong>Launch Instance</strong></p>
-                <img src="../site/images/week10/ec2_launch_instance.png" alt="EC2 Launch Instance">
-            </li>
-            <li>
-                <p>Pick a name for the server like <strong>Ubuntu</strong></p>
-                <img src="../site/images/week10/ec2_server_name.png" alt="EC2 Server Name">
-            </li>
-            <li>
-                <p>Click on <strong>Ubuntu</strong></p>
-                <img src="../site/images/week10/ec2_ubuntu_server.png" alt="EC2 Ubuntu Server">
-            </li>
-            <li>
-                <p>Pick how much processing power and RAM you want. We will stick with the default <strong>t2.micro</strong></p>
-                <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
-                <p>If you are going to use a GUI (we are not), you will want ot do at least a t3.small instance. This server doesn't have a GUI though. It is only accessible from a terminal.</p>
-            </li>
-            <li>
-                <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file.</p>
-                <img src="../site/images/week10/ec2_key_pair.png" alt="EC2 Key Pair">
-            </li>
-            <li>
-                <p>Name the key and keep the settings at their default (RSA key pair type, and .pem key file format).</p>
-                <img src="../site/images/week10/ec2_key_pair_name.png" alt="EC2 Key Pair Name">
-                <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
-            </li>
-            <li>
-                <p>Select the ports that you want open to be able to access the server. (e.g port 22 (selected by default) to ssh into the server)</p>
-                <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
-            </li>
-            <li>
-                <p>Pick how much hard drive space you need on the server</p>
-                <img src="../site/images/week10/ec2_configure_storage.png" alt="EC2 Configure Storage">
-                <p>Click <strong>Launch Instance</strong></p>
-            </li>
-        </ol>
-
-        <h3 id="step3">Connecting to the Server</h3>
-        <ol>
-            <li>
-                <p>Click <strong>Connect to Instance</strong></p>
-                <img src="../site/images/week10/ec2_connect_to_instance.png" alt="EC2 Connect to Instance">
-            </li>
-            <li>
-                <p>Click <strong>Connect</strong>.</p>
-                <img src="../site/images/week10/ec2_connect_to_instance2.png" alt="EC2 Connect to Instance From Amazon">
-                <ul>
-                    <li>
-                        <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
-                        <pre>ssh -i yourkey.pem ubuntu@3.3.3.3</pre>
-                    </li>
-                </ul>
-            </li>
-        </ol>
-
-        <h3 id="step4">Run Security Updates</h3>
-        <ol>
-            <li>
-                <p>Make sure to update the instance often</p>
-                <p>This gets the updates for the server:</p>
-                <pre>sudo apt-get update</pre>
-                <p>This applies the updates for the software and services that need updates</p>
-                <pre>sudo apt-get upgrade</pre>
-                <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates)</p>
-                <pre>sudo reboot</pre>
-            </li>
-            <li>
-                <p>Linux Kernel Upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
-                <p>This applies Linux minor kernel updates to the operating system. (This update takes some time to do, so only run this if you have time)</p>
-                <pre>sudo apt-get dist-upgrade</pre>
-                <pre>sudo reboot</pre>
-            </li>
-            <li>
-                <p>Major OS upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
-                <p>Check the LTS version and see when the endo fo life is for that version of Ubuntu. You might have to do a major upgrade:</p>
-                <p>This does a major update from something like Ubuntu 22 to Ubuntu 24 (Only run this if you need to):</p>
-                <pre>sudo do-release-upgrade</pre>
-                <pre>sudo reboot</pre>
-            </li>
-        </ol>
-
-        <h3 id="step5">Install Something (nmap port scanning)</h3>
-        <ol>
-            <li>
-                <p>This installs softwar/applications/services on the system (fill in the blank with what you want to install):</p>
-                <pre>sudo apt-get install ______</pre>
-                <p>This installs nmap, a tool to scan servers to see what ports are open on a system</p>
-                <pre>sudo apt-get install nmap</pre>
-                <p>This scans the local server you are running it from to see what ports are open</p>
-                <pre>nmap localhost</pre>
-            </li>
-        </ol>
-
-        <h3 id="step6">Basic Linux Commands</h3>
-        <ol>
-            <li>
-                <p>This displays what folder you are currently in</p>
-                <pre>pwd</pre>
-                <p>This displays what files and folder are in your current directory</p>
-                <pre>ls</pre>
-                <p>Displays what user you are logged in as</p>
-                <pre>whoami</pre>
-                <p>Move Up a Folder</p>
-                <pre>cd ..</pre>
-                <p>Move to another folder or directory</p>
-                <pre>cd foldername</pre>
-            </li>
         </ol>
 
         <h2 id="part2">Part 2 - Docker and Nginx</h2>
@@ -281,68 +147,6 @@
             </li>
         </ol>
 
-        <h2 id="part3">Part 3 - Terraform</h2>
-        <h3 id="step9">Setting Up an EC2 Instance - Using Automation</h3>
-        <p>Terraform scripts allow you to deploy everything from <a href="#part1">Part 1</a> in one file.</p>
-        <h3>AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</h3>
-        <p>Now, let’s deploy the same thing but with automated scripts like Terraform outside of what we just installed</p>
-        <p><strong> DO NOT USE THE UBUNTU terminal.</strong></p>
-        <p>We are using AWS cloudshell. That is Linux too, but it is to deploy resources in your AWS.</p>
-        <ol>
-            <li>
-                <p>AWS Cloudshell allows terminal/command prompt access to quickly run scripts for deployment.</p>
-                <p>To open <strong>Cloudshell</strong>, click on the <strong>Cloudshell</strong> icon at the top of the screen or at the bottom left of the screen.</p>
-                <p>A black window will appear as a terminal at the bottom of your screen. Paste your commands in that window.</p>
-            </li>
-        </ol>
-        <h3 id="step10">AWS Terraform</h3>
-        <ol>
-            <li>
-                <p>Make sure you look at the region you are in at the <strong>top right</strong>. (ex: N. Virginia)</p>
-                <p>The Terraform script we will use <strong>ONLY WORKS IN N. Virginia</strong></p>
-            </li>
-            <li>
-                <p>Install Terraform by opening the Cloudshell and run these <strong>one by one (they will not work all together)</strong></p>
-                <p><strong>DO THESE IN CLOUDSHELL! NOT IN UBUNTU LINUX!</strong></p>
-                <p>Terraform allows you automatically deploy servers in AWS and other systems too. They are automated scripts. First you need to install Terraform with these three commands:</p>
-                <pre>sudo yum install -y yum-utils</pre>
-                <pre>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</pre>
-                <pre>sudo yum -y install terraform</pre>
-            </li>
-        </ol>
-        <h3 id="step11">Terraform Script File</h3>
-        <ol>
-            <li>
-                <p>In the same AWS Cloudshell terminal, get a terrafrom file we made</p>
-                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
-                <pre>curl -O https://byui-cloud.github.io/itm101-course/week10/mainawslinuxeast.tf</pre>
-                <p>Terraform has <strong>.tf</strong> files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc. We made this file above for you to deploy a basic Linux server.</p>
-                <p>Go look at the file: <a href="https://byui-cloud.github.io/itm101-course/week10/mainawslinuxeast.tf">https://byui-cloud.github.io/itm101-course/week10/mainawslinuxeast.tf</a></p>
-            </li>
-        </ol>
-        <h3 id="step12">Initiate Terraform Script File</h3>
-        <ol>
-            <li>
-                <p>Start the terraform.</p>
-                <pre>terraform init</pre>
-                <pre>terraform plan</pre>
-                <pre>terraform apply -auto-approve</pre>
-                <pre>ls</pre>
-                <p><strong>terraform apply</strong> deploys the resources (it uses the .tf)</p>
-                <p>The .tf file that we provided generates a .pem file in your cloudshell terminal.</p>
-                <p>You can download it if you want on the <strong>Actions</strong> menu.</p>
-                <p><strong>ls</strong> displays the files and folders in the current working directory. See the .pem file that was made.</p>
-                <p>Now go look at the ubuntu ec2 instance that was deployed. Remote into it with the key that was created in the same shell.</p>
-                <pre>ssh -i ubuntu@3.3.3.3</pre>
-            </li>
-        </ol>
-        <h3 id="step13">Deleting Resources With Terraform Script File</h3>
-        <ol>
-            <li>
-                <p>Go back to your Cloudshell and run this to delete all the resources:</p>
-                <pre>terraform destroy -auto-approve</pre>
-            </li>
-        </ol>
         <h3 id="step14">Ending Session & Managing Budget</h3>
         <ol>
             <li>
@@ -353,13 +157,12 @@
         <h2 id="learning-more">Learning More</h2>
         <ul>
             <li>
-                <p>Install more things and do more with docker and terraform. You can install docker also on AWS Linux that was deployed from your CloudShell terraform script.</p>
-                <pre>sudo yum install -y docker</pre>
-                <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
+                <p>Install more things and do more with docker. You could install docker also on AWS Linux and deploy it from CloudShell with a terraform script (more on that later).</p>
+                <p>Find a docker container to install: https://hub.docker.com/ (ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
                 <pre>sudo docker pull _________</pre>
                 <pre>sudo systemctl enable docker</pre>
                 <pre>sudo service docker start</pre>
-                <pre>sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 bkimminich/juice-shop</pre>
+                <pre>sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
             </li>
         </ul>
     </article>
