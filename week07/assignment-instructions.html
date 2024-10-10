@@ -16,42 +16,40 @@
 </head>
 <body>
     <article>
-        <h1>Create and Deploy a Website from your IDE to a URL</h1>
+        <h1>Find and Deploy a AI Chat to the Cloud</h1>
         <h2>Overview</h2>
 
-        <p>In this scenario, you were recently hired by a small startup company that for cybersecurity reasons, they want you to use an IDE in the Cloud. They want to also create a publicly available URL to share the dev website with the client.</p>
+        <p>In this scenario, you were recently hired by a small startup company that for privacy and cybersecurity reasons, they want you to build an AI Chat in the Cloud.</span></p>
 
         <h3>Business Requirements</h3>
         <ul>
-            <li>Coding in the Cloud for security and Client URL</li>
+            <li>AI Chat Privacy</li>
         </ul>
         <h3>Project Requirements</h3>
-        <ul>
-            <li>Create and use a Cloud coding editor - IDE (integrated development environment)</li>
-            <li>Use the same computing resources as the IDE for the development URL web hosting solution - it doesn’t need to scale automatically</li>
+        <ul>          
+            <li>Find and deploy an AI chat to the cloud (ex: ollama) for the company to use internally without sending any information to the internet</li>
+            <li>Use enough resources for it to run well - it doesn’t need to scale automatically</li>
             <li>It does need to be able to manually be scaled up</li>
             <li>Use AWS (Amazon Web Services) if possible</li>
-            <li>Use Node.js for deploying the site using a server.js file</li>
-            <li>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</li>
+            <li>Use an ollama model that will fit on a server with less than 32 GB of storage space</li>
         </ul>
         <h2>Table of Contents</h2>
         <ol>
             <li><a href="#step1">Setting up and logging in to your AWS Academy account</a></li>
             <li><a href="#step2">Connecting to AWS Learner Lab</a></li>
-            <li><a href="#step3">AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment)</a></li>
-            <li><a href="#step4">Create the website files</a></li>
-            <li><a href="#step5">View/Preview the Site locally in your IDE</a></li>
+            <li><a href="#step3">AWS EC2 (Elastic Cloud Computing)</a></li>
+            <li><a href="#step4">Run the ollama install script</a></li>
+            <li><a href="#step5">Test the ollama Chat AI</a></li>
             <li><a href="#step6">Deploy the Site to the Internet</a></li>
-            <li><a href="#step7">Find the private IP address for the server.js file</a></li>
+            <li><a href="#step7">Find the private IP address for the server</a></li>
             <li><a href="#step8">Open the firewalls to allow the website to work on the server</a></li>
             <li><a href="#step9">Open port 8080 in the ACL firewall for the website</a></li>
-            <li><a href="#step10">Start the website on the internet using node and your server.js file</a></li>
+            <li><a href="#step10">Install and start a web interface for the Chat AI</a></li>
             <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
             <li><a href="#learning-more">Learning More</a></li>
         </ul>
 
         <h2>Project Instructions</h2>
-        <h4>Watch the video instead: <a target="_blank" rel="noopener" href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_8q4rw0s4/embed/dynamic">AWS Cloud9 IDE and Dev URL</a></h4>
 
         <h3 id="step1">Setting up and logging in to your AWS Academy account</h3>
         <p>Your instructor will create an AWS Academy course that will be used to create sandbox accounts for you as a student. This sandbox account will be an AWS account with a $50 credit assigned to you. There are no requirements for you to purchase or provision any account from AWS. <strong>You will not be required to spend any money or provide credit card information. </strong></p>
@@ -94,12 +92,12 @@
            </li>
         </ol>
 
-        <h3 id="step3">AWS Cloud9 IDE (Amazon’s Cloud Coding Development Environment) (No longer availabe for new customers)</h3>
+        <h3 id="step3">AWS EC2 (Amazon Web Services Elastic Cloud Compute)</h3>
         <ol>
             <li> AWS offers many free resources to host your own website: <a href="https://aws.amazon.com/free/webapps/">Check out AWS Free Web Apps</a>.
             </li>
             <li>
-                <p>AWS (Amazon Web Service) has Cloud 9, a coding platform that gives you an IDE (Integrated Development Environment). To use Cloud 9, login in to AWS as described previously and search for and click on <strong>Cloud 9</strong>.</p>
+                <p>AWS (Amazon Web Service) has EC2, the main way to deploy a server with an operating system such as Linux.</p>
                 <img src="../site/images/week07/aws_cloud9.webp" alt="AWS Cloud9">
             </li>
             <li>
@@ -331,35 +329,22 @@
         </ol>
 
         <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
-        <h3>If the webpage doesn’t load</h3>
+        <h3>If you can't access AWS</h3>
         <ul>
             <li>
-                <p>You may need to put the correct PRIVATE IP address in the server.js file on the last line of code. You also may need to open the security group port 8080 and add the port 8080 to the ACL in the VPC. Then, use the PUBLIC IP address to load the website with port 8080 at the end</p>
+                <p>Find the email invite that was sent to your BYU-I email address that ends in @byui.edu</p>
             </li>
         </ul>
 
-        <h3>If you get a (ERROR: Cannot find “.”) Error</h3>
+        <h3>You can't see the EC2 instance?</h3>
         <ul>
             <li>
-                <p>You may need to put the file name at the end of your IP address and port</p>
+                <p>Are you in the correct region? Did you click on the top right corner of AWS to connect to the Oregon region</p>
             </li>
-            <li>
-                <p>You may have put http://35.90.250.71:8080/ but you need to put http://35.90.250.71:8080/index.html</p>
-            </li>
-        </ul>
-        <h3>If you get a 'Secure Connection Failed' Error</h3>
-        <ul>
-            <li>
-                <p>Don’t put the s on the end of http</p>
-            </li>
-        </ul>
-        <h3>Styling doesn't load - CSS file not working</h3>
-        <ul>
-            <li>
-               <p>The site may not load css files when you deploy it to the internet. Put all CSS in the <styles> tag in the header of your html file instead.</p>
-            </li>
+
         </ul>
 
+ 
         <h2 id="learning-more">Learning More</h2>
         <p>Want to learn more about AWS and obtain an AWS certification? Take ITM300 Cloud Foundations.</p>
         <p>Build your resume: Deployed a website from Cloud9 IDE to an AWS EC2 instance.</p>
@@ -368,9 +353,6 @@
         <h2>Learning More - Create a serverless app model (SAM) with Lambda</h2>
         <p>Create a CD/CI pipeline</p>
         <p>Implement Git</p>
-
-        <h2>Learning More - Tutorials to follow in Cloud 9</h2>
-        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tutorials.html">Tutorials for AWS Cloud 9</a></p>
 
         <h2>Learning More - Create a serverless app model (SAM) with Lambda</h2>
         <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html">Working with AWS serverless applications using the AWS Toolkit</a></p>
