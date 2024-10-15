@@ -143,6 +143,35 @@
 
         </ol>
 
+        <h3 id="step3">Connecting to the Server</h3>
+        <ol>
+            <li>
+                <p>Click <strong>Connect to Instance</strong></p>
+                <img src="../site/images/week10/ec2_connect_to_instance.png" alt="EC2 Connect to Instance">
+            </li>
+            <li>
+                <p>Click <strong>Connect</strong>.</p>
+                <img src="../site/images/week10/ec2_connect_to_instance2.png" alt="EC2 Connect to Instance From Amazon">
+                <ul>
+                    <li>
+                        <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
+                        <pre>ssh -i yourkey.pem ubuntu@3.3.3.3</pre>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 id="step4">Run Security Updates</h3>
+        <ol>
+            <li>
+                <p>Make sure to update the instance often</p>
+                <p>This gets and applies the updates for the software and services that need updates</p>
+                <pre>sudo yum upgrade</pre>
+                <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates)</p>
+                <pre>sudo reboot</pre>
+                <p>Reconnect with the steps above after about a minute for the reboot</p>
+            </li>
+        </ol>
 
         <h3 id="step4">Install ollama (a free Chat AI) </h3>
         <ol>
