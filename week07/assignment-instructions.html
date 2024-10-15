@@ -98,234 +98,60 @@
             </li>
             <li>
                 <p>AWS (Amazon Web Service) has EC2, the main way to deploy a server with an operating system such as Linux.</p>
-                <img src="../site/images/week07/aws_cloud9.webp" alt="AWS Cloud9">
+            </li>
+           
+            <li>
+                <p>When in your AWS console, search <strong>EC2</strong> in the search bar and click <strong>EC2</strong></p>
+                <img src="../site/images/week10/ec2_search.png" alt="EC2 Search">
             </li>
             <li>
-                <p>Click <strong>Create environment</strong> to create a Cloud 9 IDE.</p>
-                <img src="../site/images/week07/aws_create_environment.webp" alt="AWS Create Environment">
+                <p>Click <strong>Launch Instance</strong></p>
+                <img src="../site/images/week10/ec2_launch_instance.png" alt="EC2 Launch Instance">
             </li>
             <li>
-                <p>Change your region to <strong>US West</strong> by clicking on the <strong>N. Virginia</strong> near the top right corner of your browser. This will make the computer/server we will use for the IDE to be deployed in Oregon, which is physically closer to Idaho. </p>
-                <img src="../site/images/week07/aws_change_region.webp" alt="AWS Change Region">
+                <p>Pick a name for the server like <strong>AI Chat</strong></p>
+                <img src="../site/images/week10/ec2_server_name.png" alt="EC2 Server Name">
             </li>
             <li>
-                <p>Once, Oregon is selected, choose a name for your IDE server/computer/environment:</p>
-                <img src="../site/images/week07/aws_name_environment.webp" alt="AWS Name Environment">
+                <p>Click on <strong>Amazon Linux</strong></p>
+                <img src="../site/images/week10/ec2_ubuntu_server.png" alt="EC2 Ubuntu Server">
             </li>
             <li>
-                <p>Leave the default settings for t2.micro and Amazon Linux 2023.</p>
-                <img src="../site/images/week07/aws_default_settings.webp" alt="AWS Default Settings">
+                <p>Pick how much processing power and RAM you want. We will use a <strong>t2.large</strong></p>
+                <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
+                <p>The larger the instance type, the more it costs per hour. You will want to turn this one off if you are not using it. After 4 hours your learner lab will turn it off, but in a normal AWS account it would not turn off unless you turn it off manually.</p>
             </li>
             <li>
-                <p>Select <strong>Secure Shell (SSH)</strong> (Arrow #1) for the network settings, then click <strong>Create</strong> (Arrow #2).</p>
-                <img src="../site/images/week07/aws_network_settings.webp" alt="AWS Network Settings">
+                <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file.</p>
+                <img src="../site/images/week10/ec2_key_pair.png" alt="EC2 Key Pair">
             </li>
             <li>
-                <p>Click on your “Open” next to your IDE environment to open it:</p>
-                <img src="../site/images/week07/aws_open_ide.webp" alt="AWS Open IDE">
+                <p>Name the key and keep the settings at their default (RSA key pair type, and .pem key file format).</p>
+                <img src="../site/images/week10/ec2_key_pair_name.png" alt="EC2 Key Pair Name">
+                <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
             </li>
             <li>
-                <p>Create a new file by clicking <strong>Create File</strong>.</p>
-                <img src="../site/images/week07/aws_create_file.webp" alt="AWS Create File">
+                <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh into the server).</p>
+                <p>Add port 3000 that we will use for the web interface of the Chat AI.</p>
+                <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
             </li>
+            <li>
+                <p>Pick how much hard drive space you need on the server. Put 32 GB.</p>
+                <img src="../site/images/week10/ec2_configure_storage.png" alt="EC2 Configure Storage">
+                <p>Click <strong>Launch Instance</strong></p>
+            </li>
+
         </ol>
 
-        <h3 id="step4">Create the website files</h3>
+
+        <h4 id="step3">Install ollama (a free Chat AI) </h4>
         <ol>
             <li>
-                <p>Click <strong>File</strong> in the menu and click <strong>Save</strong>. 
-                    Click "Create Folder" and name the folder 'public' and make sure to select that folder.
-                    For the filename, name it <em>index.html</em> and make sure it is in a folder called <strong>public</strong></p>
-                <img src="../site/images/week07/aws_save_file.webp" alt="AWS Save File">
+              <p>curl -fsSL https://ollama.com/install.sh | sh</p>
+              <p>ollama pull llama3.2</p>
+              <p>ollama serve</p>
             </li>
-            <li>
-                <p>Edit your index.html file. 
-                If you type <strong>!</strong> and then hit <strong>tab</strong> on your keyboard it will generate some basic html.</p>
-                <img src="../site/images/week07/aws_edit_html.webp" alt="AWS Edit HTML">
-            </li>
-            <li>
-                <p>Add the word <strong>test</strong> inside the 'body' section of the code as shown below, copy some code from your previous websites, or generate some new code from ChatGPT.</p>
-                <p>The site may not load css files when you deploy it to the internet. Put all CSS in the <styles> tag in the header of your html file instead.</p>
-                <img src="../site/images/week07/aws_add_code.webp" alt="AWS Add Code">
-                <p>It might look something like this in your index.html file</p>
-                <img src="../site/images/week07/aws_index_html.webp" alt="AWS Index HTML">
-            </li>
-            <li>
-                <p>Click on the <strong>File</strong> menu at the top of the screen and then select <strong>Save As</strong> to save your changes. Name the file and save it.</p>
-                <img src="../site/images/week07/aws_save_as.webp" alt="AWS Save As">
-            </li>
-            <li>
-                <p>If you need to create a new file, click on <strong>File</strong> in the menu and select <strong>New File</strong></p>
-                <img src="../site/images/week07/aws_new_file.webp" alt="AWS New File">
-            </li>
-        </ol>
-
-        <h3 id="step5">View/Preview the Site locally in your IDE</h3>
-        <ol>
-            <li>
-                <p>Make sure to be in the index.html or file you want to preview. <br>Then, click on <strong>Tools</strong> > <strong>Preview</strong> > <strong> Preview File index.html</strong></p>
-                <img src="../site/images/week07/aws_preview_file.webp" alt="AWS Preview File">
-                <p>You should see the file on the right side as the preview</p>
-                <img src="../site/images/week07/aws_preview_index.webp" alt="AWS Preview Index">
-            </li>
-        </ol>
-
-        <h3 id="step6">Deploy the Site to the Internet</h3>
-        <p>
-            To make the website work on the internet, you need some type of service to run the webpage. Some systems servers use node, apache, tomcat, etc. to deploy a webpage/website. We will use Node to accomplish that. Normally, you would set up another EC2 instance, use an S3 bucket, etc. or another server. You would not usually have your source code on the same server as your web application. For simplicity, we will deploy it to the same server as your Cloud9 IDE server/computer.
-        </p>
-        <ol>
-            <li>
-                <p>Create one new file called <strong>server.js</strong> that will run the node server. Make sure it is in a folder called <strong>public</strong>.</p>
-                <img src="../site/images/week07/aws_create_server_js.webp" alt="AWS Create Server JS">
-            </li>
-            <li>
-                <p>Use this code to deploy a Node server.js website (make sure to change the IP address of the listening port on the last line to the IP of your internal IP address of the Ec2 instance)</p>
-                <pre>
-                    <code><br>
-                    var http = require('http');<br>
-                    var fs = require('fs');<br>
-                    var url = require('url');<br>
-                    http.createServer( function (request, response) {<br>
-                      var pathname = url.parse(request.url).pathname;<br>
-                      console.log("Trying to find '" + pathname.substr(1) + "'...");<br>
-                      fs.readFile(pathname.substr(1), function (err, data) {<br>
-                        if (err) {<br>
-                          response.writeHead(404, {'Content-Type': 'text/html'});<br>
-                          response.write("ERROR: Cannot find '" + pathname.substr(1) + "'.");<br>
-                          console.log("ERROR: Cannot find '" + pathname.substr(1) + "'.");<br>
-                        } else {<br>
-                          console.log("Found '" + pathname.substr(1) + "'.");<br>
-                          response.writeHead(200, {'Content-Type': 'text/html'});<br>
-                          response.write(data.toString());<br>
-                        }<br>
-                        response.end();<br>
-                      });<br>
-                    }).listen(8080, '172.31.18.4'); // Or 8081 or 8082 instead of 8080. Or '127.0.0.1' instead of 'localhost'.<br>
-                    </code>
-                </pre>                    
-                <p>REFERENCE: <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/app-preview.html?icmpid=docs_ac9_ide#app-preview-share">Preview Running Applications</a></p>
-            </li>
-        </ol>
-
-        <h3 id="step7">Find the private IP address for the server.js file</h3>
-        <ol>
-            <li>
-                <p>To find the IP address of the server, you need the internal IP address THAT YOU WILL PUT ON THE LAST LINE OF THE SERVER.js file. To find that, go back to the AWS webpage you were on when you opened Cloud9. Search for <strong>EC2</strong> (EC2 is where AWS puts the servers/computers that you run, like the one you are running to use Cloud9).  Click on <strong>EC2</strong>.</p>
-                <img src="../site/images/week07/aws_ec2.webp" alt="AWS EC2">
-            </li>
-            <li>
-                <p>Click on <strong>Instances (running)</strong>. If you don’t see any instances, make sure you are in the correct region (ex: Oregon). It should be listed at the top right of your screen in your AWS account.</p>
-                <img src="../site/images/week07/aws_instances.webp" alt="AWS Instances">
-            </li>
-            <li>
-                <p>Click on the Instance ID</p>
-                <img src="../site/images/week07/aws_instance_id.webp" alt="AWS Instance ID">
-            </li>
-            <li>
-                <p>Find the Private IPv4. That is the IP address that the internal server uses (not the internet). The internet uses the Public IP. In this example, the IP is 172.31.18.4. Your IP will be different and you need yours.</p>
-                <img src="../site/images/week07/aws_private_ipv4.webp" alt="AWS IPv4">
-            </li>
-            <li>
-                <p>Click the copy icon to copy the Private IP address to put in the server.js file. You will also later need the Public IPv4 ip address to open the website - take note of it if you want to now.</p>
-                <img src="../site/images/week07/aws_copy_ip.webp" alt="AWS Copy IP">
-            </li>
-            <li>
-                <p>Go back to your Cloud9 IDE, and in the last line of your server.js file, replace the IP address 172.31.18.4  with that IP address you just copied (but yours will be a different set of numbers) and then click 'File' 'Save'.</p>
-                <img src="../site/images/week07/aws_replace_ip_and_run.webp" alt="AWS Replace IP">
-                <p>On some websites, you can load them by using the public IPv4 address. You would put that IP address as the URL in your browser.</p>
-            </li>
-        </ol>
-
-        <h3 id="step8">Open the firewalls to allow the website to work on the server</h3>
-
-        <h4>Open port 8080 in the EC2 server firewall for the website </h4>
-        <p>We need to open some firewall and security settings to allow the webpage to be deployed on a real website. </p>
-        <ol>
-            <li>
-                <p>Open your EC2 instance and click on the <strong>Security</strong> tab</p>
-                <img src="../site/images/week07/aws_security.webp" alt="AWS Security">
-            </li>
-            <li>
-                <p>Click on the group listed under <strong>Security Groups</strong>, it might be something like <strong>sg-.......</strong></p>
-                <img src="../site/images/week07/aws_security_group.webp" alt="AWS Security Group">
-            </li>
-            <li>
-                <p>Click on <strong>Edit Inbound Rules</strong></p>
-                <img src="../site/images/week07/aws_edit_inbound_rules.webp" alt="AWS Edit Inbound Rules">
-            </li>
-            <li>
-                <p>Click <strong>Add Rule</strong></p>
-                <img src="../site/images/week07/aws_add_rule.webp" alt="AWS Add Rule">
-            </li>
-            <li>
-                <p>Add port <strong>8080</strong></p>
-                <img src="../site/images/week07/aws_add_port_8080.webp" alt="AWS Add Port">
-            </li>
-            <li>
-                <p>Add the allowed IP addresses by selecting <strong>0.0.0.0</strong> (that means allow from anywhere)</p>
-                <img src="../site/images/week07/aws_add_anywhere_ip.webp" alt="AWS Add IP">
-            </li>
-            <li>
-                <p>Make sure to click <strong>Save Rules</strong></p>
-                <img src="../site/images/week07/aws_save_inbound_rules.webp" alt="AWS Save Rules">
-            </li>
-        </ol>
-
-        <h4 id="step9">Open port 8080 in the ACL firewall for the website</h4>
-        <ol>
-            <li>
-                <p>Go back to the security groups for your aws-cloud9 instance and open the <strong>VPC</strong> by clicking on the VPC ID (ex: vpc-00061e29aa7e50c605)</p>
-                <img src="../site/images/week07/aws_vpc.webp" alt="AWS VPC">
-            </li>
-            <li>
-                <p>Click on <strong>Network ACLs</strong></p>
-                <img src="../site/images/week07/aws_network_acls.webp" alt="AWS Network ACLs">
-            </li>
-            <li>
-                <p>Click on your network ACL (ex: acl-06c76d10a62371464)</p>
-                <img src="../site/images/week07/aws_network_acl.webp" alt="AWS Network ACL">
-            </li>
-            <li>
-                <p>Click <strong>Edit inbound rules</strong></p>
-                <img src="../site/images/week07/aws_edit_inbound_rules_acl.webp" alt="AWS Edit Inbound Rules ACL">
-            </li>
-            <li>
-                <p>Click <strong>Add new rule</strong></p>
-                <img src="../site/images/week07/aws_add_new_rule_acl.webp" alt="AWS Add New Rule ACL">
-            </li>
-            <li>
-                <p>Add port 8080 to the ACL too (pick a rule number for it like 200, select Custom TCP, add port 8080, put source 0.0.0.0/0, and Allow)</p>
-                <img src="../site/images/week07/aws_add_port_8080_acl.webp" alt="AWS Add Port ACL">
-            </li>
-        </ol>
-
-        <h4 id="step10">Start the website on the internet using node and your server.js file </h4>
-        <ol>
-            <li>
-                <p>Go back to your IDE and close the server.js file by clicking on the X in the top right corner tab. 
-                    Reopen the file and click <strong>Run</strong> and make sure it is running. Make sure to put the private IPv4 from your instance. <strong>MAKE SURE you are in the server.js file when you click the RUN button</strong>.</p>
-                <img src="../site/images/week07/aws_replace_ip_and_run.webp" alt="AWS Run Server JS">
-            </li>
-            <li>
-                <p>Now find your public IPv4 - go back to “Ec2” instances if necessary.</p>
-                <img src="../site/images/week07/aws_public_ipv4.webp" alt="AWS IPv4">
-                <p>Take note of the Public IP from your instance and put that in your browser</p>
-                <ul>
-                    <li>
-                        <p>
-                            <strong>
-                                MAKE SURE TO PUT http (NOT https) and MAKE SURE to add index.html (even though most sites don’t require the filename for an index.html)
-                            </strong>
-                        </p>
-                        <p>(ex: http://35.94.121.233:8080/index.html) but yours will be a different set of numbers</p>
-                    </li>
-                    <li>
-                        <p>Yours might be 54.203…. Or something different. Make sure to put the port 8080 with a colon before it. Also, make sure the filename of the .html file matches yours.</p>
-                    </li>
-                </ul>
-                <img src="../site/images/week07/aws_site_link.webp" alt="AWS Site Link">
-            </li>
+          
         </ol>
 
         <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
