@@ -1,6 +1,6 @@
 curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules
-cd public 
-curl -O https://byui-cloud.github.io/itm101-course/week05/config.js 
+cd public
+curl -O https://byui-cloud.github.io/itm101-course/week05/config.js
 curl -O https://byui-cloud.github.io/itm101-course/week05/projects.html
 mkdir styles
 cd styles
