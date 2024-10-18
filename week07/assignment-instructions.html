@@ -38,13 +38,11 @@
             <li><a href="#step1">Setting up and logging in to your AWS Academy account</a></li>
             <li><a href="#step2">Connecting to AWS Learner Lab</a></li>
             <li><a href="#step3">AWS EC2 (Elastic Cloud Computing)</a></li>
-            <li><a href="#step4">Run the ollama install script</a></li>
-            <li><a href="#step5">Test the ollama Chat AI</a></li>
-            <li><a href="#step6">Deploy the Site to the Internet</a></li>
-            <li><a href="#step7">Find the private IP address for the server</a></li>
-            <li><a href="#step8">Open the firewalls to allow the website to work on the server</a></li>
-            <li><a href="#step9">Open port 8080 in the ACL firewall for the website</a></li>
-            <li><a href="#step10">Install and start a web interface for the Chat AI</a></li>
+            <li><a href="#step4">Add an Elastic IP</a></li>
+            <li><a href="#step5">Connect to the Server</a></li>
+            <li><a href="#step6">Run Security Updates</a></li>
+            <li><a href="#step7">Run the ollama install scripts</a></li>
+            <li><a href="#step8">Test the Web ollama Chat AI</a></li>
             <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
             <li><a href="#learning-more">Learning More</a></li>
         </ul>
@@ -113,16 +111,16 @@
                 <img src="../site/images/week10/ec2_server_name.png" alt="EC2 Server Name">
             </li>
             <li>
-                <p>Click on <strong>Amazon Linux</strong></p>
+                <p>Click on <strong>Amazon Linux and 64-bit</strong></p>
                 <img src="../site/images/week10/ec2_ubuntu_server.png" alt="EC2 Ubuntu Server">
             </li>
             <li>
-                <p>Pick how much processing power and RAM you want. We will use a <strong>t2.large</strong></p>
+                <p>Pick how much processing power and RAM you want. We will use a <strong>t2.large</strong>. Click the drop down and search for t2.large.</p>
                 <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
-                <p>The larger the instance type, the more it costs per hour. You will want to turn this one off if you are not using it. After 4 hours your learner lab will turn it off, but in a normal AWS account it would not turn off unless you turn it off manually.</p>
+                <p>The larger the instance type, the more it costs per hour. You will want to turn this one off if you are not using it. After 4 hours your learner lab will turn off all your servers automatically, but in a normal AWS account it would not turn off unless you turn it off manually.</p>
             </li>
             <li>
-                <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file.</p>
+                <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file. You download it to your computer to use it to connect to the server.</p>
                 <img src="../site/images/week10/ec2_key_pair.png" alt="EC2 Key Pair">
             </li>
             <li>
@@ -131,7 +129,9 @@
                 <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
             </li>
             <li>
-                <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh into the server).</p>
+                <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh or connect into the server).</p>
+                <p>Leave the box checked for port SSH from anywhere.</p>
+                <p>Check the boxes for HTTPS and HTTP.</p>
                 <p>Add port 3000 that we will use for the web interface of the Chat AI.</p>
                 <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
             </li>
@@ -143,7 +143,20 @@
 
         </ol>
 
-        <h3 id="step3">Connecting to the Server</h3>
+        <h3 id="step4">Add Elastic IP</h3>
+        <ol>
+            <li>
+              <p>Click on "Elastic IP" in the AWS EC2 dashboard</p>
+              <p>Click "Allocate Elastic IP"</p>
+              <p>Click "Allocate" button on the bottom right</p>
+              <p>Check the box for the new allocated IP</p>
+              <p>Click "Actions" > "Associate Elastic IP address"</p>
+              <p>Select the "Instance" and click "Associate"</p>
+            </li>
+          
+        </ol>
+
+        <h3 id="step5">Connecting to the Server</h3>
         <ol>
             <li>
                 <p>Click <strong>Connect to Instance</strong></p>
@@ -161,7 +174,9 @@
             </li>
         </ol>
 
-        <h3 id="step4">Run Security Updates</h3>
+
+
+        <h3 id="step6">Run Security Updates</h3>
         <ol>
             <li>
                 <p>Make sure to update the instance often</p>
@@ -173,14 +188,40 @@
             </li>
         </ol>
 
-        <h3 id="step4">Install ollama (a free Chat AI) </h3>
+        <h3 id="step7">Install ollama (a free Chat AI) </h3>
         <ol>
             <li>
               <p>curl -fsSL https://ollama.com/install.sh | sh</p>
               <p>ollama pull llama3.2</p>
               <p>ollama run llama3.2</p>
-              <p>Ask the AI a question such as: What is the cloud?</p>
-              <p>Ask this custom, private, AI something else?</p>
+            
+            </li>
+            <li>
+                <p>Ask the AI a question such as: What is the cloud?</p>
+                <p>Ask this custom, private, AI something else?</p>
+            </li>
+          
+        </ol>
+        
+        <h3 id="step8">Add Web Interface for Custom AI Chat</h3>
+        <ol>
+            <li>
+              <p>#Installs and starts docker (we will learn more about docker later)</p>
+              <p>sudo yum install docker</p>
+              <p>sudo systemctl enable docker</p>
+              <p>sudo service docker start</p>
+            </li>
+            <li>
+                <p>#Get the docker for Custom Web AI Chat (Open Web AI - a website for your own custom AI chat)</p>
+                <p>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>                
+            </li>
+            <li>
+                <p>Open your browser to the Elastic IP address you were give in that Elastic IP step above. </p>
+                <p>Make sure to put http:// and NOT https://</p>
+                <p>Example: http://35.67.76.43:3000</p>
+                <p>Sign up for a new account</p>
+                <p>Select a model</p>
+                <p>Try the AI Chat</p>
             </li>
           
         </ol>
@@ -196,7 +237,7 @@
         <h3>You can't see the EC2 instance?</h3>
         <ul>
             <li>
-                <p>Are you in the correct region? Did you click on the top right corner of AWS to connect to the Oregon region</p>
+                <p>Are you in the correct region? Did you click on the top right corner of AWS to connect to the N. Virginia or Oregon region, depending on where you deployed it.</p>
             </li>
 
         </ul>
@@ -207,13 +248,16 @@
         <p>Build your resume: Deployed a Custom Chat AI to an AWS EC2 instance.</p>
         <p>Build your resume (possible FUTURE project): Deployed a Custom Chat AI with custom RAG and connected it to an RDS database with Cognito authentication</p>
 
-        <h2>Learning More - Create a serverless app model (SAM) with Lambda</h2>
-        <p>Create a CD/CI pipeline</p>
-        <p>Implement Git</p>
+        <h2>Learning More - Create Customized Default Prompts</h2>
+        <p>Select a default model in the admin panel</p>
+        <p>Create custom prompts that show up for the user</p>
+        <p>Allow users to have the 'user' role instead of 'pendin'g for new signups</p>
 
-        <h2>Learning More - Create a serverless app model (SAM) with Lambda</h2>
-        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html">Working with AWS serverless applications using the AWS Toolkit</a></p>
+        <h2>Learning More - Learn About RAG with AI</h2>
+        <p><a target="_blank" rel="noopener" href="https://aws.amazon.com/what-is/retrieval-augmented-generation/">RAG - Have AI use external documents and data</a></p>
+        <p><a target="_blank" rel="noopener" href="https://aws.amazon.com/bedrock/">AWS AI Platforms - Bedrock</a></p>
 
         <h2>References</h2>
         <p><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/README.md">Ollama</a></p>
+        <p><a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">Open Web AI</a></p>
     </article>
