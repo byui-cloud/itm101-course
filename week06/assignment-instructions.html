@@ -284,15 +284,16 @@ cd ..
                     </div></li>
                     <li><div>
                         <p>This is what that would look like (BUT REPLACE THE ORANGE TEXT IN THE LIST WITH YOUR UID - notice we added auth.uid in orange):</p>
-                        <p>rules_version = '2';
-                            service cloud.firestore {
-                              match /databases/{database}/documents {
-                                match /projects/{document=**} {
-                                  allow read, write: if request.auth.<strong>uid</strong> in ['<strong>Wssjkl9897d789df98d7djnnvB2</strong>'];<br>
-                                }<br>
-                              }<br>
-                            }
-                        </p>
+<pre>
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /projects/{document=**} {
+      allow read, write: if request.auth.<strong>uid</strong> in ['<strong>Wssjkl9897d789df98d7djnnvB2</strong>'];
+    }
+  }
+}
+</pre>
                     </div></li>
                 </ul>
             </div></li>
@@ -451,7 +452,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      allow read, write;
+      allow read, write if true;
     }
   }
 }
