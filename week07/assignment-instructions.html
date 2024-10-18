@@ -38,13 +38,11 @@
             <li><a href="#step1">Setting up and logging in to your AWS Academy account</a></li>
             <li><a href="#step2">Connecting to AWS Learner Lab</a></li>
             <li><a href="#step3">AWS EC2 (Elastic Cloud Computing)</a></li>
-            <li><a href="#step4">Run the ollama install script</a></li>
-            <li><a href="#step5">Test the ollama Chat AI</a></li>
-            <li><a href="#step6">Deploy the Site to the Internet</a></li>
-            <li><a href="#step7">Find the private IP address for the server</a></li>
-            <li><a href="#step8">Open the firewalls to allow the website to work on the server</a></li>
-            <li><a href="#step9">Open port 8080 in the ACL firewall for the website</a></li>
-            <li><a href="#step10">Install and start a web interface for the Chat AI</a></li>
+            <li><a href="#step4">Add an Elastic IP</a></li>
+            <li><a href="#step5">Connect to the Server</a></li>
+            <li><a href="#step6">Run Security Updates</a></li>
+            <li><a href="#step7">Run the ollama install scripts</a></li>
+            <li><a href="#step8">Test the Web ollama Chat AI</a></li>
             <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
             <li><a href="#learning-more">Learning More</a></li>
         </ul>
@@ -143,7 +141,20 @@
 
         </ol>
 
-        <h3 id="step3">Connecting to the Server</h3>
+        <h3 id="step4">Add Elastic IP</h3>
+        <ol>
+            <li>
+              <p>Click on "Elastic IP" in the AWS EC2 dashboard</p>
+              <p>Click "Allocate Elastic IP"</p>
+              <p>Click "Allocate" button on the bottom right</p>
+              <p>Check the box for the new allocated IP</p>
+              <p>Click "Actions" > "Associate Elastic IP address"</p>
+              <p>Select the "Instance" and click "Associate"</p>
+            </li>
+          
+        </ol>
+
+        <h3 id="step5">Connecting to the Server</h3>
         <ol>
             <li>
                 <p>Click <strong>Connect to Instance</strong></p>
@@ -161,7 +172,9 @@
             </li>
         </ol>
 
-        <h3 id="step4">Run Security Updates</h3>
+
+
+        <h3 id="step6">Run Security Updates</h3>
         <ol>
             <li>
                 <p>Make sure to update the instance often</p>
@@ -173,14 +186,37 @@
             </li>
         </ol>
 
-        <h3 id="step4">Install ollama (a free Chat AI) </h3>
+        <h3 id="step7">Install ollama (a free Chat AI) </h3>
         <ol>
             <li>
               <p>curl -fsSL https://ollama.com/install.sh | sh</p>
               <p>ollama pull llama3.2</p>
               <p>ollama run llama3.2</p>
-              <p>Ask the AI a question such as: What is the cloud?</p>
-              <p>Ask this custom, private, AI something else?</p>
+            
+            </li>
+            <li>
+                <p>Ask the AI a question such as: What is the cloud?</p>
+                <p>Ask this custom, private, AI something else?</p>
+            </li>
+          
+        </ol>
+        
+        <h3 id="step8">Add Web Interface for Custom AI Chat</h3>
+        <ol>
+            <li>
+              <p>#Installs and starts docker</p>
+              <p>sudo yum install docker</p>
+              <p>sudo systemctl enable docker</p>
+              <p>sudo service docker start</p>
+            </li>
+            <li>
+                <p>#Get the docker for Custom Web AI Chat (Open Web AI)</p>
+                <p>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>                
+            </li>
+            <li>
+                <p>Open your browser to the Elastic IP address you were give in that step above. </p>
+                <p>Make sure to put http:// and NOT https://</p>
+                <p>Example: http://35.67.76.43:3000</p>
             </li>
           
         </ol>
@@ -216,4 +252,5 @@
 
         <h2>References</h2>
         <p><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/README.md">Ollama</a></p>
+        <p><a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">Open Web AI</a></p>
     </article>
