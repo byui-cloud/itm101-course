@@ -27,7 +27,7 @@
         </ul>
         <h3>Project Requirements</h3>
         <ul>          
-            <li>Find and deploy an AI chat to the cloud (ex: ollama) for the company to use internally without sending any information to the internet</li>
+            <li>Find and deploy an AI chat to the cloud (ex: ollama) for the company to use internally without sending any information to 3rd parties</li>
             <li>Use enough resources for it to run well - it doesn’t need to scale automatically</li>
             <li>It does need to be able to manually be scaled up</li>
             <li>Use AWS (Amazon Web Services) if possible</li>
@@ -132,7 +132,7 @@
                 <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh or connect into the server).</p>
                 <p>Leave the box checked for port SSH from anywhere.</p>
                 <p>Check the boxes for HTTPS and HTTP.</p>
-                <p>Add port 3000 that we will use for the web interface of the Chat AI.</p>
+                <p>Add port 3000 that we will use for the web interface of the Chat AI (click 'Edit' in the top right).</p>
                 <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
             </li>
             <li>
