@@ -50,7 +50,7 @@
                 <a href="#step2">Login to your AWS Academy account</a>
             </li>
             <li>
-                <a href="#step3">Deploy code to an S3 bucket from your computer</a>
+                <a href="#step3">Select the Region</a>
             </li>
             <li>
                 <a href="#step4">Two options: On Your Own or Need More Guidance</a>
@@ -88,12 +88,13 @@
             </li>
         </ol>
 
-        <h3 id="step3">Select the regionDeploy code to an S3 bucket</h3>
-        <p>To access various resources in AWS like an S3 bucket (a network file storage system similar to your hard drive on your computer, but available on the internet), you can do this directly using AWS.</p>
+        <h3 id="step3">Select the Region</h3>
+        <p>To access various resources in AWS like an S3 bucket (a network file storage system similar to your hard drive on your computer, but available on the internet), you can do this directly using AWS. First select the location (region) nearest to you.</p>
         <p>Change your region to <strong>US West</strong> by clicking on the <strong>N. Virginia</strong> near the top right corner of your browser. This change to the Oregon computer/servers that we deployed in Oregon will be found, which is physically closer to Idaho. </p>
         <img src="../site/images//week07/aws_change_region.webp" alt="AWS Change Region">
         
-        <h4 id="step4">You now have two options:</h4>
+        <h3 id="step4">Deploy a Website on an S3 bucket from your computer</h3>
+        <h4>Choose an Option:</h4>
         <ol>
             <li>
                 <p>Option 1: Do it on your own with AWS Documentation</p>
@@ -109,7 +110,20 @@
         <h4 id="step5">Still not sure where to find S3 and how to use it?</h4>
         <ol>
             <li>
-                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#creating-bucket">Create an S3 Bucket</a></p>                
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#creating-bucket">Learn How to Create an S3 Bucket</a></p>                
+            </li>
+            <li>
+                <p>Create the S3 bucket</p>
+            </li>
+            <li>
+                <p>Can't figure it out? Google <strong>How do I create an S3 bucket?</strong></p>
+            </li>
+        </ol>
+
+        <h4 id="step6">Upload your website files to an S3 bucket</h4>
+        <ol>
+            <li>
+                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#uploading-an-object-bucket">Learn how to upload webpage files to the S3 Bucket</a></p>                
             </li>
             <li>
                 <p>Upload your index.html file to the S3 bucket</p>
@@ -119,7 +133,7 @@
             </li>
         </ol>
 
-        <h3 id="step6">Deploy the S3 bucket webpage files to the internet</h3>
+        <h3 id="step7">Make the S3 bucket a webpage to the internet</h3>
         <ol>
             <li>
                 <p>First, make sure that you did the steps above, you have an S3 bucket with your name in it AND make sure that you uploaded an index.html file to the S3 bucket</p>
@@ -167,11 +181,11 @@
             </li>
         </ol>
 
-        <h3 id="step7">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</h3>
+        <h3 id="step8">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</h3>
         <p>For your website to be secure, you need to add an SSL certificate and AWS requires Cloudfront distribution on top of the S3 bucket if you want https. Because we aren’t using Cloudfront, you have to use http (not https).</p>
         <p>We will load our site with http:// (not https://). Passwords would be visible on the network by using http. This is a big security problem. Don’t add authentication to this scenario.</p>
 
-        <h3 id="step8">Website URL</h3>
+        <h3 id="step9">Website URL</h3>
         <p>The URL of your site should be something like this:</p>
         <p>http://yourbucketname.s3.amazonaws.com</p>
 
@@ -193,16 +207,16 @@
         </ul>
 
         <h3>References that might help</h3>
-        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/work-with-S3-objects.html">Working with Amazon S3 Buckets</a></p>
+        <p><a target="_blank" rel="noopener" href="https://aws.amazon.com/s3/faqs/">Working with Amazon S3 Buckets</a></p>
 
         <h2 id="learning-more">Learning More</h2>
         <p>Want to learn more about AWS? Take ITM310 Applied Cloud Computing.</p>
         <p>Build your resume: Deployed a Javascript website to an AWS S3 bucket</p>
         <p>Build your resume (FUTURE project): Implemented AWS CloudFront distribution for a Javascript website in an S3 bucket</p>
 
-        <h2>Learning More - Add a Version Control Repository</h2>
-        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-codecommit.html#sample-codecommit-clone-repo">AWS CodeCommit Tutorial</a></p>
-        <p>Build your resume (FUTURE project): Built a CD/CI pipeline from an Git repo for a Javascript website to an S3 bucket</p>
+        <h2>Learning More - Add a Version Control Repository with CI/CD Pipelines</h2>
+        <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/whitepapers/latest/cicd_for_5g_networks_on_aws/cicd-on-aws.html">AWS CI/CD Pipelines</a></p>
+        <p>Build your resume (FUTURE project): Built a CD/CI pipeline from ___________ for a Javascript website to an S3 bucket</p>
     </article>
 </body>
 </html>
