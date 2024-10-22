@@ -1,3 +1,4 @@
+!#/bin/bash
 curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules
 cd public 
 curl -O https://byui-cloud.github.io/itm101-course/week05/config.js 
