@@ -108,37 +108,45 @@
             </li>
             <li>
                 <p>Pick a name for the server like <strong>AI Chat</strong></p>
-                <img src="../site/images/week10/ec2_server_name.png" alt="EC2 Server Name">
+                <img src="../site/images/week07/AIChat.jpg" alt="EC2 Server Name">
             </li>
             <li>
                 <p>Click on <strong>Amazon Linux and 64-bit</strong></p>
-                <img src="../site/images/week10/ec2_ubuntu_server.png" alt="EC2 Ubuntu Server">
+                <img src="../site/images/week07/AmazonLinux64.jpg" alt="Amazon Linux 64">
             </li>
             <li>
                 <p>Pick how much processing power and RAM you want. We will use a <strong>t2.large</strong>. Click the drop down and search for t2.large.</p>
-                <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
+                <img src="../site/images/week07/t2large.jpg" alt="EC2 Instance Type">
                 <p>The larger the instance type, the more it costs per hour. You will want to turn this one off if you are not using it. After 4 hours your learner lab will turn off all your servers automatically, but in a normal AWS account it would not turn off unless you turn it off manually.</p>
             </li>
             <li>
                 <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file. You download it to your computer to use it to connect to the server.</p>
-                <img src="../site/images/week10/ec2_key_pair.png" alt="EC2 Key Pair">
+                <img src="../site/images/week07/keypair.jpg" alt="EC2 Key Pair">
             </li>
             <li>
                 <p>Name the key and keep the settings at their default (RSA key pair type, and .pem key file format).</p>
-                <img src="../site/images/week10/ec2_key_pair_name.png" alt="EC2 Key Pair Name">
+                <img src="../site/images/week07/pemfile.jpg" alt="EC2 Key Pair Name">
                 <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
             </li>
             <li>
                 <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh or connect into the server).</p>
                 <p>Leave the box checked for port SSH from anywhere.</p>
                 <p>Check the boxes for HTTPS and HTTP.</p>
+                <p>Add more security ports (click 'Edit' in the top right).</p>          
+                <img src="../site/images/week07/openports.jpg" alt="EC2 Network Settings">
+                <p>Add security group rules</p>
+                <img src="../site/images/week07/addsecuritygrouprules.jpg" alt="Add security groups">
                 <p>Add port 3000 that we will use for the web interface of the Chat AI (click 'Edit' in the top right).</p>
-                <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
+                <img src="../site/images/week07/addport3000.jpg" alt="Add port 3000">
+                <p>Add cidr for the source of 0.0.0.0 (means allow traffic from anywhere on the internet)</p>
+                <img src="../site/images/week07/addport3000cidr.jpg" alt="Add port 3000">
+
             </li>
             <li>
                 <p>Pick how much hard drive space you need on the server. Put 32 GB.</p>
-                <img src="../site/images/week10/ec2_configure_storage.png" alt="EC2 Configure Storage">
+                <img src="../site/images/week07/32gbstorage.jpg" alt="EC2 Configure Storage">
                 <p>Click <strong>Launch Instance</strong></p>
+                <img src="../site/images/week07/launchinstance.jpg" alt="Launch instance">
             </li>
 
         </ol>
@@ -147,11 +155,19 @@
         <ol>
             <li>
               <p>Click on "Elastic IP" in the AWS EC2 dashboard</p>
+              <img src="../site/images/week07/elasticips.jpg" alt="Elastic IPs">
               <p>Click "Allocate Elastic IP"</p>
+              <img src="../site/images/week07/elasticip.jpg" alt="Elastic IPs">
+              <p>Keep the Amazon pool of IPV4 addresses selected</p>
+              <img src="../site/images/week07/elasticippool.jpg" alt="pool">
               <p>Click "Allocate" button on the bottom right</p>
+              <img src="../site/images/week07/allocate.jpg" alt="allocate">
               <p>Check the box for the new allocated IP</p>
+              <img src="../site/images/week07/selectip.jpg" alt="select ip">
               <p>Click "Actions" > "Associate Elastic IP address"</p>
-              <p>Select the "Instance" and click "Associate"</p>
+              <img src="../site/images/week07/associateip.jpg" alt="associate ip">
+              <p>Find and select the "Instance" in the search bar and click "Associate"</p>
+              <img src="../site/images/week07/chooseinstanceassociate.jpg" alt="associate instance">
             </li>
           
         </ol>
@@ -159,12 +175,16 @@
         <h3 id="step5">Connecting to the Server</h3>
         <ol>
             <li>
-                <p>Click <strong>Connect to Instance</strong></p>
-                <img src="../site/images/week10/ec2_connect_to_instance.png" alt="EC2 Connect to Instance">
+                <p>Click <strong>Connect to Instance - click on Instance</strong></p>
+                <img src="../site/images/week07/clickinstances.jpg" alt="EC2 Connect to Instance">
+            </li>
+            <li>
+                <p>Click <strong>on the ID of your instance</strong>.</p>
+                <img src="../site/images/week07/clickinstanceid.jpg" alt="EC2 Connect to Instance From Amazon">
             </li>
             <li>
                 <p>Click <strong>Connect</strong>.</p>
-                <img src="../site/images/week10/ec2_connect_to_instance2.png" alt="EC2 Connect to Instance From Amazon">
+                <img src="../site/images/week07/connect.jpg" alt="EC2 Connect to Instance From Amazon">
                 <ul>
                     <li>
                         <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
