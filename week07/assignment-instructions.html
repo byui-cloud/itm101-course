@@ -193,7 +193,8 @@
                         <p>In your terminal or Powershell, you need to be in the folder of your .pem file you downloaded.</p>
                         <p>Change the permission of the .pem file:</p>
                         <pre>chmod 400 'yourkey.pem'</pre>
-                        <pre>ssh -i yourkey.pem ubuntu@3.3.3.3</pre>
+                        <pre>ssh -i yourkey.pem ec2-user@3.3.3.3</pre>
+                        <p>Use either the Public IPv4 Address for your instance or the longer compute-1.amazonaws.com given in the connect tab.</p>
                         <img src="../site/images/week07/terminalconnection.png" alt="Connect via shell">
                     </li>
                 </ul>
@@ -204,7 +205,7 @@
         <ol>
             <li>
                 <p>Make sure to update the instance often.</p>
-                <p>This gets and applies the updates for the software and services that need updates.</p>
+                <p>This gets and applies the security updates for the software and services that need updates.</p>
                 <pre>sudo yum update</pre>
                 <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates).</p>
                 <pre>sudo reboot</pre>
