@@ -193,6 +193,7 @@
                         <p>In your terminal or Powershell, you need to be in the folder of your .pem file you downloaded.</p>
                         <p>Change the permission of the .pem file:</p>
                         <pre>chmod 400 'yourkey.pem'</pre>
+                        <p>Connect to the server with your .pem file (acts as the password) and the default AWS username of 'ec2-user'.</p>
                         <pre>ssh -i yourkey.pem ec2-user@3.3.3.3</pre>
                         <p>Use either the Public IPv4 Address for your instance or the longer compute-1.amazonaws.com given in the connect tab.</p>
                         <img src="../site/images/week07/terminalconnection.png" alt="Connect via shell">
