@@ -488,22 +488,29 @@ service cloud.firestore {
   }
 }
 </pre>
-<p>Here is another example that validates the input is a string:</p>
+<p>Here is another example that validates the input is a string and doesn't allow scripts or html:</p>
 <pre>
     rules_version = '2';
     service cloud.firestore {
       match /databases/{database}/documents {
+        match /products/{document=**} {
+          allow read, write;
+        }
           match /projects/{document=**} {
           allow read;
-        allow write: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'] && 
-                       (request.resource.data.keys().size() == 1 || 
-                        (request.resource.data.keys().hasOnly(['description', 'name']) && 
-                         request.resource.data.values()[0] is string && 
-                         request.resource.data.values()[1] is string
-                        ));
+          allow write: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'] && 
+                          (request.resource.data.keys().hasOnly(['description', 'name']) && 
+                           request.resource.data.description is string && 
+                           request.resource.data.name is string &&
+                           !request.resource.data.description.matches('.*[<].*') &&
+                           !request.resource.data.name.matches('.*[<].*')
+                        );
+        allow delete: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'];
         }
       }
     }
+    
+    
 </pre>
 <p>Here is another example:</p>
 <pre>
