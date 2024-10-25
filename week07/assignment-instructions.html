@@ -19,120 +19,120 @@
         <h1>Find and Deploy a AI Chat to the Cloud</h1>
         <h2>Overview</h2>
 
-        <p>In this scenario, you were recently hired by a small startup company that for privacy and cybersecurity reasons, they want you to build an AI Chat in the Cloud.</span></p>
+        <p>In this scenario, you were recently hired by a small startup company that for privacy and cybersecurity reasons, they want you to build an AI Chat in the Cloud.</p>
 
         <h3>Business Requirements</h3>
         <ul>
-            <li>AI Chat Privacy</li>
+            <li><div>AI Chat Privacy</div></li>
         </ul>
         <h3>Project Requirements</h3>
-        <ul>          
-            <li>Find and deploy an AI chat to the cloud (ex: ollama) for the company to use internally without sending any information to 3rd parties</li>
-            <li>Use enough resources for it to run well - it doesn’t need to scale automatically</li>
-            <li>It does need to be able to manually be scaled up</li>
-            <li>Use AWS (Amazon Web Services) if possible</li>
-            <li>Use an ollama model that will fit on a server with less than 32 GB of storage space</li>
+        <ul>
+            <li><div>Find and deploy an AI chat to the cloud (ex: ollama) for the company to use internally without sending any information to 3rd parties</div></li>
+            <li><div>Use enough resources for it to run well - it doesn’t need to scale automatically</div></li>
+            <li><div>It does need to be able to manually be scaled up</div></li>
+            <li><div>Use AWS (Amazon Web Services) if possible</div></li>
+            <li><div>Use an ollama model that will fit on a server with less than 32 GB of storage space</div></li>
         </ul>
         <h2>Table of Contents</h2>
         <ol>
-            <li><a href="#step1">Setting up and logging in to your AWS Academy account</a></li>
-            <li><a href="#step2">Connecting to AWS Learner Lab</a></li>
-            <li><a href="#step3">AWS EC2 (Elastic Cloud Computing)</a></li>
-            <li><a href="#step4">Add an Elastic IP</a></li>
-            <li><a href="#step5">Connect to the Server</a></li>
-            <li><a href="#step6">Run Security Updates</a></li>
-            <li><a href="#step7">Run the ollama install scripts</a></li>
-            <li><a href="#step8">Test the Web ollama Chat AI</a></li>
-            <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
-            <li><a href="#learning-more">Learning More</a></li>
-        </ul>
+            <li><div><a href="#step1">Setting up and logging in to your AWS Academy account</a></div></li>
+            <li><div><a href="#step2">Connecting to AWS Learner Lab</a></div></li>
+            <li><div><a href="#step3">AWS EC2 (Elastic Cloud Computing)</a></div></li>
+            <li><div><a href="#step4">Add an Elastic IP</a></div></li>
+            <li><div><a href="#step5">Connect to the Server</a></div></li>
+            <li><div><a href="#step6">Run Security Updates</a></div></li>
+            <li><div><a href="#step7">Run the ollama install scripts</a></div></li>
+            <li><div><a href="#step8">Test the Web ollama Chat AI</a></div></li>
+            <li><div><a href="#troubleshooting">Troubleshooting & Common Problems</a></div></li>
+            <li><div><a href="#learning-more">Learning More</a></div></li>
+        </ol>
 
         <h2>Project Instructions</h2>
 
         <h3 id="step1">Setting up and logging in to your AWS Academy account</h3>
         <p>Your instructor will create an AWS Academy course that will be used to create sandbox accounts for you as a student. This sandbox account will be an AWS account with a $50 credit assigned to you. There are no requirements for you to purchase or provision any account from AWS. <strong>You will not be required to spend any money or provide credit card information. </strong></p>
-        <p>Your instructor has created a user account in the AWS Academy course for you.  As part of the course creation, you will receive an email invitation to join the course.  Please note AWS Academy uses Canvas like I-Learn; however, this is not the same Canvas account as BYUI.  You will be creating new credentials in AWS Academy with your byui.edu email address. If you have previously created an AWS Academy account, you will use those AWS Academy credentials and can skip to step 3 of this section.</p>
+        <p>Your instructor has created a user account in the AWS Academy course for you. As part of the course creation, you will receive an email invitation to join the course. Please note AWS Academy uses Canvas like I-Learn; however, this is not the same Canvas account as BYUI. You will be creating new credentials in AWS Academy with your byui.edu email address. If you have previously created an AWS Academy account, you will use those AWS Academy credentials and can skip to step 3 of this section.</p>
         <ol>
-            <li>
-                <p>To set up your AWS Academy account, open your email invitation from AWS Academy  (notifications@instructure.com) and click <strong>Get Started.</strong></p>
+            <li><div>
+                <p>To set up your AWS Academy account, open your email invitation from AWS Academy (notifications@instructure.com) and click <strong>Get Started.</strong></p>
                 <p><strong>Note</strong>: If you don’t see the email, check your junk, spam, or promotional mail folder. </p>
                 <img src="../site/images/week07/aws_course_invitation.webp" alt="AWS Course Invitation">
-            </li>
-            <li>
-                <p>After clicking the <strong>Get Started</strong> button, you will be redirected to a web page for creating an account or login using existing AWS Academy credentials.  Please note that while the email being used is your byui.edu email, this is <strong>not</strong> your byui.edu password.  You should not use the same password for AWS Academy as your byui.edu I-Learn account.  AWS Academy does not utilize single sign-on services and is an entirely separate service and account from byui.edu.  Unless you already have an AWS Academy account, select <strong>Create My Account</strong>.  If you already have an AWS Academy account, select the <strong>I Have a Canvas Account</strong> option and use your AWS Academy credentials to login and accept the invitation to this course. Also, note the AWS Academy Learner Lab number will be different for your course than the [36035] shown below. <strong>This is NOT your I-Learn credentials</strong>.  They are separate accounts.</p>
+            </div></li>
+            <li><div>
+                <p>After clicking the <strong>Get Started</strong> button, you will be redirected to a web page for creating an account or login using existing AWS Academy credentials. Please note that while the email being used is your byui.edu email, this is <strong>not</strong> your byui.edu password. You should not use the same password for AWS Academy as your byui.edu I-Learn account. AWS Academy does not utilize single sign-on services and is an entirely separate service and account from byui.edu. Unless you already have an AWS Academy account, select <strong>Create My Account</strong>. If you already have an AWS Academy account, select the <strong>I Have a Canvas Account</strong> option and use your AWS Academy credentials to login and accept the invitation to this course. Also, note the AWS Academy Learner Lab number will be different for your course than the [36035] shown below. <strong>This is NOT your I-Learn credentials</strong>. They are separate accounts.</p>
                 <img src="../site/images/week07/aws_welcome_message.webp" alt="AWS Welcome Message">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>After creating credentials, choose <strong>Student Login</strong> in the future and log in with your email address and password at <a target="_blank" rel="noopener" href="https://awsacademy.instructure.com">https://awsacademy.instructure.com</a> </p>
                 <img src="../site/images/week07/aws_student_login.webp" alt="AWS Login">
-            </li>
+            </div></li>
         </ol>
         <h3 id="step2">Connecting to AWS Learner Lab</h3>
         <ol>
-           <li>
-            <p>From the <a target="_blank" rel="noopener" href="https://awsacademy.instructure.com/login/canvas">LMS dashboard</a>, choose the BYUI AWS Academy Learning Lab for the class you are accessing.  Your instructor will provide a 5 digits identifier for your course to access the learner lab sandbox for your given class. <strong>Note</strong>: If you have been invited to more than one course or Lab, you will see multiple tiles on the dashboard.</p>
+            <li><div>
+            <p>From the <a target="_blank" rel="noopener" href="https://awsacademy.instructure.com/login/canvas">LMS dashboard</a>, choose the BYUI AWS Academy Learning Lab for the class you are accessing. Your instructor will provide a 5 digits identifier for your course to access the learner lab sandbox for your given class. <strong>Note</strong>: If you have been invited to more than one course or Lab, you will see multiple tiles on the dashboard.</p>
             <img src="../site/images/week07/aws_dashboard.webp" alt="AWS Dashboard">
-           </li>
-           <li>
+            </div></li>
+            <li><div>
             <p>In the navigation menu, choose <strong>Modules</strong>.</p>
             <img src="../site/images/week07/aws_modules.webp" alt="AWS Modules">
-           </li>
-           <li>
+            </div></li>
+            <li><div>
             <p>Choose the Learner Lab link.</p>
             <img src="../site/images/week07/aws_learner_lab.webp" alt="AWS Learner Lab">
-           </li>
-           <li>
+            </div></li>
+            <li><div>
             <p>Click <strong>Start Lab</strong> (arrow #1) and wait for the circle (arrow #2) to turn from yellow to green.</p>
             <img src="../site/images/week07/aws_start_lab.webp" alt="AWS Start Lab">
-           </li>
-           <li>
+            </div></li>
+            <li><div>
             <p>Once the circle is green, click <strong>AWS</strong> (arrow #2 above) and it will open a new window.</p>
-           </li>
+            </div></li>
         </ol>
 
         <h3 id="step3">AWS EC2 (Amazon Web Services Elastic Cloud Compute)</h3>
         <ol>
-            <li> AWS offers many free resources to host your own website: <a href="https://aws.amazon.com/free/webapps/">Check out AWS Free Web Apps</a>.
-            </li>
-            <li>
+            <li><div> AWS offers many free resources to host your own website: <a href="https://aws.amazon.com/free/webapps/">Check out AWS Free Web Apps</a>.
+            </div></li>
+            <li><div>
                 <p>AWS (Amazon Web Service) has EC2, the main way to deploy a server with an operating system such as Linux.</p>
-            </li>
-           
-            <li>
+            </div></li>
+
+            <li><div>
                 <p>When in your AWS console, search <strong>EC2</strong> in the search bar and click <strong>EC2</strong>.</p>
                 <img src="../site/images/week10/ec2_search.png" alt="EC2 Search">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click <strong>Launch Instance</strong>.</p>
                 <img src="../site/images/week10/ec2_launch_instance.png" alt="EC2 Launch Instance">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Pick a name for the server like <strong>AI Chat</strong>.</p>
                 <img src="../site/images/week07/AIChat.jpg" alt="EC2 Server Name">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click on <strong>Amazon Linux and 64-bit (x86)</strong>.</p>
                 <img src="../site/images/week07/AmazonLinux64.jpg" alt="Amazon Linux 64">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Pick how much processing power and RAM you want. We will use a <strong>t2.large</strong>. Click the drop down and search for t2.large.</p>
                 <img src="../site/images/week07/t2large.jpg" alt="EC2 Instance Type">
                 <p>The larger the instance type, the more it costs per hour. You will want to turn this one off if you are not using it. After 4 hours your learner lab will turn off all your servers automatically, but in a normal AWS account it would not turn off unless you turn it off manually.</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file. You download it to your computer to use it to connect to the server.</p>
                 <img src="../site/images/week07/keypair.jpg" alt="EC2 Key Pair">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Name the key and keep the settings at their default (RSA key pair type, and .pem key file format).</p>
                 <img src="../site/images/week07/pemfile.jpg" alt="EC2 Key Pair Name">
                 <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh or connect into the server).</p>
                 <p>Leave the box checked for port SSH from anywhere.</p>
                 <p>Check the boxes for HTTPS and HTTP.</p>
-                <p>Add more security ports.</p>          
+                <p>Add more security ports.</p>
                 <p>Click 'Edit' in the top right.</p>
                 <img src="../site/images/week07/openports.jpg" alt="EC2 Network Settings">
                 <p>Add security group rules.</p>
@@ -143,19 +143,19 @@
                 <p>Add cidr for the source of 0.0.0.0 (means allow traffic from anywhere on the internet).</p>
                 <img src="../site/images/week07/addport3000cidr.jpg" alt="Add port 3000">
 
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Pick how much hard drive space you need on the server. Put 32 GB.</p>
                 <img src="../site/images/week07/32gbstorage.jpg" alt="EC2 Configure Storage">
                 <p>Click the <strong>Launch Instance</strong> button</p>
                 <img src="../site/images/week07/launchinstance.jpg" alt="Launch instance">
-            </li>
+            </div></li>
 
         </ol>
 
         <h3 id="step4">Add Elastic IP (Makes the server have the same IP address to connect to it again)</h3>
         <ol>
-            <li>
+            <li><div>
               <p>Click on "Elastic IPs" in the AWS EC2 dashboard on the left side.</p>
               <img src="../site/images/week07/elasticips.jpg" alt="Elastic IPs">
               <p>Click the "Allocate Elastic IP address" button.</p>
@@ -166,29 +166,29 @@
               <img src="../site/images/week07/allocate.jpg" alt="allocate">
               <p>Check the box for the new allocated IP.</p>
               <img src="../site/images/week07/selectip.jpg" alt="select ip">
-              <p>Click "Actions" > "Associate Elastic IP address".</p>
+              <p>Click "Actions" &gt; "Associate Elastic IP address".</p>
               <img src="../site/images/week07/associateip.jpg" alt="associate ip">
               <p>Find and select the "Instance" in the search bar and click "Associate".</p>
               <img src="../site/images/week07/chooseinstanceassociate.jpg" alt="associate instance">
-            </li>
-          
+            </div></li>
+
         </ol>
 
         <h3 id="step5">Connecting to the Server</h3>
         <ol>
-            <li>
+            <li><div>
                 <p>Click <strong>Click on Instances on the left side bar</strong>.</p>
                 <img src="../site/images/week07/clickinstances.jpg" alt="EC2 Connect to Instance">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click <strong>on the ID of your instance (the long number)</strong>.</p>
                 <img src="../site/images/week07/clickinstanceid.jpg" alt="EC2 Connect to Instance From Amazon">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click the <strong>Connect</strong> button.</p>
                 <img src="../site/images/week07/connect.jpg" alt="EC2 Connect to Instance From Amazon">
                 <ul>
-                    <li>
+                    <li><div>
                         <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
                         <p>In your terminal or Powershell, you need to be in the folder of your .pem file you downloaded.</p>
                         <p>Change the permission of the .pem file:</p>
@@ -197,78 +197,76 @@
                         <pre>ssh -i yourkey.pem ec2-user@3.3.3.3</pre>
                         <p>Use either the Public IPv4 Address for your instance or the longer compute-1.amazonaws.com given in the connect tab.</p>
                         <img src="../site/images/week07/terminalconnection.png" alt="Connect via shell">
-                    </li>
+                    </div></li>
                 </ul>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step6">Run Security Updates</h3>
         <ol>
-            <li>
+            <li><div>
                 <p>Make sure to update the instance often.</p>
                 <p>This gets and applies the security updates for the software and services that need updates.</p>
                 <pre>sudo yum update</pre>
                 <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates).</p>
                 <pre>sudo reboot</pre>
                 <p>Reconnect with the steps above after about a minute for the reboot.</p>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step7">Install ollama (a free Chat AI) </h3>
         <ol>
-            <li>
+            <li><div>
               <pre>curl -fsSL https://ollama.com/install.sh | sh</pre>
               <pre>ollama pull llama3.2</pre>
               <pre>ollama run llama3.2</pre>
-            
-            </li>
-            <li>
+
+            </div></li>
+            <li><div>
                 <p>Ask the AI a question such as: What is the cloud?</p>
                 <p>Ask this custom, private, AI something else?</p>
-            </li>
-          
+            </div></li>
+
         </ol>
-        
+
         <h3 id="step8">Add Web Interface for Custom AI Chat</h3>
         <ol>
-            <li>
+            <li><div>
               <p>#Installs and starts docker (we will learn more about docker later)</p>
               <p>sudo yum install docker</p>
               <p>sudo systemctl enable docker</p>
               <p>sudo service docker start</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>#Get the docker for Custom Web AI Chat (Open Web AI - a website for your own custom AI chat)</p>
-                <p>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>                
-            </li>
-            <li>
+                <p>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>
+            </div></li>
+            <li><div>
                 <p>Open your browser to the Elastic IP address you were give in that Elastic IP step above. </p>
                 <p>Make sure to put http:// and NOT https://</p>
                 <p>Example: http://35.67.76.43:3000</p>
                 <p>Sign up for a new account</p>
                 <p>Select a model</p>
                 <p>Try the AI Chat</p>
-            </li>
-          
+            </div></li>
+
         </ol>
 
         <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
         <h3>If you can't access AWS</h3>
         <ul>
-            <li>
+            <li><div>
                 <p>Find the email invite that was sent to your BYU-I email address that ends in @byui.edu</p>
-            </li>
+            </div></li>
         </ul>
 
         <h3>You can't see the EC2 instance?</h3>
         <ul>
-            <li>
+            <li><div>
                 <p>Are you in the correct region? Did you click on the top right corner of AWS to connect to the N. Virginia or Oregon region, depending on where you deployed it.</p>
-            </li>
-
+            </div></li>
         </ul>
 
- 
         <h2 id="learning-more">Learning More</h2>
         <p>Want to learn more about AWS and obtain an AWS certification? Take ITM300 Cloud Foundations.</p>
         <p>Build your resume: Deployed a Custom Chat AI to an AWS EC2 instance.</p>
@@ -287,3 +285,5 @@
         <p><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/README.md">Ollama</a></p>
         <p><a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">Open Web AI</a></p>
     </article>
+</body>
+</html>
