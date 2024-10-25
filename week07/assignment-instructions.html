@@ -187,10 +187,12 @@
             <li><div>
                 <p>Click the <strong>Connect</strong> button.</p>
                 <img src="../site/images/week07/connect.jpg" alt="EC2 Connect to Instance From Amazon">
+                <p>Click on the "EC2 Instance Connect" tab if it is not selected.</p>
+                <p>Scroll down and click the orange "Connect" button on the bottom right. </p>
                 <ul>
                     <li><div>
-                        <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
-                        <p>In your terminal or Powershell, you need to be in the folder of your .pem file you downloaded.</p>
+                        <p><strong>Alternatively</strong>, on your latop, directly, you could use Powershell or the terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
+                        <p>In your terminal or Powershell on your laptop (not the browser connect option above), you need to be in the folder of your .pem file you downloaded.</p>
                         <p>Change the permission of the .pem file:</p>
                         <pre>chmod 400 'yourkey.pem'</pre>
                         <p>Connect to the server with your .pem file (acts as the password) and the default AWS username of 'ec2-user'.</p>
@@ -205,7 +207,7 @@
         <h3 id="step6">Run Security Updates</h3>
         <ol>
             <li><div>
-                <p>Make sure to update the instance often.</p>
+                <p>Make sure to update the instance often. Connect either in the browser connecting to the terminal with "Connect" buttons or ssh in via the pem key.</p>
                 <p>This gets and applies the security updates for the software and services that need updates.</p>
                 <pre>sudo yum update</pre>
                 <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates).</p>
