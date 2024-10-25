@@ -86,7 +86,7 @@
             <img src="../site/images/week07/aws_start_lab.webp" alt="AWS Start Lab">
            </li>
            <li>
-            <p>Once the circle is green, click <strong>AWS</strong> (arrow #2 above) and it will open a new window</p>
+            <p>Once the circle is green, click <strong>AWS</strong> (arrow #2 above) and it will open a new window.</p>
            </li>
         </ol>
 
@@ -99,59 +99,77 @@
             </li>
            
             <li>
-                <p>When in your AWS console, search <strong>EC2</strong> in the search bar and click <strong>EC2</strong></p>
+                <p>When in your AWS console, search <strong>EC2</strong> in the search bar and click <strong>EC2</strong>.</p>
                 <img src="../site/images/week10/ec2_search.png" alt="EC2 Search">
             </li>
             <li>
-                <p>Click <strong>Launch Instance</strong></p>
+                <p>Click <strong>Launch Instance</strong>.</p>
                 <img src="../site/images/week10/ec2_launch_instance.png" alt="EC2 Launch Instance">
             </li>
             <li>
-                <p>Pick a name for the server like <strong>AI Chat</strong></p>
-                <img src="../site/images/week10/ec2_server_name.png" alt="EC2 Server Name">
+                <p>Pick a name for the server like <strong>AI Chat</strong>.</p>
+                <img src="../site/images/week07/AIChat.jpg" alt="EC2 Server Name">
             </li>
             <li>
-                <p>Click on <strong>Amazon Linux and 64-bit</strong></p>
-                <img src="../site/images/week10/ec2_ubuntu_server.png" alt="EC2 Ubuntu Server">
+                <p>Click on <strong>Amazon Linux and 64-bit (x86)</strong>.</p>
+                <img src="../site/images/week07/AmazonLinux64.jpg" alt="Amazon Linux 64">
             </li>
             <li>
                 <p>Pick how much processing power and RAM you want. We will use a <strong>t2.large</strong>. Click the drop down and search for t2.large.</p>
-                <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
+                <img src="../site/images/week07/t2large.jpg" alt="EC2 Instance Type">
                 <p>The larger the instance type, the more it costs per hour. You will want to turn this one off if you are not using it. After 4 hours your learner lab will turn off all your servers automatically, but in a normal AWS account it would not turn off unless you turn it off manually.</p>
             </li>
             <li>
                 <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file. You download it to your computer to use it to connect to the server.</p>
-                <img src="../site/images/week10/ec2_key_pair.png" alt="EC2 Key Pair">
+                <img src="../site/images/week07/keypair.jpg" alt="EC2 Key Pair">
             </li>
             <li>
                 <p>Name the key and keep the settings at their default (RSA key pair type, and .pem key file format).</p>
-                <img src="../site/images/week10/ec2_key_pair_name.png" alt="EC2 Key Pair Name">
+                <img src="../site/images/week07/pemfile.jpg" alt="EC2 Key Pair Name">
                 <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
             </li>
             <li>
                 <p>Select the ports that you want open to be able to access the server (e.g port 22 (selected by default) to ssh or connect into the server).</p>
                 <p>Leave the box checked for port SSH from anywhere.</p>
                 <p>Check the boxes for HTTPS and HTTP.</p>
+                <p>Add more security ports.</p>          
+                <p>Click 'Edit' in the top right.</p>
+                <img src="../site/images/week07/openports.jpg" alt="EC2 Network Settings">
+                <p>Add security group rules.</p>
+                <p>Click the "Add security group rule" button.</p>
+                <img src="../site/images/week07/addsecuritygrouprules.jpg" alt="Add security groups">
                 <p>Add port 3000 that we will use for the web interface of the Chat AI (click 'Edit' in the top right).</p>
-                <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
+                <img src="../site/images/week07/addport3000.jpg" alt="Add port 3000">
+                <p>Add cidr for the source of 0.0.0.0 (means allow traffic from anywhere on the internet).</p>
+                <img src="../site/images/week07/addport3000cidr.jpg" alt="Add port 3000">
+
             </li>
             <li>
                 <p>Pick how much hard drive space you need on the server. Put 32 GB.</p>
-                <img src="../site/images/week10/ec2_configure_storage.png" alt="EC2 Configure Storage">
-                <p>Click <strong>Launch Instance</strong></p>
+                <img src="../site/images/week07/32gbstorage.jpg" alt="EC2 Configure Storage">
+                <p>Click the <strong>Launch Instance</strong> button</p>
+                <img src="../site/images/week07/launchinstance.jpg" alt="Launch instance">
             </li>
 
         </ol>
 
-        <h3 id="step4">Add Elastic IP</h3>
+        <h3 id="step4">Add Elastic IP (Makes the server have the same IP address to connect to it again)</h3>
         <ol>
             <li>
-              <p>Click on "Elastic IP" in the AWS EC2 dashboard</p>
-              <p>Click "Allocate Elastic IP"</p>
-              <p>Click "Allocate" button on the bottom right</p>
-              <p>Check the box for the new allocated IP</p>
-              <p>Click "Actions" > "Associate Elastic IP address"</p>
-              <p>Select the "Instance" and click "Associate"</p>
+              <p>Click on "Elastic IPs" in the AWS EC2 dashboard on the left side.</p>
+              <img src="../site/images/week07/elasticips.jpg" alt="Elastic IPs">
+              <p>Click the "Allocate Elastic IP address" button.</p>
+              <img src="../site/images/week07/elasticip.jpg" alt="Elastic IPs">
+              <p>Keep the Amazon pool of IPV4 addresses selected.</p>
+              <img src="../site/images/week07/elasticippool.jpg" alt="pool">
+              <p>Click the "Allocate" button on the bottom right.</p>
+              <img src="../site/images/week07/allocate.jpg" alt="allocate">
+              <p>Check the box for the new allocated IP.</p>
+              <img src="../site/images/week07/selectip.jpg" alt="select ip">
+              <p>Click "Actions" > "Associate Elastic IP address".</p>
+              <img src="../site/images/week07/associateip.jpg" alt="associate ip">
+              <p>Find and select the "Instance" in the search bar and click "Associate".</p>
+              <img src="../site/images/week07/chooseinstanceassociate.jpg" alt="associate instance">
             </li>
           
         </ol>
@@ -159,41 +177,49 @@
         <h3 id="step5">Connecting to the Server</h3>
         <ol>
             <li>
-                <p>Click <strong>Connect to Instance</strong></p>
-                <img src="../site/images/week10/ec2_connect_to_instance.png" alt="EC2 Connect to Instance">
+                <p>Click <strong>Click on Instances on the left side bar</strong>.</p>
+                <img src="../site/images/week07/clickinstances.jpg" alt="EC2 Connect to Instance">
             </li>
             <li>
-                <p>Click <strong>Connect</strong>.</p>
-                <img src="../site/images/week10/ec2_connect_to_instance2.png" alt="EC2 Connect to Instance From Amazon">
+                <p>Click <strong>on the ID of your instance (the long number)</strong>.</p>
+                <img src="../site/images/week07/clickinstanceid.jpg" alt="EC2 Connect to Instance From Amazon">
+            </li>
+            <li>
+                <p>Click the <strong>Connect</strong> button.</p>
+                <img src="../site/images/week07/connect.jpg" alt="EC2 Connect to Instance From Amazon">
                 <ul>
                     <li>
                         <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
-                        <pre>ssh -i yourkey.pem ubuntu@3.3.3.3</pre>
+                        <p>In your terminal or Powershell, you need to be in the folder of your .pem file you downloaded.</p>
+                        <p>Change the permission of the .pem file:</p>
+                        <pre>chmod 400 'yourkey.pem'</pre>
+                        <p>Connect to the server with your .pem file (acts as the password) and the default AWS username of 'ec2-user'.</p>
+                        <pre>ssh -i yourkey.pem ec2-user@3.3.3.3</pre>
+                        <p>Use either the Public IPv4 Address for your instance or the longer compute-1.amazonaws.com given in the connect tab.</p>
+                        <img src="../site/images/week07/terminalconnection.png" alt="Connect via shell">
                     </li>
                 </ul>
             </li>
         </ol>
 
-
-
         <h3 id="step6">Run Security Updates</h3>
         <ol>
             <li>
-                <p>Make sure to update the instance often</p>
-                <p>This gets and applies the updates for the software and services that need updates</p>
+                <p>Make sure to update the instance often.</p>
+                <p>This gets and applies the security updates for the software and services that need updates.</p>
                 <pre>sudo yum update</pre>
-                <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates)</p>
+                <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates).</p>
                 <pre>sudo reboot</pre>
-                <p>Reconnect with the steps above after about a minute for the reboot</p>
+                <p>Reconnect with the steps above after about a minute for the reboot.</p>
             </li>
         </ol>
 
         <h3 id="step7">Install ollama (a free Chat AI) </h3>
         <ol>
             <li>
-              <p>curl -fsSL https://ollama.com/install.sh | sh</p>
-              <p>ollama pull llama3.2</p>
-              <p>ollama run llama3.2</p>
+              <pre>curl -fsSL https://ollama.com/install.sh | sh</pre>
+              <pre>ollama pull llama3.2</pre>
+              <pre>ollama run llama3.2</pre>
             
             </li>
             <li>
