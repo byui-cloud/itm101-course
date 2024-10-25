@@ -142,6 +142,7 @@
                 <img src="../site/images/week07/addport3000.jpg" alt="Add port 3000">
                 <p>Add cidr for the source of 0.0.0.0 (means allow traffic from anywhere on the internet).</p>
                 <img src="../site/images/week07/addport3000cidr.jpg" alt="Add port 3000">
+                <p>Add port 11434 to with CIDR of 0.0.0.0 for ollama</p>
 
             </div></li>
             <li><div>
@@ -249,8 +250,27 @@
                 <p>Make sure to put http:// and NOT https://</p>
                 <p>Example: http://35.67.76.43:3000</p>
                 <p>Sign up for a new account</p>
-                <p>Select a model</p>
+                <p>Click on your user profile in the top right corner (ex: the intial of your first name).</p>
+                <p>Select "Admin Panel"</p>
+                <p>Select "settings"</p>
+                <p>Go to "Models" and type llama3.2 to pull that model.</p>
+                <p>Go to "Users" and select the llama3.2 model as the default and click save.</p>
+                <p>Go to "Connections" and put in your Elastic IP and save it.</p>
+                <p>If you get this far, Great JOB!</p>
+                <p>More configuration may be necessary to get it to work.</p>
                 <p>Try the AI Chat</p>
+            
+                <p>You might have to do this:</p>
+                <p>sudo vi /etc/systemd/system/ollama.service
+ 
+                    #Add this line below the current Environment in addition to the existing one
+                    Environment="OLLAMA_HOST=0.0.0.0"
+                     
+                    sudo systemctl daemon-reload
+                    sudo systemctl restart ollama
+                    sudo systemctl stop ollama
+                     
+                    OLLAMA_HOST=0.0.0.0 OLLAMA_ORIGINS=44.206.179.14:* ollama serve</p>
             </div></li>
 
         </ol>
