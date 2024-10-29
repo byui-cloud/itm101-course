@@ -247,6 +247,24 @@
                 <p>#Get the docker for Custom Web AI Chat (Open Web AI - a website for your own custom AI chat)</p>
                 <p>sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>
             </div></li>
+            <li>
+                <div>
+                    <p>Run the following commands one at a time.</p>
+                    <p>sudo vi /etc/systemd/system/ollama.service</p>
+                    <p>Use the 'J' on your keyboard to move down to right below the 'Environment' setting</p>
+                    <p>You can either try to paste the line below or type 'I' to enter insert mode and type it instead</p>
+                    <p>#Add this line below the current Environment in addition to the existing one</p>
+
+                    <p>Environment="OLLAMA_HOST=0.0.0.0"</p>
+                    <p>Exit vi by hitting your ESC key, then type ':wq'</p>
+                    <p>Run the following commands one at a time:</p>
+                    <p>sudo systemctl daemon-reload</p>
+                    <p>sudo systemctl restart ollama</p>
+                    <p>sudo systemctl stop ollama</p>
+                    
+                    <p>OLLAMA_HOST=0.0.0.0 OLLAMA_ORIGINS=44.206.179.14:* ollama serve</p>
+                </div>
+            </li>
             <li><div>
                 <p>Open your browser to the Elastic IP address you were give in that Elastic IP step above. </p>
                 <p>Make sure to put http:// and NOT https://</p>
@@ -259,20 +277,8 @@
                 <p>Go to "Users" and select the llama3.2 model as the default and click save.</p>
                 <p>Go to "Connections" and put in your Elastic IP and save it.</p>
                 <p>If you get this far, Great JOB!</p>
-                <p>More configuration may be necessary to get it to work.</p>
                 <p>Try the AI Chat</p>
-            
-                <p>You might have to do this:</p>
-                <p>sudo vi /etc/systemd/system/ollama.service
- 
-                    #Add this line below the current Environment in addition to the existing one
-                    Environment="OLLAMA_HOST=0.0.0.0"
-                     
-                    sudo systemctl daemon-reload
-                    sudo systemctl restart ollama
-                    sudo systemctl stop ollama
-                     
-                    OLLAMA_HOST=0.0.0.0 OLLAMA_ORIGINS=44.206.179.14:* ollama serve</p>
+                
             </div></li>
 
         </ol>
