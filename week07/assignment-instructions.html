@@ -261,23 +261,23 @@
                     <p>sudo systemctl daemon-reload</p>
                     <p>sudo systemctl restart ollama</p>
                     <p>sudo systemctl stop ollama</p>
-                    
-                    <p>OLLAMA_HOST=0.0.0.0 OLLAMA_ORIGINS=44.206.179.14:* ollama serve</p>
+                    <p>#(replace 35.67.76.43 with your elastic ip)</p>
+                    <p>OLLAMA_HOST=0.0.0.0 OLLAMA_ORIGINS=35.67.76.43:* ollama serve</p>
                 </div>
             </li>
             <li><div>
                 <p>Open your browser to the Elastic IP address you were give in that Elastic IP step above. </p>
                 <p>Make sure to put http:// and NOT https://</p>
-                <p>Example: http://35.67.76.43:3000</p>
+                <p>Example: http://35.67.76.43:3000 (replace 35.67.76.43 with your elastic ip)</p>
                 <p>Sign up for a new account</p>
                 <p>Click on your user profile in the top right corner (ex: the intial of your first name).</p>
                 <p>Select "Admin Panel"</p>
-                <p>Select "settings"</p>
+                <p>Select "Settings"</p>
                 <p>Go to "Models" and type llama3.2 to pull that model.</p>
                 <p>Go to "Users" and select the llama3.2 model as the default and click save.</p>
-                <p>Go to "Connections" and put in your Elastic IP and save it.</p>
+                <p>Go to "Connections" and put in your Elastic IP (replace 35.67.76.43 with your elastic ip ex: http://35.67.76.43:11434)and save it.</p>
                 <p>If you get this far, Great JOB!</p>
-                <p>Try the AI Chat</p>
+                <p>Try the AI Chat - Click "New Chat" in the top left.</p>
                 
             </div></li>
 
@@ -298,15 +298,22 @@
             </div></li>
         </ul>
 
+        <h3>You can't see or use the web interface?</h3>
+        <ul>
+            <li><div>
+                <p>Did you open both port 3000 and port 11434? Check your instance security group inbound rules.</p>
+            </div></li>
+        </ul>
         <h2 id="learning-more">Learning More</h2>
         <p>Want to learn more about AWS and obtain an AWS certification? Take ITM300 Cloud Foundations.</p>
         <p>Build your resume: Deployed a Custom Chat AI to an AWS EC2 instance.</p>
         <p>Build your resume (possible FUTURE project): Deployed a Custom Chat AI with custom RAG and connected it to an RDS database with Cognito authentication</p>
 
         <h2>Learning More - Create Customized Default Prompts</h2>
-        <p>Select a default model in the admin panel</p>
-        <p>Create custom prompts that show up for the user</p>
-        <p>Allow users to have the 'user' role instead of 'pendin'g for new signups</p>
+        <p>Create custom prompts that show up for the user - look at the 'interface' tab in the admin panel.</p>
+        <p>Allow users to have the 'user' role instead of 'pending' for new signups.</p>
+        <p>Look at <a href="https://openwebui.com">https://openwebui.com</a> and try importing models and/or prompts.</p>
+        <p>Check out the Mental Health Assistant on openwebui.com, import it, and test it.</p>
 
         <h2>Learning More - Learn About RAG with AI</h2>
         <p><a target="_blank" rel="noopener" href="https://aws.amazon.com/what-is/retrieval-augmented-generation/">RAG - Have AI use external documents and data</a></p>
