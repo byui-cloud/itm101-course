@@ -3,18 +3,18 @@
 # (change IP address for your 44.202.5.12)
 
 # Configure the AWS Provider
-provider "aws" {
-  region = "us-east-1"
-}
+#provider "aws" {
+#  region = "us-east-1"
+#}
 
 # Create a private key, 4096-bit RSA
-resource "tls_private_keyai" "priv_key" {
+resource "tls_private_key" "priv_key_ai" {
   algorithm = "RSA"
   rsa_bits = "4096"
 }
 # Create a security file to ssh in with
-resource "local_file" "private_key_pem_ai" {
-  content = tls_private_keyai.priv_key.private_key_pem_ai
+resource "local_file" "private_key_pemai" {
+  content = tls_private_key.priv_key_ai.private_key_pem
   filename = "private_key_ai.pem"
   file_permission = 0400
 }
@@ -22,7 +22,7 @@ resource "local_file" "private_key_pem_ai" {
 # Create the key pair
 resource "aws_key_pair" "server_key_ai" {
   key_name = "server"
-  public_key = tls_private_keyai.priv_key.public_key_openssh
+  public_key = tls_private_key.priv_key_ai.public_key_openssh
 }
 
 # Allow SSH. CIDR blocks must be used or it will not work.
