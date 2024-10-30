@@ -74,6 +74,10 @@ resource "aws_instance" "awslinx_host_ai" {
   key_name = aws_key_pair.server_key_ai.key_name
   vpc_security_group_ids = [aws_security_group.byuisgai.id]
   associate_public_ip_address = "true"
+  root_block_device {
+    volume_size = 32 # Size in GB
+    volume_type = "gp3" # General Purpose SSD
+  }  
   tags = {
     Name = "awslinx_host_ai"
   }
