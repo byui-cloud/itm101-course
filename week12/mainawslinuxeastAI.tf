@@ -67,6 +67,14 @@ resource "aws_security_group" "byuisgai" {
   }
 }
 
+#Create an elastic IP so the IP stays the same
+resource "aws_eip" "ipai" {
+instance = aws_instance.awslinx_host_ai.id
+  tags = {
+    Name = "ai_chat_ip"
+  }
+}
+
 # Create an EC2 instance Amazon Linux 2023 ami-06b21ccaeff8cd686
 resource "aws_instance" "awslinx_host_ai" {
   ami = "ami-06b21ccaeff8cd686"
