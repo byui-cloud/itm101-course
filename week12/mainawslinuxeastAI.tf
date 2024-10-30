@@ -8,13 +8,13 @@ provider "aws" {
 }
 
 # Create a private key, 4096-bit RSA
-resource "tls_private_key" "priv_key" {
+resource "tls_private_keyai" "priv_key" {
   algorithm = "RSA"
   rsa_bits = "4096"
 }
 # Create a security file to ssh in with
 resource "local_file" "private_key_pem_ai" {
-  content = tls_private_key.priv_key.private_key_pem_ai
+  content = tls_private_keyai.priv_key.private_key_pem_ai
   filename = "private_key_ai.pem"
   file_permission = 0400
 }
@@ -22,7 +22,7 @@ resource "local_file" "private_key_pem_ai" {
 # Create the key pair
 resource "aws_key_pair" "server_key_ai" {
   key_name = "server"
-  public_key = tls_private_key.priv_key.public_key_openssh
+  public_key = tls_private_keyai.priv_key.public_key_openssh
 }
 
 # Allow SSH. CIDR blocks must be used or it will not work.
@@ -86,5 +86,5 @@ sudo service docker start
 sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 sudo yum update -y
 EOF
-}  
+ 
 }
