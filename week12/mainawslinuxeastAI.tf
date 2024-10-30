@@ -88,6 +88,7 @@ sudo yum install -y docker
 sudo systemctl enable docker
 sudo service docker start
 sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh 
 sudo yum update -y
 EOF
  
