@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
     <title>Create and Deploy a Website for AWS Website to S3</title>
-    <link rel="icon" type="image.webp" href="../site/logo.png">
+    <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week08/assignment-instructions.html">
     <meta name="description" content="Week 8 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
@@ -22,60 +22,56 @@
 
         <h3>Business Requirements</h3>
         <ul>
-            <li>
-                <p>Auto scaling web system for many users</p>
-            </li>
+            <li><div>
+                Auto scaling web system for many users
+            </div></li>
         </ul>
-        
+
         <h3>Project Requirements</h3>
         <ul>
-            <li>
+            <li><div>
                 <p>Deploy a web application to an AWS S3 (autoscaling) bucket directly from your computer</p>
                 <p>Normally, you would also use AWS Cloudfront for autoscaling too but we won't do that</p>
-            </li>
-            <li>
-                <p>Use AWS (Amazon Web Services) and S3 Buckets</p>
-            </li>
-            <li>
-                <p>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</p>
-            </li>
+            </div></li>
+            <li><div>Use AWS (Amazon Web Services) and S3 Buckets</div></li>
+            <li><div>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</div></li>
         </ul>
 
         <h2>Table of Contents</h2>
         <ol>
-            <li>
+            <li><div>
                 <a href="#step1">Create an S3 bucket to deploy your website with autoscaling</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step2">Login to your AWS Academy account</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step3">Select the Region</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step4">Deploy a website on an S3 bucket from your computer</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step5">Still not sure where to find S3 Buckets how to use it?</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step6">Upload your website files to an S3 bucket</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step7">Make the S3 bucket a webpage to the internet</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step8">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#step9">Website URL</a>
-            </li>            
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#troubleshooting">Troubleshooting & Common Problems</a>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <a href="#learning-more">Learning More</a>
-            </li>
+            </div></li>
         </ol>
 
         <h2>Project Instructions</h2>
@@ -85,103 +81,88 @@
 
         <h3 id="step2">Login to your AWS Academy Account</h3>
         <ol>
-            <li>
+            <li><div>
                 <p>Open your Learner lab. If you can’t remember how, follow this document</p>
                 <p><a target="_blank" rel="noopener" href="https://byui-cloud.github.io/itm101-course/week07/assignment-instructions.html#step2">Connecting to AWS Learner Lab</a></p>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step3">Select the Region</h3>
         <p>To access various resources in AWS like an S3 bucket (a network file storage system similar to your hard drive on your computer, but available on the internet), you can do this directly using AWS. First select the location (region) nearest to you.</p>
         <p>Change your region to <strong>US West</strong> by clicking on the <strong>N. Virginia</strong> near the top right corner of your browser. This change to the Oregon computer/servers that we deployed in Oregon will be found, which is physically closer to Idaho. </p>
         <img src="../site/images//week07/aws_change_region.webp" alt="AWS Change Region">
-        
+
         <h3 id="step4">Deploy a Website on an S3 bucket from your computer</h3>
         <h4>Choose an Option:</h4>
         <ol>
-            <li>
+            <li><div>
                 <p>Option 1: Do it on your own with AWS Documentation</p>
                 <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html">Work with S3 Objects</a></p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Option 2: Need more guidance on where to start</p>
                 <p><strong>Upload a file to an S3 bucket using the interface</strong></p>
                 <p>If needed look at the next steps below or google <strong>What is AWS S3</strong> or <strong>How do you upload files to an S3 bucket?</strong></p>
-            </li>
+            </div></li>
         </ol>
 
         <h4 id="step5">Still not sure where to find S3 and how to use it?</h4>
         <ol>
-            <li>
-                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#creating-bucket">Learn How to Create an S3 Bucket</a></p>                
-            </li>
-            <li>
-                <p>Create the S3 bucket</p>
-            </li>
-            <li>
-                <p>Can't figure it out? Google <strong>How do I create an S3 bucket?</strong></p>
-            </li>
+            <li><div><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#creating-bucket">Learn How to Create an S3 Bucket</a></div></li>
+            <li><div>Create the S3 bucket</div></li>
+            <li><div>Can't figure it out? Google <strong>How do I create an S3 bucket?</strong></div></li>
         </ol>
 
         <h4 id="step6">Upload your website files to an S3 bucket</h4>
         <ol>
-            <li>
-                <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#uploading-an-object-bucket">Learn how to upload webpage files to the S3 Bucket</a></p>                
-            </li>
-            <li>
-                <p>Upload your index.html file to the S3 bucket</p>
-            </li>
-            <li>
-                <p>Can't figure it out? Google <strong>How do I deploy an file from my computer to an S3 bucket</strong></p>
-            </li>
+            <li><div><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#uploading-an-object-bucket">Learn how to upload webpage files to the S3 Bucket</a> </div></li>
+            <li><div>Upload your index.html file to the S3 bucket</div></li>
+            <li><div>Can't figure it out? Google <strong>How do I deploy an file from my computer to an S3 bucket</strong></div></li>
         </ol>
 
         <h3 id="step7">Make the S3 bucket a webpage to the internet</h3>
         <ol>
-            <li>
+            <li><div>
                 <p>First, make sure that you did the steps above, you have an S3 bucket with your name in it AND make sure that you uploaded an index.html file to the S3 bucket</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Overview:</p>
                 <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html">Website Hosting</a></p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Find the URL for your webpage:</p>
                 <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html">Website Endpoints</a></p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Enable static web hosting:</p>
                 <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/EnableWebsiteHosting.html">Enable Website Hosting</a></p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Modify the bucket permissions ON STEP 2 - Add a bucket Policy:</p>
                 <p><strong>MAKE SURE TO replace the code in red with YOUR BUCKET NAME</strong></p>
                 <p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html">Setting permissions for website access</a></p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Save changes to the bucket policy. It should like something like this (replace the orange with your bucket name)</p>
-                <pre>
-                    <code>
-                        { <br>
-                            "Version": "2012-10-17", <br>
-                            "Statement": [ <br>
-                                { <br>
-                                    "Sid": "PublicReadGetObject", <br>
-                                    "Effect": "Allow", <br>
-                                    "Principal": "*", <br>
-                                    "Action": [ <br>
-                                        "s3:GetObject" <br>
-                                    ], <br>
-                                    "Resource": [ <br>
-                                        "arn:aws:s3:::<strong>Bucket-Name</strong>/*" <br>
-                                    ] <br>
-                                } <br>
-                            ] <br>
-                        }
-                        
-                    </code>
-                </pre>
-            </li>
+<pre>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<strong>Bucket-Name</strong>/*"
+            ]
+        }
+    ]
+}
+</pre>
+            </div></li>
         </ol>
 
         <h3 id="step8">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</h3>
@@ -195,18 +176,10 @@
         <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
         <h3>If the webpage doesn't load</h3>
         <ul>
-            <li>
-                <p>You may need to add the bucket policy</p>
-            </li>
-            <li>
-                <p>Make sure to replace the bucket name in the bucket policy</p>
-            </li>
-            <li>
-                <p>Did you use http:// instead of https://</p>
-            </li>
-            <li>
-                <p>Did you make the bucket public</p>
-            </li>
+            <li><div>You may need to add the bucket policy</div></li>
+            <li><div>Make sure to replace the bucket name in the bucket policy</div></li>
+            <li><div>Did you use http:// instead of https://</div></li>
+            <li><div>Did you make the bucket public</div></li>
         </ul>
 
         <h3>References that might help</h3>
