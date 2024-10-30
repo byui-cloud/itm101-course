@@ -26,7 +26,7 @@
         <h2>Business Requirements</h2>
         <ul>
             <li>
-                <p>Deploy an Ubuntu Linux Server on AWS to host a website and/or database</p>
+                <p>Deploy an AWS Linux Server on AWS to host a website and/or database</p>
             </li>
         </ul>
         <h2>Project Overview</h2>
@@ -58,7 +58,7 @@
         <p>Terraform scripts allow you to deploy everything from <a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">Part 1 of EC2 instances and also Part 2 with Docker</a> in one file.</p>
         <h3>AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</h3>
         <p>Now, let’s deploy the same thing but with automated scripts like Terraform in another region of what we previously installed in prior weeks.</p>
-        <p><strong> DO NOT USE THE UBUNTU terminal. DO NOT USE THE LEARNED LAB terminal. Use the Cloudshell.</strong></p>
+        <p><strong> DO NOT USE THE LINUX terminal. DO NOT USE THE LEARNER LAB terminal. Use the Cloudshell.</strong></p>
         <p>We are using AWS cloudshell. That is Linux too, but it is to deploy resources in your AWS.</p>
         <ol>
             <li>
@@ -75,8 +75,8 @@
             </li>
             <li>
                 <p>Install Terraform by opening the Cloudshell and run these <strong>one by one (they will not work all together)</strong></p>
-                <p><strong>DO THESE IN CLOUDSHELL! NOT IN UBUNTU LINUX!</strong></p>
-                <p>Terraform allows you automatically deploy servers in AWS and other systems too. They are automated scripts. First you need to install Terraform with these three commands:</p>
+                <p><strong>DO THESE IN CLOUDSHELL! NOT IN THE LINUX INSTANCE!</strong></p>
+                <p>Terraform allows you automatically deploy servers in AWS and other systems too. They are automated scripts. First you need to install Terraform with these three commands - DO THEM ONE BY ONE:</p>
                 <pre>sudo yum install -y yum-utils</pre>
                 <pre>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</pre>
                 <pre>sudo yum -y install terraform</pre>
@@ -104,8 +104,9 @@
                 <p>The .tf file that we provided generates a .pem file in your cloudshell terminal.</p>
                 <p>You can download it if you want on the <strong>Actions</strong> menu.</p>
                 <p><strong>ls</strong> displays the files and folders in the current working directory. See the .pem file that was made.</p>
-                <p>Now go look at the ubuntu ec2 instance that was deployed. Remote into it with the key that was created in the same shell.</p>
-                <pre>ssh -i ubuntu@3.3.3.3</pre>
+                <p>Now go look at the AWS Linux ec2 instance that was deployed. Remote into it with the key that was created in the same shell.</p>
+                <p>Find the public IPv4 address on the EC2 instance (replace 3.3.3.3 with yours). Connect via ssh.</p>
+                <pre>ssh -i private_key.pem ec2-user@3.3.3.3</pre>
             </li>
         </ol>
         <h3 id="step13">Deleting Resources With Terraform Script File</h3>

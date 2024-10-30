@@ -1,0 +1,90 @@
+# Find the IP using: aws ec2 describe-network-interfaces
+# SSH into the instance after it is ready (replace the IP): ssh -i private_key.pem ec2-user@44.202.5.12
+# (change IP address for your 44.202.5.12)
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "us-east-1"
+}
+
+# Create a private key, 4096-bit RSA
+resource "tls_private_key" "priv_key" {
+  algorithm = "RSA"
+  rsa_bits = "4096"
+}
+# Create a security file to ssh in with
+resource "local_file" "private_key_pem_ai" {
+  content = tls_private_key.priv_key.private_key_pem_ai
+  filename = "private_key_ai.pem"
+  file_permission = 0400
+}
+
+# Create the key pair
+resource "aws_key_pair" "server_key_ai" {
+  key_name = "server"
+  public_key = tls_private_key.priv_key.public_key_openssh
+}
+
+# Allow SSH. CIDR blocks must be used or it will not work.
+resource "aws_security_group" "byuisgai" {
+  name = "allow-ssh"
+  description = "Allow SSH and AI"
+  ingress {
+    description = "SSH"
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    # Allow only the BYUI network to SSH in
+    # cidr_blocks = ["157.201.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+    ingress {
+    description = "OpenWebUI"
+    from_port = 3000
+    to_port = 3000
+    protocol = "tcp"
+    # Allow only the BYUI network to SSH in
+    # cidr_blocks = ["157.201.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "Ollama"
+    from_port = 11434
+    to_port = 11434
+    protocol = "tcp"
+    # Allow only the BYUI network to SSH in
+    # cidr_blocks = ["157.201.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name = "allow_ssh"
+  }
+}
+
+# Create an EC2 instance Amazon Linux 2023 ami-06b21ccaeff8cd686
+resource "aws_instance" "awslinx_host_ai" {
+  ami = "ami-06b21ccaeff8cd686"
+  instance_type = "t2.large"
+  key_name = aws_key_pair.server_key_ai.key_name
+  vpc_security_group_ids = [aws_security_group.byuisgai.id]
+  associate_public_ip_address = "true"
+  tags = {
+    Name = "awslinx_host_ai"
+  }
+  user_data = <<EOF
+#!/bin/bash 
+curl -fsSL https://ollama.com/install.sh | sh
+sudo yum install -y docker
+sudo systemctl enable docker
+sudo service docker start
+sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+sudo yum update -y
+EOF
+}  
+}
