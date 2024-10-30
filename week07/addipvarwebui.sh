@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 # Get the public IP address using curl
 public_ip=$(curl -s http://checkip.amazonaws.com)
 
