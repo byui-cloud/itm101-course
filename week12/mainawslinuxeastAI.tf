@@ -21,13 +21,13 @@ resource "local_file" "private_key_pemai" {
 
 # Create the key pair
 resource "aws_key_pair" "server_key_ai" {
-  key_name = "server"
+  key_name = "serverai"
   public_key = tls_private_key.priv_key_ai.public_key_openssh
 }
 
 # Allow SSH. CIDR blocks must be used or it will not work.
 resource "aws_security_group" "byuisgai" {
-  name = "allow-ssh"
+  name = "allow-ssh-ai"
   description = "Allow SSH and AI"
   ingress {
     description = "SSH"
