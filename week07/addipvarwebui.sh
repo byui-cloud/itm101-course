@@ -12,6 +12,7 @@
 #sed -i "/Environment=\"PATH=\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin\"/a $ollama_host\n$ollama_origins" "$file_path"
 sudo sed -i '/RestartSec=3/a'$"Environment=\"OLLAMA_HOST=0.0.0.0\"\nEnvironment=\"OLLAMA_ORIGINS=$(curl -s http://checkip.amazonaws.com):*\"" /etc/systemd/system/ollama.service 
 
-echo "Environment variables have been appended to $file_path."
+echo "Environment variables have been appended to the ollama service file"
 systemctl daemon-reload
 systemctl restart ollama
+echo "Daemon reloaded and ollama restarted"
