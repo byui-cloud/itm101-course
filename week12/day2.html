@@ -12,30 +12,35 @@
     <title>AWS Learner Lab - Terraform</title>
     <link rel="icon" type="image.webp" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week12/assignment-instructions.html">
-    <meta name="description" content="Week 12 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
+    <meta name="description" content="Week 12 day 2 for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
 <body>
     <article>
         <h1>Create and Deploy with Terraform</h1>
         <h2>Overview</h2>
 
-        <p>Using Terraform, you could have deployed Part 1 and Part 2 from previous weeks with Terraform.</p>
+        <p>Using Terraform, you could have automated many of the AWS components from previous weeks with Terraform.</p>
         <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, a docker, and more, all in one file.</p>
         <p>Check out all the servers and 'apps' you can deploy with Terraform: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
         
         <h2>Business Requirements</h2>
         <ul>
             <li>
-                <p>Deploy an AWS Linux Server on AWS to host a website and/or database</p>
+                <p>Deploy an AWS AI Web-based Chat on AWS using terraform</p>
             </li>
         </ul>
         <h2>Project Overview</h2>
         <ul>
             <li>
-                <p>Install Docker</p>
+                <p>Use and create automation scripts that deploy the EC2 with 32 GB of hard drive space, a t2.large instance, AWS Linux.</p>
             </li>
             <li>
-                <p>Deploy an NGINX docker container</p>
+                <p>Create a script that will download the tf file below and that will run terraform using the new file:</p>
+                <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
+                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf"></a>https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</p>
+                <p>Automate things further with a linux script. Use AI as needed. You need to download the tf file and run terraform with it. (If you didn't finish part one witht the first .tf file, this one may not work)</p>
+                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
+                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
             </li>
         </ul>
 
@@ -136,26 +141,6 @@
                 <pre>sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
             </li>
         </ul>
-        <h2>Business Requirements</h2>
-        <ul>
-            <li>
-                <p>Deploy an AWS AI Web-based Chat on AWS using terraform</p>
-            </li>
-        </ul>
-        <h2>Day 2</h2>
-        <ul>
-            <li>
-                <p>Use and create automation scripts that deploy the EC2 with 32 GB of hard drive space, a t2.large instance, AWS Linux.</p>
-            </li>
-            <li>
-                <p>Create a script that will download the tf file below and that will run terraform using the new file:</p>
-                <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
-                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf"></a>https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</p>
-                <p>Automate things further with a linux script. Use AI as needed. You need to download the tf file and run terraform with it. (If you didn't finish part one witht the first .tf file, this one may not work)</p>
-                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
-                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
-            </li>
-        </ul>        
     </article>
 </body>
 </html>
