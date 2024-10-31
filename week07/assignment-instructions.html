@@ -271,6 +271,9 @@
                     <p>OR TRY THIS:</p>
                     <p>sudo sed -i '/RestartSec=3/a'$"Environment=\"OLLAMA_HOST=0.0.0.0\"\nEnvironment=\"OLLAMA_ORIGINS=$(curl -s http://checkip.amazonaws.com):*\"" /etc/systemd/system/ollama.service
                     </p>
+                    <p>#Run the following commands one at a time (if you get an error, continue):</p>
+                    <p>sudo systemctl daemon-reload</p>
+                    <p>sudo systemctl restart ollama</p>
 
                 </div>
             </li>
