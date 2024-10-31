@@ -19,7 +19,7 @@
         <h1>Create and Deploy a Docker Container</h1>
         <h2>Overview</h2>
 
-        <p>Using your AWS EC2 from Part 1, install Docker.</p>
+        <p>Using your AWS EC2 Ubuntu Linx Server from last week, install Docker.</p>
         <p>Docker allows you to quickly deploy an app like system on a Linux Server.</p>
         <p>Check out all the docker 'apps' you can deploy: https://hub.docker.com/</p>
         <p>For this tutorial, NGINX is a web server app that we will use in docker. The web server allows you to host a website on the internet.</p>
@@ -55,30 +55,18 @@
         <ol>
             <li>
                 <p>Docker allows you to containerize applications, systems, or websites. They can also be used to scale applications.</p>
-                <p>These are the instructions to install Docker (get updates, Add Docker's official GPG key, etc.):</p>
+                <p>These are the instructions to install Docker (get updates to packages (including security), Add Docker, etc.):</p>
                 <pre>
         sudo apt-get update
-        sudo apt-get install ca-certificates curl
-        sudo install -m 0755 -d /etc/apt/keyrings
-        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-        sudo chmod a+r /etc/apt/keyrings/docker.asc
-                </pre>
-                <p>Add the repository to Apt sources:</p>
-                <pre>
-        echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-                </pre>
-                <pre>
-        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-                </pre>
-                <p>Install Docker on the system:</p>
-                <pre>
         sudo apt-get update
-        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        # If prompted, hit 'Y' for yes to install the updates.
+                </pre>
+                <p>Install Docker on the system, start it, and make sure it is running:</p>
+                <pre>
+        sudo apt-get install docker.io
         sudo service docker start
+        sudo service docker status
                 </pre>
-                <p>References from: <a href="https://docs.docker.com/engine/install/ubuntu/">Docker.com</a></p>
             </li>
         </ol>
         <h4 id="step8">Install NGINX web server on Docker</h4>
@@ -93,7 +81,7 @@
                         <p>(Use vim to edit this file if you want to change the config "const firebaseConfig" on line 22 of you want your database to work. You will also need to add the domain of your website to the authentication settings in Firebase).</p>
                     </li>
                     <li>
-                        <p>Add the website to teh authorized domains in Firebase (Go to the project, go to <strong>Authentication > Settings > Authorized Domains</strong>)</p>
+                        <p>Add the website public IP address to the authorized domains in Firebase (Go to the project, go to <strong>Authentication > Settings > Authorized Domains</strong>)</p>
                     </li>
                     <li>
                         <p>Type the following in the Ubuntu instance to open the crud file in vim:</p>
@@ -137,7 +125,7 @@
                 <p>Go to the EC2 instance and <strong>edit the inbound rules</strong> to open port 80 for TCP. Click on your EC2 instance in the AWS interface, scroll down to the <strong>security</strong> tab and click on the security group. Edit the inbound rules and add port 80 for Custom TCP</p>
             </li>
             <li>
-                <p>Run the following to see that port 80 is open. Notice that port 22 is also open (The port that allows us to connect to the server).</p>
+                <p>Run the following to see that port 80 is open (assuming you installed nmap from last week: sudo apt-get install nmap). Notice that port 22 is also open (The port that allows us to connect to the server).</p>
                 <pre>nmap localhost</pre>
             </li>
             <li>
