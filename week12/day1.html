@@ -26,16 +26,17 @@
         <h2>Business Requirements</h2>
         <ul>
             <li>
-                <p>Deploy an AWS Linux Server on AWS to host a website and/or database</p>
+                <p>Create an EC2 instance using Terraform that can be deployed in the west region</p>
+                <p>The company wants a consitent 'recipe' or terraform script that documents how things were set up.</p>            
             </li>
         </ul>
         <h2>Project Overview</h2>
         <ul>
             <li>
-                <p>Install Docker</p>
+                <p>Install Terraform</p>
             </li>
             <li>
-                <p>Deploy an NGINX docker container</p>
+                <p>Deploy a server with terraform</p>
             </li>
         </ul>
 
@@ -127,13 +128,21 @@
         <ul>
             <li>
                 <p>Check out all the servers and 'apps' you can deploy with Terraform on the registry. Find and try one: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
-                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with terraform script. You put it in the </p>
+                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with a terraform script. You put it in a "user_data" section of the tf file. Look at the mainawslinuxeastAI.tf file.</p>
                 <pre>sudo yum install -y docker</pre>
                 <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
                 <pre>sudo docker pull _________</pre>
                 <pre>sudo systemctl enable docker</pre>
                 <pre>sudo service docker start</pre>
                 <pre>sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
+            </li>
+            <li>
+                <p>Connect via that instance above with RDP.</p>
+                <p>Install remote desktop beta on your laptop or use the built in one for Windows.</p>
+                <p>SSH into the server and set the password for the ec2-user and enable RDP:</p>
+                <p>sudo passwd ec2-user</p>
+                <p>sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
+                </p>
             </li>
         </ul>
         <h2>Business Requirements</h2>
@@ -150,7 +159,7 @@
             <li>
                 <p>Create a script that will download the tf file below and that will run terraform using the new file:</p>
                 <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
-                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf"></a>https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</p>
+                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf"></a>https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</p>
                 <p>Automate things further with a linux script. Use AI as needed. You need to download the tf file and run terraform with it. (If you didn't finish part one witht the first .tf file, this one may not work)</p>
                 <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
