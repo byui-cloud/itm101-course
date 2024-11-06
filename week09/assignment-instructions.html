@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
     <title>AWS Learner Lab - Linux, Docker, and Terraform</title>
-    <link rel="icon" type="image.webp" href="../site/logo.png">
+    <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">
     <meta name="description" content="Week 10 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
+
 <body>
     <article>
         <h1>Create and Deploy Server to the Cloud</h1>
@@ -23,109 +24,99 @@
 
         <h2>Business Requirements</h2>
         <ul>
-            <li>
-                <p>Deploy an Ubuntu Linux Server on AWS</p>
-            </li>
-            <li>
-                <p>Deploy a docker on the Linux Server (next week)</p>
-            </li>
+            <li><div>Deploy an Ubuntu Linux Server on AWS</div></li>
+            <li><div>Deploy a docker on the Linux Server (next week)</div></li>
         </ul>
         <h2>Project Overview</h2>
         <ul>
-            <li>
-                <p>Create an Ubuntu EC2 instance on AWS</p>
-            </li>
-            <li>
-                <p>Add in Docker with the nginx package to host a website (next week)</p>
-            </li>
+            <li><div>Create an Ubuntu EC2 instance on AWS</div></li>
+            <li><div>Add in Docker with the nginx package to host a website (next week)</div></li>
         </ul>
 
         <h2>Table of Contents</h2>
         <ol>
-            <li><a href="#part1">Part 1 - Setup an EC2 Instance</a></li>
-            <li><a href="#step1">Log into AWS Console</a></li>
-            <li><a href="#step2">Launching an EC2 Instance - The Manual Way</a></li>
-            <li><a href="#step3">Connecting to the Server</a></li>
-            <li><a href="#step4">Run Security Updates</a></li>
-            <li><a href="#step5">Install Something (nmap port scanning)</a></li>
-            <li><a href="#step6">Basic Linux Commands</a></li>
+            <li><div><a href="#part1">Part 1 - Setup an EC2 Instance</a></div></li>
+            <li><div><a href="#step1">Log into AWS Console</a></div></li>
+            <li><div><a href="#step2">Launching an EC2 Instance - The Manual Way</a></div></li>
+            <li><div><a href="#step3">Connecting to the Server</a></div></li>
+            <li><div><a href="#step4">Run Security Updates</a></div></li>
+            <li><div><a href="#step5">Install Something (nmap port scanning)</a></div></li>
+            <li><div><a href="#step6">Basic Linux Commands</a></div></li>
 
-            <li><a href="#learning-more">Learning More</a></li>
+            <li><div><a href="#learning-more">Learning More</a></div></li>
         </ol>
 
 
         <h2 id="part1">Part 1 - Setup an EC2 Instance</h2>
         <h3 id="step1">Log into AWS Console</h3>
-        <ol>
-            <li>
-                <p>Log into your AWS Console through your learner lab</p>
-            </li>
+        <ol class="long">
+            <li><div>Log into your AWS Console through your learner lab</div></li>
         </ol>
 
         <h3 id="step2">Launching an EC2 Instance - The Manual Way</h3>
-        <ol>
-            <li>
+        <ol class="long">
+            <li><div>
                 <p>When in your AWS console, search <strong>EC2</strong> in the search bar and click <strong>EC2</strong></p>
                 <img src="../site/images/week10/ec2_search.png" alt="EC2 Search">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click <strong>Launch Instance</strong></p>
                 <img src="../site/images/week10/ec2_launch_instance.png" alt="EC2 Launch Instance">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Pick a name for the server like <strong>Ubuntu</strong></p>
                 <img src="../site/images/week10/ec2_server_name.png" alt="EC2 Server Name">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click on <strong>Ubuntu</strong></p>
                 <img src="../site/images/week10/ec2_ubuntu_server.png" alt="EC2 Ubuntu Server">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Pick how much processing power and RAM you want. We will stick with the default <strong>t2.micro</strong></p>
                 <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
                 <p>If you are going to use a GUI (we are not), you will want ot do at least a t3.small instance. This server doesn't have a GUI though. It is only accessible from a terminal.</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file.</p>
                 <img src="../site/images/week10/ec2_key_pair.png" alt="EC2 Key Pair">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Name the key and keep the settings at their default (RSA key pair type, and .pem key file format).</p>
                 <img src="../site/images/week10/ec2_key_pair_name.png" alt="EC2 Key Pair Name">
                 <p>Click <strong>Create Key Pair</strong> and this will download it to your computer. <strong>Make sure to save this in a place where you will remember where it is</strong>.</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Select the ports that you want open to be able to access the server. (e.g port 22 (selected by default) to ssh into the server)</p>
                 <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Pick how much hard drive space you need on the server</p>
                 <img src="../site/images/week10/ec2_configure_storage.png" alt="EC2 Configure Storage">
                 <p>Click <strong>Launch Instance</strong></p>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step3">Connecting to the Server</h3>
-        <ol>
-            <li>
+        <ol class="long">
+            <li><div>
                 <p>Click <strong>Connect to Instance</strong></p>
                 <img src="../site/images/week10/ec2_connect_to_instance.png" alt="EC2 Connect to Instance">
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Click <strong>Connect</strong>.</p>
                 <img src="../site/images/week10/ec2_connect_to_instance2.png" alt="EC2 Connect to Instance From Amazon">
                 <ul>
-                    <li>
+                    <li><div>
                         <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
                         <pre>ssh -i yourkey.pem ubuntu@3.3.3.3</pre>
-                    </li>
+                    </div></li>
                 </ul>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step4">Run Security Updates</h3>
-        <ol>
-            <li>
+        <ol class="long">
+            <li><div>
                 <p>Make sure to update the instance often</p>
                 <p>This gets the updates for the server:</p>
                 <pre>sudo apt-get update</pre>
@@ -133,62 +124,54 @@
                 <pre>sudo apt-get upgrade</pre>
                 <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates)</p>
                 <pre>sudo reboot</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Linux Kernel Upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
                 <p>This applies Linux minor kernel updates to the operating system. (This update takes some time to do, so only run this if you have time)</p>
                 <pre>sudo apt-get dist-upgrade</pre>
                 <pre>sudo reboot</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Major OS upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
                 <p>Check the LTS version and see when the endo fo life is for that version of Ubuntu. You might have to do a major upgrade:</p>
                 <p>This does a major update from something like Ubuntu 22 to Ubuntu 24 (Only run this if you need to):</p>
                 <pre>sudo do-release-upgrade</pre>
                 <pre>sudo reboot</pre>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step5">Install Something (nmap port scanning)</h3>
-        <ol>
-            <li>
-                <p>This installs softwar/applications/services on the system (fill in the blank with what you want to install):</p>
-                <pre>sudo apt-get install ______</pre>
-                <p>This installs nmap, a tool to scan servers to see what ports are open on a system</p>
-                <pre>sudo apt-get install nmap</pre>
-                <p>This scans the local server you are running it from to see what ports are open</p>
-                <pre>nmap localhost</pre>
-            </li>
+        <ol class="long">
+            <li><div>This installs nmap, a tool to scan servers to see what ports are open on a system
+            <pre>sudo apt-get install nmap</pre></div></li>
+            <li><div>This scans the local server you are running it from to see what ports are open
+            <pre>nmap localhost</pre></div></li>
         </ol>
 
         <h3 id="step6">Basic Linux Commands</h3>
-        <ol>
-            <li>
-                <p>This displays what folder you are currently in</p>
-                <pre>pwd</pre>
-                <p>This displays what files and folder are in your current directory</p>
-                <pre>ls</pre>
-                <p>Displays what user you are logged in as</p>
-                <pre>whoami</pre>
-                <p>Move Up a Folder</p>
-                <pre>cd ..</pre>
-                <p>Move to another folder or directory</p>
-                <pre>cd foldername</pre>
-            </li>
-        </ol>
+        <ul class="long">
+            <li><div>This displays what folder you are currently in
+            <pre>pwd</pre></div></li>
+            <li><div>This displays what files and folder are in your current directory
+            <pre>ls</pre></div></li>
+            <li><div>Displays what user you are logged in as
+            <pre>whoami</pre></div></li>
+            <li><div>Move Up a Folder
+            <pre>cd ..</pre></div></li>
+            <li><div>Move to another folder or directory
+            <pre>cd foldername</pre></div></li>
+        </ul>
 
-        <h2 id="learning-more">Learning More</h2>
-        <ul>
-            <li>
-                <p>Make a new folder</p>
-                <pre>mkdir testfolder</pre>
-                <p>Delete a File</p>
-                <pre>rm filename</pre>
-                <p>Copy a File</p>
-                <pre>cp filename newfilename</pre>
-                <p>Move a File</p>
-                <pre>mv filename newfilename</pre>
-            </li>
+        <h2 id="learning-more">Additional Linux Commands</h2>
+        <ul class="long">
+            <li><div>Make a new folder
+            <pre>mkdir testfolder</pre></div></li>
+            <li><div>Delete a File
+            <pre>rm filename</pre></div></li>
+            <li><div>Copy a File
+            <pre>cp filename newfilename</pre></div></li>
+            <li><div>Move a File
+            <pre>mv filename newfilename</pre></div></li>
         </ul>
     </article>
 </body>
