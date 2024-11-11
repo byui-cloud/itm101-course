@@ -26,132 +26,134 @@
 
         <h2>Business Requirements</h2>
         <ul>
-            <li>
+            <li><div>
                 <p>Deploy an Ubuntu Linux Server on AWS to host a website and/or database</p>
-            </li>
+            </div></li>
         </ul>
         <h2>Project Overview</h2>
         <ul>
-            <li>
+            <li><div>
                 <p>Install Docker</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Deploy an NGINX docker container</p>
-            </li>
+            </div></li>
         </ul>
 
         <h2>Table of Contents</h2>
         <ol>
-            <li><a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">You should have already completed Part 1 - Setup an EC2 Instance</a></li>
-            <li><a href="#part2">Part 2 - Docker and Nginx</a></li>
-            <li><a href="#step7">Install Docker</a></li>
-            <li><a href="#step8">Install NGINX web server on Docker</a></li>
-            <li><a href="#learning-more">Learning More</a></li>
+            <li><div><a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">You should have already completed Part 1 - Setup an EC2 Instance</a></div></li>
+            <li><div><a href="#part2">Part 2 - Docker and Nginx</a></div></li>
+            <li><div><a href="#step7">Install Docker</a></div></li>
+            <li><div><a href="#step8">Install NGINX web server on Docker</a></div></li>
+            <li><div><a href="#learning-more">Learning More</a></div></li>
         </ol>
 
         <h2 id="part2">Part 2 - Docker and Nginx</h2>
         <h3>Make sure you are connected to your EC2 instance running Linux to install Docker (container virtualization for applications) and install NGINX (web hosting server system)</h3>
         <h4 id="step7">Install Docker</h4>
         <ol>
-            <li>
+            <li><div>
                 <p>Docker allows you to containerize applications, systems, or websites. They can also be used to scale applications.</p>
                 <p>These are the instructions to install Docker (get updates to packages (including security), Add Docker, etc.):</p>
                 <pre>
-        sudo apt-get update
-        sudo apt-get upgrade
-        # If prompted, hit 'Y' for yes to install the updates.
+sudo apt-get update
+sudo apt-get upgrade
+# If prompted, hit 'Y' for yes to install the updates.
                 </pre>
                 <p>Install Docker on the system, start it, and make sure it is running:</p>
                 <pre>
-        sudo apt-get install docker.io
-        sudo service docker start
-        sudo service docker status
+sudo apt-get install docker.io
+sudo service docker start
+sudo service docker status
                 </pre>
-            </li>
+            </div></li>
         </ol>
         <h4 id="step8">Install NGINX web server on Docker</h4>
         <ol>
-            <li>
+            <li><div>
                 <p>Downloads nginx docker to run it as a webserver via docker</p>
                 <pre>sudo docker pull nginx:latest</pre>
                 <p>Grabbing the crud.html file to deploy it on docker.</p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week07/crud.html</pre>
                 <ul>
-                    <li>
+                    <li><div>
                         <p>(Use vim to edit this file if you want to change the config "const firebaseConfig" on line 22 of you want your database to work. You will also need to add the domain of your website to the authentication settings in Firebase).</p>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Add the website public IP address to the authorized domains in Firebase (Go to the project, go to <strong>Authentication > Settings > Authorized Domains</strong>)</p>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Type the following in the Ubuntu instance to open the crud file in vim:</p>
                         <pre>vim crud.html</pre>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Use the arrow keys to get to the "const firebaseConfig" part. Delete and replace lines 22-29 by hitting 'dd' on your keyboard to get rid of it line by line.</p>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Copy the api key, etc. from your config.js file or the project settings area on Google Firebase.</p>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Hit <strong>i</strong> on your keyboard be able to add lines to your crud.html file.</p>
                         <p>Right-click and paste in what you copied from your Google Firebase configuration file.</p>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Hit <strong>ESC</strong> on your keyboard to get out of <strong>insert</strong> mode</p>
-                    </li>
-                    <li>
+                    </div></li>
+                    <li><div>
                         <p>Write <strong>:wq</strong> to write and quit the file</p>
-                    </li>
+                    </div></li>
                 </ul>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Run the following to allow the crud.html file to be utilized</p>
                 <pre>chmod -R 755 /home/ubuntu/</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Run this command to get the crud.html file uploaded to nginx in docker:</p>
                 <pre>sudo docker run --name crud9 -p 80:80 --mount type=bind,source=/home/ubuntu,target=/usr/share/nginx/html,readonly -d nginx:latest</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>This command opens the <strong>http</strong> port on the EC2 instance:</p>
                 <pre>sudo ufw allow 80/tcp</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>To list the current containers in Docker, use the following command:</p>
                 <pre>sudo docker ps</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Go to the EC2 instance and <strong>edit the inbound rules</strong> to open port 80 for TCP. Click on your EC2 instance in the AWS interface, scroll down to the <strong>security</strong> tab and click on the security group. Edit the inbound rules and add port 80 for Custom TCP</p>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Run the following to see that port 80 is open (assuming you installed nmap from last week: sudo apt-get install nmap). Notice that port 22 is also open (The port that allows us to connect to the server).</p>
                 <pre>nmap localhost</pre>
-            </li>
-            <li>
+            </div></li>
+            <li><div>
                 <p>Open your web browser and open the IP address of your new NGINX website (use http):</p>
                 <p>http://3.3.3.3/crud.html (Replace 3.3.3.3 with your public IP address of your instance)</p>
                 <p>Referenced From <a href="https://docs.vultr.com/how-to-install-docker-on-ubuntu-24-04">Installing Docker on Ubuntu 24.04</a></p>
-            </li>
+            </div></li>
         </ol>
 
         <h3 id="step14">Ending Session & Managing Budget</h3>
         <ol>
-            <li>
+            <li><div>
                 <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
-            </li>
+            </div></li>
         </ol>
 
         <h2 id="learning-more">Learning More</h2>
         <ul>
-            <li>
+            <li><div>
                 <p>Install more things and do more with docker. You could install docker also on AWS Linux and deploy it from CloudShell with a terraform script (more on that later).</p>
                 <p>Find a docker container to install: https://hub.docker.com/ (ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
-                <pre>sudo docker pull _________</pre>
-                <pre>sudo systemctl enable docker</pre>
-                <pre>sudo service docker start</pre>
-                <pre>sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
-            </li>
+                <pre>
+sudo docker pull _________
+sudo systemctl enable docker
+sudo service docker start
+sudo docker run --name myllm -d --restart unless-stopped langchain/langchain
+                </pre>
+            </div></li>
         </ul>
     </article>
 </body>
