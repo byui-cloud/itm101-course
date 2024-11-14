@@ -19,36 +19,36 @@
         <h1>Create and Deploy with Terraform</h1>
         <h2>Overview</h2>
 
-        <p>Using Terraform, you could have deployed Part 1 and Part 2 from previous weeks with Terraform.</p>
+        <p>Using Terraform, you could have deployed <a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">Part 1</a> and <a href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">Part 2</a> from previous weeks with Terraform.</p>
         <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, a docker, and more, all in one file.</p>
         <p>Check out all the servers and 'apps' you can deploy with Terraform: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
         
         <h2>Business Requirements</h2>
         <ul>
             <li>
-                <p>Deploy an AWS Linux Server on AWS to host a website and/or database</p>
+                <p>Create an EC2 instance using Terraform that can be deployed in the west region</p>
+                <p>The company wants a consitent 'recipe' or terraform script that documents how things were set up.</p>            
             </li>
         </ul>
         <h2>Project Overview</h2>
         <ul>
             <li>
-                <p>Install Docker</p>
+                <p>Install Terraform</p>
             </li>
             <li>
-                <p>Deploy an NGINX docker container</p>
+                <p>Deploy a server with terraform</p>
             </li>
         </ul>
 
         <h2>Table of Contents</h2>
         <ol>
-            <li><a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">You should have already completed Part 1 - Setup an EC2 Instance</a></li>
-            <li><a href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">You should have already completed Part 2 - Docker and Nginx</a></li>
             <li><a href="#part3">Part 3 - Terraform</a></li>
             <li><a href="#step9">Setting Up an EC2 Instance - Using Automation</a></li>
             <li><a href="#step10">AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</a></li>
             <li><a href="#step11">AWS Terraform</a></li>
             <li><a href="#step12">Terraform Script File</a></li>
             <li><a href="#step13">Initiate Terraform Script File</a></li>
+            <li><a href="#part4">Deploy AI Chat with Terraform</a></li>
             <li><a href="#step14">Deleting Resources With Terraform Script File</a></li>
             <li><a href="#learning-more">Learning More</a></li>
         </ol>
@@ -109,6 +109,29 @@
                 <pre>ssh -i private_key.pem ec2-user@3.3.3.3</pre>
             </li>
         </ol>
+        <h2>Part 4 - AI Chat deployed with Terraform</h2>
+        <h3>Business Requirements</h3>
+        <ul>
+            <li>
+                <p>Deploy an AWS AI Web-based Chat on AWS using terraform</p>
+            </li>
+        </ul>  
+        <h3 id="part4">Use Terraform to Deploy AI Chat</h3>      
+        <ul>
+            <li>
+                <p>Use terrform to deploy the EC2 with 32 GB of hard drive space, a t2.large instance, AWS Linux.</p>
+            </li>
+            <li>
+                <p>Use and download the tf file below and that will run terraform using the new file:</p>
+                <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
+                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf"></a>https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</p>
+                <p>You need to download the tf file and run terraform with it. (If you didn't finish the first part using the first .tf file, this one may not work)</p>
+                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
+                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
+                <p>Make sure to initiate the terraform script (see steps above if needed).</p>
+            </li>
+        </ul>      
+
         <h3 id="step13">Deleting Resources With Terraform Script File</h3>
         <ol>
             <li>
@@ -122,12 +145,12 @@
                 <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
             </li>
         </ol>
-
+        <h3>YOUR HOMEWORK IS MORE THAN WHAT YOU JUST DID. Look at the assignment details. Notice it is in a different region (Oregon, not N. Virginia).</h3>
         <h2 id="learning-more">Learning More</h2>
         <ul>
             <li>
                 <p>Check out all the servers and 'apps' you can deploy with Terraform on the registry. Find and try one: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
-                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with terraform script. You put it in the </p>
+                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with a terraform script. You put it in a "user_data" section of the tf file. Look at the mainawslinuxeastAI.tf file.</p>
                 <pre>sudo yum install -y docker</pre>
                 <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
                 <pre>sudo docker pull _________</pre>
@@ -135,27 +158,20 @@
                 <pre>sudo service docker start</pre>
                 <pre>sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
             </li>
-        </ul>
-        <h2>Business Requirements</h2>
-        <ul>
             <li>
-                <p>Deploy an AWS AI Web-based Chat on AWS using terraform</p>
+                <p>Automate things further with a linux script. Use AI as needed.</p>
+            </li>
+            <li>
+                <p>Connect via that instance above with RDP.</p>
+                <p>Install remote desktop beta on your laptop or use the built in one for Windows.</p>
+                <p>SSH into the server and set the password for the ec2-user and enable RDP:</p>
+                <p>sudo passwd ec2-user</p>
+                <p>sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
+                </p>
             </li>
         </ul>
-        <h2>Day 2</h2>
-        <ul>
-            <li>
-                <p>Use and create automation scripts that deploy the EC2 with 32 GB of hard drive space, a t2.large instance, AWS Linux.</p>
-            </li>
-            <li>
-                <p>Create a script that will download the tf file below and that will run terraform using the new file:</p>
-                <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
-                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf"></a>https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</p>
-                <p>Automate things further with a linux script. Use AI as needed. You need to download the tf file and run terraform with it. (If you didn't finish part one witht the first .tf file, this one may not work)</p>
-                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
-                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
-            </li>
-        </ul>        
+
+         
     </article>
 </body>
 </html>

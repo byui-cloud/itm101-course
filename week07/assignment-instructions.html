@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../site/style.css">
     <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>Create and Deploy a Website from your IDE to a URL</title>
+    <title>Find and Deploy a AI Chat to the Cloud</title>
     <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week07/assignment-instructions.html">
     <meta name="description" content="Week 7 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
@@ -264,19 +264,30 @@
                     <p>#Run the following commands one at a time (if you get an error, continue):</p>
                     <p>sudo systemctl daemon-reload</p>
                     <p>sudo systemctl restart ollama</p>
+                    <p>Go to step 4.</p>
 
-                    <h3>SHORTCUT SCRIPT - TO THE VI STUFF ABOVE</h3>
-                    <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh
-                    </p>
-                    <p>OR TRY THIS:</p>
-                    <p>sudo sed -i '/RestartSec=3/a'$"Environment=\"OLLAMA_HOST=0.0.0.0\"\nEnvironment=\"OLLAMA_ORIGINS=$(curl -s http://checkip.amazonaws.com):*\"" /etc/systemd/system/ollama.service
-                    </p>
-                    <p>#Run the following commands one at a time (if you get an error, continue):</p>
-                    <p>sudo systemctl daemon-reload</p>
-                    <p>sudo systemctl restart ollama</p>
-
+                    <h4>SHORTCUT SCRIPT - TO THE VI STUFF ABOVE (Don't do this if you did step 3 above)</h4>
+                    <p>If step 3 didn't work,run this in the connected EC2 instance shell:</p>
+                    <pre>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh
+                    </pre>
+                    <p>Or if that script didn't work, TRY THIS:</p>
+                    <pre>
+        sudo sed -i '/RestartSec=3/a'$"Environment=\"OLLAMA_HOST=0.0.0.0\"\nEnvironment=\"OLLAMA_ORIGINS=$(curl -s http://checkip.amazonaws.com):*\"" /etc/systemd/system/ollama.service
+        #Run the following commands one at a time (if you get an error, continue):
+        sudo systemctl daemon-reload
+        sudo systemctl restart ollama
+                </pre>
                 </div>
             </li>
+            <li><div>
+                <p>Check the file of the ollama service:</p>
+                <p>sudo cat /etc/systemd/system/ollama.service</p>
+                <p>#Do you see these three lines (but with your elastic IP):</p>
+                <p>Environment="OLLAMA_HOST=0.0.0.0"
+                    Environment="OLLAMA_ORIGINS=3.210.150.106:*"</br>
+                    Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"</p>
+                    <p>If not, fix it with the vi steps above (press 'dd' to delete a line if needed).</p>
+            </div></li>
             <li><div>
                 <p>Open your browser to the Elastic IP address you were give in that Elastic IP step above. </p>
                 <p>Make sure to put http:// and NOT https://</p>
@@ -315,6 +326,33 @@
                 <p>Did you open both port 3000 and port 11434? Check your instance security group inbound rules.</p>
             </div></li>
         </ul>
+        <h3>Model Not Selected Error on browser</h3>
+        <ul>
+            <li><div>
+                <p>Go to the admin panel > Settings > Connections > Click on the refresh circle arrows.</p>
+            </div></li>
+            <li><div>
+                <p>Did you set the default user model in the Admin Panel settings under Users?</p>
+            </div></li>
+            <li><div>
+                <p>Did you download the 'llama3.2' model in the Admin Panel settings under Models?</p>
+            </div></li>            
+        </ul> 
+
+        <h3>WebUI could not connect to Ollama</h3>
+        <ul>
+            <li><div>
+                <p>#Check the file of the ollama service:</p>
+                <p>sudo cat /etc/systemd/system/ollama.service</p>
+                <p>#Do you see these three lines (but with your elastic IP):</p>
+                <p>Environment="OLLAMA_HOST=0.0.0.0"
+                    Environment="OLLAMA_ORIGINS=3.210.150.106:*"</br>
+                    Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"</p>
+                <p>If you don't see those three lines, run this and then go refresh the connection in the admin panel settings:</p>
+                <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh </p>
+            </div></li>
+        </ul>        
+
         <h2 id="learning-more">Learning More</h2>
         <p>Want to learn more about AWS and obtain an AWS certification? Take ITM300 Cloud Foundations.</p>
         <p>Build your resume: Deployed a Custom Chat AI to an AWS EC2 instance.</p>
