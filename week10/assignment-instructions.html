@@ -42,6 +42,7 @@
             <li><div><a href="#part2">Part 2 - Docker and Nginx</a></div></li>
             <li><div><a href="#step7">Install Docker</a></div></li>
             <li><div><a href="#step8">Install NGINX web server on Docker</a></div></li>
+            <li><div><a href="#troubleshooting">Troubleshooting & Common Problems</a></div></li>            
             <li><div><a href="#learning-more">Learning More</a></div></li>
         </ol>
 
@@ -137,6 +138,23 @@ sudo service docker status
                 <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
             </div></li>
         </ol>
+
+        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+        <h3>If the webpage doesn't load</h3>
+        <ul>
+            <li><div>You may need to add the rule port 80 to your inbound rules on your security group.</div></li>
+            <li><div>Did you add CIDR of 0.0.0.0/0 for your source on port 80 in the inbound security rules for that EC2 instance?</div></li>
+            <li><div>Did you use http:// instead of https://</div></li>
+        </ul>
+        <h3>Can't connect to the website anymore</h3>
+        <ul>
+            <li><div>Is the docker running if you run 'sudo docker ps'? You should see it running.</div></li>
+            <li><div>Start the docker with 'sudo docker start crud9' and then verify with the command above that it is running.</div></li>
+        </ul>        
+        <h3>Can't connect to the server anymore</h3>
+        <ul>
+            <li><div>Do you still have port 22 open on your security group inbound rules? You need two rules, both port 80 and port 22.</div></li>
+        </ul>
 
         <h2 id="learning-more">Learning More</h2>
         <ul>
