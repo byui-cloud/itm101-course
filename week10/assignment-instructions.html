@@ -107,8 +107,9 @@ sudo service docker status
                 <pre>chmod -R 755 /home/ubuntu/</pre>
             </div></li>
             <li><div>
-                <p>Run this command to get the crud.html file uploaded to nginx in docker:</p>
+                <p>Run this command to get the crud.html file connected to nginx in docker (this mounts the folder) (alternatively you could copy the files into the docker if you were going use multiple containers or kubernetes):</p>
                 <pre>sudo docker run --name crud9 -p 80:80 --mount type=bind,source=/home/ubuntu,target=/usr/share/nginx/html,readonly -d nginx:latest</pre>
+                <p>You could add '-d --restart unless-stopped' to the command above to make it always start up.</p>
             </div></li>
             <li><div>
                 <p>This command opens the <strong>http</strong> port on the EC2 instance:</p>
