@@ -56,10 +56,10 @@
         <h3 id="step1">Switch Regions</h3>
         <ol>
             <li><div>
-                <p>Login to the AWS Learner lab as we have done before</p>
+                Login to the AWS Learner lab as we have done before
             </div></li>
             <li><div>
-                <p>Make sure to click on <strong>N. Virginia</strong> and select <strong>Oregon</strong> instead (top right corner).</p>
+                Make sure to click on <strong>N. Virginia</strong> and select <strong>Oregon</strong> instead (top right corner).
             </div></li>
         </ol>
         <h3 id="step2">Open Cloudshell</h3>
@@ -78,21 +78,23 @@
             <li><div>
                 <p>Install Terraform by opening the Cloudshell and run these <strong>one by one (they will not work all together)</strong></p>
                 <p>Terraform allows you automatically deploy servers in AWS and other systems too. They are automated scripts. First you need to install Terraform with these three commands:</p>
-                <pre>sudo yum install -y yum-utils</pre>
-                <pre>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</pre>
-                <pre>sudo yum -y install terraform</pre>
+                <pre>
+    sudo yum install -y yum-utils
+    sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+    sudo yum -y install terraform
+                </pre>
             </div></li>
         </ol>
         <h3 id="step4">Terraform Script File</h3>
         <ul>
             <li><div>
-                <p>Terraform has .tf files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc.</p>
+                Terraform has .tf files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc.
             </div></li>
         </ul>
         <h3 id="step5">Find An AMI</h3>
-        <ol>
+        <ol class="long">
             <li><div>
-                <p>Go to the EC2 Dashboard and click <strong>Launch Instance</strong></p>
+                Go to the EC2 Dashboard and click <strong>Launch Instance</strong>
             </div></li>
             <li><div>
                 <p>Scroll down and click <strong>Browse more AMIs</strong> in the marketplace and find the AMI for the type of server you want to deploy and put that in your terraform script.</p>
@@ -104,24 +106,24 @@
             </div></li>
         </ol>
         <h3 id="step6">Copy and Update Example Script</h3>
-        <ol>
+        <ol class="long">
             <li><div>
                 <p>Go look at this file: <a href="https://github.com/byui-cloud/itm101-course/blob/main/week12/mainawslinuxeast.tf">Main AWS Linux East Script</a></p>
                 <p>Copy the contents of this file into your local text editor (preferrably VS Code).</p>
             </div></li>
             <li><div>
-                <p>Make sure to replace the region with <strong>us-west-2</strong>, remove <strong>ingress of RDP</strong> (if you didn't choose a Windows Server), and the <strong>AMI number</strong> for the one you chose in the last step.</p>
+                Make sure to replace the region with <strong>us-west-2</strong>, remove <strong>ingress of RDP</strong> (if you didn't choose a Windows Server), and the <strong>AMI number</strong> for the one you chose in the last step.
             </div></li>
             <li><div>
-                <p>Pick the amount of computing power you need and modify your script file</p>
+                Pick the amount of computing power you need and modify your script file
             </div></li>
             <li><div>
-                <p>Open the ports you need for the firewall and modify your script</p>
+                Open the ports you need for the firewall and modify your script
             </div></li>
             <li><div>
                 <p>You may want to run security updates automatically upon deploying the server with the following code (The commands will vary depending on which Linux version you picked as the AMI):</p>
                 <pre>
-    user_data = ≪EOF
+    user_data = &lt;&lt;-EOF
     #!/bin/bash
     sudo yum update -y
     EOF
@@ -146,38 +148,38 @@
                 <pre>vi main.tf</pre>
             </div></li>
             <li><div>
-                <p>Press <strong>i</strong> to insert text</p>
+                Press <strong>i</strong> to insert text
             </div></li>
             <li><div>
-                <p>Right-click to paste your script</p>
+                Right-click to paste your script
             </div></li>
             <li><div>
-                <p>Press <strong>ESC</strong> to exit insert mode</p>
+                Press <strong>ESC</strong> to exit insert mode
             </div></li>
             <li><div>
-                <p>Press <strong>:wq</strong> to save and exit</p>
+                Press <strong>:wq</strong> to save and exit
             </div></li>
         </ol>
         <h3 id="step8">Run Terraform</h3>
         <ol>
             <li><div>
                 <p>Run Terraform to deploy your script</p>
-                <pre>terraform init</pre>
-                <pre>terraform plan</pre>
-                <pre>terraform apply -auto-approve</pre>
-                <pre>ls</pre>
+<pre>terraform init
+terraform plan
+terraform apply -auto-approve
+ls</pre>
             </div></li>
         </ol>
         <h3 id="step9">Connect to Server</h3>
-        <ol>
+        <ol class="long">
             <li><div>
-                <p>Go to the EC2 Dashboard and click on <strong>Instances</strong></p>
+                Go to the EC2 Dashboard and click on <strong>Instances</strong>
             </div></li>
             <li><div>
-                <p>Find your instance and click on it</p>
+                Find your instance and click on it
             </div></li>
             <li><div>
-                <p>Find the public IpV4 address and click the copy button.</p>
+                Find the public IpV4 address and click the copy button
             </div></li>
             <li><div>
                 <p>Open a terminal and type:</p>
@@ -218,7 +220,7 @@
                 <p>Install more things and do more with docker and terraform. You can install docker also on AWS Linux that was deployed from your CloudShell via your terraform script.</p>
                 <p>You can add these to this part:</p>
                 <pre>
-    user_data = ≪EOF
+    user_data = &lt;&lt;-EOF
     #!/bin/bash
     sudo yum update -y
     EOF
@@ -237,11 +239,16 @@
             <li><div>
                 <p>These are some things you could explore and put in your code above:</p>
                 <pre>sudo yum install -y docker</pre>
-                <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
-                <pre>sudo docker pull _________</pre>
-                <pre>sudo systemctl enable docker</pre>
-                <pre>sudo service docker start</pre>
-                <pre>sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 langchain/langchain</pre>
+                <p>(find a docker container to install:
+                <a href="https://hub.docker.com/">https://hub.docker.com/</a>
+                ex: <a href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a>)
+                (cmd: sudo docker pull langchain/langchain)</p>
+                <pre>
+    sudo docker pull _________
+    sudo systemctl enable docker
+    sudo service docker start
+    sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 langchain/langchain
+            </pre>
             </div></li>
         </ul>
     </article>
