@@ -105,6 +105,7 @@ sudo yum -y install terraform</pre>
                 <p>Now go look at the AWS Linux ec2 instance that was deployed. Remote into it with the key that was created in the same shell.</p>
                 <p>Find the public IPv4 address on the EC2 instance (replace 3.3.3.3 with yours). Connect via ssh.</p>
                 <pre>ssh -i private_key.pem ec2-user@3.3.3.3</pre>
+                <p>Take a screenshot of it working and then type "exit" to go back to your cloudshell.</p>
             </div></li>
         </ol>
         <h2>Part 4 - AI Chat deployed with Terraform</h2>
@@ -127,6 +128,8 @@ sudo yum -y install terraform</pre>
                 <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
                 <p>Make sure to initiate the terraform script (see steps above if needed).</p>
+                <p>Go try the AI Chat server by going to the ip address (http://yourpublicip:3000)</p>
+                <p>Take a screenshot of it working.</p>
             </div></li>
         </ul>
 
