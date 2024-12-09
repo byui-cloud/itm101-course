@@ -21,7 +21,7 @@
         "educationalUse": "assignment",
         "copyrightNotice": "Copyright © 2024, Brigham Young University–Idaho. All rights reserved.",
         "datePublished": "2024-03-27",
-        "dateModified": "2024-07-12"
+        "dateModified": "2024-12-09"
     }
     </script>
 </head>
@@ -111,6 +111,10 @@ system that uses a NoSQL database in the Internet Cloud.</p>
     to your Firebase project. Your new Firestore database should use
     <strong>test mode</strong>.</div></li>
 
+    <li><div>On your computer create a new folder named
+    <code>min_max_inv</code> where you will save files for this final
+    project.</div></li>
+
     <li><div>In your Firestore database, initialize a collection named
     “suppliers” by doing the following:
     <ol class="long">
@@ -146,30 +150,8 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div>Look in the <code>init_suppliers.html</code> and find
         the <code>firebaseConfig</code> dictionary. You must replace the
         <code>firebaseConfig</code> dictionary that ChatGPT wrote with
-        code from the Firebase Console. Replace the
-        <code>firebaseConfig</code> dictionary by doing the following:
-        <ol>
-            <li><div>Using the Firebase Console in your browser, look in
-            the “Project settings” for your min-max-inventory project
-            and copy <code>firebaseConfig</code> JavaScript dictionary.
-            The dictionary will look similar to this:
-<pre class="js">
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "a_bunch_of_characters_here",
-  authDomain: "min-max-inventory-hex.firebaseapp.com",
-  projectId: "min-max-inventory-hex",
-  storageBucket: "min-max-inventory-hex.appspot.com",
-  messagingSenderId: "lots_of_digits",
-  appId: "more_characters_here"
-};
-</pre></div></li>
-
-            <li><div>In VS Code in the new file, replace the
-            <code>firebaseConfig</code> dictionary that
-            ChatGPT wrote with the <code>firebaseConfig</code> that you
-            copied from the Firebase Console.</div></li>
-        </ol></div></li>
+        <code>firebaseConfig</code> code from the Firebase
+        Console.</div></li>
 
         <li><div>In VS Code, save the <code>init_suppliers.html</code>
         file.</div></li>
@@ -181,9 +163,6 @@ const firebaseConfig = {
         suppliers, your browser window should have a list of five
         supplier IDs and names.</div></li>
 
-        <li><div>Copy the five supplier IDs into a new text file in VS
-        Code.</div></li>
-
         <li><div>Using the Firebase console, verify that your Firestore
         database has a collection named “suppliers” that contains five
         documents.</div></li>
@@ -192,9 +171,11 @@ const firebaseConfig = {
     <li><div>Initialize a collection named “products” in your Firestore
     database by doing the following:
     <ol class="long">
-        <li><div>Copy the following prompt and paste it at the top of
-        the file in VS Code that contains the five supplier IDs from the
-        previous step.
+        <li><div>In VS Code, create a new file named
+        <code>init_products.html</code></div></li>
+
+        <li><div>Copy the following prompt and paste into the
+        <code>init_products.html</code> file.
         <p class="gpt">Please generate a list of 20 products for a
         min-max inventory system for the cosmetics industry. Generate
         the list in JSON format. Each item in the list must include five
@@ -202,8 +183,12 @@ const firebaseConfig = {
         maximum_quantity, and supplier_id. Use these supplier IDs: </p>
         </div></li>
 
-        <li><div>Review the prompt and ensure that it makes sense. Then
-        give the prompt to ChatGPT.</div></li>
+        <li><div>From the Firestore Database, copy the five supplier IDs
+        and paste them into VS Code at the bottom of the
+        <code>init_products.html</code> file.</div></li>
+
+        <li><div>In VS Code, review the prompt and ensure that it makes
+        sense. Then give the prompt to ChatGPT.</div></li>
 
         <li><div>After ChatGPT responds, give it this prompt:
         <p class="gpt">Please write HTML and JavaScript code in a single
@@ -219,16 +204,18 @@ const firebaseConfig = {
         for the product in a div in the HTML document.</p>
         </div></li>
 
-        <li><div>Wait for ChatGPT to respond. Then copy the code that
-        ChatGPT wrote and paste it into a new file.</div></li>
+        <li><div>Wait for ChatGPT to respond. Then delete the prompt
+        from the <code>init_products.html</code> file and copy the code
+        that ChatGPT wrote and paste it into the
+        <code>init_products.html</code> file.</div></li>
 
-        <li><div>Look in the new file and replace the
-        <code>firebaseConfig</code> dictionary with the
+        <li><div>Look in the <code>init_products.html</code> file and
+        replace the <code>firebaseConfig</code> dictionary with the
         <code>firebaseConfig</code> dictionary from your Firebase
         Console. (This is the same thing that you already did in the
         <code>init_suppliers.html</code> file.)</div></li>
 
-        <li><div>Save the file as <code>init_products.html</code></div></li>
+        <li><div>Save the <code>init_products.html</code> file.</div></li>
 
         <li><div>Open the <code>init_products.html</code> file in your
         browser. Your browser will execute the JavaScript code in that
@@ -242,13 +229,9 @@ const firebaseConfig = {
         documents.</div></li>
     </ol></div></li>
 
-    <li><div>Using a browser on your computer, download and install
-    NodeJS from
+    <li><div>If NodeJS is not installed on your computer, using a
+    browser on your computer, download and install NodeJS from
     <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></div></li>
-
-    <li><div>On your computer create a new folder named
-    <code>min_max_inv</code> where you will save files for this final
-    project.</div></li>
 
     <li><div>Using your browser, download this
     <a download href="firestore.rules">firestore.rules</a>
@@ -267,8 +250,8 @@ const firebaseConfig = {
         <li><div><code>firebase init</code><br>
         (When you execute this command, your computer will ask you
         several questions about the firebase services that you want to
-        initialize. Be sure to initialize both hosting and firestore.
-        Don’t initialize GitHub.)</div></li>
+        initialize. Be sure to initialize both hosting and firestore
+        databse. Don’t initialize GitHub.)</div></li>
     </ol></div></li>
 
     <li><div>Using your browser, download the following five files and
@@ -335,7 +318,8 @@ const firebaseConfig = {
     what is the purpose of each of the files (html, css, js) in a web
     app.</div></li>
 </ol>
-<h2 id="help">Help & Troubleshooting</h2>
+
+<h2 id="help">Help and Troubleshooting</h2>
 <p>If you are stuck, you may want to look at the previous project instructions from prior weeks.</p>
 <ul>
     <li><div><a href="https://byui-cloud.github.io/itm101-course/week04/assignment-instructions.html">Setting up Firebase Web Hosting (from Week 4)</a></div></li>
@@ -354,6 +338,7 @@ app’s URL</a>. Work with your teacher to do that.</p>
 <p>Did you open your init_suppliers.html and init_products.html files in
 your browser so that your browser could run them to create the suppliers
 and the other file to create products?</p>
+
 <p>You could temporarily replace your Firestore database rules in the
 Firebase console with these rules:</p>
 <pre>rules_version = '2';
@@ -367,7 +352,6 @@ service cloud.firestore {
     }
   }
 }</pre>
-
 </article>
 </body>
 </html>
