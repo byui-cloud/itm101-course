@@ -26,10 +26,6 @@
 	--dark-fg-color: rgb(184, 184, 184);
 
 	--border-color: rgb(112, 112, 112);
-
-	--compare-same-color: var(--lighter-yellow);
-	--compare-similar-color: var(--lighter-coral);
-	--compare-diff-color: var(--lighter-raspberry);
 }
 @media screen {
 	:root {
@@ -41,8 +37,6 @@
 
 		--dfn-fg-color: var(--coral);
 		--strong-fg-color: var(--coral);
-		--user-input-bk-color: var(--coral);
-		--user-input-fg-color: white;
 
 		--line-number-hilite: var(--byui-blue);
 		--python-bk-color: var(--lightest-coral);
@@ -84,8 +78,6 @@
 
 		--dfn-fg-color: black;
 		--strong-fg-color: black;
-		--user-input-bk-color: white;
-		--user-input-fg-color: darkgray;
 
 		--python-bk-color: white;
 		--console-bk-color: white;
@@ -118,10 +110,6 @@ body {
 
 		--python-bk-color: var(--darkest-coral);
 		--console-bk-color: var(--darkest-byui-blue);
-
-		--compare-same-color: var(--darker-yellow);
-		--compare-similar-color: var(--darker-coral);
-		--compare-diff-color: var(--darker-raspberry);
 	}
 }
 @media print {
@@ -258,15 +246,6 @@ article {
 	article {
 		max-width: 40em;
 		margin: 0.5em auto 1em auto;
-	}
-
-	/* article.solution is used by overview/solution.html, which
-	 * shows sample solutions for checkpoints and team activities. */
-	article.solution {
-		max-width: none;
-	}
-	article.solution h1 {
-		font-size: 150%;
 	}
 }
 
@@ -405,8 +384,10 @@ article a:hover { color: var(--link-hover-fg-color); }
 article a:active { color: var(--link-active-fg-color); }
 article a:visited { color: var(--link-visited-fg-color); }
 
-article dfn {
-	color: var(--dfn-fg-color)
+@media screen {
+	article dfn {
+		color: var(--dfn-fg-color)
+	}
 }
 @media print {
 	article dfn {
@@ -535,21 +516,6 @@ article ul.notes > li {
 	color: var(--bullet-fg-color);
 }
 
-article dl.function {
-	margin: 1em;
-}
-
-article dl.function dt {
-	border-left: 0.12em solid var(--bullet-fg-color);
-	padding-left: 0.5em;
-}
-
-article dl.function dd {
-	border-left: 0.12em solid var(--bullet-fg-color);
-	padding-left: 2.5em;
-	margin-bottom: 1em;
-}
-
 article dl.long dt {
 	padding-bottom: 1em;
 }
@@ -569,10 +535,6 @@ article figure.full {
 	margin: 0 0 1em 0;
 }
 
-article figure.code {
-	margin: 0 auto 1em 1.5em;
-}
-
 article figure.center {
 	display: table;
 	margin: 0 auto 1em auto;
@@ -583,22 +545,8 @@ article figure.right {
 	margin: 0 0 1em 1em;
 }
 
-article figure.list {
-	border: 1px solid var(--border-color);
-}
-
 article figure > img {
 	max-width: 100%;
-}
-article figure.code > img {
-	border: 1px solid var(--border-color);
-	/* Instead of --python-bk-color, we must use --lightest-coral for
-	 * figures with code in them, because the figure foreground
-	 * colors will not change if the reader switches to dark mode. */
-	background-color: var(--lightest-coral);
-}
-article figure.callgraph > img {
-	border: 1px solid var(--border-color);
 }
 
 article figure > figcaption {
@@ -606,15 +554,6 @@ article figure > figcaption {
 	text-align: left;
 	margin: 0 auto 1em auto;
 	width: fit-content;
-}
-
-
-/* Cross reference link for line numbers in example code. */
-@media screen {
-	article span.cross {
-		cursor: pointer;
-		text-decoration: underline var(--link-before-fg-color) dotted;
-	}
 }
 
 
@@ -650,58 +589,6 @@ article code em {
 	font-style: normal;
 }
 
-article div.example {
-	position: relative;  /* Necessary for button.copy */
-	margin: 1em auto 1em 1.25em;
-	display: grid;
-	grid-template-columns: auto 1fr;
-	max-width: fit-content;
-}
-article li div.example {
-	margin-left: 0;  /* In a list, don't indent example code. */
-}
-
-article div.example > pre.linenums {
-	grid-column: 1;
-	border-color: var(--border-color);
-	border-style: solid;
-	border-width: 1px 0 1px 1px;
-	padding-right: 1.25em;
-	text-align: right;
-	background-color: var(--python-bk-color);
-	color: var(--border-color);
-}
-article div.example > pre.linenums > .hi {
-	background-color: var(--line-number-hilite);
-	color: white;
-}
-
-/*
-article div.example > pre:first-child.csv,
-article div.example > pre:first-child.sql,
-article div.example > pre:first-child.python {
-*/
-article div.example > div:first-child.code {
-	grid-column: 1 / span 2;
-	border: 1px solid var(--border-color);
-	background-color: var(--python-bk-color);
-}
-article div.example > div:nth-child(2).code {
-	grid-column: 2;
-	border-color: var(--border-color);
-	border-style: solid;
-	border-width: 1px 1px 1px 0;
-	padding-left: 0;
-	background-color: var(--python-bk-color);
-}
-
-/* Span classes used by the JavaScript code in scope.js
- * to show global and local variable scope to students. */
-article div.example div.code span.hiScope  { background-color: yellow; }
-article div.example div.code span.hiVarDef { background-color: orange; }
-article div.example div.code span.hiVarUse { background-color: yellow; }
-article div.example div.code span.hiError  { background-color: red; }
-
 
 /* Container for console (terminal) input and output. */
 article pre.console {
@@ -711,46 +598,6 @@ article pre.console {
 }
 article li pre.console {
 	margin-left: 0;  /* In a list, don't indent pre.console elements. */
-}
-article div.example > pre.console {
-	grid-column: 1 / span 2;
-	margin: 1em 0 0 0;  /* In an example, don't indent pre.console elements. */
-}
-
-article pre.console > span.input {
-	border: 1px solid var(--border-color);
-	padding: 0 0.25em;
-	background-color: var(--user-input-bk-color);
-	color: var(--user-input-fg-color);
-}
-
-article pre.console > span.pass { color: green; }
-article pre.console > span.fail { color: red; }
-
-@media screen {
-	/* A button that copies code to the clipboard. */
-	article div.example button.copy {
-		visibility: hidden;
-		position: absolute;
-		top: 0.5em;
-		right: 0.5em;
-		width: 3em;
-		height: 3em;
-		border-color: var(--byui-blue);
-		padding: 0.2em 0.4em;
-		background-color: white;
-		fill: var(--byui-blue);
-		cursor: pointer;
-	}
-
-	article div.example div.code:hover button.copy{
-		visibility: visible;
-	}
-}
-@media print {
-	article div.example button.copy {
-		display: none;
-	}
 }
 
 
@@ -803,62 +650,6 @@ article table.contents tbody > tr > th[colspan="3"] {
 }
 article table.contents tbody > tr > td { padding-top: 0.3em; }
 article table.contents tbody > tr > td:first-child { min-width: 10em; }
-
-article span.same,
-article table.compare tbody > tr.same > th {
-	background-color: var(--compare-same-color);
-}
-article span.similar,
-article table.compare tbody > tr.similar > th {
-	background-color: var(--compare-similar-color);
-}
-article span.diff,
-article table.compare tbody > tr.diff > th {
-	background-color: var(--compare-diff-color);
-}
-
-article table.prec > tbody > tr > td {
-    border: 1px solid var(--border-color);
-}
-article table.prec > tbody > tr > td.prec {
-    border: none;
-    text-align: center;
-}
-
-article table.test thead th.expect,
-article table.test thead th.expect ~ th {
-	color: var(--byui-blue);
-}
-article table.test tbody td {
-	padding-right: 1em;
-	padding-left: 0.5em;
-	text-align: right;
-}
-article table.test tbody td.expect {
-	border-left: 1px solid var(--byui-blue);
-	color: var(--byui-blue);
-}
-article table.test tbody td.expect ~ td {
-	color: var(--byui-blue);
-}
-
-/* Figures that contain tables */
-article figure.list > table {
-	margin: 1em;
-}
-
-article figure.list > table > tbody > tr > td {
-	text-align: center;
-}
-
-article figure.list > table > tbody > tr.elems > td {
-	border: 1px solid var(--border-color);
-}
-
-article figure.list > table > tbody > tr > td.label {
-	border: none;
-	text-align: right;
-}
 
 
 svg.cache { display: none; }
