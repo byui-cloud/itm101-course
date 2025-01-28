@@ -63,12 +63,11 @@ itm101.strings = {
 /** Contains the filenames of user visible icons and other files so
  * that changing them, if necessary, will be easier. */
 itm101.filenames = {
-	logoIcon : 'site/icons/logo.png',
+	logoIcon : 'site/logo.png',
 
 	contents : 'index.html',
 	search   : 'index.html#search',
 	help     : 'overview/help.html',
-	solution : 'overview/solution.html',
 
 	htmlFile : 'combined/itm101_prepare_content.html',
 	pdfFile  : 'combined/itm101_prepare_content.pdf',
@@ -752,62 +751,6 @@ itm101.consoles = {
 };
 
 
-itm101.solution = {
-	/** Modifies all <a class="solution"> elements. */
-	modifyLinks : function() {
-		// Get all <a class="solution"> elements.
-		let links = document.body.querySelectorAll('a.solution');
-
-		// Is the user viewing the ITM 101 files
-		// from the local hard drive?
-		if (window.location.protocol == 'file:') {
-			for (let link of links) {
-				// Because the user is viewing the ITM 101 files from
-				// the local hard drive, there is no reason to have both
-				// a view and download link. A standard download link
-				// will simply open the file for viewing, so a download
-				// link is sufficient.
-				link.setAttribute('download', '');
-			}
-		}
-		else {
-			const splitURL = /^.+\/([^\/]+\/[^\/]+)$/;
-			const strings = itm101.strings;
-			const viewText = itm101.strings.viewText + ' ';
-			const downText = itm101.strings.downloadText + ' ';
-			const createElem = itm101.createElement;
-
-			for (let link of links) {
-				// Get the absolute href.
-				let absURL = link.href;
-
-				// Get the relative href.
-				let relpath = absURL.replace(splitURL, '$1');
-				let newHref = itm101.filenames.solution + '?file=' + relpath;
-
-				let hrefAttr = link.getAttribute('href');
-				link.setAttribute('title', viewText + hrefAttr);
-				link.setAttribute('href', newHref);
-
-				// Create a new <a download> element.
-				let downlink = createElem('a', null,
-						{download : '',
-						title : downText + hrefAttr,
-						href : hrefAttr});
-				downlink.textContent = '[↓]';
-
-				// Insert the new <a download> element after
-				// the current <a class="solution"> element.
-				let parent = link.parentNode;
-				let next = link.nextSibling;
-				parent.insertBefore(document.createTextNode(' '), next);
-				parent.insertBefore(downlink, next);
-			}
-		}
-	}
-};
-
-
 itm101.print = {
 	open : 'open',
 	dataWas : 'data-was-open',
@@ -852,7 +795,6 @@ itm101.onDOMLoaded = function() {
 	common.addHeader();
 	common.initBrightness();
 	linenums.addLineNumbers();
-	itm101.solution.modifyLinks();
 	common.addFooter();
 
 	common.addURLCopyChars();
