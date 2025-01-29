@@ -4,422 +4,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" target="_blank" rel="noopener" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
     <link rel="stylesheet" href="../site/reset.css">
     <link rel="stylesheet" href="../site/style.css">
     <script defer src="../site/main.js"></script>
     <title>Create and Deploy Database for the Website</title>
     <link rel="icon" type="image/png" href="../site/logo.png">
-    <link rel="canonical" target="_blank" rel="noopener" href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">
+    <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">
     <meta name="description" content="Week 5 database assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
 <body>
-    <article>
-        <h1>Google Firebase Database for a Website</h1>
-        <h2>Overview</h2>
+<article>
+    <h1>Google Firebase Database for a Website</h1>
 
-        <p>In this scenario, you were recently hired as a new intern. 
-            The first project is to create a website and database that allows you to create a list of projects
-            that you are working on. Your boss wants you to deploy it on Google Firebase hosting with a Firebase database.</p>
+    <h2>Overview</h2>
+    <h3>Scenario</h3>
+    <p>In this scenario, you were recently hired as a new intern. The
+    first project is to create a website and database that allows you to
+    create a list of projects that you are working on. Your boss wants
+    you to deploy it on Google Firebase hosting with a Firebase
+    database.</p>
 
-        <h3>Business Requirements</h3>
-        <ul>
-            <li>Track projects for clients</li>
-        </ul>
-        <h3>Project Requirements</h3>
-        <ul>
-            <li>Use an automated scalable web hosting solution</li>
-            <li>Use a non-relational database to store project information</li>
-            <li>Use Google services if possible</li>
-        </ul>
+    <h3>Business Requirements</h3>
+    <ul>
+        <li><div>Track projects for clients</div></li>
+    </ul>
+    <h3>Project Requirements</h3>
+    <ul>
+        <li><div>Use an automated scalable web hosting solution</div></li>
+        <li><div>Use a non-relational database to store project information</div></li>
+        <li><div>Use Google services if possible</div></li>
+    </ul>
 
-        <h2>Project Overview</h2>
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><div><a href="#step1">Step 1: Install Visual Studio Code and Node.js</a></div></li>
+        <li><div><a href="#step2">Step 2: Open Your Existing Project in Firebase</a></div></li>
+        <li><div><a href="#step3">Step 3: Create a Collection of Projects</a></div></li>
+        <li><div><a href="#step4">Step 4: Add an app or website connection to the database</a></div></li>
+        <li><div><a href="#step5">Step 5: Link the database to the hosting</a></div></li>
+        <li><div><a href="#step6">Step 6: Put the database code in your website file (projects.html)</a></div></li>
+        <li><div><a href="#step7">Step 6: Check your firebase database security rules</a></div></li>
+        <li><div><a href="#step8">Step 8: Run `firebase deploy` to save changes</a></div></li>
+        <li><div><a href="#troubleshooting">Troubleshooting & Common Problems</a></div></li>
+        <li><div><a href="#learning-more">Learning More</a></div></li>
+    </ul>
+
+    <h2>Instructions</h2>
+    <p>Watch the video instead <a href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_ea4748q6/embed/dynamic">Firebase Database Setup Video</a></p>
+
+    <h3 id="step1">Step 1: Install Visual Studio Code and Node.js</h3>
+    <p>Hopefully, you already have Visual Studio Code and Node.js
+    installed on your computer. If not, ask ChatGPT how to install them
+    and follow the instructions from ChatGPT.</p>
+
+    <h3 id="step2">Step 2: Open Your Existing Project in Firebase</h3>
+    <ol>
+        <li><div>Sign into the
+        <a target="_blank" href="https://console.firebase.google.com">Google Firebase console</a>
+        using your BYU-Idaho email address (the email address with
+        numbers, for example: bos24011@byui.edu).
         <ul>
-            <li>Login to <a target="_blank" rel="noopener" href="https://console.firebase.google.com">Firebase</a> using your google account or your BYU-Idaho google account if you have one (usually the email with numbers ex: lastname038@byui.edu).</li>
+            <li><div><p>Trouble signing in? Open
+            <a target="_blank" href="my.byui.edu">my.byui.edu</a>,
+            click “Profile”, scroll down to “Campus Email”, and use
+            that email for the Google Firebase sign in</p>
+            <img src="../site/images/week05/view_profile.webp" alt="my.byui.edu View Profile option">
+            <img src="../site/images/week05/profile_email.webp" alt="my.byui.edu Profile Email">
+            </div></li>
+
+            <li><div>If that doesn’t work, use a personal Gmail
+            account.</div></li>
+        </ul></div></li>
+
+        <li><div>
+            <p>Click on <strong>YourName Portfolio/Project</strong></p>
+            <img src="../site/images/week05/choose_firebase_project.webp" alt="Choose Firebase Project Image">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Firestore Database</strong> under <strong>Build</strong> (you may need to expand the <strong>Build</strong> section by clicking on it).</p>
+            <img src="../site/images/week05/click_firestore_database.webp" alt="Firebase.google.com Choose Firestore Database">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Create Database</strong></p>
+            <img src="../site/images/week05/create_firestore_db_1.webp" alt="Firebase.google.com Create Database">
+        </div></li>
+        <li><div>
+            <p>Select <strong>nam5</strong> for the location of the United States (This should be selected by default)</p>
+            <img src="../site/images/week05/create_firestore_db_2.webp" alt="Firebase.google.com Choose nam5">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Next</strong></p>
+            <img src="../site/images/week05/create_firestore_db_3.webp" alt="firebase.google.com Firestore Next">
+        </div></li>
+        <li><div>
+            <p>Leave the defaults <strong>Start in production mode</strong> and then click <strong>Create</strong></p>
+            <img src="../site/images/week05/create_firestore_db_4.webp" alt="firebase.google.com Start in Production Mode">
+        </div></li>
+    </ol>
+
+    <h3 id="step3">Step 3: Create a Collection of Projects</h3>
+    <p>To create your database for your website, you would design your database based on collections of what you will store. Some examples of collections might be <strong>users</strong>, <strong>projects</strong>, <strong>movies</strong>, etc. This was the video about it from the preparation material: <a href="https://www.youtube.com/embed/jm66TSlVtcc?start=1&rel=0">https://www.youtube.com/embed/jm66TSlVtcc?start=1&rel=0</a> </p>
+    <ol>
+        <li><div>
+            <p>If you don’t see the screen below, click<strong class="refresh">&#x1f5d8;</strong> on your browser. Click <strong>Start Collection</strong></p>
+            <img src="../site/images/week05/firestore_create_collection.webp" alt="firebase.google.com Create Collection">
+        </div></li>
+        <li><div>
+            <p>Put the Collection ID as <strong>projects</strong> and click <strong>Next</strong></p>
+            <img src="../site/images/week05/firestore_name_collection.webp" alt="firebase.google.com Name Collection">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Auto-ID</strong></p>
+            <img src="../site/images/week05/firestore_auto_id.webp" alt="firebase.google.com Auto ID">
+        <p>Clicking <strong>Auto-ID</strong> will auto generate a Document ID like this image below.</p>
+        <img src="../site/images/week05/firestore_auto_id_example.webp" alt="firebase.google.com Auto ID Example">
+        </div></li>
+        <li><div>
+            <p>Let’s add some fields. Type <strong>title</strong> for the field and leave the type as a <strong>string</strong> if that is the data type that you want.</p>
             <ul>
-                <li>Troubles with login - go to my.byui.edu, click on <strong>Profile</strong> scroll down to <strong>Campus Email</strong> and use that email for the Google Firebase login instead</li>
+                <li><div>FYI - Use <strong>string</strong> for text such as letters, words, and paragraphs.</div></li>
+                <li><div>FYI - Use <strong>number</strong> for digits such as 1, 23, 5555, 44.44, etc.</div></li>
+                <li><div>FYI - Use <strong>boolean</strong> for true or false</div></li>
+                <li><div>We will just use strings for now</div></li>
             </ul>
-            <li>Hopefully, you already have node.js and Visual Studio Code installed on your computer. If not, ask Chatgpt how to install it.</li>
-            <li>Hopefully, you already have a working website to connect this database with. If not, follow this tutorial Firebase Website Using AI.</li>
-            <li>Deploy a Firebase Database </li>
-        </ul>
-        <h2>Table of Contents</h2>
-        <ol>
-            <li><a href="#step1">Step 1 - Open Your Existing Project in Firebase</a></li>
-            <li><a href="#step2">Step 2 - Create a Collection of Projects</a></li>
-            <li><a href="#step3">Step 3 - Add an app or website connection to the database</a></li>
-            <li><a href="#step4">Step 4 - Link the database to the hosting</a></li>
-            <li><a href="#step5">Step 5 - Put the database code in your website file (projects.html)</a></li>
-            <li><a href="#step6">Step 6 - Check your firebase database security rules</a></li>
-            <li><a href="#step7">Step 7 - Run `firebase deploy` to save changes</a></li>
-            <li><a href="#troubleshooting">Troubleshooting & Common Problems</a></li>
-            <li><a href="#learning-more">Learning More</a></li>
-        </ol>
+            <img src="../site/images/week05/firestore_collection_field_1.webp" alt="firebase.google.com Collection title Field">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Add Field</strong></p>
+            <img src="../site/images/week05/firestore_collection_field_2.webp" alt="firebase.google.com Collection Add Field">
+        </div></li>
+        <li><div>
+            <p>Type <strong>description</strong> and select <strong>string</strong></p>
+            <img src="../site/images/week05/firestore_collection_field_3.webp" alt="firebase.google.com Collection description Field">
+        </div></li>
+        <li><div>
+            <p>Make sure to click <strong>Save</strong></p>
+            <img src="../site/images/week05/firestore_collection_save.webp" alt="firebase.google.com Collection Save">
+        <p>You should only see one item in your list for now. You will add more items through the website later.</p>
+        <img src="../site/images/week05/firestore_collection_example.webp" alt="firebase.google.com Collection Example">
+        </div></li>
+    </ol>
 
-        <h2>Instructions</h2>
-        <h4>Watch the video instead <a target="_blank" rel="noopener" href="https://cdnapisec.kaltura.com/index.php/extwidget/preview/partner_id/1157612/uiconf_id/42438192/entry_id/1_ea4748q6/embed/dynamic">Firebase Database Setup Video</a></h4>
+    <h3 id="step4">Step 4: Add an app or website connection to the database</h3>
+    <ol>
+        <li><div>
+            <p>Go to the <strong>Project Overview</strong> settings by clicking on the gear in the top left corner:</p>
+            <img src="../site/images/week05/firebase_project_overview.webp" alt="firebase.google.com Firebase Project Overivew">
+        </div></li>
+        <li><div>
+            <p>Select <strong>Project settings</strong></p>
+            <img src="../site/images/week05/firebase_project_settings.webp" alt="firebase.google.com Firebase Project Settings">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Add App</strong></p>
+            <img src="../site/images/week05/firebase_project_add_app.webp" alt="firebase.google.com Firebase Project Add App">
+        </div></li>
+        <li><div>
+            <p>Select the icon for the <strong>HTML</strong> or <strong>Website</strong> web app (we need this to connect the html website code with our database):</p>
+            <img src="../site/images/week05/firebase_project_html.webp" alt="firebase.google.com Firebase Project HTML">
+        </div></li>
+        <li><div>
+            <p>Put the name of your database, like <strong>portfoliodb</strong> (db is for database)</p>
+            <img src="../site/images/week05/firebase_project_db_name.webp" alt="firebase.google.com Firebase Project Database Name">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Register app</strong></p>
+            <img src="../site/images/week05/firebase_project_register_app.webp" alt="firebase.google.com Firebase Project Register app">
+        </div></li>
+        <li><div>
+            <p>Select <strong>Use a &lt;script&gt; tag</strong> - IN PRODUCTION, it would be better to use npm</p>
+            <img src="../site/images/week05/firebase_project_use_script_tag.webp" alt="firebase.google.com Firebase Project Use Script Tag">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Continue to console.</strong> We will get the code later.</p>
+            <img src="../site/images/week05/firebase_project_continue_to_console.webp" alt="firebase.google.com Firebase Project Continue to Console">
+        </div></li>
+    </ol>
 
-        <h3 id="step1">Step 1 - Open Your Existing Project in Firebase</h3>
-        <ol>
-            <li>Login to <a target="_blank" rel="noopener" href="https://console.firebase.google.com">Firebase</a> using your BYU-Idaho username (usually the email with numbers ex: lastname038@byui.edu).</li>
+    <h3 id="step5">Step 5: Link the database to the hosting</h3>
+    <ol>
+        <li><div>
+            <p>Go to the <strong>Project Overview</strong> settings by clicking on the gear in the top left corner</p>
+            <img src="../site/images/week05/firebase_project_overview.webp" alt="firebase.google.com Firebase Project Overivew">
+        </div></li>
+        <li><div>
+            <p>Select <strong>Project settings</strong></p>
+            <img src="../site/images/week05/firebase_project_settings.webp" alt="firebase.google.com Firebase Project Settings">
+        </div></li>
+        <li><div>
+            <p>Under the <strong>General</strong> tab, scroll down to the bottom and click on <strong>Link to a Firebase Hosting site</strong></p>
+            <img src="../site/images/week05/firebase_link_to_site_1.webp" alt="firebase.google.com Firebase Link to Site">
+        </div></li>
+        <li><div>
+            <p>Select your site from the drop down and click <strong>Link</strong></p>
+            <img src="../site/images/week05/firebase_link_to_site_2.webp" alt="firebase.google.com Link Your Site">
+        </div></li>
+        <li><div>
+            <p>Copy the configuration by selecting the <strong>Config</strong> (option #2) in the image below</p>
+            <img src="../site/images/week05/firebase_link_to_site_3.webp" alt="firebase.google.com Configuration Options">
+        </div></li>
+        <li><div>
+            <p>Click <strong>Copy to Clipboard</strong> (option #3) in the image above. We are going to copy that code into the config.js file that we will obtain in the next step.</p>
+        </div></li>
+    </ol>
+
+    <h3 id="step6">Step 6: Put the database code in your website file (projects.html)</h3>
+    <ol>
+        <li><div>
+            <p>In Visual Studio Code, open the project we have been working on - it might show up under <strong>Recent</strong> and find the public folder from last week.</p>
             <ul>
-                <li>
-                    <p>Troubles with login - go to <a href="my.byui.edu">my.byui.edu</a> , click on your profile image, click <strong>View Profile</strong>, scroll down to <strong>Email</strong> and use that email for the Google Firebase login instead</p>
-                    <img src="../site/images/week05/view_profile.webp" alt="my.byui.edu View Profile option">
-                    <img src="../site/images/week05/profile_email.webp" alt="my.byui.edu Profile Email">
-                </li>
+                <li><div>
+                    <p>Alternatively, you could follow the <a href="https://docs.google.com/document/u/0/d/1vAR4sNY0oocqntNU9EezMhwustW5hk_iEYksQuNn3N4/edit">steps again from last week</a> and open a New Visual Studio window with a new folder and make a new Firebase Project on Google.</p>
+                </div></li>
             </ul>
-            <li>
-                <p>Click on <strong>YourName Portfolio/Project</strong></p>
-                <img src="../site/images/week05/choose_firebase_project.webp" alt="Choose Firebase Project Image">
-            </li>
-            <li>
-                <p>Click <strong>Firestore Database</strong> under <strong>Build</strong> (you may need to expand the <strong>Build</strong> section by clicking on it).</p>
-                <img src="../site/images/week05/click_firestore_database.webp" alt="Firebase.google.com Choose Firestore Database">
-            </li>
-            <li>
-                <p>Click <strong>Create Database</strong></p>
-                <img src="../site/images/week05/create_firestore_db_1.webp" alt="Firebase.google.com Create Database">
-            </li>
-            <li>
-                <p>Select <strong>nam5</strong> for the location of the United States (This should be selected by default)</p>
-                <img src="../site/images/week05/create_firestore_db_2.webp" alt="Firebase.google.com Choose nam5">
-            </li>
-            <li>
-                <p>Click <strong>Next</strong></p>
-                <img src="../site/images/week05/create_firestore_db_3.webp" alt="firebase.google.com Firestore Next">
-            </li>
-            <li>
-                <p>Leave the defaults <strong>Start in production mode</strong> and then click <strong>Create</strong></p>
-                <img src="../site/images/week05/create_firestore_db_4.webp" alt="firebase.google.com Start in Production Mode">
-            </li>
-        </ol>
-        <h3 id="step2">Step 2 - Create a Collection of Projects</h3>
-        <p>To create your database for your website, you would design your database based on collections of what you will store. Some examples of collections might be <strong>users</strong>, <strong>projects</strong>, <strong>movies</strong>, etc. This was the video about it from the preparation material: <a target="_blank" rel="noopener" href="https://www.youtube.com/embed/jm66TSlVtcc?start=1&rel=0">https://www.youtube.com/embed/jm66TSlVtcc?start=1&rel=0</a> </p>
-        <ol>
-            <li>
-                <p>If you don’t see the screen below, click<strong class="refresh">&#x1f5d8;</strong> on your browser. Click <strong>Start Collection</strong></p>
-                <img src="../site/images/week05/firestore_create_collection.webp" alt="firebase.google.com Create Collection">
-            </li>
-            <li>
-                <p>Put the Collection ID as <strong>projects</strong> and click <strong>Next</strong></p>
-                <img src="../site/images/week05/firestore_name_collection.webp" alt="firebase.google.com Name Collection">
-            </li>
-            <li>
-                <p>Click <strong>Auto-ID</strong></strong></p>
-                <img src="../site/images/week05/firestore_auto_id.webp" alt="firebase.google.com Auto ID">
-            </li>
-            <p>Clicking <strong>Auto-ID</strong> will auto generate a Document ID like this image below. </p>
-            <img src="../site/images/week05/firestore_auto_id_example.webp" alt="firebase.google.com Auto ID Example">
-            <li>
-                <p>Let’s add some fields. Type <strong>title</strong> for the field and leave the type as a <strong>string</strong> if that is the data type that you want.</p>
-                <ul>
-                    <li>FYI - Use <strong>string</strong> for text such as letters, words, and paragraphs.</li>
-                    <li>FYI - Use <strong>number</strong> for digits such as 1, 23, 5555, 44.44, etc.</li>
-                    <li>FYI - Use <strong>boolean</strong> for true or false</li>
-                    <li>We will just use strings for now</li>
-                </ul>
-                <img src="../site/images/week05/firestore_collection_field_1.webp" alt="firebase.google.com Collection title Field">
-            </li>
-            <li>
-                <p>Click <strong>Add Field</strong></p>
-                <img src="../site/images/week05/firestore_collection_field_2.webp" alt="firebase.google.com Collection Add Field">
-            </li>
-            <li>
-                <p>Type <strong>description</strong> and select <strong>string</strong></p>
-                <img src="../site/images/week05/firestore_collection_field_3.webp" alt="firebase.google.com Collection description Field">
-            </li>
-            <li>
-                <p>Make sure to click <strong>Save</strong></p>
-                <img src="../site/images/week05/firestore_collection_save.webp" alt="firebase.google.com Collection Save">
-            </li>
-            <p>You should only see one item in your list for now. You will add more items through the website later.</p>
-            <img src="../site/images/week05/firestore_collection_example.webp" alt="firebase.google.com Collection Example">
-        </ol>
+            <img src="../site/images/week05/vscode_project_selection.webp" alt="VS Code Project Selection">
+        <p>ChatGPT generated some of these files. We are going to just download them and put them in your project to save time and possible variations from ChatGPT. If you would like to figure it out on your own, that would be great. </p>
+        </div></li>
+        <li><div>
+            <p>Open Visual Studio Code and download this file for your operating system:</p>
+            <ul>
+                <li><div><p>(Windows) <a download href="week5.bat">https://byui-cloud.github.io/itm101-course/week05/week5.bat</a></p> </div></li>
+                <li><div><p>(Mac/Apple) <a download href="week5.sh">https://byui-cloud.github.io/itm101-course/week05/week5.sh</a> </p></div></li>
+                <li><div><p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p></div></li>
+                <li><div><p>(Windows) Run it with: ./week5.bat</p></div></li>
+                <li><div><p>(Mac/Apple) Run the following command in VS code: chmod 755 ./week5.sh</p></div></li>
+                <li><div><p>(Mac/Apple) Run it with: ./week5.sh</p></div></li>
+                <li><div><p>week5.sh contains the following commands. If executing week5.bat/week5.sh on your computer didn’t work, you may need to execute the following commands:</p>
+                <pre>
+curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules
+cd public
+curl -O https://byui-cloud.github.io/itm101-course/week05/config.js
+curl -O https://byui-cloud.github.io/itm101-course/week05/projects.html
+mkdir styles
+cd styles
+curl -O https://byui-cloud.github.io/itm101-course/week05/styles.css
+cd ..
+cd ..
+                </pre></div></li>
+            </ul>
+        </div></li>
+        <li><div>
+            <p>Replace the contents of the file called <code>config.js</code> in your public folder and paste the code we obtained above that contains your api key and configuration for your firestore database. It should look like this but with your URL and key:</p>
+            <img src="../site/images/week05/firebase_vs_code_config.webp" alt="VS Code Firebase Config">
+            <ul>
+                <li><div><p>In Visual Studio, double click the config.js file we just made in the public folder delete all of the contents of the file (or press CTRL + A to select all and then <strong>backspace/delete</strong>)</p></div></li>
+                <li><div><p>Then, paste the code from above into the file or click <strong>Edit</strong> &gt; <strong>Paste</strong> in the menu (or press CTRL + V)</p></div></li>
+                <li><div><p>Save the file with <strong>File</strong> &gt; <strong>Save</strong> in the menu (or press CTRL + S)</p></div></li>
+                <li><div><p>This HTML code is to provide the text and structure for the webpage</p></div></li>
+            </ul>
+        </div></li>
+    </ol>
 
-        <h3 id="step3">Step 3 - Add an app or website connection to the database</h3>
-        <ol>
-            <li>
-                <p>Go to the <strong>Project Overview</strong> settings by clicking on the gear in the top left corner:</p>
-                <img src="../site/images/week05/firebase_project_overview.webp" alt="firebase.google.com Firebase Project Overivew">
-            </li>
-            <li>
-                <p>Select <strong>Project settings</strong></p>
-                <img src="../site/images/week05/firebase_project_settings.webp" alt="firebase.google.com Firebase Project Settings">
-            </li>
-            <li>
-                <p>Click <strong>Add App</strong></p>
-                <img src="../site/images/week05/firebase_project_add_app.webp" alt="firebase.google.com Firebase Project Add App">
-            </li>
-            <li>
-                <p>Select the icon for the <strong>HTML</strong> or <strong>Website</strong> web app (we need this to connect the html website code with our database):</p>
-                <img src="../site/images/week05/firebase_project_html.webp" alt="firebase.google.com Firebase Project HTML">
-            </li>
-            <li>
-                <p>Put the name of your database, like <strong>portfoliodb</strong> (db is for database)</p>
-                <img src="../site/images/week05/firebase_project_db_name.webp" alt="firebase.google.com Firebase Project Database Name">
-            </li>
-            <li>
-                <p>Click <strong>Register app</strong></p>
-                <img src="../site/images/week05/firebase_project_register_app.webp" alt="firebase.google.com Firebase Project Register app">
-            </li>
-            <li>
-                <p>Select <strong>Use a &lt;script&gt; tag</strong> - IN PRODUCTION, it would be better to use npm</p>
-                <img src="../site/images/week05/firebase_project_use_script_tag.webp" alt="firebase.google.com Firebase Project Use Script Tag">
-            </li>
-            <li>
-                <p>Click <strong>Continue to console.</strong> We will get the code later.</p>
-                <img src="../site/images/week05/firebase_project_continue_to_console.webp" alt="firebase.google.com Firebase Project Continue to Console">
-            </li>
-        </ol>
-
-        <h3 id="step4">Step 4 - Link the database to the hosting</h3>
-        <ol>
-            <li>
-                <p>Go to the <strong>Project Overview</strong> settings by clicking on the gear in the top left corner</p>
-                <img src="../site/images/week05/firebase_project_overview.webp" alt="firebase.google.com Firebase Project Overivew">
-            </li>
-            <li>
-                <p>Select <strong>Project settings</strong></p>
-                <img src="../site/images/week05/firebase_project_settings.webp" alt="firebase.google.com Firebase Project Settings">
-            </li>
-            <li>
-                <p>Under the <strong>General</strong> tab, scroll down to the bottom and click on <strong>Link to a Firebase Hosting site</strong></p>
-                <img src="../site/images/week05/firebase_link_to_site_1.webp" alt="firebase.google.com Firebase Link to Site">
-            </li>
-            <li>
-                <p>Select your site from the drop down and click <strong>Link</strong></p>
-                <img src="../site/images/week05/firebase_link_to_site_2.webp" alt="firebase.google.com Link Your Site">
-            </li>
-            <li>
-                <p>Copy the configuration by selecting the <strong>Config</strong> (option #2) in the image below</p>
-                <img src="../site/images/week05/firebase_link_to_site_3.webp" alt="firebase.google.com Configuration Options">
-            </li>
-            <li>
-                <p>Click <strong>Copy to Clipboard</strong> (option #3) in the image above. We are going to copy that code into the config.js file that we will obtain in the next step.</p>
-            </li>
-        </ol>
-
-        <h3 id="step5">Step 5 - Put the database code in your website file (projects.html)</h3>
-        <ol>
-            <li>
-                <p>In Visual Studio Code, open the project we have been working on - it might show up under <strong>Recent</strong> and find the public folder from last week.</p>
-                <ul>
-                    <li>
-                        <p>Alternatively, you could follow the <a target="_blank" rel="noopener" href="https://docs.google.com/document/u/0/d/1vAR4sNY0oocqntNU9EezMhwustW5hk_iEYksQuNn3N4/edit">steps again from last week</a> and open a New Visual Studio window with a new folder and make a new Firebase Project on Google.</p>
-                    </li>
-                </ul>
-                <img src="../site/images/week05/vscode_project_selection.webp" alt="VS Code Project Selection">
-            </li>
-            <p>ChatGPT generated some of these files. We are going to just download them and put them in your project to save time and possible variations from ChatGPT. If you would like to figure it out on your own, that would be great. </p>
-            <li>
-                <p>Open Visual Studio Code and download this file for your operating system:</p>
-                <ul>
-                    <li><p>(Windows) <a target="_blank" rel="noopener" href="https://byui-cloud.github.io/itm101-course/week05/week5.bat">https://byui-cloud.github.io/itm101-course/week05/week5.bat</a></p> </li>
-                    <li><p>(Mac/Apple) <a target="_blank" rel="noopener" href="https://byui-cloud.github.io/itm101-course/week05/week5.sh">https://byui-cloud.github.io/itm101-course/week05/week5.sh</a> </p></li>
-                    <li><p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p></li>
-                    <li><p>(Windows) Run it with: ./week5.bat</p></li>
-                    <li><p>(Mac/Apple) Run the following command in VS code: chmod 755 ./week5.sh</p></li>
-                    <li><p>(Mac/Apple) Run it with: ./week5.sh</p></li>
-                    <li><p>Those files download these files that we need for this week (don’t run these if the week5.bat/week5.sh file worked):</p></li>
-                    <p>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules</code>
-                        <code>cd public  </code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/config.js</code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/projects.html</code>
-                        <code>mkdir styles</code>
-                        <code>cd styles</code>
-                        <code>curl -O https://byui-cloud.github.io/itm101-course/week05/styles.css</code>
-                        <code>cd ..</code>
-                        <code>cd ..</code>
-                    </p>
-                </ul>
-            </li>
-            <li>
-                <p>Replace the contents of the file called <strong>config.js</strong> in your public folder and paste the code we obtained above that contains your api key and configuration for your firestore database. It should look like this but with your URL and key:</p>
-                <img src="../site/images/week05/firebase_vs_code_config.webp" alt="VS Code Firebase Config">
-                <ul>
-                    <li><p>In Visual Studio, double click the config.js file we just made in the public folder delete all of the contents of the file (or press CTRL + A to select all and then <strong>backspace/delete</strong>)</p></li>
-                    <li><p>Then, paste the code from above into the file or click <strong>Edit</strong> > <strong>Paste</strong> in the menu (or press CTRL + V)</p></li>
-                    <li><p>Save the file with <strong>File</strong> > <strong>Save</strong> in the menu (or press CTRL + S)</p></li>
-                    <li><p>This HTML code is to provide the text and structure for the webpage</p></li>
-                </ul>
-            </li>
-        </ol>
-
-        <h3 id="step6">Step 6 - Check your firebase database security rules </h3>
-        <ol>
-            <li>
-                <p>To add new projects/data to your database, the rules need to allow <strong>write</strong> or <strong>save</strong> for non-authenticated users (next week we will need authenticated). To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong></p>
-                <img src="../site/images/week05/firestore_db_rules.webp" alt="firebase.google.com Firestore DB Rules">
-            
-                <ul>
-                    <li>
-                        <p>Remove the code that is there and paste this code:</p>
-                    </li>
-                    <p>
-                    <code>rules_version = '2';</code><br>
-                    <code>service cloud.firestore {</code> <br>
-                    <code>match /databases/{database}/documents {</code><br>
-                    <code>    match /projects/{document=**} {</code> <br>
-                    <code>    allow read, write: if request.auth == null;</code><br>
-                    <code>    }</code><br>
-                    <code>}</code><br>
-                    <code>}</code>
-                    </p>
-                </ul>
-                <img src="../site/images/week05/firestore_db_config.webp" alt="firebase.google.com Firestore DB Config">
-            </li>
-            <li>
-                <p>Paste your code and a <strong>Publish</strong> button should appear. Click <strong>Publish.</strong></p>
-                <img src="../site/images/week05/firestore_db_config_publish.webp" alt="firebase.google.com Firestore DB Config  Publish">
-                <p>If it still doesn’t work, wait a few minutes and do a <strong>SHIFT + &#x1f5d8;</strong> by pressing <strong>SHIFT</strong> on your keyboard and click the <strong>refresh</strong> button in your browser while holding it.</p>
-            </li>
-        </ol>
-
-        <h3 id="step7">Step 7 - Run `firebase deploy` to save changes</h3>
-        <ol>
-            <li>
-                <p>In your Visual Studio Code terminal, type <strong>firebase deploy</strong> (#1 in the image below) and hit <strong>enter</strong> each time as needed to save your changes in your code and push it up to Google Firebase Hosting.</p>
-                <img src="../site/images/week05/firebase_deploy.webp" alt="VS Code Firebase Deploy">
-            </li>
-            <p>It should provide you with the URL for your site in the terminal after you run <strong>firebase deploy</strong> - see the Hosting URL in the red circle above and copy that URL and put it in your browser tab and go to it</p>
-            <li>
-                <p>Make sure to add the name of your file (ex: projects.html) to the end of the URL like this:
-                https://yourportfolioname.web.app/projects.html</p>
-                <img src="../site/images/week05/firebase_website_link_example.webp" alt="Firebase Website Link Example">
-            </li>
-            <li>
-                <p>Refresh the URL in your web browser by clicking the refresh button. Hold the <strong>Shift</strong> key on your keyboard while you are clicking the refresh button to clear your cache.</p>
-                <img src="../site/images/week05/firebase_refresh_cache.webp" alt="Firebase Refresh Cache">
-                <p>It should look something like this below, but it could also look very different based on the code generated by ChatGPT. You should be able to add projects to the list and they should pop up at the bottom of the webpage.</p>
-                <img src="../site/images/week05/projects_page_example.webp" alt="Projects Page Example">
-            </li>
-            <li>
-                <p>Add a project Name and a Project Description to test the functionality and click <strong>Add Project</strong> and you should see a popup like this below:</p>
-                <img src="../site/images/week05/projects_page_popup.webp" alt="Projects Page Popup">
-            </li>
-            <p>If the project is added and appears below the Projects title, you did it!</p>
-            <img src="../site/images/week05/projects_page_project_added.webp" alt="Projects Page Project Added Example">
-        </ol>
-        <h3>Congratulations! You connected a Firebase Hosting with a Firebase Database!</h3>
-
-        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
-        <h3>Permission Errors or firebase deploy not working:</h3>
-        <ul>
-            <li><p>(Mac/Apple) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal.</p></li>
-            <li><p>(Windows) You may need to run the terminal commands in a ‘command prompt’ window or in powershell.</p></li>
-            <li><p>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</p></li>
-        </ul>
-        <h3>(Windows) Change the execution policy</h3>
-        <ul>
-            <li>
-                <p>Search for powershell and <strong>run it as administrator</strong>. <br> Then, run this command: <code>Set-ExecutionPolicy RemoteSigned</code>.</p>
-            </li>
-        </ul>
-        <h3>If new projects don’t show up, it could be that your database is not connected.</h3>
-        <ul>
-            <li> 
-                <p>Make sure to connect your database by clicking on the <strong>Link to a Firebase Hosting site</strong></p>
-                <img src="../site/images/week05/firebase_link_to_site_1.webp" alt="firebase.google.com Firebase Link to Site">
-            </li>
-            <li>
-                <p>Select your site from the drop down and click <strong>Link</strong></p>
-                <img src="../site/images/week05/firebase_link_to_site_2.webp" alt="firebase.google.com Link Your Site">
-            </li>
-        </ul>
-        <h3>If new projects don’t show up, it could be that your database permissions are not working.</h3>
-        <ul>
-            <li>To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong></li>
+    <h3 id="step7">Step 7: Check your firebase database security rules </h3>
+    <ol>
+        <li><div>
+            <p>To add new projects/data to your database, the rules need to allow <strong>write</strong> or <strong>save</strong> for non-authenticated users (next week we will need authenticated). To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong></p>
             <img src="../site/images/week05/firestore_db_rules.webp" alt="firebase.google.com Firestore DB Rules">
+
             <ul>
-                <li>Remove the code that is there and paste this code:</li>
-                <p>
-                <code>rules_version = '2';</code><br>
-                <code>service cloud.firestore {</code> <br>
-                <code>match /databases/{database}/documents {</code><br>
-                <code>    match /projects/{document=**} {</code> <br>
-                <code>    allow read, write: if request.auth == null;</code><br>
-                <code>    }</code><br>
-                <code>}</code><br>
-                <code>}</code>
-                </p>
+                <li><div>
+                    <p>Remove the code that is there and paste this code:</p>
+                <pre>
+rules_version = '2';
+service cloud.firestore {
+    match /databases/{database}/documents {
+        match /projects/{document=**} {
+            allow read, write: if request.auth == null;
+        }
+    }
+}
+                </pre>
+                </div></li>
             </ul>
             <img src="../site/images/week05/firestore_db_config.webp" alt="firebase.google.com Firestore DB Config">
-            <li>Paste your code and a <strong>Publish</strong> button should appear. Click <strong>Publish.</strong></li>
-            <img src="../site/images/week05/firestore_db_config_publish.webp" alt="firebase.google.com Firestore DB Config Publish">
-            <p>If it still doesn’t work, wait a few minutes and do a SHIFT + refresh by pressing SHIFT on your keyboard and click the refresh button in your browser while holding it.</p>
-        </ul>
-        <h3>Permission Errors or firebase installation not working:</h3>
-        <ul>
-            <li>(Mac/Apple) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal</li>
-            <li>(Windows) You may need to run the terminal commands in a ‘command prompt’ window instead or in powershell.</li>
-            <li>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</li>
-        </ul>
-        <h3>If firebase doesn’t deploy</h3>
-        <ul>
-            <li>Make sure that you select the correct options above when running <strong>firebase init</strong>. Double-check that you selected the appropriate options.</li>
-        </ul>
-        <h3>The website doesn’t load the styles, but only the words appear</h3>
-        <ul>
-            <li>Make sure the index.html has a link to the styles.css in the <head> code: <br>
-                <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>
-            </li>
-            <li>Check to see if the styles.css file is in the same folder as the index.html folder or make sure the link to it has the folder listed if needed: <br>
-                <code>&lt;link rel="stylesheet" href="css/styles.css"&gt;</code>
-            </li>
-        </ul>
-        <h3>If you cannot get node to finish working</h3>
-        <ul>
-            <li>You may need to create a package.json file and paste this into it:</li>
-            <code>{ <br>
-                "dependencies": { <br>
-                  "express": "^4.18.2",<br>
-                  "firebase": "^10.7.2",<br>
-                  "firebase-admin": "^12.0.0"<br>
-                }<br>
-               }
-            </code>
-        </ul>
-        <h3>If you cannot get firebase to finish setting up and installing</h3>
-        <ul>
-            <li>You may need to create the file firebase.json and paste this into it:</li>
-            <code>{ <br>
-                "hosting": { <br>
-                  "public": "public", <br>
-                  "ignore": [ <br>
-                    "firebase.json", <br>
-                    "**/.*", <br>
-                    "**/node_modules/**" <br>
-                  ], <br>
-                  "rewrites": [ <br>
-                    { <br>
-                      "source": "**", <br>
-                      "destination": "/index.html" <br>
-                    } <br>
-                  ] <br>
-                }, <br>
-                "firestore": { <br>
-                  "rules": "firestore.rules", <br>
-                  "indexes": "firestore.indexes.json" <br>
-                } <br>
-               }                <br>
-            </code>
-        </ul>
+        </div></li>
+        <li><div>
+            <p>Paste your code and a <strong>Publish</strong> button should appear. Click <strong>Publish</strong>.</p>
+            <img src="../site/images/week05/firestore_db_config_publish.webp" alt="firebase.google.com Firestore DB Config  Publish">
+            <p>If it still doesn’t work, wait a few minutes and do a <strong>SHIFT + &#x1f5d8;</strong> by pressing <strong>SHIFT</strong> on your keyboard and click the <strong>refresh</strong> button in your browser while holding it.</p>
+        </div></li>
+    </ol>
 
-        <h2 id="learning-more">Learning More - Expand Your Database</h2>
-        <p>Add more details to your database or make your site look better.</p>
-        <p>Add more fields/documents, etc.</p>
-        <p>Add a database to your portfolio page you made the previow week.</p>
+    <h3 id="step8">Step 8: Run `firebase deploy` to save changes</h3>
+    <ol>
+        <li><div>
+            <p>In your Visual Studio Code terminal, type <strong>firebase deploy</strong> (#1 in the image below) and hit <strong>enter</strong> each time as needed to save your changes in your code and push it up to Google Firebase Hosting.</p>
+            <img src="../site/images/week05/firebase_deploy.webp" alt="VS Code Firebase Deploy">
+        <p>It should provide you with the URL for your site in the terminal after you run <strong>firebase deploy</strong> - see the Hosting URL in the red circle above and copy that URL and put it in your browser tab and go to it</p>
+        </div></li>
+        <li><div>
+            <p>Make sure to add the name of your file (ex: projects.html) to the end of the URL like this:
+            https://yourportfolioname.web.app/projects.html</p>
+            <img src="../site/images/week05/firebase_website_link_example.webp" alt="Firebase Website Link Example">
+        </div></li>
+        <li><div>
+            <p>Refresh the URL in your web browser by clicking the refresh button. Hold the <strong>Shift</strong> key on your keyboard while you are clicking the refresh button to clear your cache.</p>
+            <img src="../site/images/week05/firebase_refresh_cache.webp" alt="Firebase Refresh Cache">
+            <p>It should look something like this below, but it could also look very different based on the code generated by ChatGPT. You should be able to add projects to the list and they should pop up at the bottom of the webpage.</p>
+            <img src="../site/images/week05/projects_page_example.webp" alt="Projects Page Example">
+        </div></li>
+        <li><div>
+            <p>Add a project Name and a Project Description to test the functionality and click <strong>Add Project</strong> and you should see a popup like this below:</p>
+            <img src="../site/images/week05/projects_page_popup.webp" alt="Projects Page Popup">
+        <p>If the project is added and appears below the Projects title, you did it!</p>
+        <img src="../site/images/week05/projects_page_project_added.webp" alt="Projects Page Project Added Example">
+        </div></li>
+    </ol>
 
-        <h2>Learning More - MySQL Databases</h2>
-        <p>ITM 111 Introduction to Databases and ITM220 SQL teach how to use SQL databases that many companies use</p>
+    <h3>Congratulations! You connected a Firebase Hosting with a Firebase Database!</h3>
+
+    <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+    <h3>Permission Errors or firebase deploy not working:</h3>
+    <ul>
+        <li><div><p>(Mac/Apple) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal.</p></div></li>
+        <li><div><p>(Windows) You may need to run the terminal commands in a ‘command prompt’ window or in powershell.</p></div></li>
+        <li><div><p>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</p></div></li>
+    </ul>
+    <h3>(Windows) Change the execution policy</h3>
+    <ul>
+        <li><div>
+            <p>Search for powershell and <strong>run it as administrator</strong>.<br> Then, run this command: <code>Set-ExecutionPolicy RemoteSigned</code>.</p>
+        </div></li>
+    </ul>
+    <h3>If new projects don’t show up, it could be that your database is not connected.</h3>
+    <ul>
+        <li><div>
+            <p>Make sure to connect your database by clicking on the <strong>Link to a Firebase Hosting site</strong></p>
+            <img src="../site/images/week05/firebase_link_to_site_1.webp" alt="firebase.google.com Firebase Link to Site">
+        </div></li>
+        <li><div>
+            <p>Select your site from the drop down and click <strong>Link</strong></p>
+            <img src="../site/images/week05/firebase_link_to_site_2.webp" alt="firebase.google.com Link Your Site">
+        </div></li>
+    </ul>
+
+    <h3>If new projects don’t show up, it could be that your database permissions are not working.</h3>
+    <ul>
+        <li><div>To fix it, go to the database by clicking on <strong>Firestore Database</strong> and then click on <strong>Rules</strong>
+        <img src="../site/images/week05/firestore_db_rules.webp" alt="firebase.google.com Firestore DB Rules">
         <ul>
-            <li>Want to learn more about SQL databases? Take ITM 111 or ITM 220.</li>
-            <li>Want to learn more about the Cloud? Take ITM300 or ITM310.</li>
-            <li>Build your resume: Deployed a Google Firebase Javascript, HTML, and CSS website and connected it with a Firestore database.</li>
-            <li>Build your resume (FUTURE project): Try connecting your website with a mysql or postgresql database.</li>
+            <li><div>Remove the code that is there and paste this code:
+            <pre>
+rules_version = '2';
+    service cloud.firestore {
+    match /databases/{database}/documents {
+        match /projects/{document=**} {
+            allow read, write: if request.auth == null;
+        }
+    }
+}
+            </pre>
+            </div></li>
         </ul>
-    </article>
+        <img src="../site/images/week05/firestore_db_config.webp" alt="firebase.google.com Firestore DB Config">
+        </div></li>
+        <li><div>Paste your code and a <strong>Publish</strong> button should appear. Click <strong>Publish</strong>.
+        <img src="../site/images/week05/firestore_db_config_publish.webp" alt="firebase.google.com Firestore DB Config Publish">
+        <p>If it still doesn’t work, wait a few minutes and do a SHIFT + refresh by pressing SHIFT on your keyboard and click the refresh button in your browser while holding it.</p></div></li>
+    </ul>
+
+    <h3>Permission Errors or firebase installation not working:</h3>
+    <ul>
+        <li><div>(Mac/Apple) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal</div></li>
+        <li><div>(Windows) You may need to run the terminal commands in a ‘command prompt’ window instead or in powershell.</div></li>
+        <li><div>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</div></li>
+    </ul>
+
+    <h3>If firebase doesn’t deploy</h3>
+    <ul>
+        <li><div>Make sure that you select the correct options above when running <strong>firebase init</strong>. Double-check that you selected the appropriate options.</div></li>
+    </ul>
+    <h3>The website doesn’t load the styles, but only the words appear</h3>
+    <ul>
+        <li><div>Make sure the <code>index.html</code> file has a link to the <code>styles.css</code> in the &lt;head&gt; section:<br>
+            <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>
+        </div></li>
+        <li><div>Check to see if the styles.css file is in the same folder as the index.html folder or make sure the link to it has the folder listed if needed:<br>
+            <code>&lt;link rel="stylesheet" href="css/styles.css"&gt;</code>
+        </div></li>
+    </ul>
+
+    <h3>If you cannot get node to finish working</h3>
+    <ul>
+        <li><div>You may need to create a package.json file and paste this into it:
+        <pre>
+{
+    "dependencies": {
+        "express": "^4.18.2",
+        "firebase": "^10.7.2",
+        "firebase-admin": "^12.0.0"
+    }
+}
+        </pre></div></li>
+    </ul>
+
+    <h3>If you cannot get firebase to finish setting up and installing</h3>
+    <ul>
+        <li><div>You may need to create the file firebase.json and paste this into it:
+        <pre>
+{
+    "hosting": {
+        "public": "public",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    },
+    "firestore": {
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    }
+}
+        </pre></div></li>
+    </ul>
+
+    <h2 id="learning-more">Learning More - Expand Your Database</h2>
+    <p>Add more details to your database or make your site look better.</p>
+    <p>Add more fields/documents, etc.</p>
+    <p>Add a database to your portfolio page you made the previow week.</p>
+
+    <h2>Learning More - MySQL Databases</h2>
+    <p>ITM 111 Introduction to Databases and ITM220 SQL teach how to use SQL databases that many companies use</p>
+    <ul>
+        <li><div>Want to learn more about SQL databases? Take ITM 111 or ITM 220.</div></li>
+        <li><div>Want to learn more about the Cloud? Take ITM300 or ITM310.</div></li>
+        <li><div>Build your resume: Deployed a Google Firebase Javascript, HTML, and CSS website and connected it with a Firestore database.</div></li>
+        <li><div>Build your resume (FUTURE project): Try connecting your website with a mysql or postgresql database.</div></li>
+    </ul>
+</article>
 </body>
 </html>
