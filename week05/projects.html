@@ -25,13 +25,13 @@
     document.getElementById('addProjectForm').addEventListener('submit', async function (event) {
       event.preventDefault();
 
-      const name = document.getElementById('name').value;
+      const title = document.getElementById('title').value;
       const description = document.getElementById('description').value;
 
       // Add the project to Firestore
       try {
         const docRef = await addDoc(collection(db, 'projects'), {
-          name: name,
+          title: title,
           description: description
         });
         console.log('Project added with ID: ', docRef.id);
@@ -54,7 +54,7 @@
         querySnapshot.forEach((doc) => {
           const project = doc.data();
           const listItem = document.createElement('li');
-          listItem.textContent = `${project.name}: ${project.description}`;
+          listItem.textContent = `${project.title}: ${project.description}`;
           projectsList.appendChild(listItem);
         });
       } catch (error) {
@@ -83,8 +83,8 @@
   Your project page
   <h1>Add Project</h1>
   <form id="addProjectForm">
-    <label for="name">Project Name:</label>
-    <input type="text" id="name" name="name" required><br>
+    <label for="title">Project Name:</label>
+    <input type="text" id="title" name="title" required><br>
 
     <label for="description">Project Description:</label>
     <textarea id="description" name="description" required></textarea><br>

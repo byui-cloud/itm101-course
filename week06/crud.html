@@ -14,7 +14,7 @@
         // This page allows CRUD = Create, Read, Update, and Delete
         // Add a rick roll: https://blog.packetninjas.com/xss-and-rickrolling OR https://www.mach37.com/blog/hacking-tutorial
         // Paste this in the add project field and see an security XSS vulnerability:
-        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>      
+        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         // Or paste this:
         //<h2>JavaScript</h2>
         //<p>Line-breaks in a popup box.</p>
@@ -110,20 +110,20 @@
         //   cookie_flags: 'SameSite=None;Secure',
         // });
         // Declare variables outside the event listener
-        const nameInput = document.getElementById('name');
+        const titleInput = document.getElementById('title');
         const descriptionInput = document.getElementById('description');
 
         // Add the project to Firestore
-        async function addProject(name, description) {
+        async function addProject(title, description) {
             try {
                 const docRef = await addDoc(collection(db, 'projects'), {
-                    name,
+                    title,
                     description
                 });
                 // console.log('Project added with ID: ', docRef.id);
                 // alert('Project added successfully!');
                 // Reset the input values
-                nameInput.value = '';
+                titleInput.value = '';
                 descriptionInput.value = '';
                 fetchProjects();
             } catch (error) {
@@ -134,9 +134,9 @@
 
         document.getElementById('addProjectForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
+            const title = document.getElementById('title').value;
             const description = document.getElementById('description').value;
-            await addProject(name, description);
+            await addProject(title, description);
         });
 
         // Function to delete a project
@@ -199,9 +199,9 @@
                 const projectId = project.id;
                 return `
                     <li id="${projectId}">
-                        ${project.name}: ${project.description}
+                        ${project.title}: ${project.description}
                         <button class="delete-project-btn" onclick="deleteProject('${projectId}')">Delete</button>
-                        <button class="edit-project-btn" onclick="editProject('${projectId}', '${project.name}', '${project.description}')">Edit</button>
+                        <button class="edit-project-btn" onclick="editProject('${projectId}', '${project.title}', '${project.description}')">Edit</button>
                     </li>
                 `;
             });
@@ -217,7 +217,7 @@
                     button.addEventListener('click', async () => {
                         const projectId = button.parentNode.id; // Get the parent node's ID
                         const project = await getProjectFromFirestore(projectId);
-                        editProject(projectId, project.name, project.description);
+                        editProject(projectId, project.title, project.description);
                     });
                 });
             } catch (error) {
@@ -227,9 +227,9 @@
         });
 
         // Function to handle project editing
-        window.editProject = function (projectId, name, description) {
+        window.editProject = function (projectId, title, description) {
             document.getElementById('editProjectId').value = projectId;
-            document.getElementById('editName').value = name;
+            document.getElementById('editTitle').value = title;
             document.getElementById('editDescription').value = description;
             document.getElementById('editProjectFormContainer').style.display = 'block';
             document.getElementById('addProjectForm').style.display = 'none';
@@ -259,11 +259,11 @@
         window.updateProject = async function () {
             event.preventDefault();
             const projectId = document.getElementById('editProjectId').value;
-            const name = document.getElementById('editName').value;
+            const title = document.getElementById('editTitle').value;
             const description = document.getElementById('editDescription').value;
             try {
-                console.log('Project update with name:' + name + ' pid; ' + projectId + ' descrip: ' + description);
-                await updateProjectInFirestore(projectId, { name, description });
+                console.log('Project update with title:' + title + ' pid; ' + projectId + ' descrip: ' + description);
+                await updateProjectInFirestore(projectId, { title, description });
                 fetchProjects(); // Fetch projects again after updating
                 cancelEdit(); // Hide the edit form
             } catch (error) {
@@ -315,8 +315,8 @@
                     <h2>Edit Project</h2>
                     <form id="editProjectForm">
                         <input type="hidden" id="editProjectId" name="editProjectId">
-                        <label for="editName">Project Name:</label>
-                        <input type="text" id="editName" name="editName" required><br>
+                        <label for="editTitle">Project Name:</label>
+                        <input type="text" id="editTitle" name="editTitle" required><br>
                         <label for="editDescription">Project Description:</label>
                         <textarea id="editDescription" name="editDescription" required></textarea><br>
                         <button type="submit" onclick="updateProject()">Update (Save)</button>
@@ -325,8 +325,8 @@
                 </div>
                 <h2>Add Project</h2>
                 <form id="addProjectForm">
-                    <label for="name">Project Name:</label>
-                    <input type="text" id="name" name="name" required><br>
+                    <label for="title">Project Name:</label>
+                    <input type="text" id="title" name="title" required><br>
                     <label for="description">Project Description:</label>
                     <textarea id="description" name="description" required></textarea><br>
                     <button type="submit">Add Project</button>

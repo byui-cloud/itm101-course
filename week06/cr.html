@@ -111,14 +111,14 @@
         }
 
         // Declare variables outside the event listener
-        const nameInput = document.getElementById('name');
+        const nameInput = document.getElementById('title');
         const descriptionInput = document.getElementById('description');
 
         // Add the project to Firestore
-        async function addProject(name, description) {
+        async function addProject(title, description) {
             try {
                 const docRef = await addDoc(collection(db, 'projects'), {
-                    name,
+                    title,
                     description
                 });
                 console.log('Project added with ID: ', docRef.id);
@@ -136,9 +136,9 @@
 
         document.getElementById('addProjectForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
+            const title = document.getElementById('title').value;
             const description = document.getElementById('description').value;
-            await addProject(name, description);
+            await addProject(title, description);
         });
 
         // View Projects List
@@ -153,7 +153,7 @@
 
                 querySnapshot.forEach((doc) => {
                     const project = doc.data();
-                    projectItems.push(`${project.name}: ${project.description}`);
+                    projectItems.push(`${project.title}: ${project.description}`);
                 });
 
                 // Build the entire list in memory
@@ -205,8 +205,8 @@
     </span>
     <h2>Add Project</h2>
     <form id="addProjectForm">
-        <label for="name">Project Name:</label>
-        <input type="text" id="name" name="name" required><br>
+        <label for="title">Project Name:</label>
+        <input type="text" id="title" name="title" required><br>
         <label for="description">Project Description:</label>
         <textarea id="description" name="description" required></textarea><br>
         <button type="submit">Add Project</button>

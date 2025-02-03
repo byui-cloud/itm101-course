@@ -196,10 +196,11 @@
                 sure it is at the highest level in your project folder)
                 and run it in the Visual Studio Code terminal</div></li>
                 <li><div>(Windows) Run it with: ./week6.bat</div></li>
-                <li><p>(Mac/Apple) Run the following command in VS code: chmod 755 ./week5.sh</p></li>
+                <li><div>(Mac/Apple) Run the following command in VS code:
+                <code>sudo chmod 755 ./week6.sh</code></div></li>
                 <li><div>(Mac/Apple) Run it with: ./week6.sh</div></li>
                 <li><div>Those files download these files that we need
-                for this week (don't run these if the
+                for this week (don’t run these if the
                 week6.bat/week6.sh file worked):
 <pre>
 curl -O https://byui-cloud.github.io/itm101-course/week06/firestore.rules
@@ -285,7 +286,7 @@ cd ..
                     </div></li>
                     <li><div>
                         <p>This is what that would look like (BUT REPLACE THE ORANGE TEXT IN THE LIST WITH YOUR UID - notice we added auth.uid in orange):</p>
-<pre>
+                        <pre>
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -294,7 +295,7 @@ service cloud.firestore {
     }
   }
 }
-</pre>
+                        </pre>
                     </div></li>
                 </ul>
             </div></li>
@@ -334,7 +335,7 @@ service cloud.firestore {
             href="https://byui-cloud.github.io/itm101-course/week05/assignment-instructions.html">instructions</a>
             from last week.</div></li>
         </ul>
-        <h4>You can't edit projects on the page from last week. That is
+        <h4>You can’t edit projects on the page from last week. That is
         because we changed the firebase rules on this project to allow
         only authenticated users to read and write to the database</h4>
 
@@ -344,7 +345,7 @@ service cloud.firestore {
             the page from last week.</div></li>
             <li><div>You may need to wait for the firebase rules to
             finish being applied or clear your cache. If it still
-            doesn't work, wait a few minutes and do a SHIFT +
+            doesn’t work, wait a few minutes and do a SHIFT +
             refresh by pressing SHIFT on your keyboard and click the
             refresh button in your browser while holding it (that will
             clear your browser cache)
@@ -352,7 +353,7 @@ service cloud.firestore {
             </div></li>
         </ul>
 
-        <h3>If New Projects Don't Show Up</h3>
+        <h3>If New Projects Don’t Show Up</h3>
         <ul class="long">
             <li><div>It could be that your database permissions are not
             working. To fix it, go to the database by clicking on
@@ -389,13 +390,13 @@ service cloud.firestore {
             <img src="../site/images/week06/auth_error.webp" alt="Auth Error Image">
             </div></li>
             <li><p>You might need to add your domain to the authorized domains on the Google Firebase Console</p>
-            <p>Go to 'Authentication' > 'Settings' tab > 'Authorized Domains' > Add your URL (it might be slightly different than what is listed)</p></li>
+            <p>Go to 'Authentication' &gt; 'Settings' tab &gt; 'Authorized Domains' &gt; Add your URL (it might be slightly different than what is listed)</p></li>
 
         </ul>
 
-        <h3>The website doesn't load the styles and looks basic, but only the words appear</h3>
+        <h3>The website doesn’t load the styles and looks basic, but only the words appear</h3>
         <ul class="long">
-            <li><div>If you didn't do the code from the previous
+            <li><div>If you didn’t do the code from the previous
             weeks, you may need to download the styles.css files.
             <ul class="long">
                 <li><div>Open the terminal in your Visual Studio Code
@@ -412,7 +413,7 @@ cd ..
             </div></li>
         </ul>
 
-        <h3>Can't get the files to download</h3>
+        <h3>Can’t get the files to download</h3>
         <ul class="long">
             <li><div>Open Visual Studio Code and download this file for
             your operating system
@@ -427,7 +428,7 @@ cd ..
             </ul>
             </div></li>
         </ul>
-        <h3>Styles still aren't working</h3>
+        <h3>Styles still aren’t working</h3>
         <ul class="long">
             <li><div>Make sure the html files have a link to the
             styles.css in the &lt;head&gt; code:
@@ -453,42 +454,41 @@ cd ..
             Or paste this or do both:
             <h2>JavaScript</h2>
             <p>Line-breaks in a popup box.</p>
-            <button onclick="alert('Hello\nHow are you?')">Try it</button>            
+            <button onclick="alert('Hello\nHow are you?')">Try it</button>
         </xmp>
-        <p>STOP THE RICK ROLL - Here is an database rule set that validates the input is a string and doesn't allow scripts or html:</p>
+        <p>STOP THE RICK ROLL - Here is an database rule set that validates the input is a string and doesn’t allow scripts or html:</p>
         <p>Make sure to replace the UID with yours.</p>
         <pre>
-            rules_version = '2';
-            service cloud.firestore {
-              match /databases/{database}/documents {
-                match /products/{document=**} {
-                  allow read, write;
-                }
-                  match /projects/{document=**} {
-                  allow read;
-                  allow write: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'] && 
-                                  (request.resource.data.keys().hasOnly(['description', 'name']) && 
-                                   request.resource.data.description is string && 
-                                   request.resource.data.name is string &&
-                                   !request.resource.data.description.matches('.*[<].*') &&
-                                   !request.resource.data.name.matches('.*[<].*')
-                                );
-                allow delete: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'];
-                }
-              }
-            }
-              
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /products/{document=**} {
+      allow read, write;
+    }
+    match /projects/{document=**} {
+      allow read;
+      allow write: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'] &amp;&amp;
+                      (request.resource.data.keys().hasOnly(['description', 'title']) &amp;&amp;
+                       request.resource.data.description is string &amp;&amp;
+                       request.resource.data.title is string &amp;&amp;
+                       !request.resource.data.description.matches('.*[&lt;].*') &amp;&amp;
+                       !request.resource.data.title.matches('.*[&lt;].*')
+                    );
+      allow delete: if request.auth.uid in ['hF4YgV1gbrdEHmaE9cNDEC9CWvw2'];
+    }
+  }
+}
         </pre>
 
         <h3>Improve Security - upgrade Firebase version to latest 11.0.0 (google it to check)</h3>
         <p>Update the version of Firebase in the crud.html file</p>
-        
+
         <h2>Add More Users with UID to Firebase Rules</h2>
         <p>Want to add more users to your list that can edit/read, edit your authentication rule and replace the orange with the two or more UIDs separated by a comma</p>
         <p>allow read, write: if request.auth.uid in ['<strong>Wssjkl9897d789df98d7djnnvB2</strong>', '<strong>Wssjkl9897d789df98d7djnnvB3</strong>'];</p>
         <p>More details on various rules you could do can be found here: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/56510745/firebaseerror-code-permission-denied-missing-or-insufficient-permissions">https://stackoverflow.com/questions/56510745/firebaseerror-code-permission-denied-missing-or-insufficient-permissions</a></p>
         <p>This one is really bad on production but can be used for testing - read and write for anyone</p>
-<pre>
+        <pre>
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -497,9 +497,9 @@ service cloud.firestore {
     }
   }
 }
-</pre>
+        </pre>
         <p>This one allows anyone to read and write to products. However, anyone create read or view the projecst but only the user with that UID can write (add or create) to projects:</p>
-<pre>
+        <pre>
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -512,10 +512,10 @@ service cloud.firestore {
     }
   }
 }
-</pre>
+        </pre>
 
-<p>Here is another example:</p>
-<pre>
+        <p>Here is another example:</p>
+        <pre>
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -526,8 +526,8 @@ service cloud.firestore {
     }
   }
 }
-</pre>
-            <p>Watch a <a target="_blank" rel="noopener" href="https://www.youtube.com/embed/qLrDWBKTUZo?rel=0">video</a> on more rules</p>
+        </pre>
+        <p>Watch a <a target="_blank" rel="noopener" href="https://www.youtube.com/embed/qLrDWBKTUZo?rel=0">video</a> on more rules</p>
     </article>
 </body>
 </html>
