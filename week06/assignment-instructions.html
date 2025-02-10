@@ -51,27 +51,27 @@
         </ul>
 
         <h2>Table of Contents</h2>
-        <ol>
+        <ul>
             <li><div>
-                <a href="#step1">Step 1 - Open your existing project in Firebase</a>
+                Step 1 - <a href="#step1">Open your existing project in Firebase</a>
             </div></li>
             <li><div>
-                <a href="#step2">Step 2 - Add Authentication</a>
+                Step 2 - <a href="#step2">Add Authentication</a>
             </div></li>
             <li><div>
-                <a href="#step3">Step 3 - Update firebase database rules</a>
+                Step 3 - <a href="#step3">Update firebase database rules</a>
             </div></li>
             <li><div>
-                <a href="#step4">Step 4 - Download the new code and webpages for authentication</a>
+                Step 4 - <a href="#step4">Download the new code and webpages for authentication</a>
             </div></li>
             <li><div>
-                <a href="#step5">Step 5 - Run `firebase deploy` to Firebase Hosting again to save changes</a>
+                Step 5 - <a href="#step5">Run <code>firebase deploy</code> to Firebase Hosting again to save changes</a>
             </div></li>
             <li><div>
-                <a href="#step6">Step 6 - Secure your website to only allow you to edit and view the projects - by UID</a>
+                Step 6 - <a href="#step6">Secure your website to only allow you to edit and view the projects - by UID</a>
             </div></li>
             <li><div>
-                <a href="#step7">Step 7 - Test your database and site with authentication</a>
+                Step 7 - <a href="#step7">Test your database and site with authentication</a>
             </div></li>
             <li><div>
                 <a href="#troubleshooting">Troubleshooting & Common Problems</a>
@@ -449,13 +449,13 @@ cd ..
         <h3>Rick Roll</h3>
         <p>A rick roll is where you hijack a website with something funny, usually the rick roll youtube video.</p>
         <p>Add new content on your project webpage by using this unsecure code to see an XSS security vulnerability:</p>
-        <xmp>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            Or paste this or do both:
-            <h2>JavaScript</h2>
-            <p>Line-breaks in a popup box.</p>
-            <button onclick="alert('Hello\nHow are you?')">Try it</button>
-        </xmp>
+        <pre>
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+Or paste this or do both:
+&lt;h2&gt;JavaScript&lt;/h2&gt;
+&lt;p&gt;Line-breaks in a popup box.&lt;/p&gt;
+&lt;button onclick="alert('Hello\nHow are you?')"&gt;Try it&lt;/button&gt;
+        </pre>
         <p>STOP THE RICK ROLL - Here is an database rule set that validates the input is a string and doesn’t allow scripts or html:</p>
         <p>Make sure to replace the UID with yours.</p>
         <pre>
