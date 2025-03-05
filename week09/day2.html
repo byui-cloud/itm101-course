@@ -17,9 +17,34 @@
 <body>
 <article>
     <h1>ITM 101 In-class Activity Week 9 Day 2</h1>
-    <h2>Backup, Upgrade, and Restore</h2>
-    <p>Some of the benefits of VMs or virtualized machines/servers in the cloud are the abilities to make backups (snapshots), to add RAM or processing power, and to restore from backups.</p>
-    <p>Create a snapshot, add more RAM to your server, modify something else like a file on the server, and restore your server from the backup (snapshot). Help your team. Take screenshots or make a video to turn in.</p>
+    <h2>Upgrade, Backup, and Restore</h2>
+    <p>Some of the benefits of VMs or virtualized machines/servers in
+    the cloud are the abilities to add processing power, RAM, and
+    storage and to make backups (snapshots), and to restore from
+    snapshots.</p>
+
+    <p>Do the following:</p>
+    <ol>
+        <li><div>Add more RAM to your EC2 instance.</div></li>
+        <li><div>Start your EC2 instance and connect to it.</div></li>
+        <li><div>Using the connected terminal, create or download a file.</div></li>
+        <li><div>Using the AWS Console in your browser, create a snapshot.</div></li>
+        <li><div>Using the connected terminal, remove the file.</div></li>
+        <li><div>Using the AWS Console, restore the snapshot.
+        <ol>
+            <li><div>Stop the EC2 instance.</div></li>
+            <li><div>Dettach its current volume.</div></li>
+            <li><div>From the snapshot, create a volume <strong>in
+            the same availability zone as the previously current
+            volume</strong>.</div></li>
+            <li><div>Attach the new volume to the EC2 instance.</div></li>
+            <li><div>Start the EC2 instance.</div></li>
+        </ol>
+        </div></li>
+        <li><div>Connect to your EC2 instance and verify that the
+        removed file was restored.</div></li>
+    </ol>
+    <p>Help your team. Take screenshots or make a video to turn in.</p>
 </article>
 </body>
 </html>
