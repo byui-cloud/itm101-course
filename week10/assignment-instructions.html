@@ -40,25 +40,40 @@
         <ol>
             <li><div><a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">You should have already completed Part 1 - Setup an EC2 Instance</a></div></li>
             <li><div><a href="#part2">Part 2 - Docker and Nginx</a></div></li>
+            <li><div><a href="#step6">Add IPv4 DNS to Firebase Authorized Domains</a></div></li>
             <li><div><a href="#step7">Install Docker</a></div></li>
             <li><div><a href="#step8">Install NGINX web server on Docker</a></div></li>
-            <li><div><a href="#troubleshooting">Troubleshooting & Common Problems</a></div></li>            
+            <li><div><a href="#troubleshooting">Troubleshooting &amp; Common Problems</a></div></li>
             <li><div><a href="#learning-more">Learning More</a></div></li>
         </ol>
 
         <h2 id="part2">Part 2 - Docker and Nginx</h2>
-        <p><strong>Make sure you are connected to your EC2 instance running Linux to install Docker (container virtualization for applications) and install NGINX (web hosting server system)</strong></p>
+        <h4 id="step6">Add IPv4 DNS to Firebase Authorized Domains</h4>
+        <p>Add the public IPv4 DNS address of your EC2 instance to the
+        authorized domains in Firebase. (In the Firebase console, in the
+        Firebase project, visit <strong>Authentication &gt; Settings
+        &gt; Authorized Domains</strong>)</p>
+
         <h4 id="step7">Install Docker</h4>
         <ol class="long">
             <li><div>
-                <p>Docker allows you to containerize applications, systems, or websites. They can also be used to scale applications.</p>
-                <p>These are the instructions to install Docker (get updates to packages (including security), Add Docker, etc.):</p>
+                <p>Connect to your EC2 instance that should be running Ubuntu
+                Linux so that you can execute commands in the terminal.</p>
+            </div></li>
+
+            <li><div>
+                <p>Upgrade the Ubuntu Linux operating system that is
+                running on your EC2 instance.</p>
                 <pre>
 sudo apt-get update
 sudo apt-get upgrade
 # If prompted, hit 'Y' for yes to install the updates.
                 </pre>
-                <p>Install Docker on the system, start it, and make sure it is running:</p>
+            </div></li>
+
+            <li><div>
+                <p>Install Docker on your EC2 instance, start Docker,
+                and ensure it is running:</p>
                 <pre>
 sudo apt-get install docker.io
 sudo service docker start
@@ -66,51 +81,66 @@ sudo service docker status
                 </pre>
             </div></li>
         </ol>
-        <h4 id="step8">Install NGINX web server on Docker</h4>
-        <ol>
+
+        <h4 id="step8">Use Docker to Install the NGINX Web Server</h4>
+        <ol class="long">
             <li><div>
-                <p>Downloads nginx docker to run it as a webserver via docker</p>
+                <p>Download the nginx docker package so that we can use
+                nginx as a web server.</p>
                 <pre>sudo docker pull nginx:latest</pre>
-                <p>Grabbing the crud.html file to deploy it on docker.</p>
+            </div></li>
+
+            <li><div>
+                <p>Copy the <code>crud.html</code> file so we can deploy
+                it into our nginx web server.</p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week07/crud.html</pre>
+            </div></li>
+
+            <li><div>
+                <p>Use vim or nano to edit the <code>crud.html</code>
+                file and change the <code>firebaseConfig</code> to the
+                code from your Firebase project.</p>
                 <ul>
                     <li><div>
-                        <p>(Use vim to edit this file if you want to change the config "const firebaseConfig" on line 22 of you want your database to work. You will also need to add the domain of your website to the authentication settings in Firebase).</p>
-                    </div></li>
-                    <li><div>
-                        <p>Add the website public IP address to the authorized domains in Firebase (Go to the project, go to <strong>Authentication > Settings > Authorized Domains</strong>)</p>
-                    </div></li>
-                    <li><div>
-                        <p>Type the following in the Ubuntu instance to open the crud file in vim:</p>
+                        <p>Execute the following command in the Ubuntu
+                        instance to open the crud file in vim:</p>
                         <pre>vim crud.html</pre>
                     </div></li>
                     <li><div>
-                        <p>Use the arrow keys to get to the "const firebaseConfig" part. Delete and replace lines 22-29 by hitting 'dd' on your keyboard to get rid of it line by line.</p>
+                        <p>Use the arrow keys to get to the "const
+                        firebaseConfig" part. Delete and replace lines
+                        26-34 by hitting 'dd' on your keyboard to get
+                        rid of it line by line.</p>
                     </div></li>
                     <li><div>
                         <p>Copy the api key, etc. from your config.js file or the project settings area on Google Firebase.</p>
                     </div></li>
                     <li><div>
-                        <p>Hit <strong>i</strong> on your keyboard be able to add lines to your crud.html file.</p>
+                        <p>Press <strong>i</strong> on your keyboard be able to add lines to your crud.html file.</p>
                         <p>Right-click and paste in what you copied from your Google Firebase configuration file.</p>
                     </div></li>
                     <li><div>
-                        <p>Hit <strong>ESC</strong> on your keyboard to get out of <strong>insert</strong> mode</p>
+                        <p>Press <strong>ESC</strong> on your keyboard to get out of <strong>insert</strong> mode</p>
                     </div></li>
                     <li><div>
                         <p>Write <strong>:wq</strong> to write and quit the file</p>
                     </div></li>
                 </ul>
             </div></li>
+
             <li><div>
-                <p>Run the following to allow the crud.html file to be utilized</p>
+                <p>Run the following command to allow the
+                <code>crud.html</code> file to be served by the nginx web
+                server.</p>
                 <pre>chmod -R 755 /home/ubuntu/</pre>
             </div></li>
+
             <li><div>
                 <p>Run this command to get the crud.html file connected to nginx in docker (this mounts the folder) (alternatively you could copy the files into the docker if you were going use multiple containers or kubernetes):</p>
                 <pre>sudo docker run --name crud9 -p 80:80 --mount type=bind,source=/home/ubuntu,target=/usr/share/nginx/html,readonly -d nginx:latest</pre>
                 <p>You could add '-d --restart unless-stopped' to the command above to make it always start up.</p>
             </div></li>
+
             <li><div>
                 <p>This command opens the <strong>http</strong> port on the EC2 instance:</p>
                 <pre>sudo ufw allow 80/tcp</pre>
@@ -119,31 +149,36 @@ sudo service docker status
                 <p>To list the current containers in Docker, use the following command:</p>
                 <pre>sudo docker ps</pre>
             </div></li>
+
             <li><div>
-                <p>Go to the EC2 instance and <strong>edit the inbound rules</strong> to open port 80 for TCP. Click on your EC2 instance in the AWS interface, scroll down to the <strong>security</strong> tab and click on the security group. Edit the inbound rules and add port 80 for Custom TCP</p>
+                <p>In the AWS Console, view your EC2 instance and <strong>edit the inbound rules</strong> to open port 80 for TCP. Click on your EC2 instance in the AWS interface, scroll down to the <strong>security</strong> tab and click on the security group. Edit the inbound rules and add port 80 for Custom TCP</p>
             </div></li>
+
             <li><div>
                 <p>Run the following to see that port 80 is open (assuming you installed nmap from last week: sudo apt-get install nmap). Notice that port 22 is also open (The port that allows us to connect to the server).</p>
                 <pre>nmap localhost</pre>
             </div></li>
+
             <li><div>
                 <p>Open your web browser and open the IP address of your new NGINX website (use http):</p>
                 <p>http://3.3.3.3/crud.html (Replace 3.3.3.3 with your public IP address of your instance)</p>
-                <p>Referenced From <a href="https://docs.vultr.com/how-to-install-docker-on-ubuntu-24-04">Installing Docker on Ubuntu 24.04</a></p>
             </div></li>
+
             <li><div>
-                <p>Add your public ip address to the authorized domains in your firebase console authentication settings. Login to your webpage so that it shows your username as logged in. Test your projects on the database connection. Take a screenshot.</p>
+                <p>Login to your webpage so that it shows your username as logged in. Test your projects on the database connection. Take a screenshot.</p>
             </div></li>
         </ol>
 
-        <h3 id="step14">Ending Session & Managing Budget</h3>
+        <p>Referenced From <a href="https://docs.vultr.com/how-to-install-docker-on-ubuntu-24-04">Installing Docker on Ubuntu 24.04</a></p>
+
+        <h4 id="step14">Ending Session &amp; Managing Budget</h4>
         <ol>
             <li><div>
                 <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
             </div></li>
         </ol>
 
-        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
+        <h2 id="troubleshooting">Troubleshooting &amp; Common Problems</h2>
         <h3>If the webpage doesn't load</h3>
         <ul>
             <li><div>You may need to add the rule port 80 to your inbound rules on your security group.</div></li>
@@ -154,7 +189,7 @@ sudo service docker status
         <ul>
             <li><div>Is the docker running if you run 'sudo docker ps'? You should see it running.</div></li>
             <li><div>Start the docker with 'sudo docker start crud9' and then verify with the command above that it is running.</div></li>
-        </ul>        
+        </ul>
         <h3>Can't connect to the server anymore</h3>
         <ul>
             <li><div>Do you still have port 22 open on your security group inbound rules? You need two rules, both port 80 and port 22.</div></li>

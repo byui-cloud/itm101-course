@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,24 +13,26 @@
         // This page allows CRUD = Create, Read, Update, and Delete
         // Add a rick roll: https://blog.packetninjas.com/xss-and-rickrolling OR https://www.mach37.com/blog/hacking-tutorial
         // Paste this in the add project field and see an security XSS vulnerability:
-        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>      
+        // <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         // Or paste this:
         //<h2>JavaScript</h2>
         //<p>Line-breaks in a popup box.</p>
-        //<button onclick="alert('Hello\nHow are you?')">Try it</button>        
+        //<button onclick="alert('Hello\nHow are you?')">Try it</button>
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         //import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
         import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
         import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
+
         const firebaseConfig = {
-        apiKey: "AIzaSyAZ7nZhOS7cr5-AvwmfRtR11HlKRqSos3Q",
-        authDomain: "yourname-portfolio.firebaseapp.com",
-        projectId: "yourname-portfolio",
-        storageBucket: "yourname-portfolio.appspot.com",
-        messagingSenderId: "283694418074",
-        appId: "1:283694418074:web:bdef115a9eec9d077a7723",
-        // measurementId: "G-T7MLFLB8E5"
-        };        
+            apiKey: "AIzaSyAZ7nZhOS7cr5-AvwmfRtR11HlKRqSos3Q",
+            authDomain: "yourname-portfolio.firebaseapp.com",
+            projectId: "yourname-portfolio",
+            storageBucket: "yourname-portfolio.appspot.com",
+            messagingSenderId: "283694418074",
+            appId: "1:283694418074:web:bdef115a9eec9d077a7723",
+            // measurementId: "G-T7MLFLB8E5"
+        };
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         //const analytics = getAnalytics(app);
@@ -119,14 +120,14 @@
         //   cookie_flags: 'SameSite=None;Secure',
         // });
         // Declare variables outside the event listener
-        const nameInput = document.getElementById('name');
+        const nameInput = document.getElementById('title');
         const descriptionInput = document.getElementById('description');
 
         // Add the project to Firestore
-        async function addProject(name, description) {
+        async function addProject(title, description) {
             try {
                 const docRef = await addDoc(collection(db, 'projects'), {
-                    name,
+                    title,
                     description
                 });
                 // console.log('Project added with ID: ', docRef.id);
@@ -143,9 +144,9 @@
 
         document.getElementById('addProjectForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
+            const title = document.getElementById('title').value;
             const description = document.getElementById('description').value;
-            await addProject(name, description);
+            await addProject(title, description);
         });
 
         // Function to delete a project
@@ -208,9 +209,9 @@
                 const projectId = project.id;
                 return `
                     <li id="${projectId}">
-                        ${project.name}: ${project.description}
+                        ${project.title}: ${project.description}
                         <button class="delete-project-btn" onclick="deleteProject('${projectId}')">Delete</button>
-                        <button class="edit-project-btn" onclick="editProject('${projectId}', '${project.name}', '${project.description}')">Edit</button>
+                        <button class="edit-project-btn" onclick="editProject('${projectId}', '${project.title}', '${project.description}')">Edit</button>
                     </li>
                 `;
             });
@@ -226,7 +227,7 @@
                     button.addEventListener('click', async () => {
                         const projectId = button.parentNode.id; // Get the parent node's ID
                         const project = await getProjectFromFirestore(projectId);
-                        editProject(projectId, project.name, project.description);
+                        editProject(projectId, project.title, project.description);
                     });
                 });
             } catch (error) {
@@ -236,9 +237,9 @@
         });
 
         // Function to handle project editing
-        window.editProject = function (projectId, name, description) {
+        window.editProject = function (projectId, title, description) {
             document.getElementById('editProjectId').value = projectId;
-            document.getElementById('editName').value = name;
+            document.getElementById('editTitle').value = title;
             document.getElementById('editDescription').value = description;
             document.getElementById('editProjectFormContainer').style.display = 'block';
             document.getElementById('addProjectForm').style.display = 'none';
@@ -268,11 +269,11 @@
         window.updateProject = async function () {
             event.preventDefault();
             const projectId = document.getElementById('editProjectId').value;
-            const name = document.getElementById('editName').value;
+            const title = document.getElementById('editTitle').value;
             const description = document.getElementById('editDescription').value;
             try {
-                console.log('Project update with name:' + name + ' pid; ' + projectId + ' descrip: ' + description);
-                await updateProjectInFirestore(projectId, { name, description });
+                console.log('Project update with title:' + title + ' pid; ' + projectId + ' descrip: ' + description);
+                await updateProjectInFirestore(projectId, { title, description });
                 fetchProjects(); // Fetch projects again after updating
                 cancelEdit(); // Hide the edit form
             } catch (error) {
@@ -281,6 +282,7 @@
             }
         };
     </script>
+
     <style>
         body {
   font-family: 'Arial', sans-serif;
@@ -459,7 +461,6 @@ footer {
       padding: 5px 5px;
     }
   }
-
     </style>
 </head>
 
@@ -485,8 +486,8 @@ footer {
                 <img id="userProfilePicture" alt="profile pic from Google" style="display: none;">
             </div>
         </div>
-
     </header>
+
     <p id="sign-out-message"></p>
 
     <h1>Your project page</h1>
@@ -494,50 +495,50 @@ footer {
         <span id="userName"></span>
         <span id="userEmail"></span>
     </span>
-            <!-- Add Project Edit Form -->
-            <div id="projects-container">
 
-                <div id="editProjectFormContainer" style="display: none;">
-                    <h2>Edit Project</h2>
-                    <form id="editProjectForm">
-                        <input type="hidden" id="editProjectId" name="editProjectId">
-                        <label for="editName">Project Name:</label>
-                        <input type="text" id="editName" name="editName" required><br>
-                        <label for="editDescription">Project Description:</label>
-                        <textarea id="editDescription" name="editDescription" required></textarea><br>
-                        <button type="submit" onclick="updateProject()">Update (Save)</button>
-                        <button type="button" onclick="cancelEdit()">Cancel</button>
-                    </form>
-                </div>
-                <h2>Add Project</h2>
-                <form id="addProjectForm">
-                    <label for="name">Project Name:</label>
-                    <input type="text" id="name" name="name" required><br>
-                    <label for="description">Project Description:</label>
-                    <textarea id="description" name="description" required></textarea><br>
-                    <button type="submit">Add Project</button>
-                </form>
-                <h2>Projects</h2>
-                <ul id="projectsList"></ul>
-            </div>
-            <!-- Footer with dynamically calculated copyright year using JavaScript -->
-            <footer>
-                &copy; Your Name | <span id="currentYear"></span>
-            </footer>
+    <!-- Add Project Edit Form -->
+    <div id="projects-container">
 
-            <script>
-                // JavaScript code to dynamically update the copyright year
-                document.getElementById('currentYear').textContent = new Date().getFullYear();
-                // JavaScript to toggle the mobile navigation menu
-                document.addEventListener('DOMContentLoaded', function () {
-                    var menuIcon = document.getElementById('menu-icon');
-                    var navMenu = document.querySelector('nav');
-                    menuIcon.addEventListener('click', function () {
-                        navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
-                    });
-                });
-            </script>
+        <div id="editProjectFormContainer" style="display: none;">
+            <h2>Edit Project</h2>
+            <form id="editProjectForm">
+                <input type="hidden" id="editProjectId" name="editProjectId">
+                <label for="editTitle">Project Title:</label>
+                <input type="text" id="editTitle" name="editTitle" required><br>
+                <label for="editDescription">Project Description:</label>
+                <textarea id="editDescription" name="editDescription" required></textarea><br>
+                <button type="submit" onclick="updateProject()">Update (Save)</button>
+                <button type="button" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+        <h2>Add Project</h2>
+        <form id="addProjectForm">
+            <label for="title">Project Title:</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="description">Project Description:</label>
+            <textarea id="description" name="description" required></textarea><br>
+            <button type="submit">Add Project</button>
+        </form>
+        <h2>Projects</h2>
+        <ul id="projectsList"></ul>
+    </div>
 
+    <!-- Footer with dynamically calculated copyright year using JavaScript -->
+    <footer>
+        &copy; Your Name | <span id="currentYear"></span>
+    </footer>
+
+    <script>
+        // JavaScript code to dynamically update the copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // JavaScript to toggle the mobile navigation menu
+        document.addEventListener('DOMContentLoaded', function () {
+            var menuIcon = document.getElementById('menu-icon');
+            var navMenu = document.querySelector('nav');
+            menuIcon.addEventListener('click', function () {
+                navMenu.style.display = (navMenu.style.display === 'flex') ? 'none' : 'flex';
+            });
+        });
+    </script>
 </body>
-
 </html>
