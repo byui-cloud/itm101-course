@@ -19,7 +19,10 @@
         <h1>Create and Deploy with Terraform</h1>
         <h2>Overview</h2>
 
-        <p>Using Terraform, you could have deployed <a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">Part 1</a> and <a href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">Part 2</a> from previous weeks with Terraform.</p>
+        <p>Using Terraform, you could have deployed
+        <a href="../week09/assignment-instructions.html">Part 1</a> and
+        <a href="../week10/assignment-instructions.html">Part 2</a>
+        from previous weeks with Terraform.</p>
         <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, a docker, and more, all in one file.</p>
         <p>Check out all the servers and 'apps' you can deploy with Terraform: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
 
@@ -51,7 +54,10 @@
 
         <h2 id="part3">Part 3 - Terraform</h2>
         <h3 id="step9">Setting Up an EC2 Instance - Using Automation</h3>
-        <p>Terraform scripts allow you to deploy the AI Chat and other Linux systems such as the ones we deployed in <a href="https://byui-cloud.github.io/itm101-course/week09/assignment-instructions.html">Part 1 of EC2 instances and also Part 2 with Docker</a> all in one file, especially if you use Linux scripts too.</p>
+        <p>Terraform scripts allow you to deploy the AI Chat and other
+        Linux systems such as the ones we deployed in
+        <a href="../week09/assignment-instructions.html">Part 1 of EC2 instances and also Part 2 with Docker</a>
+        all in one file, especially if you use Linux scripts too.</p>
         <h3>AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</h3>
         <p>Now, let’s deploy the same thing but with automated scripts like Terraform in another region of what we previously installed in prior weeks.</p>
         <p><strong> DO NOT USE THE LINUX terminal. DO NOT USE THE LEARNER LAB terminal. Use the Cloudshell.</strong></p>
@@ -85,7 +91,7 @@ sudo yum -y install terraform</pre>
                 <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
                 <p>Terraform has <strong>.tf</strong> files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc. We made this file above for you to deploy a basic Linux server.</p>
-                <p>Go look at the file: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</a></p>
+                <p>Go look at the file: <a download href="mainawslinuxeast.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</a></p>
             </div></li>
         </ol>
         <h3 id="step12">Initiate Terraform Script File</h3>
@@ -123,7 +129,8 @@ sudo yum -y install terraform</pre>
             <li><div>
                 <p>Use and download the tf file below and that will run terraform using the new file:</p>
                 <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
-                <p>Go look at the file as a team and talk about what it is doing: <a href="https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</a></p>
+                <p>Go look at the file as a team and talk about what it
+                is doing: <a download href="mainawslinuxeastAI.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</a></p>
                 <p>You need to download the tf file and run terraform with it. (If you didn't finish the first part using the first .tf file, this one may not work)</p>
                 <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
