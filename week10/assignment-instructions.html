@@ -16,14 +16,14 @@
 </head>
 <body>
     <article>
-        <h1>Create and Deploy a Docker Container</h1>
+        <h1>Deploy a Docker Container</h1>
         <h2>Overview</h2>
 
         <p>Using your AWS EC2 Ubuntu Linx Server from last week, install Docker.</p>
-        <p>Docker allows you to quickly deploy an app like system on a Linux Server.</p>
-        <p>Check out all the docker 'apps' you can deploy: <a
-        target="_blank" href="https://hub.docker.com/">https://hub.docker.com/</a></p>
-        <p>For this tutorial, NGINX is a web server app that we will use in docker. The web server allows you to host a website on the internet.</p>
+        <p>Docker allows you to quickly deploy a complex app on a Linux Server.</p>
+        <p>Check out all the Docker "apps" you can deploy:
+        <a target="_blank" href="https://hub.docker.com/">https://hub.docker.com/</a></p>
+        <p>Nginx is a web server app that we will use in Docker. The web server allows you to host a website on the internet.</p>
 
         <h2>Business Requirements</h2>
         <ul>
@@ -31,10 +31,11 @@
                 <p>Deploy an Ubuntu Linux Server on AWS to host a website and/or database</p>
             </div></li>
         </ul>
+
         <h2>Project Overview</h2>
         <ul>
             <li><div>Install Docker</div></li>
-            <li><div>Deploy an NGINX docker container</div></li>
+            <li><div>Deploy an Nginx Docker container</div></li>
         </ul>
 
         <h2>Table of Contents</h2>
@@ -42,7 +43,7 @@
             <li><div><a target="_blank" href="../week09/assignment-instructions.html">You should have already completed Part 1 - Setup an EC2 Instance</a></div></li>
             <li><div><a href="#part2">Part 2 - Docker and Nginx</a></div></li>
             <li><div><a href="#step7">Install Docker</a></div></li>
-            <li><div><a href="#step8">Install NGINX web server on Docker</a></div></li>
+            <li><div><a href="#step8">Use Docker to Install and Run Nginx</a></div></li>
             <li><div><a href="#troubleshooting">Troubleshooting &amp; Common Problems</a></div></li>
             <li><div><a href="#learning-more">Learning More</a></div></li>
         </ol>
@@ -59,9 +60,9 @@
                 <p>Upgrade the Ubuntu Linux operating system that is
                 running on your EC2 instance.</p>
                 <pre>
-sudo apt-get update
-sudo apt-get upgrade
-# If prompted, hit 'Y' for yes to install the updates.
+sudo apt update
+sudo apt upgrade
+# If prompted, press 'Y' for yes to install the updates.
                 </pre>
             </div></li>
 
@@ -69,24 +70,24 @@ sudo apt-get upgrade
                 <p>Install Docker on your EC2 instance, start Docker,
                 and ensure it is running:</p>
                 <pre>
-sudo apt-get install docker.io
+sudo apt install docker.io
 sudo service docker start
 sudo service docker status
                 </pre>
             </div></li>
         </ol>
 
-        <h4 id="step8">Use Docker to Install the NGINX Web Server</h4>
+        <h4 id="step8">Use Docker to Install and Run Nginx</h4>
         <ol class="long">
             <li><div>
-                <p>Download the nginx docker package so that we can use
-                nginx as a web server.</p>
+                <p>Download the Nginx Docker package so that we can use
+                Nginx as a web server.</p>
                 <pre>sudo docker pull nginx:latest</pre>
             </div></li>
 
             <li><div>
                 <p>Copy the <code>crud.html</code> file so we can deploy
-                it into our nginx web server.</p>
+                it into our Nginx web server.</p>
                 <pre>curl -O https://byui-cloud.github.io/itm101-course/week07/crud.html</pre>
             </div></li>
 
@@ -103,11 +104,13 @@ sudo service docker status
                     <li><div>
                         <p>Use the arrow keys to get to the "const
                         firebaseConfig" part. Delete and replace lines
-                        26-34 by hitting 'dd' on your keyboard to get
+                        26-34 by pressing 'dd' on your keyboard to get
                         rid of it line by line.</p>
                     </div></li>
                     <li><div>
-                        <p>Copy the api key, etc. from your config.js file or the project settings area on Google Firebase.</p>
+                        <p>Copy the api key, etc. from your
+                        <code>config.js</code> file or the project
+                        settings area in the Google Firebase console.</p>
                     </div></li>
                     <li><div>
                         <p>Press <strong>i</strong> on your keyboard be able to add lines to your crud.html file.</p>
@@ -124,23 +127,29 @@ sudo service docker status
 
             <li><div>
                 <p>Run the following command to allow the
-                <code>crud.html</code> file to be served by the nginx web
+                <code>crud.html</code> file to be served by the Nginx web
                 server.</p>
-                <pre>chmod -R 755 /home/ubuntu/</pre>
+                <pre>chmod 755 /home/ubuntu/</pre>
             </div></li>
 
             <li><div>
-                <p>Run this command to get the crud.html file connected to nginx in docker (this mounts the folder) (alternatively you could copy the files into the docker if you were going use multiple containers or kubernetes):</p>
+                <p>Run this command to get the <code>crud.html</code>
+                file connected to the Nginx container in Docker. (This
+                mounts the folder. Alternatively, you could copy the
+                files into the Docker container if you were using
+                multiple containers or kubernetes.)</p>
                 <pre>sudo docker run --name crud9 -p 80:80 --mount type=bind,source=/home/ubuntu,target=/usr/share/nginx/html,readonly -d nginx:latest</pre>
                 <p>You could add '-d --restart unless-stopped' to the command above to make it always start up.</p>
             </div></li>
 
             <li><div>
-                <p>This command opens the <strong>http</strong> port on the EC2 instance:</p>
+                <p>This command opens the http port on the EC2 instance:</p>
                 <pre>sudo ufw allow 80/tcp</pre>
             </div></li>
+
             <li><div>
-                <p>To list the current containers in Docker, use the following command:</p>
+                <p>To list the containers currently deployed in Docker,
+                use the following command:</p>
                 <pre>sudo docker ps</pre>
             </div></li>
 
@@ -149,13 +158,21 @@ sudo service docker status
             </div></li>
 
             <li><div>
-                <p>Run the following to see that port 80 is open (assuming you installed nmap from last week: sudo apt-get install nmap). Notice that port 22 is also open (The port that allows us to connect to the server).</p>
+                <p>Run the following to see that port 80 is open
+                (assuming you installed nmap from last week:
+                <code>sudo apt install nmap</code>). Notice that port 22
+                is also open. Port 22 is the port that allows a terminal
+                to connect to the EC2 instance.</p>
                 <pre>nmap localhost</pre>
             </div></li>
 
             <li><div>
-                <p>Open your web browser and open the IP address of your new NGINX website (use http):</p>
-                <p>http://3.3.3.3/crud.html (Replace 3.3.3.3 with your public IP address of your instance)</p>
+                <p>Open your web browser and enter the URL of your new
+                Nginx website into the browser address bar. For example:
+                <pre>http://3.3.3.3/crud.html</pre>
+                <p>(Be certain to use http and not https and replace
+                3.3.3.3 with the public IPv4 address of your EC2
+                instance.)</p>
             </div></li>
 
             <li><div>
@@ -167,7 +184,9 @@ sudo service docker status
             </div></li>
 
             <li><div>
-                <p>Login to your webpage so that it shows your username as logged in. Test your projects on the database connection. Take a screenshot.</p>
+                <p>Login to your webpage so that it shows your username
+                as logged in. Test your projects on the database
+                connection. Take a screenshot.</p>
             </div></li>
         </ol>
 
@@ -176,23 +195,31 @@ sudo service docker status
         <h4 id="step14">Ending Session &amp; Managing Budget</h4>
         <ol>
             <li><div>
-                <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
+                <p>When you are finished for the class or day, make sure
+                to stop your instances and <strong>end your Learner
+                Lab</strong> to save on AWS budget. If you
+                <strong>terminate</strong> your instance, AWS will
+                delete it.</p>
             </div></li>
         </ol>
 
         <h2 id="troubleshooting">Troubleshooting &amp; Common Problems</h2>
-        <h3>If the webpage doesn't load</h3>
+        <h3>If the webpage doesn’t load</h3>
         <ul>
             <li><div>You may need to add the rule port 80 to your inbound rules on your security group.</div></li>
             <li><div>Did you add CIDR of 0.0.0.0/0 for your source on port 80 in the inbound security rules for that EC2 instance?</div></li>
             <li><div>Did you use http:// instead of https://</div></li>
         </ul>
-        <h3>Can't connect to the website anymore</h3>
+        <h3>Can’t connect to the website anymore</h3>
         <ul>
-            <li><div>Is the docker running if you run 'sudo docker ps'? You should see it running.</div></li>
-            <li><div>Start the docker with 'sudo docker start crud9' and then verify with the command above that it is running.</div></li>
+            <li><div>Is the Nginx container running in Docker? If you
+            run <code>sudo docker ps</code>, You should see it
+            running.</div></li>
+            <li><div>Start the Docker container with
+            <code>sudo docker start crud9</code> and then verify with
+            the command above that it is running.</div></li>
         </ul>
-        <h3>Can't connect to the server anymore</h3>
+        <h3>Can’t connect to the server anymore</h3>
         <ul>
             <li><div>Do you still have port 22 open on your security group inbound rules? You need two rules, both port 80 and port 22.</div></li>
         </ul>
@@ -200,8 +227,15 @@ sudo service docker status
         <h2 id="learning-more">Learning More</h2>
         <ul>
             <li><div>
-                <p>Install more things and do more with docker. You could install docker also on AWS Linux and deploy it from CloudShell with a terraform script (more on that later).</p>
-                <p>Find a docker container to install: https://hub.docker.com/ (ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
+                <p>Install more things and do more with Docker. You
+                could install Docker also on Amazon Linux and deploy it
+                from CloudShell with a terraform script (more on that
+                later).</p>
+                <p>Find a Docker package to install:
+                https://hub.docker.com/
+                (ex: https://hub.docker.com/r/langchain/langchain)</p>
+                <p>Install that Docker package:
+                (ex: sudo docker pull langchain/langchain)</p>
                 <pre>
 sudo docker pull _________
 sudo systemctl enable docker
