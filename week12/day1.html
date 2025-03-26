@@ -7,183 +7,278 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
     <link rel="stylesheet" href="../site/reset.css">
     <link rel="stylesheet" href="../site/style.css">
-    <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>AWS Learner Lab - Terraform</title>
+    <title>Launch an EC2 Instance with Terraform</title>
     <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week12/day1.html">
     <meta name="description" content="Week 12 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
 <body>
-    <article>
-        <h1>Create and Deploy with Terraform</h1>
-        <h2>Overview</h2>
+<article>
+    <div class="day">Week 12 Day 1</div>
+    <h1>Launch an EC2 Instance with Terraform</h1>
 
-        <p>Using Terraform, you could have deployed
-        <a target="_blank" href="../week09/assignment-instructions.html">Part 1</a> and
-        <a target="_blank" href="../week10/assignment-instructions.html">Part 2</a>
-        from previous weeks with Terraform.</p>
-        <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, a docker, and more, all in one file.</p>
-        <p>Check out all the servers and 'apps' you can deploy with Terraform: <a target="_blank" href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
+    <h2>Overview</h2>
+    <p>Terraform allows you to quickly deploy a Linux Server, an app, a
+    database, a docker container, and more, all in one file. Using
+    Terraform, you could have deployed
+    <a href="../week09/assignment-instructions.html">Part 1 of EC2 Instances</a>
+    and
+    <a href="../week10/assignment-instructions.html">Part 2 of Docker</a>
+    from previous weeks. Check out all the servers and apps you can
+    deploy with Terraform:
+    <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
 
-        <h2>Business Requirements</h2>
-        <ul>
-            <li><div>
-                <p>Create an EC2 instance using Terraform that can be deployed in the east region</p>
-                <p>The company wants a consitent 'recipe' or terraform script that documents how things were set up.</p>
-            </div></li>
-        </ul>
-        <h2>Project Overview</h2>
-        <ul>
-            <li><div>Install Terraform</div></li>
-            <li><div>Deploy a server with terraform</div></li>
-        </ul>
+    <h2>Business Requirements</h2>
+    <ul>
+        <li><div>Launch an EC2 instance using Terraform that can be
+        deployed in the east region</div></li>
+        <li><div>Your company wants a consistent 'recipe' or Terraform
+        script that documents how things were set up.</div></li>
+    </ul>
 
-        <h2>Table of Contents</h2>
-        <ol>
-            <li><div><a href="#part3">Part 3 - Terraform</a></div></li>
-            <li><div><a href="#step9">Setting Up an EC2 Instance - Using Automation</a></div></li>
-            <li><div><a href="#step10">AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</a></div></li>
-            <li><div><a href="#step11">AWS Terraform</a></div></li>
-            <li><div><a href="#step12">Terraform Script File</a></div></li>
-            <li><div><a href="#step13">Initiate Terraform Script File</a></div></li>
-            <li><div><a href="#part4">Deploy AI Chat with Terraform</a></div></li>
-            <li><div><a href="#step14">Deleting Resources With Terraform Script File</a></div></li>
-            <li><div><a href="#learning-more">Learning More</a></div></li>
-        </ol>
+    <h2>Project Overview</h2>
+    <ul>
+        <li><div>Install Terraform</div></li>
+        <li><div>Launch an EC2 server with Terraform</div></li>
+    </ul>
 
-        <h2 id="part3">Part 3 - Terraform</h2>
-        <h3 id="step9">Setting Up an EC2 Instance - Using Automation</h3>
-        <p>Terraform scripts allow you to deploy the AI Chat and other
-        Linux systems such as the ones we deployed in
-        <a target="_blank" href="../week09/assignment-instructions.html">Part 1 of EC2 instances and also Part 2 with Docker</a>
-        all in one file, especially if you use Linux scripts too.</p>
-        <h3>AWS Cloudshell (Amazon's terminal/shell) to use Terraform to deploy systems/servers</h3>
-        <p>Now, let’s deploy the same thing but with automated scripts like Terraform in another region of what we previously installed in prior weeks.</p>
-        <p><strong> DO NOT USE THE LINUX terminal. DO NOT USE THE LEARNER LAB terminal. Use the Cloudshell.</strong></p>
-        <p>We are using AWS cloudshell. That is Linux too, but it is to deploy resources in your AWS.</p>
-        <ol>
-            <li><div>
-                <p>AWS Cloudshell allows terminal/command prompt access to quickly run scripts for deployment.</p>
-                <p>To open <strong>Cloudshell</strong>, click on the <strong>Cloudshell</strong> icon at the top of the screen or at the bottom left of the screen.</p>
-                <p>A black window will appear as a terminal at the bottom of your screen. Paste your commands in that window.</p>
-            </div></li>
-        </ol>
-        <h3 id="step10">AWS Terraform</h3>
-        <ol>
-            <li><div>
-                <p>Make sure you look at the region you are in at the <strong>top right</strong>. (ex: N. Virginia)</p>
-                <p>The Terraform script we will use <strong>ONLY WORKS IN N. Virginia</strong></p>
-            </div></li>
-            <li><div>
-                <p>Install Terraform by opening the Cloudshell and run these <strong>one by one (they will not work all together)</strong></p>
-                <p><strong>DO THESE IN CLOUDSHELL! NOT IN THE LINUX INSTANCE!</strong></p>
-                <p>Terraform allows you automatically deploy servers in AWS and other systems too. They are automated scripts. First you need to install Terraform with these three commands - DO THEM ONE BY ONE:</p>
-<pre>sudo yum install -y yum-utils
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><div><a href="#part3">Part 3 - Terraform</a></div></li>
+        <li><div><a href="#step10">AWS Cloudshell</a></div></li>
+        <li><div><a href="#step11">Install Terraform</a></div></li>
+        <li><div><a href="#step12">Terraform Script File</a></div></li>
+        <li><div><a href="#step13">Run Terraform</a>
+        <p></p></div></li>
+        <li><div><a href="#part4">Part 4 - Deploy AI Chat with Terraform</a>
+        <p></p></div></li>
+        <li><div><a href="#step14">Delete Resources</a></div></li>
+        <li><div><a href="#step15">Manage Budget</a></div></li>
+        <li><div><a href="#learn-more">Learn More</a></div></li>
+    </ol>
+
+    <h2 id="part3">Part 3 - Terraform</h2>
+    <p>Terraform scripts allow you to deploy the AI Chat and other
+    Linux systems such as the ones we deployed in
+    <a href="../week09/assignment-instructions.html">Part 1 of EC2 instances</a>
+    and also
+    <a href="../week10/assignment-instructions.html">Part 2 of Docker</a>
+    all in one file, especially if you use Linux scripts too. Now, let’s
+    deploy the same thing but with automated scripts like Terraform in
+    another region of what we previously installed in prior weeks.</p>
+
+    <h3 id="step10">AWS Cloudshell</h3>
+    <p>In this assignment, you will install and use Terraform in the AWS
+    Cloudshell. <strong>Do not use the learner lab terminal, an EC2
+    Linux terminal, or your VS Code terminal for running
+    Terraform.</strong> Use the AWS Cloudshell. The AWS Cloudshell is a
+    Linux terminal that allows us to run commands to easily deploy AWS
+    resources.</p>
+
+    <ol class="long">
+        <li><div>Sign into the AWS Learner lab as we have done
+        before and open the AWS Console in your browser.</div></li>
+
+        <li><div>Select N.&nbsp;Virginia from the region drop-down list
+        near the top right of the AWS Console. Be certain to use the
+        N.&nbsp;Virginia region because the Terraform script you will
+        use for this assignment <strong>works in N.&nbsp;Virginia
+        only.</strong></div></li>
+
+        <li><div><p>To open the AWS Cloudshell, in the AWS Console in
+        your browser, click the <strong>Cloudshell</strong> icon at the
+        top or bottom left of the browser window.</p>
+
+        <p>A navy blue frame will open at the bottom of the AWS Console.
+        This navy blue frame is the AWS Cloudshell. Be certain the tab
+        in the upper left corner of this navy blue frame contains
+        <strong>us-east-1</strong> which is another name for the United
+        States N. Virginia region. In the following steps, paste the
+        commands to install and run Terraform in this navy blue
+        frame.</p></div></li>
+    </ol>
+
+    <h3 id="step11">Install Terraform</h3>
+    <ol>
+        <li><div><p>Install Terraform by running the following commands
+        <strong>one by one (they will not work all together)</strong> in
+        the AWS Cloudshell:</p>
+<pre>
+sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform</pre>
-            </div></li>
-        </ol>
-        <h3 id="step11">Terraform Script File</h3>
-        <ol>
-            <li><div>
-                <p>In the same AWS Cloudshell terminal, get a terraform file we made:</p>
-                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
-                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
-                <p>Terraform has <strong>.tf</strong> files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc. We made this file above for you to deploy a basic Linux server.</p>
-                <p>Go look at the file: <a download href="mainawslinuxeast.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</a></p>
-            </div></li>
-        </ol>
-        <h3 id="step12">Initiate Terraform Script File</h3>
-        <ol>
-            <li><div>
-                <p>Start the terraform.</p>
-                <pre>
-    terraform init
-    terraform plan
-    terraform apply -auto-approve
-    ls
-                </pre>
-                <p><strong>terraform apply</strong> deploys the resources (it uses the .tf)</p>
-                <p>The .tf file that we provided generates a .pem file in your cloudshell terminal.</p>
-                <p>You can download it if you want on the <strong>Actions</strong> menu.</p>
-                <p><strong>ls</strong> displays the files and folders in the current working directory. See the .pem file that was made.</p>
-                <p>Now go look at the AWS Linux ec2 instance that was deployed. Remote into it with the key that was created in the same shell.</p>
-                <p>Find the public IPv4 address on the EC2 instance (replace 3.3.3.3 with yours). Connect via ssh.</p>
-                <pre>ssh -i private_key.pem ec2-user@3.3.3.3</pre>
-                <p>Take a screenshot of it working and then type "exit" to go back to your cloudshell.</p>
-            </div></li>
-        </ol>
-        <h2>Part 4 - AI Chat deployed with Terraform</h2>
-        <h3>Business Requirements</h3>
-        <ul>
-            <li><div>
-                <p>Deploy an AWS AI Web-based Chat on AWS using terraform</p>
-            </div></li>
-        </ul>
-        <h3 id="part4">Use Terraform to Deploy AI Chat</h3>
-        <ul>
-            <li><div>
-                <p>Use terrform to deploy the EC2 with 32 GB of hard drive space, a t2.large instance, AWS Linux.</p>
-            </div></li>
-            <li><div>
-                <p>Use and download the tf file below and that will run terraform using the new file:</p>
-                <p>The new file has some scripts in it that downloads and installs Docker, modifies some ai ip address variables, etc. </p>
-                <p>Go look at the file as a team and talk about what it
-                is doing: <a download href="mainawslinuxeastAI.tf">https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</a></p>
-                <p>You need to download the tf file and run terraform with it. (If you didn't finish the first part using the first .tf file, this one may not work)</p>
-                <p><strong>MAKE SURE YOU ARE IN THE N. Virginia REGION!</strong></p>
-                <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
-                <p>Make sure to initiate the terraform script (see steps above if needed).</p>
-                <p>Go try the AI Chat server by going to the ip address (http://yourpublicip:3000)</p>
-                <p>Take a screenshot of it working.</p>
-            </div></li>
-        </ul>
+sudo yum -y install terraform
+</pre>
+        </div></li>
+    </ol>
 
-        <h3 id="step13">Deleting Resources With Terraform Script File</h3>
-        <ol>
-            <li><div>
-                <p>Go back to your Cloudshell and run this to delete all the resources:</p>
-                <pre>terraform destroy -auto-approve</pre>
-            </div></li>
-        </ol>
-        <h3 id="step14">Ending Session & Managing Budget</h3>
-        <ol>
-            <li><div>
-                <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
-            </div></li>
-        </ol>
-        <h3>YOUR HOMEWORK IS MORE THAN WHAT YOU JUST DID. Look at the assignment details. Notice it is in a different region (Oregon, not N. Virginia).</h3>
-        <h2 id="learning-more">Learning More</h2>
+    <h3 id="step12">Terraform Script File</h3>
+    <p>Terraform has <strong>.tf</strong> files that describe where to
+    deploy a server, operating system type and settings, firewall
+    settings, and other resources. You will download and use a .tf file
+    that will enable you to deploy a basic Linux server.</p>
+
+    <ol class="long">
+        <li><div><p>In the same us-east-1 AWS Cloudshell, execute the
+        following command to download a Terraform file:</p>
+        <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
+        </div></li>
+
+        <li><div>Examine the
+        <a href="mainawslinuxeast.tf">mainawslinuxeast.tf</a>
+        file.</div></li>
+    </ol>
+
+    <h3 id="step13">Run Terraform</h3>
+    <ol class="long">
+        <li><div><p>Execute the following commands in the AWS
+        Cloudshell. Executing the commands will run Terraform which will
+        read the .tf file you downloaded in the previous step and deploy
+        the resources described in the .tf file.</p>
+
+<pre>terraform init
+terraform plan
+terraform apply -auto-approve
+ls</pre>
+
+        <p>The <strong>terraform apply</strong> command deploys the
+        resources described in the .tf file. Among other things, the .tf
+        file includes instructions to AWS to generat a .pem key file in
+        your Cloudshell terminal. If you want, from the Cloudshell
+        <strong>Actions</strong> menu, you can download the .tf file
+        to your laptop computer.</p>
+
+        <p>The <strong>ls</strong> command displays the files and
+        folders in the current working directory. Running the
+        <code>ls</code> command in your Cloudshell terminal will show
+        you the .tf file that you downloaded and the .pem file that was
+        created.</p>
+        </div></li>
+
+        <li><div>Use the AWS Console to view the AWS Linux EC2 instance
+        that the <code>terraform apply</code> command
+        deployed.</div></li>
+
+        <li><div>Find the public IPv4 address of the new EC2 instance
+        and copy it to the clipboard.</div></li>
+
+        <li><div><p>In the AWS Cloudshell, use the <strong>ssh</strong>
+        command to connect remotely to the new EC2 instance. created in
+        the same shell. (Replace 3.3.3.3 with the public IPv4 address of
+        your new EC2 instance.)</p>
+        <pre>ssh -i private_key.pem ec2-user@3.3.3.3</pre>
+        </div></li>
+
+        <li><div>Capture a screenshot of your remote ssh session and
+        then enter the <strong>exit</strong> command to quit
+        <code>ssh</code> and return to your AWS Cloudshell.</div></li>
+    </ol>
+
+    <h2 id="part4">Part 4 - Deploy AI Chat with Terraform</h2>
+    <h3>Business Requirements</h3>
+    <ul>
+        <li><div>Deploy an AWS AI Web-based Chat on AWS using
+        terraform</div></li>
+    </ul>
+
+    <h3>Use Terraform to Deploy AI Chat</h3>
+    <p>Use Terraform to deploy an EC2 t2.large instance with 32 GB of
+    hard drive space, AWS Linux, and an AI Chat Bot.</p>
+
+    <ol class="long">
+        <li><div>Download this
+        <a download href="mainawslinuxeastAI.tf">mainawslinuxeastAI.tf</a>
+        file to your laptop. This new .tf file has some scripts in it
+        that download and install Docker, modify some AI IP address variables,
+        etc.</div></li>
+
+        <li><div>As a team, open and view the file and talk about what it
+        is doing.</div></li>
+
+        <li><div><p>Using the AWS Console, <strong>make sure you’re
+        working in the N.&nbsp;Virginia region</strong>. Then download
+        the mainawslinuxeastAI.tf file to your AWS Cloudshell.</p>
+        <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
+        </div></li>
+
+        <li><div>Use Terraform to init, plan, and apply the
+        mainawslinuxeastAI.tf file. This will deploy another EC2
+        instance and install the AI Chat server.</div></li>
+
+        <li><div>Test the newly deployed AI Chat server by entering the
+        public IP address (http://publicip:3000) of the newly deployed
+        EC2 instance into a new tab in your browser.</div></li>
+
+        <li><div>Capture a screenshot of the AI Chat working in your
+        browser.</div></li>
+    </ol>
+
+    <h3 id="step14">Delete Resources</h3>
+    <ol>
+        <li><div><p>In the AWS Cloudshell, run this command to delete
+        all the resources:</p>
+        <pre>terraform destroy -auto-approve</pre>
+        </div></li>
+    </ol>
+
+    <h3 id="step15">Manage Budget</h3>
+    <ol>
+        <li><div>When you’re done working, to save budget, stop all
+        running EC2 instances and <strong>end your Learner
+        Lab</strong>.</div></li>
+    </ol>
+
+    <h3>Saturday Homework</h3>
+    <p><strong>Your homework due Saturday night is more than what you
+    just finished.</strong> Look at the
+    <a href="assignment-instructions.html">assignment details</a>.
+    Notice it is in a different region: Oregon not N.&nbsp;Virginia.</p>
+
+    <h2 id="learn-more">Learn More</h2>
+    <ul class="long">
+        <li><div>Look at all the servers and 'apps' you can deploy from
+        the
+        <a href="https://registry.terraform.io/">Terraform registry</a>.
+        Find one and try it.</div></li>
+
+        <li><div><p>Combine Terraform and docker. Install more things
+        and do more with Terraform and docker together. You can install
+        docker with a Terraform script. Put docker in a
+        <code>user_data</code> section of a .tf file. Look at the
+        <code>mainawslinuxeastAI.tf</code> file for an example.</p>
+
+        <pre>sudo yum install -y docker</pre>
+
+        <p>Look in the <a href="https://hub.docker.com/">docker hub</a>
+        and find a docker container to install.<br>
+        ex: <a href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a><br>
+        cmd: sudo docker pull langchain/langchain</p>
+
+<pre>sudo docker pull _________
+sudo systemctl enable docker
+sudo service docker start
+sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
+        </div></li>
+
+        <li><div>Automate things further with a linux script. Use
+        generative AI as needed.</div></li>
+
+        <li><div>Use RDP to connect to an EC2 instance.
         <ul>
-            <li><div>
-                <p>Check out all the servers and 'apps' you can deploy with Terraform on the registry. Find and try one: <a target="_blank" href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
-                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with a terraform script. You put it in a "user_data" section of the tf file. Look at the mainawslinuxeastAI.tf file.</p>
-                <pre>sudo yum install -y docker</pre>
-                <p>(find a docker container to install:
-                <a target="_blank" href="https://hub.docker.com/">https://hub.docker.com/</a>
-                ex: <a target="_blank" href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a>)
-                (cmd: sudo docker pull langchain/langchain)</p>
-                <pre>
-    sudo docker pull _________
-    sudo systemctl enable docker
-    sudo service docker start
-    sudo docker run --name myllm -d --restart unless-stopped langchain/langchain
-            </pre>
-            </div></li>
-            <li><div>
-                <p>Automate things further with a linux script. Use AI as needed.</p>
-            </div></li>
-            <li><div>
-                <p>Connect via that instance above with RDP.</p>
-                <p>Install remote desktop beta on your laptop or use the built in one for Windows.</p>
-                <p>SSH into the server and set the password for the ec2-user and enable RDP:</p>
-                <pre>
-    sudo passwd ec2-user
-    sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
-                </pre>
+            <li><div>Use the built-in remote desktop client on your
+            Windows laptop or install remote desktop beta on your
+            laptop.</div></li>
+
+            <li><div><p>SSH into the server and set the password for the
+            ec2-user and enable RDP:</p>
+<pre>
+sudo passwd ec2-user
+sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
+</pre>
             </div></li>
         </ul>
-    </article>
+        </div></li>
+    </ul>
+</article>
 </body>
 </html>

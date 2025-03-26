@@ -7,251 +7,291 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
     <link rel="stylesheet" href="../site/reset.css">
     <link rel="stylesheet" href="../site/style.css">
-    <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>Installing an EC2 server on AWS - Create a New Terraform Script</title>
+    <title>Create and Use a Terraform Script</title>
     <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week10/assignment-instructions.html">
     <meta name="description" content="Week 12 assignment for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
+
 <body>
-    <article>
-        <h1>Installing an EC2 server on AWS - Create a New Terraform Script</h1>
-        <h2>Overview</h2>
+<article>
+    <h1>Create and Use a Terraform Script</h1>
 
-        <p>This time in our AWS Learner Lab, we will focus on using Terraform to create a script that will deploy an EC2 instance in the west region (Oregon). This will allow for automatic deployment of a consistent setup.</p>
+    <h2>Overview</h2>
+    <p>This time in the AWS Learner Lab, you will create a Terraform
+    script and use Terraform to launch an EC2 instance in the us-west-2
+    region (Oregon). The Terraform script will allow for automatic
+    deployment of a consistent setup.</p>
 
-        <h2>Business Requirements</h2>
-        <ul>
-            <li><div>
-                <p>Create an EC2 instance using Terraform that can be deployed in the west region</p>
-                <p>The company wants a consitent 'recipe' or terraform script that documents how things were set up.</p>
-            </div></li>
-        </ul>
+    <h2>Business Requirements</h2>
+    <ul>
+        <li><div>Launch an EC2 instance using Terraform that can be
+        deployed in the us-west-2 (Oregon) region</div></li>
+        <li><div>Your company wants a consistent 'recipe' or Terraform
+        script that documents how things were set up.</div></li>
+    </ul>
 
-        <h2>Project Requirements</h2>
-        <ul>
-            <li><div>Modify an existing Terraform script</div></li>
-            <li><div>Upload the script to Cloudshell using the vi editor</div></li>
-            <li><div>Install and run Terraform to deploy the script</div></li>
-        </ul>
+    <h2>Project Requirements</h2>
+    <ul>
+        <li><div>Modify an existing Terraform script</div></li>
+        <li><div>Upload the script to Cloudshell using the vi editor</div></li>
+        <li><div>Install and run Terraform to deploy the script</div></li>
+    </ul>
 
-        <h2>Table of Contents</h2>
-        <ol>
-            <li><div><a href="#step1">Switch Regions</a></div></li>
-            <li><div><a href="#step2">Open Cloudshell</a></div></li>
-            <li><div><a href="#step3">AWS Terraform</a></div></li>
-            <li><div><a href="#step4">Terraform Script File</a></div></li>
-            <li><div><a href="#step5">Find An AMI</a></div></li>
-            <li><div><a href="#step6">Copy and Update Example Script</a></div></li>
-            <li><div><a href="#step7">In Cloudshell - Create a .tf file</a></div></li>
-            <li><div><a href="#step8">Run Terraform</a></div></li>
-            <li><div><a href="#step9">Connect to Server</a></div></li>
-            <li><div><a href="#step10">Deleting Resources</a></div></li>
-            <li><div><a href="#step11">Ending Session & Managing Budget</a></div></li>
-            <li><div><a href="#learning-more">Learning More</a></div></li>
-        </ol>
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><div><a href="#step1">Switch Regions</a></div></li>
+        <li><div><a href="#step2">AWS Cloudshell</a></div></li>
+        <li><div><a href="#step3">Install Terraform</a></div></li>
+        <li><div><a href="#step4">Find An AMI</a></div></li>
+        <li><div><a href="#step5">Copy and Modify an Example .tf File</a></div></li>
+        <li><div><a href="#step7">Create a .tf File in the Cloudshell</a></div></li>
+        <li><div><a href="#step8">Run Terraform</a></div></li>
+        <li><div><a href="#step9">Connect to the EC2 Instance</a></div></li>
+        <li><div><a href="#step10">Delete Resources</a></div></li>
+        <li><div><a href="#step11">Manage Budget</a></div></li>
+        <li><div><a href="#learn-more">Learn More</a></div></li>
+    </ol>
 
-        <h2>Instructions</h2>
-        <h3 id="step1">Switch Regions</h3>
-        <ol>
-            <li><div>
-                Login to the AWS Learner lab as we have done before
-            </div></li>
-            <li><div>
-                Make sure to click on <strong>N. Virginia</strong> and select <strong>Oregon</strong> instead (top right corner).
-            </div></li>
-        </ol>
-        <h3 id="step2">Open Cloudshell</h3>
-        <ol>
-            <li><div>
-                <p>AWS Cloudshell allows terminal/command prompt access to quickly run scripts for deployment.</p>
-                <p>To open <strong>Cloudshell</strong>, click on the <strong>Cloudshell</strong> icon at the top of the screen or at the bottom left of the screen.</p>
-                <p>A black window will appear as a terminal at the bottom of your screen. Paste your commands in that window.</p>
-            </div></li>
-        </ol>
-        <h3 id="step3">AWS Terraform</h3>
-        <ol>
-            <li><div>
-                <p><strong>MAKE SURE YOU ARE IN THE WEST REGION (Oregon)</strong></p>
-            </div></li>
-            <li><div>
-                <p>Install Terraform by opening the Cloudshell and run these <strong>one by one (they will not work all together)</strong></p>
-                <p>Terraform allows you automatically deploy servers in AWS and other systems too. They are automated scripts. First you need to install Terraform with these three commands:</p>
-                <pre>
-    sudo yum install -y yum-utils
-    sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-    sudo yum -y install terraform
-                </pre>
-            </div></li>
-        </ol>
-        <h3 id="step4">Terraform Script File</h3>
-        <ul>
-            <li><div>
-                Terraform has .tf files that have instructions on where to deploy the server, which settings, what firewall settings, how many resources, etc.
-            </div></li>
-        </ul>
-        <h3 id="step5">Find An AMI</h3>
-        <ol class="long">
-            <li><div>
-                Go to the EC2 Dashboard and click <strong>Launch Instance</strong>
-            </div></li>
-            <li><div>
-                <p>Scroll down and click <strong>Browse more AMIs</strong> in the marketplace and find the AMI for the type of server you want to deploy and put that in your terraform script.</p>
-                <p>I would recommend checking the box <strong>Free Tier Only</strong>.</p>
-                <p>Copy and paste the AMI number into your script .tf file.</p>
-                <p>You can make your own AMI, but many free ones are out there that we can pick from.</p>
-                <p>Copy the x86 AMI like the example below:</p>
-                <pre>ami = "ami-0c55b159cbfafe1f0"</pre>
-            </div></li>
-        </ol>
-        <h3 id="step6">Copy and Update Example Script</h3>
-        <ol class="long">
-            <li><div>
-                <p>Go look at this file: <a download href="mainawslinuxeast.tf">Main AWS Linux East Script</a></p>
-                <p>Copy the contents of this file into your local text editor (preferrably VS Code).</p>
-            </div></li>
-            <li><div>
-                Make sure to replace the region with <strong>us-west-2</strong>, remove <strong>ingress of RDP</strong> (if you didn't choose a Windows Server), and the <strong>AMI number</strong> for the one you chose in the last step.
-            </div></li>
-            <li><div>
-                Pick the amount of computing power you need and modify your script file
-            </div></li>
-            <li><div>
-                Open the ports you need for the firewall and modify your script
-            </div></li>
-            <li><div>
-                <p>You may want to run security updates automatically upon deploying the server with the following code (The commands will vary depending on which Linux version you picked as the AMI):</p>
-                <pre>
-    user_data = &lt;&lt;-EOF
-    #!/bin/bash
-    sudo yum update -y
-    EOF
-                </pre>
-                <p>Put it right before this code:</p>
-                <pre>
-    tags = {
-        Name = "awslinx_host"
-    }
-                </pre>
-                <p>You can also install things, run scripts, etc. This can be very valuable to deploy a system.</p>
-                <p>You may also want to change all the "awslinux_host" names in the file to what you want it to be called in your instances.</p>
-            </div></li>
-        </ol>
-        <h3 id="step7">In Cloudshell - Create a .tf file</h3>
-        <ol class="long">
-            <li><div>
-                <p>Build and write your .tf file on your computer with the instructions above in <a href="#step6">step 6</a>.</p>
-                <p>Once you have it ready, copy it to your clipboard</p>
-            </div></li>
-            <li><div>
-                <p>In Cloudshell, create the Terraform .tf file with vi (text editor):</p>
-                <pre>vi main.tf</pre>
-            </div></li>
-            <li><div>
-                Press <strong>i</strong> to insert text
-            </div></li>
-            <li><div>
-                Right-click to paste your script
-            </div></li>
-            <li><div>
-                Press <strong>ESC</strong> to exit insert mode
-            </div></li>
-            <li><div>
-                Press <strong>:wq</strong> to save and exit
-            </div></li>
-        </ol>
-        <h3 id="step8">Run Terraform</h3>
-        <ol>
-            <li><div>
-                <p>Run Terraform to deploy your script</p>
+    <h2>Instructions</h2>
+    <h3 id="step1">Switch Regions</h3>
+    <ol>
+        <li><div>Sign into the AWS Learner lab as we have done
+        before and open the AWS Console in your browser.</div></li>
+
+        <li><div>Select Oregon from the region drop-down list
+        near the top right of the AWS Console.</div></li>
+    </ol>
+
+    <h3 id="step2">AWS Cloudshell</h3>
+    <p>The AWS Cloudshell is a Linux terminal that allows us to run
+    commands to easily deploy AWS resources.</p>
+
+    <ol>
+        <li><div><p>To open the AWS Cloudshell, in the AWS Console in
+        your browser, click the <strong>Cloudshell</strong> icon at the
+        top or bottom left of the browser window.</p>
+
+        <p>A navy blue frame will open at the bottom of the AWS Console.
+        This navy blue frame is the AWS Cloudshell. Be certain the tab
+        in the upper left corner of this navy blue frame contains
+        <strong>us-west-2</strong> which is another name for the United
+        States N. Virginia region. In the following steps, paste the
+        commands to install and run Terraform in this navy blue
+        frame.</p></div></li>
+    </ol>
+
+    <h3 id="step3">Install Terraform</h3>
+    <ol>
+        <li><div><p>Install Terraform by running the following commands
+        <strong>one by one (they will not work all together)</strong> in
+        the AWS Cloudshell:</p>
+<pre>
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+</pre>
+        </div></li>
+    </ol>
+
+    <h3 id="step4">Find an AMI</h3>
+    <ol class="long">
+        <li><div>In the AWS Console, open the EC2 Dashboard and click
+        <strong>Launch Instance</strong></div></li>
+
+        <li><div>
+            <p>Scroll down and click <strong>Browse more AMIs</strong>
+            in the marketplace and find the AMI for the type of server
+            you want to deploy and put that in your Terraform
+            script.</p>
+            <p>I recommend checking the <strong>Free Tier Only</strong>
+            box.</p>
+            <p>You can make your own AMI, but many free ones are
+            available that you can pick from.</p>
+            <p>Leave the browser tab open showing the AMI number because
+            in a few steps from now, you will copy and paste the AMI
+            number into your script .tf file.</p>
+        </div></li>
+    </ol>
+
+    <h3 id="step5">Copy and Modify an Example .tf File</h3>
+    <p>Terraform has <strong>.tf</strong> files that describe where to
+    deploy a server, operating system type and settings, firewall
+    settings, and other resources.</p>
+
+    <ol class="long">
+        <li><div>
+            Examine this
+            <a href="mainawslinuxeast.tf">mainawslinuxeast.tf file</a>
+            and copy the contents of it into a text editor (preferrably
+            VS Code) on your laptop.
+        </div></li>
+
+        <li><div>
+            Replace the us-east-1 region with
+            <strong>us-west-2</strong>, remove <strong>ingress of
+            RDP</strong> (if you didn't choose a Windows Server), and
+            the <strong>AMI number</strong> for the one you chose in the
+            last step.
+        </div></li>
+
+        <li><div>Pick the amount of computing power you need and modify
+        your .tf file</div></li>
+
+        <li><div>
+            Copy and paste the AMI number from EC2 browser tab into your
+            .tf file. For example, copy the x86 AMI like this:
+            <pre>ami = "ami-0c55b159cbfafe1f0"</pre>
+        </div></li>
+
+        <li><div>
+            In your .tf file, open the ports you need for the firewall.
+        </div></li>
+
+        <li><div>
+            <p>You may want to run security updates automatically when
+            deploying the EC2 instance with the following code. The
+            commands will vary depending on which Linux version you
+            chose with the AMI.</p>
+<pre>user_data = &lt;&lt;-EOF
+#!/bin/bash
+sudo yum update -y
+EOF</pre>
+            <p>Put the <code>user_data</code> code immediately before
+            this code:</p>
+<pre>tags = {
+    Name = "awslinx_host"
+}</pre>
+            <p>You may also want to change all the "awslinux_host" names
+            in the file to what you want it to be called in your
+            EC2 instance dashboard.</p>
+            <p>You can also install things, run scripts, etc. This can
+            be very helpful to deploy a system.</p>
+        </div></li>
+    </ol>
+
+    <h3 id="step7">Create a .tf File in the Cloudshell</h3>
+    <ol class="long">
+        <li><div>
+            <p>After you finish the <a href="#step6">instructions above</a>,
+            copy the entire contents of your .tf file to the clipboard.</p>
+        </div></li>
+
+        <li><div>
+            <p>In Cloudshell, create a Terraform .tf file with vi (text editor):</p>
+            <pre>vi main.tf</pre>
+        </div></li>
+        <li><div>
+            Press <strong>i</strong> to insert text
+        </div></li>
+        <li><div>
+            Right-click to paste the contents of your .tf file
+        </div></li>
+        <li><div>
+            Press <strong>ESC</strong> to exit insert mode
+        </div></li>
+        <li><div>
+            Type <strong>:wq</strong> and press <strong>enter</strong> to save your .tf file and exit vi
+        </div></li>
+    </ol>
+
+    <h3 id="step8">Run Terraform</h3>
+    <ol>
+        <li><div>
+            <p>In the Cloudshell, run Terraform to deploy your new EC2 instance</p>
 <pre>terraform init
 terraform plan
 terraform apply -auto-approve
 ls</pre>
-            </div></li>
-        </ol>
-        <h3 id="step9">Connect to Server</h3>
-        <ol class="long">
-            <li><div>
-                Go to the EC2 Dashboard and click on <strong>Instances</strong>
-            </div></li>
-            <li><div>
-                Find your instance and click on it
-            </div></li>
-            <li><div>
-                Find the public IpV4 address and click the copy button
-            </div></li>
-            <li><div>
-                <p>Open a terminal and type:</p>
-                <pre>ssh -i private_key.pem ec2-user@youripaddress</pre>
-                <p>Replace <strong>youripaddress</strong> with the public IpV4 address you copied.</p>
-            </div></li>
-            <li><div>
-                <p>Find out who you are logged in as:</p>
-                <pre>whoami</pre>
-            </div></li>
-            <li><div>
-                <p>See what folder you are in:</p>
-                <pre>pwd</pre>
-            </div></li>
-            <li><div>
-                <p>Get out of the ssh session:</p>
-                <pre>exit</pre>
-            </div></li>
-        </ol>
-        <h3 id="step10">Deleting Resources</h3>
-        <ol>
-            <li><div>
-                <p>Normally, you would not do this because you want to keep the resources deployed, but while you are trying and testing things you might want to delete everything.</p>
-                <p>Go back to your cloudshell, and run the follwing code to delete all of the resources:</p>
-                <pre>terraform destroy -auto-approve</pre>
-            </div></li>
-        </ol>
-        <h3 id="step11">Ending Session & Managing Budget</h3>
-        <ol>
-            <li><div>
-                <p>Make sure to stop your instances and <strong>End your Learner Lab</strong> to save on budget when you are done working on it for that day/class. If you <strong>terminate</strong> your instance, it will delete it. </p>
-            </div></li>
-        </ol>
+        </div></li>
+    </ol>
 
-        <h2 id="learning-more">Learning More</h2>
-        <ul>
-            <li><div>
-                <p>Install more things and do more with docker and terraform. You can install docker also on AWS Linux that was deployed from your CloudShell via your terraform script.</p>
-                <p>You can add these to this part:</p>
-                <pre>
-    user_data = &lt;&lt;-EOF
-    #!/bin/bash
-    sudo yum update -y
-    EOF
-                </pre>
-            </div></li>
-            <li><div>
-                <p>In your Terraform script EOF user_data section, you could do something like this where you install:</p>
-                <pre>
-    sudo yum install -y docker
-    sudo docker pull bkimminich/juice-shop
-    sudo systemctl enable docker
-    sudo service docker start
-    sudo docker run --name naughty_keller -d --restart unless-stopped -p 80:3000 bkimminich/juice-shop
-                </pre>
-            </div></li>
-            <li><div>
-                <p>These are some things you could explore and put in your code above:</p>
-                <pre>sudo yum install -y docker</pre>
-                <p>(find a docker container to install:
-                <a target="_blank" href="https://hub.docker.com/">https://hub.docker.com/</a>
-                ex: <a target="_blank" href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a>)
-                (cmd: sudo docker pull langchain/langchain)</p>
-                <pre>
-    sudo docker pull _________
-    sudo systemctl enable docker
-    sudo service docker start
-    sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 langchain/langchain
-            </pre>
-            </div></li>
-        </ul>
-    </article>
+    <h3 id="step9">Connect to the EC2 Instance</h3>
+    <ol class="long">
+        <li><div>
+            In the EC2 Dashboard, click <strong>Instances</strong>
+        </div></li>
+        <li><div>
+            Find the newly deployed instance and copy the public IPv4 address
+        </div></li>
+        <li><div>
+            <p>In the Cloudshell run the ssh command to connect to the
+            newly deployed EC2 instance:</p>
+            <pre>ssh -i private_key.pem ec2-user@youripaddress</pre>
+            <p>Replace <strong>youripaddress</strong> with the public IpV4 address you copied.</p>
+        </div></li>
+        <li><div>
+            <p>Find out who you are logged in as:</p>
+            <pre>whoami</pre>
+        </div></li>
+        <li><div>
+            <p>See what folder you are in:</p>
+            <pre>pwd</pre>
+        </div></li>
+        <li><div>
+            <p>End the ssh session:</p>
+            <pre>exit</pre>
+        </div></li>
+    </ol>
+
+    <h3 id="step10">Delete Resources</h3>
+    <ol>
+        <li><div>
+            <p>Normally, you would not do this because you want to keep
+            the resources deployed, but while you are learning and
+            testing you might want to delete everything. In the AWS
+            Cloudshell, run the follwing command to delete all of the
+            resources:</p>
+            <pre>terraform destroy -auto-approve</pre>
+        </div></li>
+    </ol>
+
+    <h3 id="step11">Manage Budget</h3>
+    <ol>
+        <li><div>When you’re done working, to save budget, stop all
+        running EC2 instances and <strong>end your Learner
+        Lab</strong>.</div></li>
+    </ol>
+
+    <h2 id="learn-more">Learn More</h2>
+    <ul>
+        <li><div>
+            <p>Install more things and do more with docker and
+            Terraform. You can install docker also on AWS Linux that was
+            deployed from your CloudShell via your Terraform script. You
+            can add commands to the <code>user_data</code> section of a
+            .tf file:</p>
+<pre>user_data = &lt;&lt;-EOF
+#!/bin/bash
+sudo yum update -y
+EOF</pre>
+        </div></li>
+
+        <li><div>
+            <p>In your Terraform script <code>user_data</code> section,
+            you could do something like this where you install docker
+            and docker containers:</p>
+<pre>sudo yum install -y docker
+sudo docker pull bkimminich/juice-shop
+sudo systemctl enable docker
+sudo service docker start
+sudo docker run --name naughty_keller -d --restart unless-stopped -p 80:3000 bkimminich/juice-shop</pre>
+        </div></li>
+
+        <li><div>
+            <p>These are some things you could explore and put in your code above:</p>
+            <pre>sudo yum install -y docker</pre>
+            <p>(find a docker container to install:
+            <a target="_blank" href="https://hub.docker.com/">https://hub.docker.com/</a>
+            ex: <a target="_blank" href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a>)
+            (cmd: sudo docker pull langchain/langchain)</p>
+<pre>sudo docker pull _________
+sudo systemctl enable docker
+sudo service docker start
+sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 langchain/langchain</pre>
+        </div></li>
+    </ul>
+</article>
 </body>
 </html>

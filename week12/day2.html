@@ -7,61 +7,105 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Crimson+Pro&display=swap">
     <link rel="stylesheet" href="../site/reset.css">
     <link rel="stylesheet" href="../site/style.css">
-    <link rel="stylesheet" href="test.css">
     <script defer src="../site/main.js"></script>
-    <title>AWS Learner Lab - Terraform</title>
+    <title>Deploy with Terraform</title>
     <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week12/day2.html">
     <meta name="description" content="Week 12 day 2 for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
 </head>
 <body>
-    <article>
-        <h1>Create and Deploy with Terraform</h1>
-        <h2>Overview</h2>
+<article>
+    <div class="day">Week 12 Day 2</div>
+    <h1>Deploy with Terraform</h1>
 
-        <p>Using Terraform, you could have automated many of the AWS components from previous weeks with Terraform.</p>
-        <p>Terraform allows you to quickly deploy a Linux Server, an app, a database, a docker, and more, all in one file.</p>
-        <p>Check out all the servers and 'apps' you can deploy with Terraform: <a target="_blank" href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
+    <h2>Overview</h2>
+    <p>Terraform allows you to quickly deploy a Linux Server, an
+    app, a database, a docker container, and more, all in one file.
+    Using Terraform, you could have deployed many of the AWS
+    components from previous weeks. Check out all the servers and
+    apps you can deploy with Terraform:
+    <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
 
-        <h2>Business Requirements</h2>
+    <h2>Business Requirements</h2>
+    <ul>
+        <li><div>If you didn’t finish deploying the Web-based AI Chat on
+        AWS using Terraform, finish deploying it.</div></li>
+
+        <li><div>Choose another server or 'app' from the
+        <a href="https://registry.terraform.io/">Terraform registry</a>
+        and use Terraform to deploy it.</div></li>
+    </ul>
+
+    <h2>Project Overview</h2>
+    <p>Create .tf files and Linux shell scripts that deploy something
+    cool.</p>
+
+    <ul>
+        <li><div>As a team review the
+        <a href="mainawslinuxeastAI.tf">mainawslinuxeastAI.tf</a> file
+        and discuss what it does.</div></li>
+
+        <li><div>Create a Linux shell script that will automatically
+        download the mainawslinuxeastAI.tf file and will run terraform
+        using that file. Run the script in your AWS Cloudshell.</div></li>
+
+        <li><div>Create and use another .tf file that deploys something
+        cool. (Terraform scripts in the same Cloudshell can have some
+        conflicts so you may need to change variable names,
+        etc.)</div></li>
+
+        <li><div>Add some Linux scripts to automate it. Use a generative
+        AI as needed.</div></li>
+
+        <li><div>Finished? Build something cool as a team. Submit your
+        personal contribution.</div></li>
+    </ul>
+
+    <h2 id="learn-more">Learn More</h2>
+    <ul class="long">
+        <li><div>Look at all the servers and 'apps' you can deploy from
+        the
+        <a href="https://registry.terraform.io/">Terraform registry</a>.
+        Find one and try it.</div></li>
+
+        <li><div><p>Combine Terraform and docker. Install more things
+        and do more with Terraform and docker together. You can install
+        docker with a Terraform script. Put docker in a
+        <code>user_data</code> section of a .tf file. Look at the
+        <code>mainawslinuxeastAI.tf</code> file for an example.</p>
+
+        <pre>sudo yum install -y docker</pre>
+
+        <p>Look in the <a href="https://hub.docker.com/">docker hub</a>
+        and find a docker container to install.<br>
+        ex: <a href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a><br>
+        cmd: sudo docker pull langchain/langchain</p>
+
+<pre>sudo docker pull _________
+sudo systemctl enable docker
+sudo service docker start
+sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
+        </div></li>
+
+        <li><div>Automate things further with a linux script. Use
+        generative AI as needed.</div></li>
+
+        <li><div>Use RDP to connect to an EC2 instance.
         <ul>
-            <li><div>
-                <p>Finish Deploying the AWS AI Web-based Chat on AWS using terraform if you didn't yet.</p>
-            </div></li>
-            <li><div>
-                <p>Find a server or 'apps' you can deploy with Terraform: <a target="_blank" href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
+            <li><div>Use the built-in remote desktop client on your
+            Windows laptop or install remote desktop beta on your
+            laptop.</div></li>
+
+            <li><div><p>SSH into the server and set the password for the
+            ec2-user and enable RDP:</p>
+<pre>
+sudo passwd ec2-user
+sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
+</pre>
             </div></li>
         </ul>
-        <h2>Project Overview</h2>
-        <ul>
-            <li><div>
-                <p>Use and create automation scripts that deploy something cool. Add some Linux scripts to automate it.</p>
-            </div></li>
-            <li><div>
-                <p>Create a script that will download the tf file below and that will run terraform using the new file:</p>
-                <p>Go look at the file as a team and talk about what it
-                is doing:
-                <a download href="mainawslinuxeastAI.tf">mainawslinuxeastAI.tf</a></p>
-                <p>Automate things further with a linux script. Use AI as needed. (Terraform scripts in the same Cloudshell can have some conflicts. You may need to change variable names, etc.)</p>
-            </div></li>
-            <li><div>
-                <p>Finished? Build something cool as a team. Submit your personal contribution.</p>
-            </div></li>
-        </ul>
-
-        <h2 id="learning-more">Learning More</h2>
-        <ul>
-            <li><div>
-                <p>Check out all the servers and 'apps' you can deploy with Terraform on the registry. Find and try one: <a target="_blank" href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
-                <p>Combine Terraform and docker. Install more things and do more with docker and terraform. You can install docker with terraform script. You put it in the </p>
-                <pre>sudo yum install -y docker</pre>
-                <p>(find a docker container to install: https://hub.docker.com/ ex: https://hub.docker.com/r/langchain/langchain)(ex: sudo docker pull langchain/langchain)</p>
-                <pre>sudo docker pull _________</pre>
-                <pre>sudo systemctl enable docker</pre>
-                <pre>sudo service docker start</pre>
-                <pre>sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pre>
-            </div></li>
-        </ul>
-    </article>
+        </div></li>
+    </ul>
+</article>
 </body>
 </html>

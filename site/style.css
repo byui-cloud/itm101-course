@@ -249,6 +249,9 @@ article {
 	}
 }
 
+article div.day {
+	font-size: 130%;
+}
 article h1 {
 	text-align: center;
 	font-size: 175%;
