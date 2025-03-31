@@ -96,7 +96,7 @@ system that uses a NoSQL database in the Internet Cloud.</p>
     </ol></div></li>
 
     <li><div>Use the
-    <a target="_blank" href="https://console.firebase.google.com/">Firebase Console</a>
+    <a href="https://console.firebase.google.com/">Firebase Console</a>
     in your browser to create a new Firebase project named
     “min-max-inventory”. For this project, you can disable Google
     Analytics.</div></li>
@@ -147,16 +147,16 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         ChatGPT wrote and paste it into a new file named
         <code>init_suppliers.html</code> in VS Code.</div></li>
 
-        <li><div>Look in the <code>init_suppliers.html</code> and find
+        <li><div>Look in your <code>init_suppliers.html</code> and find
         the <code>firebaseConfig</code> dictionary. You must replace the
         <code>firebaseConfig</code> dictionary that ChatGPT wrote with
         <code>firebaseConfig</code> code from the Firebase
         Console.</div></li>
 
-        <li><div>In VS Code, save the <code>init_suppliers.html</code>
+        <li><div>In VS Code, save your <code>init_suppliers.html</code>
         file.</div></li>
 
-        <li><div>Open the <code>init_suppliers.html</code> file in your
+        <li><div>Open your <code>init_suppliers.html</code> file in your
         browser. Your browser will execute the JavaScript code in that
         file which should add five suppliers to a collection named
         “suppliers” in your Firestore database. After adding the
@@ -174,8 +174,8 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div>In VS Code, create a new file named
         <code>init_products.html</code></div></li>
 
-        <li><div>Copy the following prompt (not the results yet) and paste into the
-        <code>init_products.html</code> file.
+        <li><div>Copy the following text and paste it into your
+        <code>init_products.html</code> file:
         <p class="gpt">Please generate a list of 20 products for a
         min-max inventory system for the cosmetics industry. Generate
         the list in JSON format. Each item in the list must include five
@@ -183,11 +183,16 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         maximum_quantity, and supplier_id. Use these supplier IDs: </p>
         </div></li>
 
-        <li><div>From the Firestore Database, copy the five supplier IDs
-        and paste them into VS Code at the bottom of the
-        <code>init_products.html</code> file.</div></li>
+        <li><div>From your Firestore database, copy the five supplier
+        IDs and paste them into VS Code at the bottom of your
+        <code>init_products.html</code> file. You have now copied and
+        pasted text from the previous step and five supplier IDs into a
+        file in VS Code. This is a complete prompt to give to
+        ChatGPT.</div></li>
 
-        <li><div>Copy the prompt from your init_products.html file to ChatGPT and AI will give you more below to eventually replace the prompt.</div></li>
+        <li><div>Copy the complete prompt from your
+        <code>init_products.html</code> file and give it to
+        ChatGPT.</div></li>
 
         <li><div>After ChatGPT responds, give it this prompt:
         <p class="gpt">Please write HTML and JavaScript code in a single
@@ -204,19 +209,21 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         </div></li>
 
         <li><div>Wait for ChatGPT to respond. Then delete the prompt
-        from the <code>init_products.html</code> file and copy the code
-        that ChatGPT wrote and paste it into the
-        <code>init_products.html</code> file.</div></li>
+        from your <code>init_products.html</code> file. Then copy and
+        paste the code that ChatGPT wrote into your
+        <code>init_products.html</code> file. In other words, replace
+        the prompt in your <code>init_products.html</code> file with the
+        code that ChatGPT wrote.</div></li>
 
-        <li><div>Look in the <code>init_products.html</code> file and
+        <li><div>Look in your <code>init_products.html</code> file and
         replace the <code>firebaseConfig</code> dictionary with the
         <code>firebaseConfig</code> dictionary from your Firebase
-        Console. (This is the same thing that you already did in the
+        Console. (This is the same thing that you already did in your
         <code>init_suppliers.html</code> file.)</div></li>
 
-        <li><div>Save the <code>init_products.html</code> file.</div></li>
+        <li><div>Save your <code>init_products.html</code> file.</div></li>
 
-        <li><div>Open the <code>init_products.html</code> file in your
+        <li><div>Open your <code>init_products.html</code> file in your
         browser. Your browser will execute the JavaScript code in that
         file which should add 20 products to a collection named
         “products” in your Firestore database. After adding the
@@ -230,7 +237,7 @@ system that uses a NoSQL database in the Internet Cloud.</p>
 
     <li><div>If NodeJS is not installed on your computer, using a
     browser on your computer, download and install NodeJS from
-    <a target="_blank" href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></div></li>
+    <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></div></li>
 
     <li><div>Using your browser, download this
     <a download href="firestore.rules">firestore.rules</a>
@@ -297,7 +304,7 @@ const firebaseConfig = {
     <li><div>If your browser does not display your min-max-inventory app
     but instead shows an error message that says your app is not
     available, you may need to submit a request to Palo Alto Networks to
-    <a target="_blank" href="https://urlfiltering.paloaltonetworks.com/">reclassify your app’s URL</a>.
+    <a href="https://urlfiltering.paloaltonetworks.com/">reclassify your app’s URL</a>.
     Work with your teacher to do that.</div></li>
 
     <li><div>Using your browser, test your Min-Max Inventory system by
@@ -321,22 +328,22 @@ const firebaseConfig = {
 <h2 id="help">Help and Troubleshooting</h2>
 <p>If you are stuck, you may want to look at the previous project instructions from prior weeks.</p>
 <ul>
-    <li><div><a target="_blank" href="../../week04/assignment-instructions.html">Setting up Firebase Web Hosting (from Week 4)</a></div></li>
-    <li><div><a target="_blank" href="../../week05/assignment-instructions.html">Setting up the Database (from Week 5)</a></div></li>
-    <li><div><a target="_blank" href="../../week06/assignment-instructions.html">Setting up Authenticataion (from Week 6)</a></div></li>
+    <li><div><a href="../../week04/assignment-instructions.html">Setting up Firebase Web Hosting (from Week 4)</a></div></li>
+    <li><div><a href="../../week05/assignment-instructions.html">Setting up the Database (from Week 5)</a></div></li>
+    <li><div><a href="../../week06/assignment-instructions.html">Setting up Authenticataion (from Week 6)</a></div></li>
 </ul>
 
 <h3>Your browser won’t show your app</h3>
 <p>If your browser does not display your min-max-inventory app but
 instead shows an error message that says your app is not available, you
 may need to submit a request to Palo Alto Networks to
-<a target="_blank" href="https://urlfiltering.paloaltonetworks.com/">reclassify your app’s URL</a>.
+<a href="https://urlfiltering.paloaltonetworks.com/">reclassify your app’s URL</a>.
 Work with your teacher to do that.</p>
 
 <h3>No suppliers or no products</h3>
 <p>Did you open your init_suppliers.html and init_products.html files in
 your browser so that your browser could run them to create the suppliers
-and the other file to create products?</p>
+and the products in your Firestore database?</p>
 
 <p>You could temporarily replace your Firestore database rules in the
 Firebase console with these rules:</p>
