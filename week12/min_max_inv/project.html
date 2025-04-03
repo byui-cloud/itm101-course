@@ -159,9 +159,18 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         <li><div>Open your <code>init_suppliers.html</code> file in your
         browser. Your browser will execute the JavaScript code in that
         file which should add five suppliers to a collection named
-        “suppliers” in your Firestore database. After adding the
-        suppliers, your browser window should have a list of five
-        supplier IDs and names. ONLY OPEN THIS FILE IN YOUR BROWSER ONCE.</div></li>
+        “suppliers” in your Firestore database. After your browser adds
+        the five suppliers, your browser window should have a list of
+        five supplier IDs and names.
+
+        <p>If your browser successfully, added the five suppliers, don’t
+        refresh, reload, or open your
+        <code>init_suppliers.html</code> file again because each time
+        you refresh, reload, or re-open your
+        <code>init_suppliers.html</code> file, your browser will add the
+        five suppliers to your Firestore database again. This means your
+        Firestore database will contain multiple copies of each
+        supplier, and you don't want that.</p></div></li>
 
         <li><div>Using the Firebase console, verify that your Firestore
         database has a collection named “suppliers” that contains five
@@ -177,8 +186,8 @@ system that uses a NoSQL database in the Internet Cloud.</p>
         for two purposes. First, you will use it to build a prompt for
         ChatGPT. After building the prompt, you will give the prompt to
         ChatGPT. Second, you will use your
-        <code>init_products.html</code> file to execute the code that
-        ChatGPT writes for you.</p></div></li>
+        <code>init_products.html</code> file to store and execute the
+        code that ChatGPT writes for you.</p></div></li>
 
         <li><div>To begin building the prompt for ChatGPT, copy the
         following text and paste it into your
