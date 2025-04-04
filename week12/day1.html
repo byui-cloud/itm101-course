@@ -100,22 +100,25 @@
     </ol>
 
     <h3 id="step11">Install Terraform</h3>
+    <p><code>yum</code> is a package manager that we use to install
+    software on Red Hat-based Linux distributions such as Fedora,
+    CentOS, and Amazon Linux. The AWS Cloudshell runs on Amazon Linux
+    2023 (AL2023) so we often use the <code>yum</code> command to
+    install software in the Cloudshell.</p>
     <ol>
-        <li><div><p>Install Terraform by running the following commands
-        <strong>one by one (they will not work all together)</strong> in
-        the AWS Cloudshell:</p>
-<pre>
-sudo yum install -y yum-utils
+        <li><div><p>In the AWS Cloudshell, install Terraform by running
+        the following commands <strong>one by one (they will not work
+        all together)</strong>:</p>
+<pre>sudo yum -y install yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform
-</pre>
+sudo yum -y install terraform</pre>
         </div></li>
     </ol>
 
     <h3 id="step12">Terraform Script File</h3>
-    <p>Terraform has <strong>.tf</strong> files that describe where to
-    deploy a server, operating system type and settings, firewall
-    settings, and other resources. You will download and use a .tf file
+    <p>Terraform has <dfn>.tf</dfn> files that describe where to deploy
+    a server, operating system type and settings, firewall settings, and
+    other resources. You will download and use a <code>.tf</code> file
     that will enable you to deploy a basic Linux server.</p>
 
     <ol class="long">
@@ -133,8 +136,9 @@ sudo yum -y install terraform
     <ol class="long">
         <li><div><p>Execute the following commands in the AWS
         Cloudshell. Executing the commands will run Terraform which will
-        read the .tf file you downloaded in the previous step and deploy
-        the resources described in the .tf file.</p>
+        read the <code>.tf</code> file you downloaded in the previous
+        step and deploy the resources described in the <code>.tf</code>
+        file.</p>
 
 <pre>terraform init
 terraform plan
@@ -142,17 +146,18 @@ terraform apply -auto-approve
 ls</pre>
 
         <p>The <strong>terraform apply</strong> command deploys the
-        resources described in the .tf file. Among other things, the .tf
-        file includes instructions to AWS to generat a .pem key file in
-        your Cloudshell terminal. If you want, from the Cloudshell
-        <strong>Actions</strong> menu, you can download the .tf file
-        to your laptop computer.</p>
+        resources described in the <code>.tf</code> file. Among other
+        things, the <code>.tf</code> file includes instructions to AWS
+        to generat a <code>.pem</code> key file in your Cloudshell
+        terminal. If you want, from the Cloudshell
+        <strong>Actions</strong> menu, you can download the
+        <code>.tf</code> file to your laptop computer.</p>
 
         <p>The <strong>ls</strong> command displays the files and
         folders in the current working directory. Running the
         <code>ls</code> command in your Cloudshell terminal will show
-        you the .tf file that you downloaded and the .pem file that was
-        created.</p>
+        you the <code>.tf</code> file that you downloaded and the
+        <code>.pem</code> file that was created.</p>
         </div></li>
 
         <li><div>Use the AWS Console to view the AWS Linux EC2 instance
@@ -188,22 +193,22 @@ ls</pre>
     <ol class="long">
         <li><div>Download this
         <a download href="mainawslinuxeastAI.tf">mainawslinuxeastAI.tf</a>
-        file to your laptop. This new .tf file has some scripts in it
-        that download and install Docker, modify some AI IP address variables,
-        etc.</div></li>
+        file to your laptop. This new <code>.tf</code> file has some
+        scripts in it that download and install Docker, modify some AI
+        IP address variables, etc.</div></li>
 
         <li><div>As a team, open and view the file and talk about what it
         is doing.</div></li>
 
         <li><div><p>Using the AWS Console, <strong>make sure you’re
         working in the N.&nbsp;Virginia region</strong>. Then download
-        the mainawslinuxeastAI.tf file to your AWS Cloudshell.</p>
+        the <code>mainawslinuxeastAI.tf</code> file to your AWS Cloudshell.</p>
         <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
         </div></li>
 
         <li><div>Use Terraform to init, plan, and apply the
-        mainawslinuxeastAI.tf file. This will deploy another EC2
-        instance and install the AI Chat server.</div></li>
+        <code>mainawslinuxeastAI.tf</code> file. This will deploy
+        another EC2 instance and install the AI Chat server.</div></li>
 
         <li><div>Test the newly deployed AI Chat server by entering the
         public IP address (http://publicip:3000) of the newly deployed
@@ -244,8 +249,9 @@ ls</pre>
         <li><div><p>Combine Terraform and docker. Install more things
         and do more with Terraform and docker together. You can install
         docker with a Terraform script. Put docker in a
-        <code>user_data</code> section of a .tf file. Look at the
-        <code>mainawslinuxeastAI.tf</code> file for an example.</p>
+        <code>user_data</code> section of a <code>.tf</code> file. Look
+        at the <code>mainawslinuxeastAI.tf</code> file for an
+        example.</p>
 
         <pre>sudo yum install -y docker</pre>
 

@@ -83,15 +83,18 @@
     </ol>
 
     <h3 id="step3">Install Terraform</h3>
+    <p><code>yum</code> is a package manager that we use to install
+    software on Red Hat-based Linux distributions such as Fedora,
+    CentOS, and Amazon Linux. The AWS Cloudshell runs on Amazon Linux
+    2023 (AL2023) so we often use the <code>yum</code> command to
+    install software in the Cloudshell.</p>
     <ol>
-        <li><div><p>Install Terraform by running the following commands
-        <strong>one by one (they will not work all together)</strong> in
-        the AWS Cloudshell:</p>
-<pre>
-sudo yum install -y yum-utils
+        <li><div><p>In the AWS Cloudshell, install Terraform by running
+        the following commands <strong>one by one (they will not work
+        all together)</strong>:</p>
+<pre>sudo yum -y install yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform
-</pre>
+sudo yum -y install terraform</pre>
         </div></li>
     </ol>
 
@@ -111,12 +114,12 @@ sudo yum -y install terraform
             available that you can pick from.</p>
             <p>Leave the browser tab open showing the AMI number because
             in a few steps from now, you will copy and paste the AMI
-            number into your script .tf file.</p>
+            number into a Terraform <code>.tf</code> file.</p>
         </div></li>
     </ol>
 
     <h3 id="step5">Copy and Modify an Example .tf File</h3>
-    <p>Terraform has <strong>.tf</strong> files that describe where to
+    <p>Terraform has <dfn>.tf</dfn> files that describe where to
     deploy a server, operating system type and settings, firewall
     settings, and other resources.</p>
 
@@ -137,17 +140,16 @@ sudo yum -y install terraform
         </div></li>
 
         <li><div>Pick the amount of computing power you need and modify
-        your .tf file</div></li>
+        your <code>.tf</code> file</div></li>
 
         <li><div>
             Copy and paste the AMI number from EC2 browser tab into your
-            .tf file. For example, copy the x86 AMI like this:
-            <pre>ami = "ami-0c55b159cbfafe1f0"</pre>
+            <code>.tf</code> file. For example, copy the x86 AMI like
+            this: <pre>ami = "ami-0c55b159cbfafe1f0"</pre>
         </div></li>
 
-        <li><div>
-            In your .tf file, open the ports you need for the firewall.
-        </div></li>
+        <li><div>In your <code>.tf</code> file, open the ports you need
+        for the firewall.</div></li>
 
         <li><div>
             <p>You may want to run security updates automatically when
@@ -175,24 +177,27 @@ EOF</pre>
     <ol class="long">
         <li><div>
             <p>After you finish the <a href="#step6">instructions above</a>,
-            copy the entire contents of your .tf file to the clipboard.</p>
+            copy the entire contents of your <code>.tf</code> file to
+            the clipboard.</p>
         </div></li>
 
         <li><div>
-            <p>In Cloudshell, create a Terraform .tf file with vi (text editor):</p>
+            <p>In Cloudshell, create a Terraform <code>.tf</code> file
+            with vi (text editor):</p>
             <pre>vi main.tf</pre>
         </div></li>
         <li><div>
             Press <strong>i</strong> to insert text
         </div></li>
         <li><div>
-            Right-click to paste the contents of your .tf file
+            Right-click to paste the contents of your <code>.tf</code> file
         </div></li>
         <li><div>
             Press <strong>ESC</strong> to exit insert mode
         </div></li>
         <li><div>
-            Type <strong>:wq</strong> and press <strong>enter</strong> to save your .tf file and exit vi
+            Type <strong>:wq</strong> and press <strong>enter</strong>
+            to save your <code>.tf</code> file and exit vi
         </div></li>
     </ol>
 
@@ -219,7 +224,8 @@ ls</pre>
             <p>In the Cloudshell run the ssh command to connect to the
             newly deployed EC2 instance:</p>
             <pre>ssh -i private_key.pem ec2-user@youripaddress</pre>
-            <p>Replace <strong>youripaddress</strong> with the public IpV4 address you copied.</p>
+            <p>Replace <strong>youripaddress</strong> with the public
+            IpV4 address you copied.</p>
         </div></li>
         <li><div>
             <p>Find out who you are logged in as:</p>
@@ -261,7 +267,7 @@ ls</pre>
             Terraform. You can install docker also on AWS Linux that was
             deployed from your CloudShell via your Terraform script. You
             can add commands to the <code>user_data</code> section of a
-            .tf file:</p>
+            <code>.tf</code> file:</p>
 <pre>user_data = &lt;&lt;-EOF
 #!/bin/bash
 sudo yum update -y

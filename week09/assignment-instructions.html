@@ -115,20 +115,25 @@
         </ol>
 
         <h3 id="step4">Run Security Updates</h3>
+        <p><code>apt</code> is a package manager that we use to install
+        software on Debian-based Linux distributions such as Debian,
+        Ubuntu, and Mint. For this assignment, you are using a Ubuntu
+        distribution of Linux so you will use apt to install updates to
+        the operating system software.</p>
         <ol class="long">
             <li><div>
                 <p>Make sure to update the instance often</p>
                 <p>This gets the updates for the server:</p>
-                <pre>sudo apt-get update</pre>
+                <pre>sudo apt update</pre>
                 <p>This applies the updates for the software and services that need updates</p>
-                <pre>sudo apt-get upgrade</pre>
+                <pre>sudo apt upgrade</pre>
                 <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates)</p>
                 <pre>sudo reboot</pre>
             </div></li>
             <li><div>
                 <p>Linux Kernel Upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
                 <p>This applies Linux minor kernel updates to the operating system. (This update takes some time to do, so only run this if you have time)</p>
-                <pre>sudo apt-get dist-upgrade</pre>
+                <pre>sudo apt dist-upgrade</pre>
                 <pre>sudo reboot</pre>
             </div></li>
             <li><div>
@@ -143,7 +148,7 @@
         <h3 id="step5">Install Something (nmap port scanning)</h3>
         <ol class="long">
             <li><div>This installs nmap, a tool to scan servers to see what ports are open on a system
-            <pre>sudo apt-get install nmap</pre></div></li>
+            <pre>sudo apt install nmap</pre></div></li>
             <li><div>This scans the local server you are running it from to see what ports are open
             <pre>nmap localhost</pre></div></li>
         </ol>
