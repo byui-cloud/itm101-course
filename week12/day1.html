@@ -72,9 +72,9 @@
     <p>In this assignment, you will install and use Terraform in the AWS
     Cloudshell. <strong>Do not use the learner lab terminal, an EC2
     Linux terminal, or your VS Code terminal for running
-    Terraform.</strong> Use the AWS Cloudshell. The AWS Cloudshell is a
-    Linux terminal that allows us to run commands to easily deploy AWS
-    resources.</p>
+    Terraform.</strong> Use the AWS Cloudshell. The <dfn>AWS
+    Cloudshell</dfn> is a Linux terminal that allows us to run commands
+    to easily deploy AWS resources.</p>
 
     <ol class="long">
         <li><div>Sign into the AWS Learner lab as we have done
@@ -100,7 +100,7 @@
     </ol>
 
     <h3 id="step11">Install Terraform</h3>
-    <p><code>yum</code> is a package manager that we use to install
+    <p><dfn>yum</dfn> is a package manager that we use to install
     software on Red Hat-based Linux distributions such as Fedora,
     CentOS, and Amazon Linux. The AWS Cloudshell runs on Amazon Linux
     2023 (AL2023) so we often use the <code>yum</code> command to
@@ -109,9 +109,9 @@
         <li><div><p>In the AWS Cloudshell, install Terraform by running
         the following commands <strong>one by one (they will not work
         all together)</strong>:</p>
-<pre>sudo yum -y install yum-utils
+<pre>sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform</pre>
+sudo yum install -y terraform</pre>
         </div></li>
     </ol>
 
