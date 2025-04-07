@@ -94,7 +94,7 @@ service cloud.firestore {
         orderIsValid(request, request.resource.data);
     }
 
-    match /users/{users} {
+    match /users/{user} {
       allow read: if userHasPermission();
       allow write: if userHasPermission() &&
         userIsValid(request.resource.data);

@@ -21,7 +21,7 @@
         "educationalUse": "assignment",
         "copyrightNotice": "Copyright © 2024, Brigham Young University–Idaho. All rights reserved.",
         "datePublished": "2024-04-12",
-        "dateModified": "2024-12-09"
+        "dateModified": "2025-04-07"
     }
     </script>
 </head>
@@ -70,7 +70,7 @@ permissions to view, edit, and delete the data.</p>
     authentication for your project by doing the following:
     <ol>
         <li><div>In the navigation frame on the left-hand side, expand
-        the “Build” item.
+        the “Build” item.</div></li>
         <li><div>Click “Authentication” in the navigation
         frame.</div></li>
         <li><div>Click the “Get started” button.</div></li>
@@ -128,25 +128,32 @@ permissions to view, edit, and delete the data.</p>
     the top of the application window.</div></li>
 
     <li><div>Using the Firebase Console in your browser, add a new
-    collection named “users” to your Firestore database.</div></li>
+    collection named “users” to your Firestore database. This is case
+    sensitive. It must be “users” and not “Users”.</div></li>
 
     <li><div>Still using the Firebase Console, add a document to the
-    “users” collection. For the “Document ID” copy and paste your
-    application user ID which will be at the top of your Min-Max
-    Inventory app window. Add two fields named “email” and “enabled” to
-    the document. The “enabled” field must by of type boolean as shown
-    in the following screenshot:
-    <img src="addDoc.png" style="width:100%"
-    alt="Screenshot of a popup window to add a document to the users
-    collection"
-    title="Screenshot of a popup window to add a document to the users
-    collection"></div></li>
+    “users” collection.
+    <ol>
+        <li><div>For the “Document ID”, don’t click the “Auto-ID”
+        button. Instead, copy and paste your application user ID which
+        will be in your browser at the top of your Min-Max Inventory app
+        tab.</div></li>
 
-    <li><div>Refresh (reload) your Min-Max Inventory system in your
-    browser. All of the tabs (Suppliers, Products, Receiving, and
-    Outgoing) should display data from your Firestore database. If any
-    of the tabs don’t contain data, you may have created the user
-    document incorrectly in the previous step.</div></li>
+        <li><div>Add two fields named “email” and “enabled” to
+        the document. The “enabled” field must by of type boolean as shown
+        in the following screenshot:
+        <img src="addDoc.png" style="width:100%"
+        alt="Screenshot of a popup window to add a document to the users
+        collection"
+        title="Screenshot of a popup window to add a document to the users
+        collection"></div></li>
+    </ol></div></li>
+
+    <li><div>Reload your Min-Max Inventory system in your browser. All
+    of the tabs (Suppliers, Products, Receiving, and Outgoing) should
+    display data from your Firestore database. If any of the tabs don’t
+    contain data, you may have created the user document incorrectly in
+    the previous step.</div></li>
 
     <li><div>Using your browser, test your Min-Max Inventory system
     thoroughly by doing the following:
@@ -214,9 +221,11 @@ following.</p>
     </ol></div></li>
 
     <li><div>Change your application’s favicon
-    (<img src="../../week12/min_max_inv/favicon.svg" style="width:1.5em">)
+    (<img src="../../week12/min_max_inv/favicon.svg" style="width:1.5em"
+    alt="The favicon for the Min Max Inventory system">)
     or the Min Max icon
-    (<img src="../../week12/min_max_inv/minmax.svg" style="width:3em">).
+    (<img src="../../week12/min_max_inv/minmax.svg" style="width:3em"
+    alt="The icon for the Min Max Inventory system">).
     Ask ChatGPT the following:
     <ol>
         <li><div class="gpt">What is an svg file?</div></li>
