@@ -30,7 +30,7 @@
         <ul>
             <li><div>
                 <p>Deploy a web application to an AWS S3 (autoscaling) bucket directly from your computer</p>
-                <p>Normally, you would also use AWS Cloudfront for autoscaling too but we won't do that</p>
+                <p>Normally, you would also use AWS CloudFront for autoscaling too but we won't do that</p>
             </div></li>
             <li><div>Use AWS (Amazon Web Services) and S3 Buckets</div></li>
             <li><div>Open necessary firewalls and ports for the website to work for clients who do not have a login to AWS</div></li>
@@ -59,7 +59,7 @@
                 <a target="_blank" href="#step6">Upload your website files to an S3 bucket</a>
             </div></li>
             <li><div>
-                <a target="_blank" href="#step7">Make the S3 bucket a webpage to the internet</a>
+                <a target="_blank" href="#step7">Make the S3 bucket a web page to the internet</a>
             </div></li>
             <li><div>
                 <a target="_blank" href="#step8">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</a>
@@ -116,12 +116,12 @@
 
         <h4 id="step6">Upload your website files to an S3 bucket</h4>
         <ol>
-            <li><div><a target="_blank" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#uploading-an-object-bucket">Learn how to upload webpage files to the S3 Bucket</a> </div></li>
+            <li><div><a target="_blank" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html#uploading-an-object-bucket">Learn how to upload web page files to the S3 Bucket</a> </div></li>
             <li><div>Upload your index.html file to the S3 bucket</div></li>
             <li><div>Can't figure it out? Google <strong>How do I deploy an file from my computer to an S3 bucket</strong></div></li>
         </ol>
 
-        <h3 id="step7">Make the S3 bucket a webpage to the internet</h3>
+        <h3 id="step7">Make the S3 bucket a web page to the internet</h3>
         <ol>
             <li><div>
                 <p>First, make sure that you did the steps above, you have an S3 bucket with your name in it AND make sure that you uploaded an index.html file to the S3 bucket</p>
@@ -132,7 +132,7 @@
                 <p><a target="_blank" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html">Website Hosting</a></p>
             </div></li>
             <li><div>
-                <p>Find the URL for your webpage:</p>
+                <p>Find the URL for your web page:</p>
                 <p><a target="_blank" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html">Website Endpoints</a></p>
             </div></li>
             <li><div>
@@ -168,7 +168,7 @@
         </ol>
 
         <h3 id="step8">HTTP vs HTTPS (the ‘S’ is secure = it is encrypted)</h3>
-        <p>For your website to be secure, you need to add an SSL certificate and AWS requires Cloudfront distribution on top of the S3 bucket if you want https. Because we aren’t using Cloudfront, you have to use http (not https).</p>
+        <p>For your website to be secure, you need to add an SSL certificate and AWS requires CloudFront distribution on top of the S3 bucket if you want https. Because we aren’t using CloudFront, you have to use http (not https).</p>
         <p>We will load our site with http:// (not https://). Passwords would be visible on the network by using http. This is a big security problem. Don’t add authentication to this scenario.</p>
 
         <h3 id="step9">Website URL</h3>
@@ -189,15 +189,15 @@
 
         <h2 id="learning-more">Learning More</h2>
         <p>Want to learn more about AWS? Take ITM310 Applied Cloud Computing.</p>
-        <p>Build your resume: Deployed a Javascript website to an AWS S3 bucket</p>
-        <p>Build your resume (FUTURE project): Implemented AWS CloudFront distribution for a Javascript website in an S3 bucket</p>
+        <p>Build your resume: Deployed a JavaScript website to an AWS S3 bucket</p>
+        <p>Build your resume (FUTURE project): Implemented AWS CloudFront distribution for a JavaScript website in an S3 bucket</p>
 
         <h2>Learning More - Add a Version Control Repository with CI/CD Pipelines</h2>
-        <p>Load the crud.html into your S3 bucket and make sure your database is working too. Add the S3 URL domain to your firebase console.</p>
+        <p>Load the crud.html into your S3 bucket and make sure your database is working too. Add the S3 URL domain to your Firebase console.</p>
 
         <h2>Learning More - Add a Version Control Repository with CI/CD Pipelines</h2>
         <p><a target="_blank" href="https://docs.aws.amazon.com/whitepapers/latest/cicd_for_5g_networks_on_aws/cicd-on-aws.html">AWS CI/CD Pipelines</a></p>
-        <p>Build your resume (FUTURE project): Built a CD/CI pipeline from ___________ for a Javascript website to an S3 bucket</p>
+        <p>Build your resume (FUTURE project): Built a CD/CI pipeline from ___________ for a JavaScript website to an S3 bucket</p>
     </article>
 </body>
 </html>

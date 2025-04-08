@@ -36,13 +36,13 @@
             <li><div>Improve security of the system by adding
             authentication to Google Firebase (for logging)</div></li>
             <li><div>Restrict edit access to specific users using the
-            firebase database rules (UID)</div></li>
+            Firestore database rules (UID)</div></li>
         </ul>
 
         <h2>Project Overview</h2>
         <ul class="long">
             <li><div>Hopefully, you already have a working website
-            connected to the firebase database. If not, follow this
+            connected to the Firestore database. If not, follow this
             tutorial <a target="_blank" href="../week05/assignment-instructions.html">Firebase
             Website with Database</a>.</div></li>
             <li><div>Add Authentication to the Firebase Website and
@@ -58,10 +58,10 @@
                 Step 2 - <a href="#step2">Add Authentication</a>
             </div></li>
             <li><div>
-                Step 3 - <a href="#step3">Update firebase database rules</a>
+                Step 3 - <a href="#step3">Update Firestore database rules</a>
             </div></li>
             <li><div>
-                Step 4 - <a href="#step4">Download the new code and webpages for authentication</a>
+                Step 4 - <a href="#step4">Download the new code and web pages for authentication</a>
             </div></li>
             <li><div>
                 Step 5 - <a href="#step5">Run <code>firebase deploy</code> to Firebase Hosting again to save changes</a>
@@ -141,7 +141,7 @@
             </div></li>
         </ol>
 
-        <h3 id="step3">Step 3 - Update firebase database rules</h3>
+        <h3 id="step3">Step 3 - Update Firestore database rules</h3>
         <ol class="long">
             <li><div>
                 <p>To add new projects/data to your database, the rules
@@ -175,7 +175,7 @@
             <li><div>Wait a minute for the changes to take effect.</div></li>
         </ol>
 
-        <h3 id="step4">Step 4 - Download the new code and webpages for authentication</h3>
+        <h3 id="step4">Step 4 - Download the new code and web pages for authentication</h3>
         <ol class="long">
             <li><div>
                 <p>In Visual Studio Code, open the project we have been working on - it might show up under <strong>Recent.</strong></p>
@@ -240,7 +240,7 @@ cd ..
             https://yourportfolioname.web.app/crud.html</p>
             </div></li>
             <li><div>
-            <p>Try logging in and playing with the various webpages
+            <p>Try logging in and playing with the various web pages
             above. Have your buddy or someone at your table login with
             their google account and see how they can edit and delete
             projects. We need to limit that to specific users in the
@@ -252,14 +252,14 @@ cd ..
         <h3 id="step6">Step 6 - Secure your website to only allow you to edit and view the projects - by UID</h3>
         <ol class="long">
             <li><div>In Firebase - Firestore Database settings, change
-            your firebase rules to only allow you to edit (write) and
+            your Firestore database rules to only allow you to edit (write) and
             view (read) the database. To accomplish this, you need to
             login to the website of YOUR URL, then get the UID from your
             Firebase authentication, and then put that UID into your
             Firestore Database rules.
             <ul>
                 <li><div>First, you need to obtain the UID (unique
-                identifier) of your Google user. Login to your webpage
+                identifier) of your Google user. Login to your web page
                 above first so it shows you authenticated as a user</div></li>
                 <li><div>https://yourportfolioname.web.app/crud.html
                 (USE YOUR URL instead)</div></li>
@@ -281,7 +281,7 @@ cd ..
                         <img src="../site/images/week06/firestore_uid.webp" alt="Firestore UID">
                     </div></li>
                     <li><div>
-                        <p>That is the unique ID (similar to your social security number or student I-number, but for this Google project). You will put this in your firestore database rules</p>
+                        <p>That is the unique ID (similar to your social security number or student I-number, but for this Google project). You will put this in your Firestore database rules</p>
                     </div></li>
                     <li><div>
                         <p>This is what that would look like (BUT REPLACE THE ORANGE TEXT IN THE LIST WITH YOUR UID - notice we added auth.uid in orange):</p>
@@ -308,14 +308,14 @@ service cloud.firestore {
             <ul class="long">
                 <li><div>https://yourportfolioname.web.app/crud.html
                 (USE YOUR URL instead)</div></li>
-                <li><div>You could use another personal gmail
+                <li><div>You could use another personal Gmail
                 account for testing too.</div></li>
             </ul>
             </div></li>
             <li><div>
             <p>It should look something like this below. You should be
             able to add projects to the list and they should pop up at
-            the bottom of the webpage</p>
+            the bottom of the web page</p>
             <img src="../site/images/week06/crud.webp" alt="CRUD Image">
             </div></li>
             <li><div>Add a project Name and a Project Description to
@@ -335,14 +335,14 @@ service cloud.firestore {
             from last week</a>.</div></li>
         </ul>
         <h4>You can’t edit projects on the page from last week. That is
-        because we changed the firebase rules on this project to allow
+        because we changed the Firestore database rules on this project to allow
         only authenticated users to read and write to the database</h4>
 
         <h3>If you cannot edit projects</h3>
         <ul class="long">
             <li><div>Make sure you are on the crud.html pages and not
             the page from last week.</div></li>
-            <li><div>You may need to wait for the firebase rules to
+            <li><div>You may need to wait for the Firestore database rules to
             finish being applied or clear your cache. If it still
             doesn’t work, wait a few minutes and do a SHIFT +
             refresh by pressing SHIFT on your keyboard and click the
@@ -370,7 +370,7 @@ service cloud.firestore {
             and/or other commands in the terminal</p>
             <p>(Windows) You may need to run the terminal commands in a
             <strong>command prompt</strong> window instead or in
-            powershell.</p>
+            PowerShell.</p>
             <p>(Windows) When you search for <strong>command
             prompt</strong> click on the <strong>run as
             administrator</strong> option.</p>
@@ -440,14 +440,14 @@ cd ..
             </div></li>
         </ul>
 
-        <h2 id="learning-more">Learning more - Adding more users to your firebase rules</h2>
+        <h2 id="learning-more">Learning more - Adding more users to your Firestore database rules</h2>
         <p>Want to learn more about user and identity management? Take CYBER450 Identity and Access Management.</p>
         <p>Want to learn more about Cybersecurity? Take CYBER201</p>
-        <p>Build your resume: Limited user access to firestore database with UIDs</p>
+        <p>Build your resume: Limited user access to Firestore database with UIDs</p>
         <p>Build your resume (FUTURE project): Implemented AWS Cognito for authentication on website deployed in an S3 bucket</p>
         <h3>Rick Roll</h3>
-        <p>A rick roll is where you hijack a website with something funny, usually the rick roll youtube video.</p>
-        <p>Add new content on your project webpage by using this unsecure code to see an XSS security vulnerability:</p>
+        <p>A rick roll is where you hijack a website with something funny, usually the rick roll YouTube video.</p>
+        <p>Add new content on your project web page by using this unsecure code to see an XSS security vulnerability:</p>
         <pre>
 &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
         </pre>
@@ -500,7 +500,7 @@ service cloud.firestore {
   }
 }
         </pre>
-        <p>This one allows anyone to read and write to products. However, anyone create read or view the projecst but only the user with that UID can write (add or create) to projects:</p>
+        <p>This one allows anyone to read and write to products. However, anyone can read or view the projects but only the user with that UID can write (add or create) to projects:</p>
         <pre>
 rules_version = '2';
 service cloud.firestore {

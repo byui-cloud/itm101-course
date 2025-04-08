@@ -46,7 +46,7 @@
     <h2>Table of Contents</h2>
     <ol>
         <li><div><a href="#part3">Part 3 - Terraform</a></div></li>
-        <li><div><a href="#step10">AWS Cloudshell</a></div></li>
+        <li><div><a href="#step10">AWS CloudShell</a></div></li>
         <li><div><a href="#step11">Install Terraform</a></div></li>
         <li><div><a href="#step12">Terraform Script File</a></div></li>
         <li><div><a href="#step13">Run Terraform</a>
@@ -68,12 +68,12 @@
     deploy the same thing but with automated scripts like Terraform in
     another region of what we previously installed in prior weeks.</p>
 
-    <h3 id="step10">AWS Cloudshell</h3>
+    <h3 id="step10">AWS CloudShell</h3>
     <p>In this assignment, you will install and use Terraform in the AWS
-    Cloudshell. <strong>Do not use the learner lab terminal, an EC2
+    CloudShell. <strong>Do not use the learner lab terminal, an EC2
     Linux terminal, or your VS Code terminal for running
-    Terraform.</strong> Use the AWS Cloudshell. The <dfn>AWS
-    Cloudshell</dfn> is a Linux terminal that allows us to run commands
+    Terraform.</strong> Use the AWS CloudShell. The <dfn>AWS
+    CloudShell</dfn> is a Linux terminal that allows us to run commands
     to easily deploy AWS resources.</p>
 
     <ol class="long">
@@ -86,12 +86,12 @@
         use for this assignment <strong>works in N.&nbsp;Virginia
         only.</strong></div></li>
 
-        <li><div><p>To open the AWS Cloudshell, in the AWS Console in
-        your browser, click the <strong>Cloudshell</strong> icon at the
+        <li><div><p>To open the AWS CloudShell, in the AWS Console in
+        your browser, click the <strong>CloudShell</strong> icon at the
         top or bottom left of the browser window.</p>
 
         <p>A navy blue frame will open at the bottom of the AWS Console.
-        This navy blue frame is the AWS Cloudshell. Be certain the tab
+        This navy blue frame is the AWS CloudShell. Be certain the tab
         in the upper left corner of this navy blue frame contains
         <strong>us-east-1</strong> which is another name for the United
         States N. Virginia region. In the following steps, paste the
@@ -102,11 +102,11 @@
     <h3 id="step11">Install Terraform</h3>
     <p><dfn>yum</dfn> is a package manager that we use to install
     software on Red Hat-based Linux distributions such as Fedora,
-    CentOS, and Amazon Linux. The AWS Cloudshell runs on Amazon Linux
+    CentOS, and Amazon Linux. The AWS CloudShell runs on Amazon Linux
     2023 (AL2023) so we often use the <code>yum</code> command to
-    install software in the Cloudshell.</p>
+    install software in the CloudShell.</p>
     <ol>
-        <li><div><p>In the AWS Cloudshell, install Terraform by running
+        <li><div><p>In the AWS CloudShell, install Terraform by running
         the following commands <strong>one by one (they will not work
         all together)</strong>:</p>
 <pre>sudo yum install -y yum-utils
@@ -122,7 +122,7 @@ sudo yum install -y terraform</pre>
     that will enable you to deploy a basic Linux server.</p>
 
     <ol class="long">
-        <li><div><p>In the same us-east-1 AWS Cloudshell, execute the
+        <li><div><p>In the same us-east-1 AWS CloudShell, execute the
         following command to download a Terraform file:</p>
         <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
         </div></li>
@@ -135,7 +135,7 @@ sudo yum install -y terraform</pre>
     <h3 id="step13">Run Terraform</h3>
     <ol class="long">
         <li><div><p>Execute the following commands in the AWS
-        Cloudshell. Executing the commands will run Terraform which will
+        CloudShell. Executing the commands will run Terraform which will
         read the <code>.tf</code> file you downloaded in the previous
         step and deploy the resources described in the <code>.tf</code>
         file.</p>
@@ -148,14 +148,14 @@ ls</pre>
         <p>The <strong>terraform apply</strong> command deploys the
         resources described in the <code>.tf</code> file. Among other
         things, the <code>.tf</code> file includes instructions to AWS
-        to generat a <code>.pem</code> key file in your Cloudshell
-        terminal. If you want, from the Cloudshell
+        to generate a <code>.pem</code> key file in your CloudShell
+        terminal. If you want, from the CloudShell
         <strong>Actions</strong> menu, you can download the
         <code>.tf</code> file to your laptop computer.</p>
 
         <p>The <strong>ls</strong> command displays the files and
         folders in the current working directory. Running the
-        <code>ls</code> command in your Cloudshell terminal will show
+        <code>ls</code> command in your CloudShell terminal will show
         you the <code>.tf</code> file that you downloaded and the
         <code>.pem</code> file that was created.</p>
         </div></li>
@@ -167,7 +167,7 @@ ls</pre>
         <li><div>Find the public IPv4 address of the new EC2 instance
         and copy it to the clipboard.</div></li>
 
-        <li><div><p>In the AWS Cloudshell, use the <strong>ssh</strong>
+        <li><div><p>In the AWS CloudShell, use the <strong>ssh</strong>
         command to connect remotely to the new EC2 instance. created in
         the same shell. (Replace 3.3.3.3 with the public IPv4 address of
         your new EC2 instance.)</p>
@@ -176,7 +176,7 @@ ls</pre>
 
         <li><div>Capture a screenshot of your remote ssh session and
         then enter the <strong>exit</strong> command to quit
-        <code>ssh</code> and return to your AWS Cloudshell.</div></li>
+        <code>ssh</code> and return to your AWS CloudShell.</div></li>
     </ol>
 
     <h2 id="part4">Part 4 - Deploy AI Chat with Terraform</h2>
@@ -202,7 +202,7 @@ ls</pre>
 
         <li><div><p>Using the AWS Console, <strong>make sure you’re
         working in the N.&nbsp;Virginia region</strong>. Then download
-        the <code>mainawslinuxeastAI.tf</code> file to your AWS Cloudshell.</p>
+        the <code>mainawslinuxeastAI.tf</code> file to your AWS CloudShell.</p>
         <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
         </div></li>
 
@@ -220,7 +220,7 @@ ls</pre>
 
     <h3 id="step14">Delete Resources</h3>
     <ol>
-        <li><div><p>In the AWS Cloudshell, run this command to delete
+        <li><div><p>In the AWS CloudShell, run this command to delete
         all the resources:</p>
         <pre>terraform destroy -auto-approve</pre>
         </div></li>

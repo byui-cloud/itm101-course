@@ -35,18 +35,18 @@
     <h2>Project Requirements</h2>
     <ul>
         <li><div>Modify an existing Terraform script</div></li>
-        <li><div>Save the script in a file in the AWS Cloudshell</div></li>
+        <li><div>Save the script in a file in the AWS CloudShell</div></li>
         <li><div>Install and run Terraform to deploy the script</div></li>
     </ul>
 
     <h2>Table of Contents</h2>
     <ol>
         <li><div><a href="#step1">Switch Regions</a></div></li>
-        <li><div><a href="#step2">AWS Cloudshell</a></div></li>
+        <li><div><a href="#step2">AWS CloudShell</a></div></li>
         <li><div><a href="#step3">Install Terraform</a></div></li>
         <li><div><a href="#step4">Find An AMI</a></div></li>
         <li><div><a href="#step5">Copy and Modify an Example .tf File</a></div></li>
-        <li><div><a href="#step7">Create a .tf File in the Cloudshell</a></div></li>
+        <li><div><a href="#step7">Create a .tf File in the CloudShell</a></div></li>
         <li><div><a href="#step8">Run Terraform</a></div></li>
         <li><div><a href="#step9">Connect to the EC2 Instance</a></div></li>
         <li><div><a href="#step10">Delete Resources</a></div></li>
@@ -64,17 +64,17 @@
         near the top right of the AWS Console.</div></li>
     </ol>
 
-    <h3 id="step2">AWS Cloudshell</h3>
-    <p>The <dfn>AWS Cloudshell</dfn> is a Linux terminal that allows us
+    <h3 id="step2">AWS CloudShell</h3>
+    <p>The <dfn>AWS CloudShell</dfn> is a Linux terminal that allows us
     to run commands to easily deploy AWS resources.</p>
 
     <ol>
-        <li><div><p>To open the AWS Cloudshell, in the AWS Console in
-        your browser, click the <strong>Cloudshell</strong> icon at the
+        <li><div><p>To open the AWS CloudShell, in the AWS Console in
+        your browser, click the <strong>CloudShell</strong> icon at the
         top or bottom left of the browser window.</p>
 
         <p>A navy blue frame will open at the bottom of the AWS Console.
-        This navy blue frame is the AWS Cloudshell. Be certain the tab
+        This navy blue frame is the AWS CloudShell. Be certain the tab
         in the upper left corner of this navy blue frame contains
         <strong>us-west-2</strong> which is another name for the United
         States N. Virginia region. In the following steps, paste the
@@ -85,11 +85,11 @@
     <h3 id="step3">Install Terraform</h3>
     <p><dfn>yum</dfn> is a package manager that we use to install
     software on Red Hat-based Linux distributions such as Fedora,
-    CentOS, and Amazon Linux. The AWS Cloudshell runs on Amazon Linux
+    CentOS, and Amazon Linux. The AWS CloudShell runs on Amazon Linux
     2023 (AL2023) so we often use the <code>yum</code> command to
-    install software in the Cloudshell.</p>
+    install software in the CloudShell.</p>
     <ol>
-        <li><div><p>In the AWS Cloudshell, install Terraform by running
+        <li><div><p>In the AWS CloudShell, install Terraform by running
         the following commands <strong>one by one (they will not work
         all together)</strong>:</p>
 <pre>sudo yum install -y yum-utils
@@ -127,7 +127,7 @@ sudo yum install -y terraform</pre>
         <li><div>
             Examine this
             <a href="mainawslinuxeast.tf">mainawslinuxeast.tf file</a>
-            and copy the contents of it into a text editor (preferrably
+            and copy the contents of it into a text editor (preferably
             VS Code) on your laptop.
         </div></li>
 
@@ -173,7 +173,7 @@ EOF</pre>
         </div></li>
     </ol>
 
-    <h3 id="step7">Create a .tf File in the Cloudshell</h3>
+    <h3 id="step7">Create a .tf File in the CloudShell</h3>
     <ol class="long">
         <li><div>
             <p>After you finish the <a href="#step6">instructions above</a>,
@@ -182,7 +182,7 @@ EOF</pre>
         </div></li>
 
         <li><div>
-            <p>In Cloudshell, create a Terraform <code>.tf</code> file
+            <p>In CloudShell, create a Terraform <code>.tf</code> file
             with vi (text editor):</p>
             <pre>vi main.tf</pre>
         </div></li>
@@ -204,7 +204,7 @@ EOF</pre>
     <h3 id="step8">Run Terraform</h3>
     <ol>
         <li><div>
-            <p>In the Cloudshell, run Terraform to deploy your new EC2 instance</p>
+            <p>In the CloudShell, run Terraform to deploy your new EC2 instance</p>
 <pre>terraform init
 terraform plan
 terraform apply -auto-approve
@@ -221,7 +221,7 @@ ls</pre>
             Find the newly deployed instance and copy the public IPv4 address
         </div></li>
         <li><div>
-            <p>In the Cloudshell run the ssh command to connect to the
+            <p>In the CloudShell run the ssh command to connect to the
             newly deployed EC2 instance:</p>
             <pre>ssh -i private_key.pem ec2-user@youripaddress</pre>
             <p>Replace <strong>youripaddress</strong> with the public
@@ -247,7 +247,7 @@ ls</pre>
             <p>Normally, you would not do this because you want to keep
             the resources deployed, but while you are learning and
             testing you might want to delete everything. In the AWS
-            Cloudshell, run the follwing command to delete all of the
+            CloudShell, run the following command to delete all of the
             resources:</p>
             <pre>terraform destroy -auto-approve</pre>
         </div></li>

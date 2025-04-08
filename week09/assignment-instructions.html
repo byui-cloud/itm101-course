@@ -74,7 +74,7 @@
             <li><div>
                 <p>Pick how much processing power and RAM you want. We will stick with the default <strong>t2.micro</strong></p>
                 <img src="../site/images/week10/ec2_instance_type.png" alt="EC2 Instance Type">
-                <p>If you are going to use a GUI (we are not), you will want ot do at least a t3.small instance. This server doesn't have a GUI though. It is only accessible from a terminal.</p>
+                <p>If you are going to use a GUI (we are not), you will want to do at least a t3.small instance. This server doesn't have a GUI though. It is only accessible from a terminal.</p>
             </div></li>
             <li><div>
                 <p>Click <strong>Create New Key Pair</strong>. This is the security key you need to connect to the server. It is like a password file.</p>
@@ -107,7 +107,7 @@
                 <img src="../site/images/week10/ec2_connect_to_instance2.png" alt="EC2 Connect to Instance From Amazon">
                 <ul>
                     <li><div>
-                        <p><strong>Alternatively</strong>, you could use Powershell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPV4 address):</p>
+                        <p><strong>Alternatively</strong>, you could use PowerShell or terminal to ssh in with the key you downloaded earlier. You would need to find the public IP of your EC2 instance in the <strong>details</strong> page under <strong>instances</strong> in the EC2 dashboard and run the following command (replace 3.3.3.3 with your public IPv4 address):</p>
                         <pre>ssh -i yourkey.pem ubuntu@3.3.3.3</pre>
                     </div></li>
                 </ul>
@@ -138,7 +138,7 @@
             </div></li>
             <li><div>
                 <p>Major OS upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
-                <p>Check the LTS version and see when the endo fo life is for that version of Ubuntu. You might have to do a major upgrade:</p>
+                <p>Check the LTS version and see when the end of life is for that version of Ubuntu. You might have to do a major upgrade:</p>
                 <p>This does a major update from something like Ubuntu 22 to Ubuntu 24 (Only run this if you need to):</p>
                 <pre>sudo do-release-upgrade</pre>
                 <pre>sudo reboot</pre>
