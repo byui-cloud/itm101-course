@@ -12,17 +12,21 @@
     <link rel="icon" type="image/png" href="../site/logo.png">
     <link rel="canonical" href="https://byui-cloud.github.io/itm101-course/week03/day1.html">
     <meta name="description" content="Week 3 Day 1 in-class activity for the BYU-Idaho ITM 101 Introduction to Cloud Technologies course">
+
+    <style>
+        img { vertical-align: text-bottom; }
+    </style>
 </head>
 
 <body>
 <article>
-    <h2>Week 3 Day 1</h2>
-    <h1>In-class Activity: What is a Web Site?</h1>
+    <h2>Week 3 Day 1 In-class Activity</h2>
+    <h1>What is a Web Site?</h1>
 
     <h3>Summary</h3>
     <p>This activity will demonstrate how websites function at a basic
     level. You will create a simple web page that is generated with
-    ChatGPT.</p>
+    ChatGPT and deploy it in the Google Cloud Shell.</p>
 
     <h3>Approximate Time to Complete</h3>
     <p>45 minutes</p>
@@ -32,12 +36,12 @@
     computer can understand and know where to find each file.</p>
 
     <p>Try the following prompt with ChatGPT:</p>
-    <p class="gpt">Tell me simply how website’s files are organized?</p>
+    <p class="gpt">Tell me simply how a website’s files are organized?</p>
 
-    <h3>What is an index.html file - talk with your buddy.</h3>
-    <p>In the root directory there is a file called index.html that
-    exists for almost every website. Ask ChatGPT about it with the
-    prompt below.</p>
+    <h3>What Is an index.html File?</h3>
+    <p>In the root directory there is a file called
+    <code>index.html</code> that exists for almost every website. Ask
+    ChatGPT about it with the prompt below.</p>
     <p class="gpt">What is the importance of the index.html file?</p>
 
     <p>Let’s create one to see what the code looks like. Use this prompt.</p>
@@ -46,36 +50,112 @@
     <p>Look at the code to see how it is organized. Talk with a buddy
     about it.</p>
 
-    <h3>Other elements of a website</h3>
-    <p>The HTML on its own, acts as a backbone to a website. It can give
-    us a static page to view content but not in the best way. To make
-    the page more interactive and pretty, it links to other sources to
-    generate the page.</p>
+    <h3>Other Elements of a Website</h3>
+    <p>HTML files act as the backbone to a website. Each HTML file can
+    give us a static page to view content but not in the best way. To
+    make a web page more interactive and pretty, a web page links to
+    other files to generate the page.</p>
 
     <p>Ask ChatGPT:</p>
-    <p class="gpt">How does the index.html file link to other files?</p>
+    <p class="gpt">What types of files does an index.html file link to?</p>
 
     <p>To start building our own website, we will just use HTML, but
     eventually we will use ChatGPT to generate more complex sites.</p>
 
-    <h3>Creating HTML</h3>
-    <p>Like we’ve seen, we can use ChatGPT to build some basic HTML
-    code. Think of a prompt to ask ChatGPT that will generate some HTML
-    code.</p>
+    <h3>Create an HTML File</h3>
+    <ol>
+        <li><div>Using VS Code on your laptop computer, create a new
+        folder named <code>google-cloudshell-webserver</code></div></li>
 
-    <p>Create a new file called <code>mywebsite.html</code> in VS code.
-    Take the code that ChatGPT gave you and paste it into this file.</p>
+        <li><div>Create an <code>index.html</code> file.
+        <ol>
+            <li><div>In your new <code>google-cloudshell-webserver</code>
+            folder, create a new file named
+            <code>index.html</code></div></li>
+            <li><div>Ask ChatGPT to write an HTML file for you that
+            describes any topic that interests you.</div></li>
+            <li><div>Copy and paste the HTML code from ChatGPT into your
+            <code>index.html</code> file.</div></li>
+            <li><div>Save your <code>index.html</code> file.</div></li>
+        </ol></div></li>
+    </ol>
 
-    <h3>Viewing the file</h3>
-    <p>Browsers, such as Chrome or Safari, are built to run a couple
-    different languages straight from the browser.</p>
+    <h3>View your HTML File</h3>
+    <p>Browsers, such as Chrome or Safari, are built to run code in
+    several different programming languages.</p>
 
-    <p class="gpt">What different languages can I run in my browser?</p>
+    <p class="gpt">What different programming languages can I run in my browser?</p>
 
     <p>We can see that HTML can be run from our browser. Take your
-    mywebsite.html file and view it in your browser.</p>
+    <code>index.html</code> file and view it in your browser.</p>
 
     <p>It’s nothing fancy, but it is the base for how websites are created.</p>
+
+    <h3>Deploy your HTML File</h3>
+    <p>If you want other people to see the web pages that you create,
+    you must store the HTML files on a computer that is a web server.
+    During this course, you will put your HTML files on several
+    different types of web servers. Today, you will put your HTML file
+    on a web server in the Google Cloud.</p>
+
+    <ol class="long">
+        <li><div>Download and save this
+        <a download href="server.js"><code>server.js</code> file</a>
+        into your <code>google-cloudshell-webserver</code>
+        folder.</div></li>
+
+        <li><div>In a browser window that is signed into your BYU-Idaho
+        Google account, open the
+        <a href="https://console.cloud.google.com">Google Cloud Platform
+        console</a></div></li>
+
+        <li><div>Press Ctrl-O to open the project picker.</div></li>
+
+        <li><div>Click the "New Project" button in the upper right
+        corner of the Project Picker window.</div></li>
+
+        <li><div>Create a new project named
+        <code>google-cloudshell-webserver</code>.
+        <ol>
+            <li><div>Name your project "google-cloudshell-webserver".</div></li>
+            <li><div>Select "byui.edu" from the Organization drop-down
+            list.</div></li>
+            <li><div>Click the "Create" button.</div></li>
+        </ol></div></li>
+
+        <li><div>Activate the the Cloud Shell by clicking the Cloud
+        Shell icon (<img src="cloud_shell_icon.webp">) in the upper
+        right corner.</div></li>
+
+        <li><div>Authorize the Cloud Shell.</div></li>
+
+        <li><div>Upload your <code>server.js</code> and
+        <code>index.html</code> files to the Cloud Shell.
+        <ol>
+            <li><div>Click the more menu items icon
+            (<img src="more_items_icon.webp">) that is in the title bar
+            of the Cloud Shell terminal panel.</div></li>
+            <li><div>Click the "Upload" button.</div></li>
+            <li><div>Click the "Choose Files" tab.</div></li>
+            <li><div>Upload both of your <code>server.js</code> and
+            <code>index.html</code> files</div></li>
+        </ol></div></li>
+
+        <li><div>In the Cloud Shell terminal panel, run your
+        <code>server.js</code> file by entering this command:
+        <code>node server.js</code></div></li>
+
+        <li><div>Preview your <code>index.html</code> file in your browser.
+        <ol>
+            <li><div>Click the Web Preview icon
+            (<img src="web_preview_icon.webp">) in the title bar of the
+            Cloud Shell terminal panel. Then click "Preview on port
+            8080." This will open a new tab in your browser.</div></li>
+            <li><div>In the address bar of the new tab delete this text:
+            "?authuser=0" and then press the enter key. This should open
+            your <code>index.html</code> page in your browser tab.</div></li>
+        </ol></div></li>
+    </ol>
 
     <p><strong>Start working on Saturday’s assignment.</strong></p>
 </article>
