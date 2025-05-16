@@ -528,35 +528,8 @@ article dl.long dd {
 }
 
 
-/* Figures */
-article figure {
-	page-break-inside: avoid !important;
-	margin: 0 0 1em 0;
-}
-
-article figure.full {
-	margin: 0 0 1em 0;
-}
-
-article figure.center {
-	display: table;
-	margin: 0 auto 1em auto;
-}
-
-article figure.right {
-	float: right;
-	margin: 0 0 1em 1em;
-}
-
-article figure > img {
+article img {
 	max-width: 100%;
-}
-
-article figure > figcaption {
-	font-size: 90%;
-	text-align: left;
-	margin: 0 auto 1em auto;
-	width: fit-content;
 }
 
 
