@@ -186,13 +186,18 @@ permissions to view, edit, and delete the data.</p>
 deploying applications in the Internet Cloud by doing any of the
 following.</p>
 <ol class="long">
-    <li><div>
-        Put your Min-Max Inventory front-end in AWS. You could use an S3 bucket, AWS Amplify, or and Ec2 instance with Linux and a webserver such as NGINX.
+    <li><div>Put the front end files of your Min-Max Inventory into AWS.
         <ol>
-            <li><div>Put your files (html, css, javascript, svg) that are the front-end in AWS.</div></li>
-            <li><div>Make sure to add your new URL from AWS to the authorized list of domains in your firebase authentication settings.</div></li>
+            <li><div>Upload the files in your "public" sub-directory
+            (html, css, javascript, svg) into an AWS service. You could
+            use an S3 bucket, Amplify, or an EC2 instance with Linux and
+            a webserver such as NGINX.</div></li>
+            <li><div>Make sure to add your new AWS URL to the authorized
+            list of domains in your firebase authentication
+            settings.</div></li>
         </ol>
-    </div></li>    
+    </div></li>
+
     <li><div>Make it possible for some users to only read data in the
     Firestore database and for other users to read and write. You could
     do this by
