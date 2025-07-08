@@ -210,9 +210,17 @@ ls</pre>
         <code>mainawslinuxeastAI.tf</code> file. This will deploy
         another EC2 instance and install the AI Chat server.</div></li>
 
-        <li><div>Test the newly deployed AI Chat server by entering the
+        <li><div>Wait a few minutes. Test the newly deployed AI Chat server by entering the
         public IP address (http://publicip:3000) of the newly deployed
-        EC2 instance into a new tab in your browser.</div></li>
+        EC2 instance into a new tab in your browser. 
+        </div></li>
+
+        <li><div>Once your webpage is working, you may
+        need to click "Get Started" and then add your email and create a password.
+        </div></li>
+        
+        <li><div>Go to the admin panel settings (click on your user icon circle), and click on 
+        "Models" and click the download icon. Pull a model from Ollama.com by typing in 'llama3.2' and click the download button. Once it downloads, go try a chat.</div></li>
 
         <li><div>Capture a screenshot of the AI Chat working in your
         browser.</div></li>
@@ -233,11 +241,25 @@ ls</pre>
         Lab</strong>.</div></li>
     </ol>
 
+        <h3>Troubleshooting</h3>
+        <ol>
+            <li><div>Did you use your public IP address? Once your webpage is working, click "Get Started" and then you may
+        need to add your email and create a password. 
+        </div></li>
+
+        <li><div>If your model, doesn't work, you may need to install ollama by running these in the EC2 instance terminal:
+        <p>Confirm ollama is running by typing "ollama" and if not, run this to install it:</p>
+        <p>curl -fsSL https://ollama.com/install.sh | sh</p>
+        <p>If you go to the admin panel and the connection doesn't work, you may need to run this:</p>
+        <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh</p></div></li>
+        </ol>
+
     <h3>Saturday Homework</h3>
     <p><strong>Your homework due Saturday night is more than what you
     just finished.</strong> Look at the
     <a href="assignment-instructions.html">assignment details</a>.
     Notice it is in a different region: Oregon not N.&nbsp;Virginia.</p>
+
 
     <h2 id="learn-more">Learn More</h2>
     <ul class="long">
