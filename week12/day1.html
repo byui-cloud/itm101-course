@@ -17,14 +17,15 @@
 <article>
     <div class="day">Week 12 Day 1</div>
     <h1>Launch an EC2 Instance with Terraform</h1>
-
+        Because it is all automated for us, we will deploy two instances in class: The RDP AWS Linux and the AI Chat Bot both in N. Virginia. 
+        Your homework is to do one more customized one in the Oregon region.
     <h2>Overview</h2>
     <p>Terraform allows you to quickly deploy a Linux Server, an app, a
     database, a docker container, and more, all in one file. Using
     Terraform, you could have deployed
-    <a href="../week09/assignment-instructions.html">Part 1 of EC2 Instances</a>
+    <a href="../week09/assignment-instructions.html">EC2 Instances</a>
     and
-    <a href="../week10/assignment-instructions.html">Part 2 of Docker</a>
+    <a href="../week10/assignment-instructions.html">Docker</a>
     from previous weeks. Check out all the servers and apps you can
     deploy with Terraform:
     <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
@@ -45,26 +46,29 @@
 
     <h2>Table of Contents</h2>
     <ol>
-        <li><div><a href="#part3">Part 3 - Terraform</a></div></li>
+        <li><div><a href="#part3">Terraform - Deploy AWS Linux Server with RDP</a></div></li>
         <li><div><a href="#step10">AWS CloudShell</a></div></li>
         <li><div><a href="#step11">Install Terraform</a></div></li>
         <li><div><a href="#step12">Terraform Script File</a></div></li>
         <li><div><a href="#step13">Run Terraform</a>
         <p></p></div></li>
-        <li><div><a href="#part4">Part 4 - Deploy AI Chat with Terraform</a>
+        <li><div><a href="#part4">Terraform - Deploy AI Chat with Terraform</a>
         <p></p></div></li>
         <li><div><a href="#step14">Delete Resources</a></div></li>
         <li><div><a href="#step15">Manage Budget</a></div></li>
         <li><div><a href="#learn-more">Learn More</a></div></li>
     </ol>
 
-    <h2 id="part3">Part 3 - Terraform</h2>
+    <h2 id="part3">Terraform - Deploy AWS Linux Server with RDP</h2>
+    <p>This script will automatically deploy an EC2 instance with an AWS Linux Server in the N. Virginia region. Make sure you are in that region.</p>
+    <p>It will also open port 22 for ssh, 3389 for RDP, create an elastic/public IP, and associate it.</p>
+    <p>It will also create a .pem file to ssh into it.</p>
     <p>Terraform scripts allow you to deploy the AI Chat and other
-    Linux systems such as the ones we deployed in
-    <a href="../week09/assignment-instructions.html">Part 1 of EC2 instances</a>
-    and also
-    <a href="../week10/assignment-instructions.html">Part 2 of Docker</a>
-    all in one file, especially if you use Linux scripts too. Now, let’s
+    Linux systems such as the ones we previous deployed but automatically such as the
+    <a href="../week09/assignment-instructions.html">EC2 instances</a>
+    and also the 
+    <a href="../week10/assignment-instructions.html">Docker assignment</a>
+    all in one file, especially if you add Linux scripts to install additional things in the tf file. Now, let’s
     deploy the same thing but with automated scripts like Terraform in
     another region of what we previously installed in prior weeks.</p>
 
@@ -179,11 +183,11 @@ ls</pre>
         <code>ssh</code> and return to your AWS CloudShell.</div></li>
     </ol>
 
-    <h2 id="part4">Part 4 - Deploy AI Chat with Terraform</h2>
+    <h2 id="part4">Deploy AI Chat with Terraform</h2>
     <h3>Business Requirements</h3>
     <ul>
         <li><div>Deploy an AWS AI Web-based Chat on AWS using
-        terraform</div></li>
+        terraform. This is all automated.</div></li>
     </ul>
 
     <h3>Use Terraform to Deploy AI Chat</h3>
