@@ -85,6 +85,34 @@ permissions to view, edit, and delete the data.</p>
         <li><div>Click the “Save” button.</div></li>
     </ol></div></li>
 
+    <li><div>Using the Firebase Console in your browser, add a new
+    collection named “users” to your Firestore database. This is case
+    sensitive. It must be “users” and not “Users”.</div></li>
+
+    <li><div>Still using the Firebase Console, add a document to the
+    “users” collection.
+    <ol>
+        <li><div>For the “Document ID”, don’t click the “Auto-ID”
+        button. Instead, enter your BYU-Idaho email address.</div></li>
+
+        <li><div>Add a field named “enabled” to the document. The
+        “enabled” field must by of type boolean with the value
+        <code>true</code> as shown in the following screenshot:
+        <img src="addDoc.webp" style="width:100%"
+        alt="Screenshot of a popup window to add a document to the users
+        collection"
+        title="Screenshot of a popup window to add a document to the users
+        collection"></div></li>
+    </ol></div></li>
+
+    <li><div>Still using the Firebase Console, add two more documents to
+    the “users” collection: one with your teacher’s email address and
+    one with your teaching assistant’s email address. Both of these
+    documents should contain a field named “enabled” of type boolean set
+    to the value <code>true</code>. Adding these two documents will
+    allow your teacher or teaching assistant to grade your
+    project.</div></li>
+
     <li><div>Using your browser, download the
     <a download href="firestore.rules">firestore.rules</a> file and save
     it into the the <code>min_max_inv</code> folder that you created
@@ -125,35 +153,11 @@ permissions to view, edit, and delete the data.</p>
     <li><div>If you’re not already signed into your Google account, you
     must sign into one. After you sign in, your Min-Max Inventory app
     will display your name, email address, and application user ID at
-    the top of the application window.</div></li>
-
-    <li><div>Using the Firebase Console in your browser, add a new
-    collection named “users” to your Firestore database. This is case
-    sensitive. It must be “users” and not “Users”.</div></li>
-
-    <li><div>Still using the Firebase Console, add a document to the
-    “users” collection.
-    <ol>
-        <li><div>For the “Document ID”, don’t click the “Auto-ID”
-        button. Instead, copy and paste your application user ID which
-        will be in your browser at the top of your Min-Max Inventory app
-        tab.</div></li>
-
-        <li><div>Add two fields named “email” and “enabled” to
-        the document. The “enabled” field must by of type boolean as shown
-        in the following screenshot:
-        <img src="addDoc.png" style="width:100%"
-        alt="Screenshot of a popup window to add a document to the users
-        collection"
-        title="Screenshot of a popup window to add a document to the users
-        collection"></div></li>
-    </ol></div></li>
-
-    <li><div>Reload your Min-Max Inventory system in your browser. All
-    of the tabs (Suppliers, Products, Receiving, and Outgoing) should
-    display data from your Firestore database. If any of the tabs don’t
-    contain data, you may have created the user document incorrectly in
-    the previous step.</div></li>
+    the top of the application window. Also all of the tabs (Suppliers,
+    Products, Receiving, and Outgoing) should display data from your
+    Firestore database. If any of the tabs don’t contain data, you may
+    have created the user document incorrectly in the previous
+    step.</div></li>
 
     <li><div>Using your browser, test your Min-Max Inventory system
     thoroughly by doing the following:
@@ -170,14 +174,6 @@ permissions to view, edit, and delete the data.</p>
 
     <!--
     <li><div></div></li>
-    <li><div></div></li>
-    <li><div></div></li>
-
-    <li><div>Using your browser in the Firebase console, enable
-    authentication.</div></li>
-
-    <li><div>If you’re curious, you could ask your teacher or ChatGPT
-    what is the purpose of each of the files in a web app.</div></li>
     -->
 </ol>
 
