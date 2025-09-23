@@ -1,5 +1,6 @@
-!#/bin/bash
+#!/bin/bash
 curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week06/firestore.rules
+mkdir -p public 
 cd public
 curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week06/cr.html
 curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week06/crd.html
