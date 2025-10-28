@@ -309,6 +309,7 @@
         <ul>
             <li><div>
                 <p>Find the email invite that was sent to your BYU-I email address that ends in @byui.edu</p>
+                <p>Make sure to Create New Canvas account if you haven't used AWS before on campus.</p>
             </div></li>
         </ul>
 
@@ -323,6 +324,12 @@
         <ul>
             <li><div>
                 <p>Did you open both port 3000 and port 11434? Check your instance security group inbound rules.</p>
+                <p>Did you put http:// instead of https://</p>
+                <p>Did you put your IP address with http://yourpublicip:3000</p>
+                <p>Did you put port :3000 at the end of the URL?</p>
+                <p>Is docker running? In the AWS terminal/ssh connection, type "sudo docker ps" and make sure it shows it running. If not, go back up to the docker section to install and run that:</p>
+                    <p>sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>
+                </p>
             </div></li>
         </ul>
         <h3>Model Not Selected Error on browser</h3>
@@ -336,6 +343,7 @@
             </div></li>
             <li><div>
                 <p>Did you download the 'llama3.2' model in the Admin Panel settings under Models?</p>
+                <p>Try this: curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh</p>
             </div></li>
         </ul>
 
@@ -348,7 +356,7 @@
                 <p>Environment="OLLAMA_HOST=0.0.0.0"
                     Environment="OLLAMA_ORIGINS=3.210.150.106:*"</br>
                     Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"</p>
-                <p>If you don't see those three lines, run this and then go refresh the connection in the admin panel settings:</p>
+                <p>If you don't see those three lines or if yours isn't working still, run this and then go refresh the connection in the admin panel settings:</p>
                 <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh </p>
             </div></li>
         </ul>
