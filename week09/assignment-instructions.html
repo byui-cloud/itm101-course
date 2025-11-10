@@ -90,7 +90,7 @@
                 <img src="../site/images/week10/ec2_network_settings.png" alt="EC2 Network Settings">
             </div></li>
             <li><div>
-                <p>Pick how much hard drive space you need on the server</p>
+                <p>Pick how much hard drive space you need on the server. Leave the default of 8 GB.</p>
                 <img src="../site/images/week10/ec2_configure_storage.png" alt="EC2 Configure Storage">
                 <p>Click <strong>Launch Instance</strong></p>
             </div></li>
@@ -114,7 +114,7 @@
             </div></li>
         </ol>
 
-        <h3 id="step4">Run Security Updates</h3>
+        <h3 id="step4">Run Security Updates (Optional but Highly Recommended)</h3>
         <p><code>apt</code> is a package manager that we use to install
         software on Debian-based Linux distributions such as Debian,
         Ubuntu, and Mint. For this assignment, you are using a Ubuntu
@@ -127,8 +127,6 @@
                 <pre>sudo apt update</pre>
                 <p>This applies the updates for the software and services that need updates</p>
                 <pre>sudo apt upgrade</pre>
-                <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates)</p>
-                <pre>sudo reboot</pre>
             </div></li>
             <li><div>
                 <p>Linux Kernel Upgrades (take a snapshot and test on a copy first - dev server if possible):</p>
