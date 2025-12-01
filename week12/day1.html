@@ -179,9 +179,20 @@ ls</pre>
         </div></li>
 
         <li><div>Capture a screenshot of your remote ssh session and
-        then enter the <strong>exit</strong> command to quit
+        then type the <strong>exit</strong> command to quit
         <code>ssh</code> and return to your AWS CloudShell.</div></li>
+        <p>Make sure to type exit to get out of the ssh session of your new Linux server.</p>
+        <pre>exit</pre>
     </ol>
+    <h3 id="step14">Delete Resources</h3>
+    <ol>
+        <li><div><p>In the AWS CloudShell, run this command to delete
+        all the resources created by the Terraform script:</p>
+        <pre>terraform destroy -auto-approve</pre>
+        </div></li>
+        <li>Delete the terraform script file:</li>
+        <pre>rm mainawslinuxeast.tf</pre>
+    </ol>    
 
     <h2 id="part4">Deploy AI Chat with Terraform</h2>
     <h3>Business Requirements</h3>
