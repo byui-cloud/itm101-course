@@ -226,8 +226,11 @@ ls</pre>
         <pre>terraform apply -auto-approve</pre>
         <li>This will deploy
         another EC2 instance and install the AI Chat server.</div></li>
+        <li>Wait a few minutes.</li>
+        <li>Run this code to update the IP address:</li>
+        <li>terraform apply -refresh-only</li>
 
-        <li><div>Wait a few minutes. Test the newly deployed AI Chat server by entering the
+        <li><div>Test the newly deployed AI Chat server by entering the
         public IP address (http://publicip:3000) of the newly deployed
         EC2 instance into a new tab in your browser. 
         </div></li>
