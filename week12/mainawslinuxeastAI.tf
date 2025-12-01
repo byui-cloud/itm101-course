@@ -102,8 +102,8 @@ EOF
  
 }
 # Create an output with the instance's public IP.
-# use terraform command to get the public IP: terraform output instance_public_ip
-output "instance_public_ip" {
+# use terraform command to get the public IP: terraform output instance_public_ip_ai
+output "instance_public_ip_ai" {
   description = "Public IP address of the EC2 instance"
   value       = aws_instance.awslinx_host_ai.public_ip
 }
