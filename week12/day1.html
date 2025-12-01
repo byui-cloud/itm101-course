@@ -224,11 +224,11 @@ ls</pre>
         <li><div>Use Terraform plan and apply the
         <code>mainawslinuxeastAI.tf</code> file:</li>
         <pre>terraform apply -auto-approve</pre>
-        <li>This will deploy
-        another EC2 instance and install the AI Chat server.</div></li>
-        <li>Wait a few minutes.</li>
-        <li>Run this code to update the IP address:</li>
-        <li>terraform apply -refresh-only</li>
+        <li><div>This will deploy
+        a new EC2 instance and install the AI Chat server.</div></li>
+        <li><div>Wait a few minutes.</div></li>
+        <li><div>Run this code to update the IP address:</div></li>
+        <li><div>terraform apply -refresh-only</div></li>
 
         <li><div>Test the newly deployed AI Chat server by entering the
         public IP address (http://publicip:3000) of the newly deployed
@@ -236,11 +236,11 @@ ls</pre>
         </div></li>
 
         <li><div>Once your webpage is working, you may
-        need to click "Get Started" and then add your email and create a password.
+        need to click "Get Started" and then add your email and create a password. The website is not https and the password is not secure so use a simple one.
         </div></li>
         
-        <li><div>Go to the admin panel settings (click on your user icon circle), and click on 
-        "Models" and click the download icon. Pull a model from Ollama.com by typing in 'llama3.2' and click the download button. Once it downloads, go try a chat.</div></li>
+        <li><div>Go to the admin panel settings (click on your user icon circle and click on "Admin Panel" in the menu), and then click on "Settings" menu at the top. 
+        Now click on the "Models" menu on the left and click the download icon on the far right. In the "Pull a Model from Ollama.com" section, pull a model by typing an AI LLM model such as 'llama3.2' and click the download button. Once it downloads, click the "X" to exit that window. Click on the pencil chat icon on the left. Go try a chat.</div></li>
 
         <li><div>Capture a screenshot of the AI Chat working in your
         browser.</div></li>
