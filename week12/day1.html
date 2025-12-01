@@ -113,9 +113,9 @@
         <li><div><p>In the AWS CloudShell, install Terraform by running
         the following commands <strong>one by one (they will not work
         all together)</strong>:</p>
-<pre>sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum install -y terraform</pre>
+<pre>sudo yum install -y yum-utils</pre>
+<p>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</p>
+<pre>sudo yum install -y terraform</pre>
         </div></li>
     </ol>
 
@@ -128,7 +128,7 @@ sudo yum install -y terraform</pre>
     <ol class="long">
         <li><div><p>In the same us-east-1 AWS CloudShell, execute the
         following command to download a Terraform file:</p>
-        <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
+        <p>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</p>
         </div></li>
 
         <li><div>Examine the
@@ -207,7 +207,7 @@ ls</pre>
         <li><div><p>Using the AWS Console, <strong>make sure you’re
         working in the N.&nbsp;Virginia region</strong>. Then download
         the <code>mainawslinuxeastAI.tf</code> file to your AWS CloudShell.</p>
-        <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
+        <p>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</p>
         </div></li>
 
         <li><div>Use Terraform to init, plan, and apply the
