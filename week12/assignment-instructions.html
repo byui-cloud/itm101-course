@@ -92,9 +92,9 @@
         <li><div><p>In the AWS CloudShell, install Terraform by running
         the following commands <strong>one by one (they will not work
         all together)</strong>:</p>
-<pre>sudo yum install -y yum-utils</pre>
+<p>sudo yum install -y yum-utils</p>
 <p>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</p>
-<pre>sudo yum install -y terraform</pre>
+<p>sudo yum install -y terraform</p>
         </div></li>
     </ol>
 
@@ -278,11 +278,11 @@ EOF</pre>
             <p>In your Terraform script <code>user_data</code> section,
             you could do something like this where you install docker
             and docker containers:</p>
-<pre>sudo yum install -y docker
-sudo docker pull bkimminich/juice-shop
-sudo systemctl enable docker
-sudo service docker start
-sudo docker run --name naughty_keller -d --restart unless-stopped -p 80:3000 bkimminich/juice-shop</pre>
+<p>sudo yum install -y docker</p>
+<p>sudo docker pull bkimminich/juice-shop</p>
+<p>sudo systemctl enable docker</p>
+<p>sudo service docker start</p>
+<p>sudo docker run --name naughty_keller -d --restart unless-stopped -p 80:3000 bkimminich/juice-shop</p>
         </div></li>
 
         <li><div>
@@ -292,10 +292,10 @@ sudo docker run --name naughty_keller -d --restart unless-stopped -p 80:3000 bki
             <a target="_blank" href="https://hub.docker.com/">https://hub.docker.com/</a>
             ex: <a target="_blank" href="https://hub.docker.com/r/langchain/langchain">https://hub.docker.com/r/langchain/langchain</a>)
             (cmd: sudo docker pull langchain/langchain)</p>
-<pre>sudo docker pull _________
-sudo systemctl enable docker
-sudo service docker start
-sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 langchain/langchain</pre>
+<p>sudo docker pull _________</p>
+<p>sudo systemctl enable docker</p>
+<p>sudo service docker start</p>
+<p>sudo docker run --name myllm -d --restart unless-stopped -p 80:3000 langchain/langchain</p>
         </div></li>
     </ul>
 </article>

@@ -113,9 +113,9 @@
         <li><div><p>In the AWS CloudShell, install Terraform by running
         the following commands <strong>one by one (they will not work
         all together)</strong>:</p>
-<pre>sudo yum install -y yum-utils</pre>
+<p>sudo yum install -y yum-utils</p>
 <p>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</p>
-<pre>sudo yum install -y terraform</pre>
+<p>sudo yum install -y terraform</p>
         </div></li>
     </ol>
 
@@ -303,10 +303,9 @@ sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pr
 
             <li><div><p>SSH into the server and set the password for the
             ec2-user and enable RDP:</p>
-<pre>
-sudo passwd ec2-user
-sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
-</pre>
+<p>sudo passwd ec2-user</p>
+<p>sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
+</p>
             </div></li>
         </ul>
         </div></li>
