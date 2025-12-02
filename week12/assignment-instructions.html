@@ -77,7 +77,7 @@
         This navy blue frame is the AWS CloudShell. Be certain the tab
         in the upper left corner of this navy blue frame contains
         <strong>us-west-2</strong> which is another name for the United
-        States N. Virginia region. In the following steps, paste the
+        States Oregon region. In the following steps, paste the
         commands to install and run Terraform in this navy blue
         frame.</p></div></li>
     </ol>
@@ -112,7 +112,7 @@
             box.</p>
             <p>You can make your own AMI, but many free ones are
             available that you can pick from.</p>
-            <p>Leave the browser tab open showing the AMI number because
+            <p>Leave the browser tab open showing the AMI number (pick the X86 one for an Intel processor) because
             in a few steps from now, you will copy and paste the AMI
             number into a Terraform <code>.tf</code> file.</p>
         </div></li>
@@ -135,12 +135,12 @@
             Replace the us-east-1 region with
             <strong>us-west-2</strong>, remove <strong>ingress of
             RDP</strong> (if you didn't choose a Windows Server), and
-            the <strong>AMI number</strong> for the one you chose in the
-            last step.
+            replace the <strong>AMI number</strong> for the one you chose in the
+            last step (X86 AMI for Intel - if you want an ARM processor, change the instance type to a t2a.micro instead of t2.micro).
         </div></li>
 
         <li><div>Pick the amount of computing power you need and modify
-        your <code>.tf</code> file</div></li>
+        your <code>.tf</code> file (example: instance_type = "t3.micro").</div></li>
 
         <li><div>
             Copy and paste the AMI number from EC2 browser tab into your
@@ -149,7 +149,7 @@
         </div></li>
 
         <li><div>In your <code>.tf</code> file, open the ports you need
-        for the firewall.</div></li>
+        for the firewall/security group (ex: leave ssh for port 22 on ingress or add 3389 for Microsoft RDP).</div></li>
 
         <li><div>
             <p>You may want to run security updates automatically when
@@ -235,6 +235,17 @@ ls</pre>
             <p>See what folder you are in:</p>
             <pre>pwd</pre>
         </div></li>
+        <li><div>
+            <p>See what Operating System is running:</p>
+            <pre>cat /etc/os-release</pre>
+        </div></li>        
+        <li><div>
+            <p>Type your full name in the terminal to confirm identity for the assignment</p>
+            <pre>YourFirstName YourLastname</pre>
+        </div></li>  
+        <li><div>
+            <p>Take a screenshot to turn in of the output above, including your name and operating system.</p>
+        </div></li>          
         <li><div>
             <p>End the ssh session:</p>
             <pre>exit</pre>
