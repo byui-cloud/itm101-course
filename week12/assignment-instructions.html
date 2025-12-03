@@ -271,6 +271,24 @@ ls</pre>
         Lab</strong>.</div></li>
     </ol>
 
+    <h2>Troubleshooting</h2>
+        <ol>
+            <li><div>Are you in the correct AWS region?
+                <p>Make sure you are in the correct AWS region (Oregon for the homework part).</p>
+            </div></li>
+            <li><div>Did you run out of space on the Cloudshell? In Cloudshell, first, remove all terraform deployed resources:
+                <p>(<strong>WARNING</strong> - This will delete your servers and instances)</p>
+                <pre>terraform destroy -auto-approve</pre>
+                <p>Delete all terraform files:</p>
+                <pre>rm *.tf</pre>
+                <p>Now, clear up space by deleting all terraform files:</p>
+                <pre>rm -R .terraform</pre>
+                <p>Check disk usage with these commands:</p>
+                <pre>df -h</pre>
+                <pre>du -h</pre>
+            </div></li>
+        </ol>
+
     <h2 id="learn-more">Learn More</h2>
     <ul>
         <li><div>
