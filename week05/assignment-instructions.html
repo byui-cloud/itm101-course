@@ -221,11 +221,11 @@
             <p>Open Visual Studio Code and download this file for your operating system:</p>
             <ul>
                 <li><div><p>(Windows) <a download href="week5.bat">https://byui-cloud.github.io/itm101-course/week05/week5.bat</a></p> </div></li>
-                <li><div><p>(Mac/Apple) <a download href="week5.sh">https://byui-cloud.github.io/itm101-course/week05/week5.sh</a> </p></div></li>
+                <li><div><p>(Mac/Apple/Linux) <a download href="week5.sh">https://byui-cloud.github.io/itm101-course/week05/week5.sh</a> </p></div></li>
                 <li><div><p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p></div></li>
                 <li><div><p>(Windows) Run it with: ./week5.bat</p></div></li>
-                <li><div><p>(Mac/Apple) Run the following command in VS code: chmod 755 ./week5.sh</p></div></li>
-                <li><div><p>(Mac/Apple) Run it with: ./week5.sh</p></div></li>
+                <li><div><p>(Mac/Apple/Linux) Run the following command in VS code: chmod 755 ./week5.sh</p></div></li>
+                <li><div><p>(Mac/Apple/Linux) Run it with: ./week5.sh</p></div></li>
                 <li><div><p>week5.sh contains the following commands. If executing week5.bat/week5.sh on your computer didn’t work, you may need to execute the following commands:</p>
                 <pre>
 curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules
@@ -313,7 +313,7 @@ service cloud.firestore {
     <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
     <h3>Permission Errors or firebase deploy not working:</h3>
     <ul>
-        <li><div><p>(Mac/Apple) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal.</p></div></li>
+        <li><div><p>(Mac/Apple/Linux) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal.</p></div></li>
         <li><div><p>(Windows) You may need to run the terminal commands in a ‘command prompt’ window or in PowerShell.</p></div></li>
         <li><div><p>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</p></div></li>
     </ul>
@@ -362,7 +362,7 @@ rules_version = '2';
 
     <h3>Permission Errors or firebase installation not working:</h3>
     <ul>
-        <li><div>(Mac/Apple) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal</div></li>
+        <li><div>(Mac/Apple/Linux) You may need to run the ‘sudo’ command in front of the firebase installation commands and/or other commands in the terminal</div></li>
         <li><div>(Windows) You may need to run the terminal commands in a ‘command prompt’ window instead or in PowerShell.</div></li>
         <li><div>(Windows) When you search for <strong>command prompt</strong> click on the <strong>run as administrator</strong> option.</div></li>
     </ul>
@@ -421,6 +421,22 @@ rules_version = '2';
 }
         </pre></div></li>
     </ul>
+
+    <h3>My new pages don't show up - I only see "Firebase Hosting Setup Complete"</h3>
+    <ul>
+        <li><div>Make sure you are in the correct folder in the terminal when you run <strong>firebase init</strong> or <strong>firebase deploy</strong>. You need to be in the folder that contains the firebase.json file.</div></li>
+        </div></li>
+        <li><div>Make sure you have the correct file name in the URL. For example, if your file is called projects.html, make sure to add that to the end of the URL like this: https://yourportfolioname.web.app/projects.html</div></li>
+        <li><div>Make sure to refresh the URL in your web browser by clicking the refresh button. Hold the <strong>Shift</strong> key on your keyboard while you are clicking the refresh button to clear your cache.</div></li>
+        <li><div>Make sure that you have the projects.html file in the public folder of your project.</div></li>
+        <li><div>Make sure that you have a folder called 'public' and the index.html file is not the default generated code that shows the page "Firebase Hosting Setup Complete".</div></li>
+        <li><div>Try running <strong>firebase init</strong> again and make sure you select the correct options (look at the instructions in the previous days and weeks if needed for hosting and databases).</div></li>
+        <li><div>When run <strong>firebase init</strong> make sure that it shows the correct folder that your project is in and not a higher level folder.</div></li>
+        <li><div>If it is a higher level folder, then you might need to go delete the hidden 'firebase' files in the higher level folder.</div></li>
+        <li><div>To do this, open the terminal and navigate to that higher folder and run the command <strong>ls -a</strong> to see hidden files and folders. Look for .firebase or .firebaserc. Then run <strong>rm -rf .firebase*</strong> to delete the hidden firebase folders.</div></li>
+        <li><div>Also, delete the firebase.json file and 'public' folder in the higher level folder if it exists. Then navigate to the correct subfolder and try <strong>firebase init</strong> and <strong>firebase deploy</strong> again.</div></li>
+        
+    </ul>    
 
     <h2 id="learning-more">Learning More - Expand Your Database</h2>
     <p>Add more details to your database or make your site look better.</p>
