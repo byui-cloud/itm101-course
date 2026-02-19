@@ -146,9 +146,9 @@
                 <img src="../site/images/week07/addport3000cidr.jpg" alt="Add port 3000">
 
             </div></li>
-            <li><div>Also, add port 11434 with CIDR of 0.0.0.0 for ollama ai chat port (click add security group rule).</div>
+            <li><div>Also, add port 11434 with CIDR of 0.0.0.0 for ollama ai chat port (click add security group rule).</div></li>
             <li><div>Make sure you have 5 ports listed 3000 (AI website), 11434 (internal AI), 22 (ssh), 443 (https), 80 (http). They all should have CIDR of 0.0.0.0. If not add them. </div></li>
-            </li>
+            
             <li><div>
                 <p>Pick how much hard drive space you need on the server. Put 32 GB.</p>
                 <img src="../site/images/week07/32gbstorage.jpg" alt="EC2 Configure Storage">
@@ -285,7 +285,7 @@
                 <p>sudo cat /etc/systemd/system/ollama.service</p>
                 <p>#Do you see these three lines (but with your elastic IP):</p>
                 <p>Environment="OLLAMA_HOST=0.0.0.0"
-                    Environment="OLLAMA_ORIGINS=3.210.150.106:*"</br>
+                    Environment="OLLAMA_ORIGINS=3.210.150.106:*"<br>
                     Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"</p>
                     <p>If not, fix it with the vi steps above (press 'dd' to delete a line if needed).</p>
             </div></li>
@@ -330,7 +330,6 @@
                 <p>Did you put port :3000 at the end of the URL?</p>
                 <p>Is docker running? In the AWS terminal/ssh connection, type "sudo docker ps" and make sure it shows it running. If not, go back up to the docker section to install and run that:</p>
                     <p>sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</p>
-                </p>
             </div></li>
         </ul>
         <h3>Model Not Selected Error on browser</h3>
@@ -355,7 +354,7 @@
                 <p>sudo cat /etc/systemd/system/ollama.service</p>
                 <p>#Do you see these three lines (but with your elastic IP):</p>
                 <p>Environment="OLLAMA_HOST=0.0.0.0"
-                    Environment="OLLAMA_ORIGINS=3.210.150.106:*"</br>
+                    Environment="OLLAMA_ORIGINS=3.210.150.106:*"<br>
                     Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"</p>
                 <p>If you don't see those three lines or if yours isn't working still, run this and then go refresh the connection in the admin panel settings:</p>
                 <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh </p>
@@ -367,7 +366,7 @@
         <p>Build your resume: Deployed a Custom Chat AI to an AWS EC2 instance.</p>
         <p>Build your resume (possible FUTURE project): Deployed a Custom Chat AI with custom RAG and connected it to an RDS database with Cognito authentication</p>
 
-        <h2>Learning More - Add SSL for https</h2>
+        <h2>Learning More - Add SSL for https - you won't access it on port 3000 anymore though (https://yourpublicip)</h2>
         <p>Run this script to set up SSL for your Open WebUI instance:</p>
         <p>curl -O https://byui-cloud.github.io/itm101-course/week07/setup_openwebui_https.sh && sudo chmod a+x setup_openwebui_https.sh && sudo ./setup_openwebui_https.sh</p>
 
