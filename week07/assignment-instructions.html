@@ -42,7 +42,7 @@
             <li><div><a href="#step6">Run Security Updates</a></div></li>
             <li><div><a href="#step7">Run the ollama install scripts</a></div></li>
             <li><div><a href="#step8">Test the Web ollama Chat AI</a></div></li>
-            <li><div><a href="#troubleshooting">Troubleshooting & Common Problems</a></div></li>
+            <li><div><a href="#troubleshooting">Troubleshooting &amp; Common Problems</a></div></li>
             <li><div><a href="#learning-more">Learning More</a></div></li>
         </ol>
 
@@ -140,7 +140,7 @@
                 <p>Add security group rules.</p>
                 <p>Click the "Add security group rule" button.</p>
                 <img src="../site/images/week07/addsecuritygrouprules.jpg" alt="Add security groups">
-                <p>Add port 3000 that we will use for the web interface of the Chat AI (if you didn't already, click 'Edit' in the top right).</p>
+                <p>Add port 3000 that we will use for the web interface of the Chat AI (if you didn’t already, click 'Edit' in the top right).</p>
                 <img src="../site/images/week07/addport3000.jpg" alt="Add port 3000">
                 <p>Add cidr for the source of 0.0.0.0 (means allow traffic from anywhere on the internet).</p>
                 <img src="../site/images/week07/addport3000cidr.jpg" alt="Add port 3000">
@@ -148,7 +148,7 @@
             </div></li>
             <li><div>Also, add port 11434 with CIDR of 0.0.0.0 for ollama ai chat port (click add security group rule).</div></li>
             <li><div>Make sure you have 5 ports listed 3000 (AI website), 11434 (internal AI), 22 (ssh), 443 (https), 80 (http). They all should have CIDR of 0.0.0.0. If not add them. </div></li>
-            
+
             <li><div>
                 <p>Pick how much hard drive space you need on the server. Put 32 GB.</p>
                 <img src="../site/images/week07/32gbstorage.jpg" alt="EC2 Configure Storage">
@@ -214,8 +214,8 @@
             <li><div>
                 <p>Make sure to update the instance often. Connect either in the browser connecting to the terminal with "Connect" buttons or ssh in via the pem key.</p>
                 <p>This gets and applies the security updates for the software and services that need updates.</p>
-                <p>To save time, you don't need to do these two commands below right now (OPTIONAL - REAL WORLD HIGHLY RECOMMENDED).</p>
-                <pre>sudo yum update</pre>
+                <p>To save time, you don’t need to do these two commands below right now (OPTIONAL - REAL WORLD HIGHLY RECOMMENDED).</p>
+                <pre>sudo dnf update</pre>
                 <p>This reboots/restarts the server (Only need to do this on kernel or Major OS updates).</p>
                 <pre>sudo reboot</pre>
                 <p>Reconnect with the steps above after about a minute for the reboot.</p>
@@ -243,7 +243,7 @@
         <ol>
             <li><div>
               <p>#Installs and starts docker (we will learn more about docker later)</p>
-              <p>sudo yum install docker</p>
+              <p>sudo dnf install docker</p>
               <p>sudo systemctl enable docker</p>
               <p>sudo service docker start</p>
             </div></li>
@@ -269,11 +269,11 @@
                     <p>sudo systemctl restart ollama</p>
                     <p>Go to step 4.</p>
 
-                    <h4>SHORTCUT SCRIPT - TO THE VI STUFF ABOVE (Don't do this if you did step 3 above)</h4>
-                    <p>If step 3 didn't work,run this in the connected EC2 instance shell:</p>
-                    <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh
+                    <h4>SHORTCUT SCRIPT - TO THE VI STUFF ABOVE (Don’t do this if you did step 3 above)</h4>
+                    <p>If step 3 didn’t work,run this in the connected EC2 instance shell:</p>
+                    <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh &amp;&amp; sudo chmod a+x addipvarwebui.sh &amp;&amp; sudo ./addipvarwebui.sh
                     </p>
-                    <p>Or if that script didn't work, TRY THIS:</p>
+                    <p>Or if that script didn’t work, TRY THIS:</p>
                     <p>sudo sed -i '/RestartSec=3/a'$"Environment=\"OLLAMA_HOST=0.0.0.0\"\nEnvironment=\"OLLAMA_ORIGINS=$(curl -s http://checkip.amazonaws.com):*\"" /etc/systemd/system/ollama.service</p>
         <p>#Run the following commands one at a time (if you get an error, continue):</p>
         <p>sudo systemctl daemon-reload</p>
@@ -305,23 +305,23 @@
 
         </ol>
 
-        <h2 id="troubleshooting">Troubleshooting & Common Problems</h2>
-        <h3>If you can't access AWS</h3>
+        <h2 id="troubleshooting">Troubleshooting &amp; Common Problems</h2>
+        <h3>If you can’t access AWS</h3>
         <ul>
             <li><div>
                 <p>Find the email invite that was sent to your BYU-I email address that ends in @byui.edu</p>
-                <p>Make sure to Create New Canvas account if you haven't used AWS before on campus.</p>
+                <p>Make sure to Create New Canvas account if you haven’t used AWS before on campus.</p>
             </div></li>
         </ul>
 
-        <h3>You can't see the EC2 instance?</h3>
+        <h3>You can’t see the EC2 instance?</h3>
         <ul>
             <li><div>
                 <p>Are you in the correct region? Did you click on the top right corner of AWS to connect to the N. Virginia or Oregon region, depending on where you deployed it.</p>
             </div></li>
         </ul>
 
-        <h3>You can't see or use the web interface?</h3>
+        <h3>You can’t see or use the web interface?</h3>
         <ul>
             <li><div>
                 <p>Did you open both port 3000 and port 11434? Check your instance security group inbound rules.</p>
@@ -335,15 +335,15 @@
         <h3>Model Not Selected Error on browser</h3>
         <ul>
             <li><div>
-                <p>Go to the admin panel > Settings > Connections > Click on the gear next to the ollama and then click the refresh circle arrows.</p>
-                <p>If it doesn't connect, did you get the ollama host and origins correct and with quotes around the IPs?</p>
+                <p>Go to the admin panel &gt; Settings &gt; Connections &gt; Click on the gear next to the ollama and then click the refresh circle arrows.</p>
+                <p>If it doesn’t connect, did you get the ollama host and origins correct and with quotes around the IPs?</p>
             </div></li>
             <li><div>
                 <p>Did you set the default user model in the Admin Panel settings under Users?</p>
             </div></li>
             <li><div>
                 <p>Did you download the 'llama3.2' model in the Admin Panel settings under Models?</p>
-                <p>Try this: curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh</p>
+                <p>Try this: curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh &amp;&amp; sudo chmod a+x addipvarwebui.sh &amp;&amp; sudo ./addipvarwebui.sh</p>
             </div></li>
         </ul>
 
@@ -356,8 +356,8 @@
                 <p>Environment="OLLAMA_HOST=0.0.0.0"
                     Environment="OLLAMA_ORIGINS=3.210.150.106:*"<br>
                     Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"</p>
-                <p>If you don't see those three lines or if yours isn't working still, run this and then go refresh the connection in the admin panel settings:</p>
-                <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh </p>
+                <p>If you don’t see those three lines or if yours isn’t working still, run this and then go refresh the connection in the admin panel settings:</p>
+                <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh &amp;&amp; sudo chmod a+x addipvarwebui.sh &amp;&amp; sudo ./addipvarwebui.sh </p>
             </div></li>
         </ul>
 
@@ -366,9 +366,9 @@
         <p>Build your resume: Deployed a Custom Chat AI to an AWS EC2 instance.</p>
         <p>Build your resume (possible FUTURE project): Deployed a Custom Chat AI with custom RAG and connected it to an RDS database with Cognito authentication</p>
 
-        <h2>Learning More - Add SSL for https - you won't access it on port 3000 anymore though (https://yourpublicip)</h2>
+        <h2>Learning More - Add SSL for https - you won’t access it on port 3000 anymore though (https://yourpublicip)</h2>
         <p>Run this script to set up SSL for your Open WebUI instance:</p>
-        <p>curl -O https://byui-cloud.github.io/itm101-course/week07/setup_openwebui_https.sh && sudo chmod a+x setup_openwebui_https.sh && sudo ./setup_openwebui_https.sh</p>
+        <p>curl -O https://byui-cloud.github.io/itm101-course/week07/setup_openwebui_https.sh &amp;&amp; sudo chmod a+x setup_openwebui_https.sh &amp;&amp; sudo ./setup_openwebui_https.sh</p>
 
         <h2>Learn More - Explore Various LLM Models</h2>
         <p>View <a target="_blank" href="https://ollama.com/library">https://ollama.com/library</a> to see various LLM models available for import.</p>
@@ -388,7 +388,7 @@
         <p><a target="_blank" href="https://github.com/open-webui/open-webui">Open Web AI</a></p>
 
         <h2>Reconnecting</h2>
-        <p>To reconnect later, log back into <a target="_blank" href="https://awsacademy.instructure.com">https://awsacademy.instructure.com</a>, start the learner lab, click the green AWS button, search for EC2, find your instance, click "Instance State" > "Start instance". </p>
+        <p>To reconnect later, log back into <a target="_blank" href="https://awsacademy.instructure.com">https://awsacademy.instructure.com</a>, start the learner lab, click the green AWS button, search for EC2, find your instance, click "Instance State" &gt; "Start instance". </p>
     </article>
 </body>
 </html>
