@@ -17,8 +17,11 @@
 <article>
     <div class="day">Week 12 Day 1</div>
     <h1>Launch an EC2 Instance with Terraform</h1>
-        Because it is all automated for us, we will deploy two instances in class: The RDP AWS Linux and the AI Chat Bot both in N. Virginia. 
-        Your homework is to do one more customized one in the Oregon region.
+    <p>Because it is all automated for us, we will deploy two instances
+    in class: The RDP AWS Linux and the AI Chat Bot both in
+    N.&nbsp;Virginia. Your homework is to do one more customized one in
+    the Oregon region.</p>
+
     <h2>Overview</h2>
     <p>Terraform allows you to quickly deploy a Linux Server, an app, a
     database, a docker container, and more, all in one file. Using
@@ -60,17 +63,25 @@
     </ol>
 
     <h2 id="part3">Terraform - Deploy AWS Linux Server with RDP</h2>
-    <p>This script will automatically deploy an EC2 instance with an AWS Linux Server in the N. Virginia region. Make sure you are in that region.</p>
-    <p>It will also open port 22 for ssh, 3389 for RDP, create an elastic/public IP, and associate it.</p>
+    <p>This script will automatically deploy an EC2 instance with an AWS
+    Linux Server in the N.&nbsp;Virginia region. Make sure you are in
+    that region.</p>
+
+    <p>It will also open port 22 for ssh, 3389 for RDP, create an
+    elastic/public IP, and associate it.</p>
+
     <p>It will also create a .pem file to ssh into it.</p>
-    <p>Terraform scripts allow you to deploy the AI Chat and other
-    Linux systems such as the ones we previous deployed but automatically such as the
+
+    <p>Terraform scripts allow you to deploy the AI Chat and other Linux
+    systems such as the ones we previous deployed but automatically such
+    as the
     <a href="../week09/assignment-instructions.html">EC2 instances</a>
-    and also the 
+    and also the
     <a href="../week10/assignment-instructions.html">Docker assignment</a>
-    all in one file, especially if you add Linux scripts to install additional things in the tf file. Now, let’s
-    deploy the same thing but with automated scripts like Terraform in
-    another region of what we previously installed in prior weeks.</p>
+    all in one file, especially if you add Linux scripts to install
+    additional things in the tf file. Now, let’s deploy the same thing
+    but with automated scripts like Terraform in another region of what
+    we previously installed in prior weeks.</p>
 
     <h3 id="step10">AWS CloudShell</h3>
     <p>In this assignment, you will install and use Terraform in the AWS
@@ -104,18 +115,21 @@
     </ol>
 
     <h3 id="step11">Install Terraform</h3>
-    <p><dfn>yum</dfn> is a package manager that we use to install
+    <p><dfn>dnf</dfn> is a package manager that we use to install
     software on Red Hat-based Linux distributions such as Fedora,
     CentOS, and Amazon Linux. The AWS CloudShell runs on Amazon Linux
-    2023 (AL2023) so we often use the <code>yum</code> command to
+    2023 (AL2023) so we often use the <code>dnf</code> command to
     install software in the CloudShell.</p>
+
     <ol>
         <li><div><p>In the AWS CloudShell, install Terraform by running
-        the following commands <strong>one by one (they will not work
-        all together)</strong>:</p>
-<p>sudo yum install -y yum-utils</p>
-<p>sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo</p>
-<p>sudo yum install -y terraform</p>
+        the following commands <strong>one by one because they will not
+        work all together.</strong>:</p>
+<pre>sudo dnf install -y dnf-plugins-core
+
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+sudo dnf install -y terraform</pre>
         </div></li>
     </ol>
 
@@ -128,7 +142,7 @@
     <ol class="long">
         <li><div><p>In the same us-east-1 AWS CloudShell, execute the
         following command to download a Terraform file:</p>
-        <p>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</p>
+        <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeast.tf</pre>
         </div></li>
 
         <li><div>Examine the
@@ -178,21 +192,24 @@ ls</pre>
         <pre>ssh -i private_key.pem ec2-user@3.3.3.3</pre>
         </div></li>
 
-        <li><div>Capture a screenshot of your remote ssh session and
-        then type the <strong>exit</strong> command to quit
-        <code>ssh</code> and return to your AWS CloudShell.</div></li>
-        <p>Make sure to type exit to get out of the ssh session of your new Linux server.</p>
-        <pre>exit</pre>
+        <li><div>Capture a screenshot of your remote ssh session so that
+        you can submit it.</div></li>
+
+        <li><div>Type the <code>exit</code> command to quit
+        the remote ssh session and return to your AWS CloudShell.
+        <pre>exit</pre></div></li>
     </ol>
-    <h3 id="step14">Delete Resources</h3>
+
+    <h3>Delete Resources</h3>
     <ol>
         <li><div><p>In the AWS CloudShell, run this command to delete
-        all the resources created by the Terraform script (EC2 instances will be deleted - take screenshots for homework first):</p>
-        <pre>terraform destroy -auto-approve</pre>
-        </div></li>
-        <li>Delete the terraform script file:</li>
-        <pre>rm mainawslinuxeast.tf</pre>
-    </ol>    
+        all the resources created by the Terraform script (EC2 instances
+        will be deleted - take screenshots for homework first):</p>
+        <pre>terraform destroy -auto-approve</pre></div></li>
+
+        <li><div>Delete the terraform script file:
+        <pre>rm mainawslinuxeast.tf</pre></div></li>
+    </ol>
 
     <h2 id="part4">Deploy AI Chat with Terraform</h2>
     <h3>Business Requirements</h3>
@@ -217,34 +234,52 @@ ls</pre>
 
         <li><div><p>Using the AWS Console, <strong>make sure you’re
         working in the N.&nbsp;Virginia region</strong>. Then download
-        the <code>mainawslinuxeastAI.tf</code> file to your AWS CloudShell.</p>
-        <p>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</p>
+        the <code>mainawslinuxeastAI.tf</code> file to your AWS
+        CloudShell.</p>
+        <pre>curl -O https://byui-cloud.github.io/itm101-course/week12/mainawslinuxeastAI.tf</pre>
         </div></li>
 
-        <li><div>Use Terraform plan and apply the
-        <code>mainawslinuxeastAI.tf</code> file:</li>
-        <pre>terraform apply -auto-approve</pre>
-        <li><div>This will deploy
-        a new EC2 instance and install the AI Chat server.</div></li>
+        <li><div><p>Use Terraform to plan and apply the
+        <code>mainawslinuxeastAI.tf</code> file:</p>
+<pre>terraform plan
+terraform apply -auto-approve</pre>
+        <p>This will deploy a new EC2 instance and install the AI Chat
+        server.</p></div></li>
+
         <li><div>Wait a few minutes.</div></li>
-        <li><div>Run this code to update the IP address:</div></li>
-        <p>terraform apply -refresh-only</p>
-        <li><div>When it says "Enter a Value": Type 'yes' and hit "Enter" on your keyboard to apply it.</div></li>
-        
+
+        <li><div>Run this code to update the IP address:
+        <pre>terraform apply -refresh-only</pre></div></li>
+
+        <li><div>When it says "Enter a Value": Type 'yes' and hit
+        "Enter" on your keyboard to apply it.</div></li>
 
         <li><div>Test the newly deployed AI Chat server by entering the
         public IP address (http://publicip:3000) of the newly deployed
-        EC2 instance into a new tab in your browser. 
+        EC2 instance into a new tab in your browser.
         </div></li>
 
-        <li><div>If your IP doesn't work, go to your EC2 instance it deployed (refresh instances if needed) and find the "Public IPv4 address" in the instance summary. Use that IP. For example if your Public IPv4 address is 18.214.243.225, then go to your favorite browser such as Firefox and type in the URL http://18.214.243.22:3000/</div></li>
+        <li><div>If your IP doesn't work, go to your EC2 instance it
+        deployed (refresh instances if needed) and find the "Public IPv4
+        address" in the instance summary. Use that IP. For example if
+        your Public IPv4 address is 18.214.243.225, then go to your
+        favorite browser such as Firefox and type in the URL
+        http://18.214.243.22:3000/</div></li>
 
-        <li><div>Once your webpage is working, you may
-        need to click "Get Started" and then add your email and create a password. The website is not https and the password is not secure so use a simple one.
-        </div></li>
-        
-        <li><div>Go to the admin panel settings (click on your user icon circle and click on "Admin Panel" in the menu), and then click on "Settings" menu at the top. 
-        Now click on the "Models" menu on the left and click the download icon on the far right. In the "Pull a Model from Ollama.com" section, pull a model by typing an AI LLM model such as 'llama3.2' and click the download button. Once it downloads, click the "X" to exit that window. Click on the pencil chat icon on the left. Go try a chat.</div></li>
+        <li><div>Once your webpage is working, you may need to click
+        "Get Started" and then add your email and create a password. The
+        website is not https and the password is not secure so use a
+        simple one.</div></li>
+
+        <li><div>Go to the admin panel settings (click on your user icon
+        circle and click on "Admin Panel" in the menu), and then click
+        on "Settings" menu at the top. Now click on the "Models" menu on
+        the left and click the download icon on the far right. In the
+        "Pull a Model from Ollama.com" section, pull a model by typing
+        an AI LLM model such as 'llama3.2' and click the download
+        button. Once it downloads, click the "X" to exit that window.
+        Click on the pencil chat icon on the left. Go try a
+        chat.</div></li>
 
         <li><div>Capture a screenshot of the AI Chat working in your
         browser.</div></li>
@@ -253,9 +288,9 @@ ls</pre>
     <h3 id="step14">Delete Resources</h3>
     <ol>
         <li><div><p>In the AWS CloudShell, run this command to delete
-        all the resources created by the Terraform script (EC2 instances will be deleted - take screenshots for homework first):</p>
-        <pre>terraform destroy -auto-approve</pre>
-        </div></li>
+        all the resources created by the Terraform script (EC2 instances
+        will be deleted - take screenshots for homework first):</p>
+        <pre>terraform destroy -auto-approve</pre></div></li>
     </ol>
 
     <h3 id="step15">Manage Budget</h3>
@@ -272,32 +307,38 @@ ls</pre>
     Notice it is in a different region: Oregon not N.&nbsp;Virginia.</p>
 
     <h2>Troubleshooting</h2>
-        <ol>
-            <li><div>Are you in the correct AWS region?
-                <p>Make sure you are in the correct AWS region (N. Virginia for the first part and Oregon for the homework part).</p>
-            </div></li>
-            <li><div>Did you run out of space on the Cloudshell? In Cloudshell, first, remove all terraform deployed resources:
-                <p>(<strong>WARNING</strong> - This will delete your servers and instances)</p>
-                <pre>terraform destroy -auto-approve</pre>
-                <p>Delete all terraform files:</p>
-                <pre>rm *.tf</pre>
-                <p>Now, clear up space by deleting all terraform files:</p>
-                <pre>rm -R .terraform</pre>
-                <p>Check disk usage with these commands:</p>
-                <pre>df -h</pre>
-                <pre>du -h</pre>
-            </div></li>
+    <ol>
+        <li><div>Are you in the correct AWS region? <p>Make sure you are
+        in the correct AWS region (N.&nbsp;Virginia for the first part
+        and Oregon for the homework part).</p></div></li>
 
-            <li><div>Did you use your public IP address? Once your webpage is working, click "Get Started" and then you may
-        need to add your email and create a password. 
+        <li><div>Did you run out of space on the Cloudshell? In
+        Cloudshell, first, remove all terraform deployed resources:
+        <p>(<strong>WARNING</strong> - This will delete your servers and instances)</p>
+        <pre>terraform destroy -auto-approve</pre>
+        <p>Delete all terraform files:</p>
+        <pre>rm *.tf</pre>
+        <p>Now, clear up space by deleting all terraform files:</p>
+        <pre>rm -R .terraform</pre>
+        <p>Check disk usage with these commands:</p>
+        <pre>df -h</pre>
+        <pre>du -h</pre>
         </div></li>
 
-        <li><div>If your model, doesn't work, you may need to install ollama by running these in the EC2 instance terminal:
-        <p>Confirm ollama is running by typing "ollama" and if not, run this to install it:</p>
-        <p>curl -fsSL https://ollama.com/install.sh | sh</p>
-        <p>If you go to the admin panel and the connection doesn't work, you may need to run this:</p>
-        <p>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh</p></div></li>
-        </ol>
+        <li><div>Did you use your public IP address? Once your webpage
+        is working, click "Get Started" and then you may need to add
+        your email and create a password.</div></li>
+
+        <li><div><p>If your model, doesn't work, you may need to install
+        ollama by running these in the EC2 instance terminal: Confirm
+        ollama is running by typing "ollama" and if not, run this to
+        install it:</p>
+        <pre>curl -fsSL https://ollama.com/install.sh | sh</pre>
+        <p>If you go to the admin panel and the connection doesn't work,
+        you may need to run this:</p>
+        <pre>curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh &amp;&amp; sudo chmod a+x addipvarwebui.sh &amp;&amp; sudo ./addipvarwebui.sh</pre>
+        </div></li>
+    </ol>
 
     <h2 id="learn-more">Learn More</h2>
     <ul class="long">
@@ -313,7 +354,7 @@ ls</pre>
         at the <code>mainawslinuxeastAI.tf</code> file for an
         example.</p>
 
-        <pre>sudo yum install -y docker</pre>
+        <pre>sudo dnf install -y docker</pre>
 
         <p>Look in the <a href="https://hub.docker.com/">docker hub</a>
         and find a docker container to install.<br>
@@ -337,9 +378,8 @@ sudo docker run --name myllm -d --restart unless-stopped langchain/langchain</pr
 
             <li><div><p>SSH into the server and set the password for the
             ec2-user and enable RDP:</p>
-<p>sudo passwd ec2-user</p>
-<p>sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365
-</p>
+<pre>sudo passwd ec2-user
+sudo openssl req -x509 -sha384 -newkey rsa:4096 -nodes -subj "/C=US/ST=ID/L=Rexburg/O=B/CN=www.example.com" -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 365</pre>
             </div></li>
         </ul>
         </div></li>
