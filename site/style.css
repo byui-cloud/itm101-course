@@ -26,6 +26,8 @@
 	--dark-fg-color: rgb(184, 184, 184);
 
 	--border-color: rgb(112, 112, 112);
+
+	--important-fg-color: var(--raspberry);
 }
 @media screen {
 	:root {
@@ -134,7 +136,7 @@ body {
 		width: 4em;
 		fill: white;
 	}
-	header > h2 {
+	header > .courseCode {
 		margin: 0 var(--header-separation);
 		flex: 1 1 auto;
 		font-size: 125%;
@@ -375,6 +377,19 @@ article div.search {
 	border: 1px solid var(--border-color);
 	padding: 0.25em 0.5em;
 	white-space: pre-line;
+}
+
+div.note {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75em;
+	margin: 1em 0;
+}
+div.note::before {
+	flex-shrink: 0; /* Prevent the icon from shrinking */
+	font-size: 200%;
+	color: var(--important-fg-color);
+	content: "\26a0";
 }
 
 article .gpt {
