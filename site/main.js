@@ -205,14 +205,12 @@ itm101.common = {
 			// Create the children of the header.
 			let svg = createSVG('svgBYUILogo', null, strings.byuiLogoAlt);
 			let byuiLogo = createElem('a', ['byuiLogo'],
-					{title : strings.byuiHint, href : strings.byuiURL});
+					{title: strings.byuiHint, href: strings.byuiURL});
 				byuiLogo.appendChild(svg);
-			let courseCode = createElem('a', null,
-					{title : strings.courseHint, href : filenames.contents});
+			let courseCode = createElem('a', ['courseCode'],
+					{title: strings.courseHint, href: filenames.contents});
 				courseCode.textContent =
 					strings.courseCode + ' | ' + strings.courseTitle;
-			let h2 = createElem('h2');
-				h2.appendChild(courseCode);
 			let menuOpen = createSVG('svgBars', ['menuIcon'], strings.menuHint);
 				menuOpen.setAttribute('id', 'menuOpen');
 				menuOpen.addEventListener('click', this.openNavMenu);
@@ -224,7 +222,7 @@ itm101.common = {
 			// Create the header.
 			header = createElem('header');
 				header.appendChild(byuiLogo);
-				header.appendChild(h2);
+				header.appendChild(courseCode);
 				header.appendChild(menuOpen);
 				header.appendChild(menuClose);
 
