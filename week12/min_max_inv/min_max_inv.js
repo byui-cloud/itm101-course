@@ -1,10 +1,10 @@
 // Import the Google Firebase and Firestore functions
 // needed by this Min-Max Inventory System.
 import {initializeApp} from
-	'https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js';
+	'https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js';
 import {getFirestore, collection as fireCollect, onSnapshot,
 		doc as fireDoc, addDoc, updateDoc, serverTimestamp}
-	from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js';
+	from 'https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js';
 
 
 /** The check object contains functions to check parameter types. */
