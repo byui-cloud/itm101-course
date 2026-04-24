@@ -1,4 +1,4 @@
-/* Copyright 2022 by Brigham Young University - Idaho. All rights reserved. */
+/* This work is licensed under a Creative Commons Attribution. */
 'use strict';
 
 if (! window.hasOwnProperty('itm101')) {
@@ -56,7 +56,7 @@ itm101.strings = {
 	downloadText : 'Download',
 
 	modified : 'Last modified',
-	copyrightNotice : 'Copyright © 2024 Brigham Young University–Idaho. All rights reserved.'
+	copyrightNotice : 'This work is licensed under a Creative Commons Attribution.'
 };
 
 
