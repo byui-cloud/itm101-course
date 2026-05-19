@@ -82,7 +82,7 @@
             <img src="../site/images/week05/choose_firebase_project.webp" alt="Choose Firebase Project Image">
         </div></li>
         <li><div>
-            <p>Click <strong>Firestore Database</strong> under <strong>Build</strong> (you may need to expand the <strong>Build</strong> section by clicking on it).</p>
+            <p>Click <strong>Databases & Storage</strong> under <strong>Product categories</strong> (on the right sidebar). Select <strong>Firestore</strong> by clicking on it.</p>
             <img src="../site/images/week05/click_firestore_database.webp" alt="Firebase.google.com Choose Firestore Database">
         </div></li>
         <li><div>
@@ -111,7 +111,7 @@
             <img src="../site/images/week05/firestore_create_collection.webp" alt="firebase.google.com Create Collection">
         </div></li>
         <li><div>
-            <p>Put the Collection ID as <strong>projects</strong> and click <strong>Next</strong></p>
+            <p>Put the Collection ID as <strong>projects</strong> and click <strong>Next</strong> (You must use this name 'projects' or your website will not work).</p>
             <img src="../site/images/week05/firestore_name_collection.webp" alt="firebase.google.com Name Collection">
         </div></li>
         <li><div>
@@ -121,7 +121,7 @@
         <img src="../site/images/week05/firestore_auto_id_example.webp" alt="firebase.google.com Auto ID Example">
         </div></li>
         <li><div>
-            <p>Let’s add some fields. Type <strong>title</strong> for the field and leave the type as a <strong>string</strong> if that is the data type that you want.</p>
+            <p>Let’s add some fields. Type <strong>title</strong> for the field and leave the type as a <strong>string</strong> if that is the data type that you want (this must be exact with the word "title" for the code we provided to work). Leave "Value/String" fields empty.</p>
             <ul>
                 <li><div>FYI - Use <strong>string</strong> for text such as letters, words, and paragraphs.</div></li>
                 <li><div>FYI - Use <strong>number</strong> for digits such as 1, 23, 5555, 44.44, etc.</div></li>
@@ -135,7 +135,7 @@
             <img src="../site/images/week05/firestore_collection_field_2.webp" alt="firebase.google.com Collection Add Field">
         </div></li>
         <li><div>
-            <p>Type <strong>description</strong> and select <strong>string</strong></p>
+            <p>Type <strong>description</strong> and select <strong>string</strong> (this must be exact with the word "description" for the code we provided to work)</p>
             <img src="../site/images/week05/firestore_collection_field_3.webp" alt="firebase.google.com Collection description Field">
         </div></li>
         <li><div>
@@ -218,14 +218,14 @@
         <p>ChatGPT generated some of these files. We are going to just download them and put them in your project to save time and possible variations from ChatGPT. If you would like to figure it out on your own, that would be great. </p>
         </div></li>
         <li><div>
-            <p>Open Visual Studio Code and download this file for your operating system:</p>
+            <p>Open Visual Studio Code and download this file for your operating system (it will download the webpage files to connect to the database):</p>
             <ul>
                 <li><div><p>(Windows) <a download href="week5.bat">https://byui-cloud.github.io/itm101-course/week05/week5.bat</a></p> </div></li>
                 <li><div><p>(Mac/Apple/Linux) <a download href="week5.sh">https://byui-cloud.github.io/itm101-course/week05/week5.sh</a> </p></div></li>
                 <li><div><p>Copy the file into your project folder (make sure it is at the highest level in your project folder) and run it in the Visual Studio Code terminal</p></div></li>
                 <li><div><p>(Windows) Run it with: ./week5.bat</p></div></li>
-                <li><div><p>(Mac/Apple/Linux) Run the following command in VS code: chmod 755 ./week5.sh</p></div></li>
-                <li><div><p>(Mac/Apple/Linux) Run it with: ./week5.sh</p></div></li>
+                <li><div><p>(Mac/Apple/Linux) First, run the following command in VS code (makes it executable):<br> chmod 755 ./week5.sh</p></div></li>
+                <li><div><p>(Mac/Apple/Linux) Second, run it with: ./week5.sh</p></div></li>
                 <li><div><p>week5.sh contains the following commands. If executing week5.bat/week5.sh on your computer didn’t work, you may need to execute the following commands:</p>
                 <pre>
 curl -O https://byui-cloud.github.io/itm101-course/week05/firestore.rules
@@ -241,7 +241,7 @@ cd ..
             </ul>
         </div></li>
         <li><div>
-            <p>Replace the contents of the file called <code>config.js</code> in your public folder and paste the code we obtained above that contains your API key and configuration for your Firestore database. It should look like this but with your URL and key:</p>
+            <p>Replace the contents of the file called <code>config.js</code> in your public folder and paste the code we obtained above that contains your API key and configuration for your Firestore database (this connects the website to your database). It should look like this but with your URL and key:</p>
             <img src="../site/images/week05/firebase_vs_code_config.webp" alt="VS Code Firebase Config">
             <ul>
                 <li><div><p>In Visual Studio, double click the config.js file we just made in the public folder delete all of the contents of the file (or press CTRL + A to select all and then <strong>backspace/delete</strong>)</p></div></li>
