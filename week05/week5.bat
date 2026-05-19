@@ -9,4 +9,4 @@ curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week05/styles
 cd ..
 cd ..
 dir
-del week5.bat
+:: del week5.bat

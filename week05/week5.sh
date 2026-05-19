@@ -10,4 +10,4 @@ curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week05/styles
 cd ..
 cd ..
 ls
-rm week5.sh
+# rm week5.sh
