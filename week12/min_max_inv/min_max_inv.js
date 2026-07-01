@@ -93,7 +93,8 @@ const mminv = {
 	/** Returns a connection to the Firestore database. */
 	connect : function(event) {
 		if (! this.firestore) {
-			/* Copy and paste your project's firebaseConfig here. Replace the placeholders with your actual values. */
+			/* Replace the following firebaseConfig and its curly braces
+			 * with the firebaseConfig from your firebase project. */
 			const firebaseConfig = {
 			};
 

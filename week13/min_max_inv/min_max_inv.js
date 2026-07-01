@@ -95,9 +95,12 @@ const mminv = {
 	authenticate : function(event) {
 		const self = this;
 		if (! self.firestore) {
-			/* Copy and paste your project's firebaseConfig here. */
+			/* Replace the following firebaseConfig and its curly braces
+			 * with the firebaseConfig from your firebase project. */
 			const firebaseConfig = {
 			};
+
+			// DO NOT EDIT BELOW THIS LINE.
 			const app = initializeApp(firebaseConfig);
 
 			// Use the Google authentication service.

@@ -127,8 +127,11 @@ system that uses a NoSQL database in the Internet Cloud.</p>
     <ol>
         <li><div><code>npm install -g firebase-tools</code></div></li>
         <li><div><code>firebase login</code></div></li>
-        <li><div><code>firebase projects:list</code></div></li>
-        <li><div><code>firebase init</code><br>
+        <li><div><code>firebase projects:list</code></div><br>
+        (Look in the output from this command and find the project ID
+        for your Min Max Inventory project. Copy this project ID so you
+        can use it in the next command.)</li>
+        <li><div><code>firebase init --project YOUR_PROJECT_ID</code><br>
         (When you execute this command, your computer will ask you
         several questions about the Firebase services that you want to
         initialize. Use the arrow keys, space bar, and finally the enter
