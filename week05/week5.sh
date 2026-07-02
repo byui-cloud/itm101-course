@@ -10,4 +10,5 @@ curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week05/styles
 cd ..
 cd ..
 ls
-# rm week5.sh
+# if the .sh file is left, firebase might not deploy
+rm week5.sh

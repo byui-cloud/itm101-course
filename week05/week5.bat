@@ -9,4 +9,5 @@ curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week05/styles
 cd ..
 cd ..
 dir
-:: del week5.bat
+:: if the .bat file is left, firebase might not deploy
+del week5.bat

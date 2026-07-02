@@ -8,4 +8,6 @@ curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week06/favico
 curl --ssl-no-revoke -O https://byui-cloud.github.io/itm101-course/week06/logo.png
 cd ..
 dir
+:: if the .bat file is left, firebase might not deploy
+
 del week6.bat
