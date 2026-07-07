@@ -95,6 +95,20 @@ curl -fsSL https://ollama.com/install.sh | sh
 sudo yum install -y docker
 sudo systemctl enable docker
 sudo service docker start
+
+# Make sure Ollama is reachable from Docker containers.
+sudo mkdir -p /etc/ollama
+echo 'OLLAMA_HOST=0.0.0.0' | sudo tee /etc/ollama/serve.conf >/dev/null
+
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+
+# Wait until Ollama is actually answering.
+until curl -sf http://127.0.0.1:11434/api/tags >/dev/null; do
+  sleep 2
+done
+
+
 sudo docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 curl -O https://byui-cloud.github.io/itm101-course/week07/addipvarwebui.sh && sudo chmod a+x addipvarwebui.sh && sudo ./addipvarwebui.sh 
 sudo yum update -y
