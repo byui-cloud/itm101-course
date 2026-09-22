@@ -35,12 +35,14 @@
             <pre>Set-ExecutionPolicy -ExecutionPolicy Unrestricted</pre>
             </div></div>
             <div class="note"><div>MAC COMPUTERS: When trying to
-            install Node.js on your Mac computer, if you quit terminal and reopen it and try 'nvm -v' and if it isn't working, run this in the terminal:
-            printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"\n' >> ~/.bash_profile<strong>
-            </strong> 
+            install Node.js on your Mac computer, if you quit terminal and reopen it and try 'nvm -v' and if it isn't working, run this in the terminal:<br>
+            printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"\n' >> ~/.zshrc<br>
+            printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"\n' >> ~/.bash_profile
             <br>
-            Then run the following command:
-            <pre>source ~/.bash_profile
+            Then run the following commands:
+            <pre>
+            source ~/.bash_profile<br>
+            source ~/.zshrc<br>
             nvm --version</pre>
             </div></div>            
         </li>
