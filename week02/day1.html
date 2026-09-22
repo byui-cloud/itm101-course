@@ -32,8 +32,8 @@
             this error, <strong>"execution of scripts is disabled on
             this system,"</strong> open PowerShell as an administrator
             and run the following command:
-            <pre>Set-ExecutionPolicy -ExecutionPolicy Unrestricted</pre>
-            </div></div>
+            <pre>Set-ExecutionPolicy -ExecutionPolicy Unrestricted</pre><br>
+            It should prompt you to confirm, type <strong>A</strong> and hit enter.</div></div>
             <div class="note"><div>MAC COMPUTERS: When trying to
             install Node.js on your Mac computer, if you quit terminal and reopen it and try 'nvm -v' and if it isn't working, run this in the terminal:<br>
             printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"\n' >> ~/.zshrc<br>
@@ -44,7 +44,12 @@
             source ~/.bash_profile<br>
             source ~/.zshrc<br>
             nvm --version</pre>
-            </div></div>            
+            </div></div>   
+            <li>
+            <div>
+                <p>Confirm that node is installed correctly by closing Visual Studio Code (all windows of it). Open VS Code and open a terminal inside VS Code. Type 'node -v' and press enter. If it outputs a version number, then it is installed correctly.</p>
+            </div>         
+            </li>
         </li>
     </ol>
 
