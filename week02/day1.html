@@ -34,6 +34,15 @@
             and run the following command:
             <pre>Set-ExecutionPolicy -ExecutionPolicy Unrestricted</pre>
             </div></div>
+            <div class="note"><div>MAC COMPUTERS: When trying to
+            install Node.js on your Mac computer, if you quit terminal and reopen it and try 'nvm -v' and if it isn't working, run this in the terminal:
+            printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"\n' >> ~/.bash_profile<strong>
+            </strong> 
+            <br>
+            Then run the following command:
+            <pre>source ~/.bash_profile
+            nvm --version</pre>
+            </div></div>            
         </li>
     </ol>
 
@@ -110,7 +119,9 @@
     alt="An halluciation from ChatGPT"></p>
 
 
-    <h2>Build Something cool with AI and Node</h2>
+    <h2>Confirm Node is Working and Build Something cool with AI and Node</h2>
+    <p>Confirm that Node.js is installed and working by opening your terminal in VS Code by running the command (in the VS Code terminal):</p>
+    <p><code>node --version</code></p>
     <p>Build something with these tools and ChatGPT/AI - Be creative.
     Have fun.</p>
 </article>
